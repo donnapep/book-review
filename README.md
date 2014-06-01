@@ -33,7 +33,7 @@ The WordPress Book Review Plugin adds a *Book Info* section to regular posts and
 
 If the *Book Info* section has been filled out, these details (with the exception of ISBN) will appear in the post.
 
-** Features **
+**Features**
 * Retrieve details about a book automatically from Google Books.
 * Position the review box either above or below the post's content.
 * Customizable background and border colours.
@@ -90,11 +90,16 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 
 ## Screenshots ##
 
-1. Book Review Settings
-2. Book Info
-3. Book Info on a Sample Post
-4. Archives by Title
-5. Archives by Genre
+###1. Book Review Settings###
+![Book Review Settings](http://donnapeplinskie.com/wp-content/uploads/2014/05/screenshot-1.png)
+###2. Book Info###
+![Book Info](http://donnapeplinskie.com/wp-content/uploads/2014/05/screenshot-2.png)
+###3. Book Info on a Sample Post###
+![Book Info on a Sample Post](http://bookwookie.ca/wp-content/uploads/2013/08/Book_Review_Plugin.png)
+###4. Archives by Title###
+![Archives by Title](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-title.png)
+###5. Archives by Genre###
+![Archives by Genre](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-genre.png)
 
 ## Changelog ##
 
