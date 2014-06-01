@@ -1,13 +1,13 @@
 # WordPress Book Review Plugin #
-**Contributors:** donnapep
-**Tags:** book, review, rating, book review, book blog, book blogger, book blogging
-**Author URI:** http://donnapeplinskie.com
-**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/
-**Requires at least:** 3.5
-**Tested up to:** 3.9.1
-**Stable tag:** 2.1.0
-**License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Contributors:** donnapep  
+**Tags:** book, review, rating, book review, book blog, book blogger, book blogging  
+**Author URI:** http://donnapeplinskie.com  
+**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
+**Requires at least:** 3.5  
+**Tested up to:** 3.9.1  
+**Stable tag:** 2.1.0  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Add details such as title, author, cover photo, rating, purchase links and more to each of your book review posts. Show archives by title or genre.
 
@@ -51,14 +51,6 @@ This plugin supports the following translations:
 
 If you would like to volunteer to translate this plugin into other languages, please contact me at thebookwookie@gmail.com.
 
-## Resources ##
-* Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
-* Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
-* If you have questions or suggestions, please post them in the forum that can be found on the Support tab.
-
-## About Me ##
-As a book blogger myself, I have my finger on the pulse of the book blogging community, and so I have a very good sense of what it is that other book bloggers are looking for in a WordPress plugin. I use the Book Review plugin on my own [Book Wookie](http://bookwookie.ca) blog. Please visit if you'd like to see examples of this plugin in action.
-
 ## Installation ##
 
 1. Download the plugin and extract it.
@@ -100,6 +92,14 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 ![Archives by Title](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-title.png)
 ###5. Archives by Genre###
 ![Archives by Genre](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-genre.png)
+
+## Resources ##
+* Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
+* Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
+* If you have questions or suggestions, please post them in the forum that can be found on the Support tab.
+
+## About Me ##
+As a book blogger myself, I have my finger on the pulse of the book blogging community, and so I have a very good sense of what it is that other book bloggers are looking for in a WordPress plugin. I use the Book Review plugin on my own [Book Wookie](http://bookwookie.ca) blog. Please visit if you'd like to see examples of this plugin in action.
 
 ## Changelog ##
 
