@@ -1,0 +1,74 @@
+
+/* Single */
+#book-review {
+	padding: 0.625em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+#book-review label {
+	font-weight: bold;
+	padding-right: 0.3125em;
+}
+
+#book-review #book_review_cover_image {
+	float: right;
+	border: 0;
+	max-width: 50%;
+	margin-left: 1em;
+	margin-bottom: 1em;
+}
+
+#book-review #book_review_rating_image {
+	padding-top: 0.3125em;
+}
+
+#book-review ul#book-review-links {
+	clear: right;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style: none;
+}
+
+#book-review ul#book-review-links li {
+	display: inline-block;
+	padding-right: 1em;
+}
+
+#book-review ul#book-review-links li a.custom-link {
+	border: 0;
+}
+
+/* Rating on home page */
+.book_review_rating_image {
+	float: left;
+	margin: 0 0.5em 0 0;
+}
+
+/* Archives */
+.book-review-archives ul.thumbs {
+	padding: 0;
+	list-style-type: none;
+}
+
+.book-review-archives ul.thumbs li {
+	padding: 10px;
+	overflow: hidden;
+}
+
+.book-review-archives ul.thumbs li img {
+	float: left;
+	margin: 0 15px 0 0 ;
+}
+
+.book-review-archives ul.thumbs li h5 {
+	font-size: 1em;
+	margin: 0;
+}
+
+.book-review-archives ul p {
+	margin: 5px 0;
+}

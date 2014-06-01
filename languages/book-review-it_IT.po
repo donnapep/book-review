@@ -1,0 +1,254 @@
+# Copyright (C) 2013 Book Review
+# This file is distributed under the same license as the Book Review package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Book Review 1.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/book-review\n"
+"POT-Creation-Date: 2013-10-12 17:14:09+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-10-15 08:49+0100\n"
+"Last-Translator: james <j.garofalo@immaginaria.eu>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: book-review-meta-box.php:75 book-review.php:487
+msgid "Title"
+msgstr "Titolo"
+
+#: book-review-meta-box.php:78 book-review.php:492
+msgid "Series"
+msgstr "Serie"
+
+#: book-review-meta-box.php:81 book-review.php:497
+msgid "Author"
+msgstr "Autore"
+
+#: book-review-meta-box.php:84 book-review.php:502
+msgid "Genre"
+msgstr "Genere"
+
+#: book-review-meta-box.php:87 book-review.php:507
+msgid "Publisher"
+msgstr "Casa editrice"
+
+#: book-review-meta-box.php:90 book-review.php:512
+msgid "Release Date"
+msgstr "Data di Pubblicazione"
+
+#: book-review-meta-box.php:93 book-review.php:517
+msgid "Format"
+msgstr "Formato"
+
+#: book-review-meta-box.php:96 book-review.php:522
+msgid "Pages"
+msgstr "Pagine"
+
+#: book-review-meta-box.php:99 book-review.php:527
+msgid "Source"
+msgstr "Sorgente"
+
+#: book-review-meta-box.php:116
+msgid "Cover URL"
+msgstr "URL Copertina"
+
+#: book-review-meta-box.php:118
+msgid "Upload Cover"
+msgstr "Carica Copertina"
+
+#: book-review-meta-box.php:133 book-review.php:558
+msgid "Synopsis"
+msgstr "Sinossi"
+
+#: book-review-meta-box.php:136
+msgid "Rating"
+msgstr "Valutazione"
+
+#: book-review-meta-box.php:139
+msgid "Select..."
+msgstr "Seleziona..."
+
+#: book-review-meta-box.php:195
+msgid "Include post in archives"
+msgstr "Includi articolo negli archivi"
+
+#: book-review-meta-box.php:272
+msgid "the"
+msgstr "the,il,lo,la,i,gli,le"
+
+#: book-review-meta-box.php:272
+msgid "a"
+msgstr "un,uno"
+
+#: book-review-meta-box.php:272
+msgid "an"
+msgstr "una"
+
+#: book-review.php:89
+msgid "General"
+msgstr "Generale"
+
+#: book-review.php:94
+msgid "Review Box Position"
+msgstr "Posizione casella recensione"
+
+#: book-review.php:97
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr ""
+"Mostra la casella di revisione nella parte superiore o inferiore di un post."
+
+#: book-review.php:103
+msgid "Top"
+msgstr "Parte superiore"
+
+#: book-review.php:104
+msgid "Bottom"
+msgstr "Parte inferiore"
+
+#: book-review.php:109
+msgid "Review Box Background Color"
+msgstr "Colore di sfondo della casella di recensione"
+
+#: book-review.php:117
+msgid "Review Box Border Color"
+msgstr "Colore bordo della casella di recensione"
+
+#: book-review.php:125
+msgid "Rating Images"
+msgstr "Immagini valutazione"
+
+#: book-review.php:126
+msgid "Configure the images to use for displaying ratings."
+msgstr ""
+"Configurare le immagini da utilizzare per la visualizzazione della votazione."
+
+#: book-review.php:132
+msgid "Show rating on home page"
+msgstr "Mostra la votazione nella home page"
+
+#: book-review.php:135
+msgid ""
+"Whether to show the rating image on your home page when summary text is used."
+msgstr ""
+"Mostra l'immagine di voto sulla vostra Home Page quando si utilizza il testo "
+"di sintesi."
+
+#: book-review.php:147
+msgid "Use default rating images"
+msgstr "Usa le immagini di base per la votazione"
+
+#: book-review.php:150
+msgid "Whether to use the default rating images or your own."
+msgstr ""
+"Utilizza le immagini di default per la votazione o le vostre personali."
+
+#: book-review.php:163
+msgid "Rating Image URLs"
+msgstr "URL immagini per la votazione"
+
+#: book-review.php:166
+msgid ""
+"To use your own rating images, enter the URL of an image for each rating "
+"below (1-5)."
+msgstr ""
+"Per usare le proprie immagini di votazione, inserire l'URL di un'immagine "
+"per ogni votazione inferiore (1-5)."
+
+#: book-review.php:181
+msgid "One-star Image URL"
+msgstr "URL immagine una stella"
+
+#: book-review.php:185
+msgid "Two-star Image URL"
+msgstr "URL Immagine due stelle"
+
+#: book-review.php:189
+msgid "Three-star Image URL"
+msgstr "URL Immagine tre stelle"
+
+#: book-review.php:193
+msgid "Four-star Image URL"
+msgstr "URL Immagine quattro stelle"
+
+#: book-review.php:197
+msgid "Five-star Image URL"
+msgstr "URL Immagine cinque stelle"
+
+#: book-review.php:210
+msgid "Links"
+msgstr "Links"
+
+#: book-review.php:211
+msgid ""
+"Configure the links that you would like to display with every book review."
+msgstr ""
+"Configurare i collegamenti che si desidera visualizzare con ogni recensione "
+"del libro."
+
+#: book-review.php:217
+msgid "Number of Links"
+msgstr "Numero di links"
+
+#: book-review.php:220
+msgid "Select the number of links you would like to add to each book review."
+msgstr ""
+"Selezionare il numero di link che si desidera aggiungere a ogni recensione "
+"del libro."
+
+#: book-review.php:232
+msgid "Open links in new tab"
+msgstr "Apri links in una nuova pagina"
+
+#: book-review.php:235
+msgid "Whether to open links in the same window or in a new tab."
+msgstr "Per aprire i link nella stessa finestra o in una nuova scheda."
+
+#: book-review.php:251
+msgid "Link Text"
+msgstr "Testo link"
+
+#: book-review.php:254
+msgid ""
+"Enter the text for each link. For every link added here, a new field will be "
+"shown in the Book Info section when editing a post."
+msgstr ""
+"Immettere il testo per ogni link. Per ogni link inserito qui, un nuovo campo "
+"sarà mostrato nella sezione Info Libro durante la modifica di un post."
+
+#: book-review.php:261
+msgid "Link Image URL"
+msgstr "URL link immagine"
+
+#: book-review.php:264
+msgid ""
+"If you would like to show links as images, enter the URL of an image for "
+"each link below. If you leave this field blank, links will be shown as text."
+msgstr ""
+"Se si desidera visualizzare i collegamenti come immagini, inserire l'URL di "
+"un'immagine per ogni link sottostante. Se si lascia vuoto questo campo, i "
+"collegamenti saranno visualizzati come testo."
+
+#. Plugin Name of the plugin/theme
+msgid "Book Review"
+msgstr "Recensione libro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://bookwookie.ca/wordpress-book-review-plugin/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Add book information such as title, author, publisher and cover photo to "
+"enhance your review posts."
+msgstr ""
+"Aggiungere informazioni sul libro, come titolo, autore, editore e foto di "
+"copertina per migliorare i tuoi messaggi revisione."
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://bookwookie.ca"
+msgstr ""
