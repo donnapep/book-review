@@ -1,57 +1,57 @@
-/* Meta box on Edit Post page. */
+/* Meta box */
 #book-review-meta-box label {
-	width: 20%;
-	padding: 0.83333333333333em;
-	display: inline-block;
+  width: 20%;
+  padding: 0.83333333333333em;
+  display: inline-block;
 }
 
-#book-review-meta-box .summary {
-	vertical-align: top;
+#book-review-meta-box select {
+  width: 100px;
+}
+
+#book-review-meta-box img {
+  max-height: 150px;
+  padding-left: 1.66666666666667em;
+  margin-left: 20.438683948156%;
 }
 
 #book-review-meta-box input[type="text"],
 #book-review-meta-box #wp-book_review_summary-wrap {
-	width: 60%;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#book-review-meta-box select {
-	width: 100px;
+  width: 60%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #book-review-meta-box #wp-book_review_summary-wrap {
-	padding-bottom: 0.83333333333333em;
+  padding-bottom: 0.83333333333333em;
 }
 
-#book-review-meta-box img {
-	max-height: 150px;
-	padding-left: 1.66666666666667em;
-	margin-left: 20.438683948156%;
+#book-review-meta-box .summary {
+  vertical-align: top;
 }
 
 #book-review-meta-box .button-primary:active {
-	vertical-align: baseline;
-}
-
-#book-review-meta-box .spinner {
-	vertical-align: baseline;
-	float: none;
+  vertical-align: baseline;
 }
 
 #book-review-meta-box .required {
-	color: red;
+  color: red;
+}
+
+#book-review-meta-box .spinner {
+  vertical-align: baseline;
+  float: none;
 }
 
 #book-review-meta-box .error-details {
-	/* Display & Box Model */
-	display: none;
-	padding: 15px;
-	border: 1px solid #ebccd1;
-	margin-bottom: 20px;
+  /* Display & Box Model */
+  display: none;
+  padding: 15px;
+  border: 1px solid #ebccd1;
+  margin-bottom: 20px;
 
-	/* Visual */
-	color: #a94442;
-	background-color: #f2dede;
-	border-radius: 4px;
+  /* Visual */
+  color: #a94442;
+  background-color: #f2dede;
+  border-radius: 4px;
 }

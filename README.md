@@ -1,13 +1,13 @@
 # WordPress Book Review Plugin #
-**Contributors:** donnapep  
-**Tags:** book, review, rating, book review, book blog, book blogger, book blogging  
-**Author URI:** http://donnapeplinskie.com  
-**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
-**Requires at least:** 3.5  
-**Tested up to:** 3.9.1  
-**Stable tag:** 2.1.0  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** donnapep
+**Tags:** book, review, rating, book review, book blog, book blogger, book blogging
+**Author URI:** http://donnapeplinskie.com
+**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/
+**Requires at least:** 3.5
+**Tested up to:** 3.9.1
+**Stable tag:** 2.1.0
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Add details such as title, author, cover photo, rating, purchase links and more to each of your book review posts. Show archives by title or genre.
 
@@ -48,8 +48,9 @@ This plugin supports the following translations:
 
 * Italian
 * Spanish
+* Chinese
 
-If you would like to volunteer to translate this plugin into other languages, please contact me at thebookwookie@gmail.com.
+If you would like to volunteer to translate this plugin into other languages, please contact me at donnapep@gmail.com.
 
 ## Installation ##
 
@@ -59,10 +60,6 @@ If you would like to volunteer to translate this plugin into other languages, pl
 1. Customize the settings by clicking on *Book Review* in the *Settings* menu.
 
 ## Frequently Asked Questions ##
-
-### Who is the Book Review plugin for? ###
-
-The Book Review plugin is meant to be used by book bloggers and other reviewers who post book reviews to their blog and need an easy way to show the details of that book in each of their review posts.
 
 ### What is the Synopsis field for? ###
 
@@ -98,10 +95,11 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
 * If you have questions or suggestions, please post them in the forum that can be found on the Support tab.
 
-## About Me ##
-As a book blogger myself, I have my finger on the pulse of the book blogging community, and so I have a very good sense of what it is that other book bloggers are looking for in a WordPress plugin. I use the Book Review plugin on my own [Book Wookie](http://bookwookie.ca) blog. Please visit if you'd like to see examples of this plugin in action.
-
 ## Changelog ##
+
+### 2.1.1 ###
+* Refactored some of the code.
+* Added Chinese translation files.
 
 ### 2.1.0 ###
 * Added support for schema.org.

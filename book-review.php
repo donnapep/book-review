@@ -2,28 +2,28 @@
 /**
  *
  * @package   Book_Review
- * @author    Donna Peplinskie <thebookwookie@gmail.com>
+ * @author    Donna Peplinskie <donnapep@gmail.com>
  * @license   GPL-2.0+
  * @link      http://donnapeplinskie.com
  * @copyright 2014 Donna Peplinskie
  *
- * @wordpress-plugin
  * Plugin Name:       Book Review
  * Plugin URI:        http://donnapeplinskie.com/wordpress-book-review-plugin/
- * Description:       Add book information such as title, author, publisher and cover photo to enhance your review posts.
- * Version:           2.1.0
+ * Description:       Add book information such as title, author, publisher and
+ *                    cover photo to enhance your review posts.
+ * Version:           2.1.1
  * Author:            Donna Peplinskie
  * Author URI:        http://donnapeplinskie.com
  * Text Domain:       book-review
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- * GitHub Plugin URI: https://github.com/<owner>/<repo>
+ * GitHub Plugin URI: https://github.com/donnapep/wordpress-book-review-plugin
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( !defined( 'WPINC' ) ) {
+  die;
 }
 
 /*----------------------------------------------------------------------------*
@@ -46,8 +46,6 @@ add_action( 'plugins_loaded', array( 'Book_Review', 'get_instance' ) );
  *----------------------------------------------------------------------------*/
 
 if ( is_admin() ) {
-
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/book-review-admin.php' );
-	add_action( 'plugins_loaded', array( 'Book_Review_Admin', 'get_instance' ) );
-
+  require_once( plugin_dir_path( __FILE__ ) . 'admin/book-review-admin.php' );
+  add_action( 'plugins_loaded', array( 'Book_Review_Admin', 'get_instance' ) );
 }

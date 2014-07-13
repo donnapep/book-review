@@ -1,77 +1,86 @@
+#book_review_settings {
+  width: 70%;
+}
+
 #book_review_settings input[type="radio"] {
-	width: 20px;
+  width: 20px;
 }
 
 #book_review_settings input[type="radio"]:not(:first-child) {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 #book_review_settings input.text-input {
-	width: 400px;
+  width: 400px;
 }
 
 #book_review_settings .custom-links {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 #book_review_settings .links th {
-	overflow: visible;
-	line-height: normal;
+  overflow: visible;
+  line-height: normal;
 }
 
 #book_review_settings .links th span {
-	font-family: sans-serif;
-	font-size: 12px;
+  font-family: sans-serif;
+  font-size: 12px;
 }
 
 /* Tooltips */
 #book_review_settings a.tooltip
 {
-	position: relative;
-	cursor: help;
-	display: inline-block;
-	text-decoration: none;
-	color: #222;
-	outline: none;
+  position: relative;
+  cursor: help;
+  display: inline-block;
+  text-decoration: none;
+  color: #222;
+  outline: none;
 }
 
 #book_review_settings a.tooltip img {
-	vertical-align: bottom;
+  vertical-align: bottom;
 }
 
 #book_review_settings a.tooltip span
 {
-	visibility: hidden;
-	position: absolute;
-	font-weight: normal;
-	z-index: 999;
-	width: 300px;
-	padding: 5px;
-	margin-left: 5px;
-	border: 2px solid #ccc;
-	opacity: .9;
-	background-color: #ddd;
-	background-image: -webkit-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
-	background-image: -moz-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
-	background-image: -ms-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
-	background-image: -o-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
-	background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
-	box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
-	text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  visibility: hidden;
+  position: absolute;
+  font-weight: normal;
+  z-index: 999;
+  width: 300px;
+  padding: 5px;
+  margin-left: 5px;
+  border: 2px solid #ccc;
+  opacity: .9;
+  background-color: #ddd;
+  background-image: -webkit-linear-gradient(rgba(255,255,255,.5),
+    rgba(255,255,255,0));
+  background-image: -moz-linear-gradient(rgba(255,255,255,.5),
+    rgba(255,255,255,0));
+  background-image: -ms-linear-gradient(rgba(255,255,255,.5),
+    rgba(255,255,255,0));
+  background-image: -o-linear-gradient(rgba(255,255,255,.5),
+    rgba(255,255,255,0));
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5)
+    inset;
+  box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
 }
 
 #book_review_settings a.tooltip:hover span
 {
-	visibility: visible;
+  visibility: visible;
 }
 
 #book_review_settings a.tooltip:link,
 #book_review_settings a.tooltip:visited,
 #book_review_settings a.tooltip:hover,
 #book_review_settings a.tooltip:active {
-	color: #333;
+  color: #333;
 }
