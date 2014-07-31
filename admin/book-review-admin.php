@@ -341,7 +341,7 @@ class Book_Review_Admin {
    */
   public function render_date_format_field() {
     $formats = array(
-      'none' => 'None',
+      'none' => __( 'None', $this->plugin_slug ),
       'short' => date( 'n/j/Y', current_time( 'timestamp', 0 ) ),
       'european' => date( 'j/n/Y', current_time( 'timestamp', 0 ) ),
       'medium' => date( 'M j Y', current_time( 'timestamp', 0 ) ),

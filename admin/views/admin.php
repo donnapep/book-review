@@ -35,8 +35,8 @@
               <a href="#" class="tooltip">
                 <?php echo $tooltip ?>
                 <span>
-                  <?php _e( 'Whether to show the review box at the top or bottom
-                    of a post.', $this->plugin_slug ) ?>
+                  <?php _e( 'Whether to show the review box at the top or ' .
+                    'bottom of a post.', $this->plugin_slug ) ?>
                 </span>
               </a>
             </th>
@@ -132,8 +132,8 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Whether to show the rating image on your home
-                      page when summary text is used.', $this->plugin_slug ) ?>
+                    <?php _e( 'Whether to show the rating image on your home ' .
+                      'page when summary text is used.', $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>
@@ -155,8 +155,8 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Whether to use the default rating images or your
-                      own.', $this->plugin_slug ) ?>
+                    <?php _e( 'Whether to use the default rating images or ' .
+                      'your own.', $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>
@@ -180,8 +180,8 @@
                   <a href="#" class="tooltip">
                     <?php echo $tooltip ?>
                     <span>
-                      <?php _e( 'To use your own rating images, enter the URL of
-                        an image for each rating below (1-5).',
+                      <?php _e( 'To use your own rating images, enter the ' .
+                        'URL of an image for each rating below (1-5).',
                         $this->plugin_slug ) ?>
                     </span>
                   </a>
@@ -281,8 +281,8 @@
         <?php _e( 'Links', $this->plugin_slug ) ?>
       </h3>
       <p>
-        <?php _e( 'Configure the links that you would like to display with every
-          book review.', $this->plugin_slug ) ?>
+        <?php _e( 'Configure the links that you would like to display with ' .
+          'every book review.', $this->plugin_slug ) ?>
       </p>
       <table class="custom-links form-table">
         <tbody>
@@ -296,8 +296,8 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Select the number of links you would like to add
-                      to each book review.', $this->plugin_slug ) ?>
+                    <?php _e( 'Select the number of links you would like to ' .
+                      'add to each book review.', $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>
@@ -320,8 +320,8 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Whether to open links in the same window or in a
-                      new tab.', $this->plugin_slug ) ?>
+                    <?php _e( 'Whether to open links in the same window or ' .
+                      'in a new tab.', $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>
@@ -346,9 +346,10 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Enter the text for each link. For every link
-                      added here, a new field will be shown in the Book Info
-                      section when editing a post.', $this->plugin_slug ) ?>
+                    <?php _e( 'Enter the text for each link. For every link '.
+                      'added here, a new field will be shown in the Book ' .
+                      'Info section when editing a post.',
+                      $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>
@@ -359,9 +360,9 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'If you would like to show links as images, enter
-                      the URL of an image for each link below. If you leave this
-                      field blank, links will be shown as text.',
+                    <?php _e( 'If you would like to show links as images, ' .
+                      'enter the URL of an image for each link below. If you ' .
+                      'leave this field blank, links will be shown as text.',
                       $this->plugin_slug ) ?>
                   </span>
                 </a>
@@ -446,11 +447,12 @@
         <?php _e( 'Advanced', $this->plugin_slug ) ?>
       </h3>
       <p>
-        <?php _e( 'This plugin uses the Google Books API to automatically
-          populate the details of a book. In order to take advantage of this
-          feature, you must first sign up for and enter an API key as described
-          <a href="http://donnapeplinskie.com/wordpress-book-review-plugin/"
-          target="_blank">here</a>.', $this->plugin_slug ) ?>
+        <?php _e( 'This plugin uses the Google Books API to automatically ' .
+          'populate the details of a book. In order to take advantage of ' .
+          'this feature, you must first sign up for and enter an API key as ' .
+          'described ' .
+          '<a href="http://donnapeplinskie.com/wordpress-book-review-plugin/"' .
+          ' target="_blank">here</a>.', $this->plugin_slug ) ?>
       </p>
       <table class="form-table">
         <tbody>
@@ -463,8 +465,8 @@
                 <a href="#" class="tooltip">
                   <?php echo $tooltip ?>
                   <span>
-                    <?php _e( 'Your Google API key obtained from the Google
-                      Developers Console.', $this->plugin_slug ) ?>
+                    <?php _e( 'Your Google API key obtained from the Google ' .
+                      'Developers Console.', $this->plugin_slug ) ?>
                   </span>
                 </a>
               </label>

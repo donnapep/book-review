@@ -1,0 +1,271 @@
+# Copyright (C) 2014 Book Review
+# This file is distributed under the same license as the Book Review package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Book Review 2.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/book-review\n"
+"POT-Creation-Date: 2014-05-13 01:19:35+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-07-15 00:15+0700\n"
+"Last-Translator: Alexander Wolf <alex.v.wolf@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/book-review-admin.php:161
+msgid "Book Review Settings"
+msgstr "Настройки Рецензии на книгу"
+
+#. #-#-#-#-#  plugin.pot (Book Review 2.0.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin/book-review-admin.php:162
+msgid "Book Review"
+msgstr "Рецензия на книгу"
+
+#: admin/book-review-admin.php:209
+msgid "Settings"
+msgstr "Настройки"
+
+#: admin/book-review-admin.php:412
+msgid "Book Info"
+msgstr "Информация о книге"
+
+#: admin/book-review-admin.php:562
+msgid "Select..."
+msgstr "Выбрать..."
+
+#: admin/book-review-admin.php:731
+msgid "the"
+msgstr " "
+
+#: admin/book-review-admin.php:731
+msgid "a"
+msgstr " "
+
+#: admin/book-review-admin.php:731
+msgid "an"
+msgstr " "
+
+#: admin/book-review-admin.php:766
+#: admin/views/meta-box.php:58
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: admin/views/admin.php:22
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: admin/views/admin.php:27
+msgid "Review Box Position"
+msgstr "Местоположение окна рецензии"
+
+#: admin/views/admin.php:30
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr "Окно рецензии будет показано в нижней или верхней части записи."
+
+#: admin/views/admin.php:34
+msgid "Top"
+msgstr "Верх"
+
+#: admin/views/admin.php:35
+msgid "Bottom"
+msgstr "Низ"
+
+#: admin/views/admin.php:40
+msgid "Review Box Background Color"
+msgstr "Цвет фона окна предпросмотра"
+
+#: admin/views/admin.php:48
+msgid "Review Box Border Color"
+msgstr "Цвет границ окна предпросмотра"
+
+#: admin/views/admin.php:57
+msgid "Release Date Format"
+msgstr "Формат даты публикации"
+
+#: admin/views/admin.php:60
+msgid "Format that the Release Date will be shown in."
+msgstr "Формат того как будет показана дата выхода книги"
+
+#: admin/views/admin.php:70
+msgid "Rating Images"
+msgstr "Изображения рейтинга"
+
+#: admin/views/admin.php:71
+msgid "Configure the images to use for displaying ratings."
+msgstr "Настройка изображений для показа рейтингов."
+
+#: admin/views/admin.php:77
+msgid "Show rating on home page"
+msgstr "Показать рейтинг на домашней странице"
+
+#: admin/views/admin.php:80
+msgid "Whether to show the rating image on your home page when summary text is used."
+msgstr "Изображение рейтинга будет показано на вашей домашней странице при использовании краткого содержания."
+
+#: admin/views/admin.php:91
+msgid "Use default rating images"
+msgstr "Использовать рейтинговые изображения по умолчанию"
+
+#: admin/views/admin.php:94
+msgid "Whether to use the default rating images or your own."
+msgstr "Следует ли использовать рейтинговые изображения по умолчанию или свои ​​собственные."
+
+#: admin/views/admin.php:106
+msgid "Rating Image URLs"
+msgstr "Адреса рейтинговых изображений"
+
+#: admin/views/admin.php:109
+msgid "To use your own rating images, enter the URL of an image for each rating below (1-5)."
+msgstr "Чтобы использовать свои собственные рейтинговые изображения, введите адреса изображений для каждого из рейтингов ниже (1-5)."
+
+#: admin/views/admin.php:123
+msgid "One-star Image URL"
+msgstr "Адрес 1-звездного изображения"
+
+#: admin/views/admin.php:127
+msgid "Two-star Image URL"
+msgstr "Адрес 2-звездного изображения"
+
+#: admin/views/admin.php:131
+msgid "Three-star Image URL"
+msgstr "Адрес 3-звездного изображения"
+
+#: admin/views/admin.php:135
+msgid "Four-star Image URL"
+msgstr "Адрес 4-звездного изображения"
+
+#: admin/views/admin.php:139
+msgid "Five-star Image URL"
+msgstr "Адрес 5-звездного изображения"
+
+#: admin/views/admin.php:152
+msgid "Links"
+msgstr "Ссылки"
+
+#: admin/views/admin.php:153
+msgid "Configure the links that you would like to display with every book review."
+msgstr "Настройка ссылок, которые будут показаны с каждой рецензией на книгу."
+
+#: admin/views/admin.php:159
+msgid "Number of Links"
+msgstr "Число ссылок"
+
+#: admin/views/admin.php:162
+msgid "Select the number of links you would like to add to each book review."
+msgstr "Выберите количество ссылок, которые нужно добавить к каждой рецензии на книгу."
+
+#: admin/views/admin.php:173
+msgid "Open links in new tab"
+msgstr "Открывать ссылки в новой вкладке"
+
+#: admin/views/admin.php:176
+msgid "Whether to open links in the same window or in a new tab."
+msgstr "Следует открывать ссылки в том же окне или в новой вкладке."
+
+#: admin/views/admin.php:191
+msgid "Link Text"
+msgstr "Текст ссылки"
+
+#: admin/views/admin.php:194
+msgid "Enter the text for each link. For every link added here, a new field will be shown in the Book Info section when editing a post."
+msgstr "Введите текст для каждой ссылки. Для каждой добавленной здесь ссылки, новое поле будет показано в разделе Информация о книге при редактировании заметки."
+
+#: admin/views/admin.php:200
+msgid "Link Image URL"
+msgstr "Ссылка на адрес изображения"
+
+#: admin/views/admin.php:203
+msgid "If you would like to show links as images, enter the URL of an image for each link below. If you leave this field blank, links will be shown as text."
+msgstr "Если вы хотите показать ссылки как изображения, введите адрес изображения для каждой ссылки ниже. Если оставить это поле пустым, то будут выведены ссылки в виде текста."
+
+#: admin/views/admin.php:219
+msgid "Advanced"
+msgstr "Расширенные настройки"
+
+#: admin/views/admin.php:220
+msgid ""
+"This plugin uses the Google Books API to automatically populate the details of a book.\n"
+"\t\t\t\tIn order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"http://donnapeplinskie.com/wordpress-book-review-plugin/\" target=\"_blank\">here</a>."
+msgstr ""
+"Этот плагин использует API Google Книги для автоматического заполнения сведений о книге. \n"
+"\t\t\t\tДля того, чтобы воспользоваться этой функцией, необходимо сначала зарегистрироваться на Google и ввести ключ API, как описано <a href=\"http://donnapeplinskie.com/wordpress-book-review-plugin/\" target=\"_blank\">здесь</a>."
+
+#: admin/views/admin.php:228
+msgid "Google API Key"
+msgstr "Ключ Google API"
+
+#: admin/views/admin.php:231
+msgid "Your Google API key obtained from the Google Developers Console."
+msgstr "Ваш ключ Google API можно получить в Консоли разработчиков Google."
+
+#: admin/views/meta-box.php:16
+msgid "Get Book Info"
+msgstr "Получить информацию о книге"
+
+#: admin/views/meta-box.php:21
+#: public/book-review.php:341
+msgid "Title"
+msgstr "Заголовок"
+
+#: admin/views/meta-box.php:24
+#: public/book-review.php:346
+msgid "Series"
+msgstr "Серия"
+
+#: admin/views/meta-box.php:27
+#: public/book-review.php:351
+msgid "Author"
+msgstr "Автор"
+
+#: admin/views/meta-box.php:30
+#: public/book-review.php:356
+msgid "Genre"
+msgstr "Жанр"
+
+#: admin/views/meta-box.php:33
+#: public/book-review.php:361
+msgid "Publisher"
+msgstr "Издатель"
+
+#: admin/views/meta-box.php:36
+#: public/book-review.php:366
+msgid "Release Date"
+msgstr "Дата публикации"
+
+#: admin/views/meta-box.php:39
+#: public/book-review.php:371
+msgid "Format"
+msgstr "Формат"
+
+#: admin/views/meta-box.php:42
+#: public/book-review.php:376
+msgid "Pages"
+msgstr "Страниц"
+
+#: admin/views/meta-box.php:45
+#: public/book-review.php:381
+msgid "Source"
+msgstr "Источник"
+
+#: admin/views/meta-box.php:49
+msgid "Cover URL"
+msgstr "Адрес обложки"
+
+#: admin/views/meta-box.php:51
+msgid "Upload Cover"
+msgstr "Выгрузить обложку"
+
+#: admin/views/meta-box.php:55
+#: public/book-review.php:412
+msgid "Synopsis"
+msgstr "Краткое содержание"
+
+#: admin/views/meta-box.php:64
+msgid "Include post in archives"
+msgstr "Включать заметку в архив"
+
+#. Description of the plugin/theme
+msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
+msgstr "Добавьте информацию о книге - название, автора, издателья и фото обложки для повышения качества своей рецензии."
+
