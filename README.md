@@ -1,13 +1,13 @@
-# WordPress Book Review Plugin #
-**Contributors:** donnapep
-**Tags:** book, review, rating, book review, book blog, book blogger, book blogging
-**Author URI:** http://donnapeplinskie.com
-**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/
-**Requires at least:** 3.5
-**Tested up to:** 3.9.1
-**Stable tag:** 2.1.0
-**License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+# WordPress Book Review Plugin #  
+**Contributors:** donnapep  
+**Tags:** book, review, rating, book review, book blog, book blogger, book blogging  
+**Author URI:** http://donnapeplinskie.com  
+**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
+**Requires at least:** 3.5  
+**Tested up to:** 3.9.1  
+**Stable tag:** 2.1.0  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Add details such as title, author, cover photo, rating, purchase links and more to each of your book review posts. Show archives by title or genre.
 
@@ -95,6 +95,12 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
 * Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
 * If you have questions or suggestions, please post them in the forum that can be found on the Support tab.
+
+## About Me ##
+* I’m a front-end web developer with a fondness for WordPress. I blog about web development at [donnapeplinskie.com](http://donnapeplinskie.com/).
+* I’m a developer advocate for [Rise Vision](http://risevision.com/).
+* I’m author of the [WordPress Book Review Plugin](http://wordpress.org/plugins/book-review/) and [WordPress Date and Time Widget](http://wordpress.org/plugins/date-and-time-widget/).
+* I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
 
 ## Changelog ##
 
