@@ -1,13 +1,13 @@
 # WordPress Book Review Plugin #
-**Contributors:** donnapep
-**Tags:** book, review, rating, book review, book blog, book blogger, book blogging
-**Author URI:** http://donnapeplinskie.com
-**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/
-**Requires at least:** 3.5
-**Tested up to:** 4.0
-**Stable tag:** 2.1.3
-**License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Contributors:** donnapep  
+**Tags:** book, review, rating, book review, book blog, book blogger, book blogging  
+**Author URI:** http://donnapeplinskie.com  
+**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
+**Requires at least:** 3.5  
+**Tested up to:** 4.0  
+**Stable tag:** 2.1.3  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Add details such as title, author, cover photo, rating, purchase links and more to each of your book review posts. Show archives by title or genre.
 
