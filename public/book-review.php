@@ -28,7 +28,7 @@ class Book_Review {
    *
    * @var     string
    */
-  const VERSION = '2.1.2';
+  const VERSION = '2.1.3';
 
   /**
    * Unique identifier for your plugin.
