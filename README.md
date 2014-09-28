@@ -5,7 +5,7 @@
 **Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
 **Requires at least:** 3.5  
 **Tested up to:** 4.0  
-**Stable tag:** 2.1.3  
+**Stable tag:** 2.1.4  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -44,15 +44,9 @@ If the *Book Info* section has been filled out, these details (with the exceptio
 * Show an archive of your reviews by title or genre.
 
 ## Internationalization ##
-This plugin supports the following translations:
+This plugin supports the following translations: Arabic, Chinese, French, German, Italian, Russian, and Spanish.
 
-* Italian
-* Spanish
-* Chinese
-* Russian
-* German
-
-If you would like to volunteer to translate this plugin into other languages, please contact me at donnapep@gmail.com.
+If you would like to volunteer to translate this plugin into another language, or would like to update an existing file to include any missing translation text, please contact me at donnapep@gmail.com.
 
 ## Installation ##
 
@@ -104,6 +98,10 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
 
 ## Changelog ##
+
+### 2.1.4 ###
+* Added Arabic & French translation files.
+* Fixed bug with Google Books API text not translating.
 
 ### 2.1.3 ###
 * Added German translation files.
