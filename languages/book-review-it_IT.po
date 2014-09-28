@@ -233,10 +233,6 @@ msgstr ""
 msgid "Book Review"
 msgstr "Recensione libro"
 
-#. Plugin URI of the plugin/theme
-msgid "http://bookwookie.ca/wordpress-book-review-plugin/"
-msgstr ""
-
 #. Description of the plugin/theme
 msgid ""
 "Add book information such as title, author, publisher and cover photo to "
@@ -244,11 +240,3 @@ msgid ""
 msgstr ""
 "Aggiungere informazioni sul libro, come titolo, autore, editore e foto di "
 "copertina per migliorare i tuoi messaggi revisione."
-
-#. Author of the plugin/theme
-msgid "Donna Peplinskie"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://bookwookie.ca"
-msgstr ""

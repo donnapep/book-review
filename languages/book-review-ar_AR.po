@@ -8,239 +8,227 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-09-28 16:28-0500\n"
-"Last-Translator: José Luis Parra <jlparra@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: es_ES\n"
+"PO-Revision-Date: 2014-09-14 17:16+0200\n"
+"Last-Translator: mnhl.aladday <mnhlx3dday1@gmail.com>\n"
+"Language-Team: \n"
+"Language: ar\n"
 "X-Generator: Poedit 1.6.9\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 
-# Titel
 #: book-review-meta-box.php:75 book-review.php:487
 msgid "Title"
-msgstr "Titel"
+msgstr "العنوان"
 
 #: book-review-meta-box.php:78 book-review.php:492
 msgid "Series"
-msgstr "Reihe"
+msgstr "سلسلة"
 
 #: book-review-meta-box.php:81 book-review.php:497
 msgid "Author"
-msgstr "Autor"
+msgstr "الكاتب"
 
 #: book-review-meta-box.php:84 book-review.php:502
 msgid "Genre"
-msgstr "Genre"
+msgstr "نوع الكتاب"
 
 #: book-review-meta-box.php:87 book-review.php:507
 msgid "Publisher"
-msgstr "Verlag"
+msgstr "دار النشر"
 
 #: book-review-meta-box.php:90 book-review.php:512
 msgid "Release Date"
-msgstr "Erscheinungsdatum"
+msgstr "تاريخ النشر"
 
 #: book-review-meta-box.php:93 book-review.php:517
 msgid "Format"
-msgstr "Format"
+msgstr "صيغة الملف"
 
 #: book-review-meta-box.php:96 book-review.php:522
 msgid "Pages"
-msgstr "Seiten"
+msgstr "عدد الصفحات"
 
 #: book-review-meta-box.php:99 book-review.php:527
 msgid "Source"
-msgstr "Quelle"
+msgstr "المصدر"
 
 #: book-review-meta-box.php:116
 msgid "Cover URL"
-msgstr "Umschlagbild URL"
+msgstr "رابط الغلاف"
 
 #: book-review-meta-box.php:118
 msgid "Upload Cover"
-msgstr "Umschlagbild hochladen"
+msgstr "تحميل الغلاف"
 
 #: book-review-meta-box.php:133 book-review.php:558
 msgid "Synopsis"
-msgstr "Kurzbeschreibung"
+msgstr "المقتطف"
 
 #: book-review-meta-box.php:136
 msgid "Rating"
-msgstr "Bewertung"
+msgstr "التقييم"
 
 #: book-review-meta-box.php:139
 msgid "Select..."
-msgstr "Wählen Sie aus..."
+msgstr "تحديد..."
 
 #: book-review-meta-box.php:195
 msgid "Include post in archives"
-msgstr "Beitrag in Archive einfügen"
+msgstr "تضمين المشاركة في الأرشيف"
 
 #: book-review-meta-box.php:272
 msgid "the"
-msgstr "der,die,das"
+msgstr "الـ"
 
 #: book-review-meta-box.php:272
 msgid "a"
-msgstr "ein,eine"
+msgstr "un,una"
 
 #: book-review-meta-box.php:272
 msgid "an"
-msgstr "ein,eine"
+msgstr "un,una"
 
 #: book-review.php:89
 msgid "General"
-msgstr "Allgemein"
+msgstr "عام"
 
 #: book-review.php:94
 msgid "Review Box Position"
-msgstr "Position der Besprechungsbox"
+msgstr "موقع صندوق المراجعة"
 
 #: book-review.php:97
 msgid "Whether to show the review box at the top or bottom of a post."
-msgstr ""
-"Ob die Besprechungsbox im Beitrag oben oder unten angezeigt werden soll."
+msgstr "مكان  إظهار مربع المراجعة في الجزء العلوي أو السفلي من المشاركة."
 
 #: book-review.php:103
 msgid "Top"
-msgstr "Oben"
+msgstr "في الأعلى"
 
 #: book-review.php:104
 msgid "Bottom"
-msgstr "Unten"
+msgstr "في الأسفل"
 
 #: book-review.php:109
 msgid "Review Box Background Color"
-msgstr "Hintergrundfarbe der Besprechungsbox"
+msgstr "لون خلفية صندوق المراجعة"
 
 #: book-review.php:117
 msgid "Review Box Border Color"
-msgstr "Randfarbe der Besprechungsbox"
+msgstr "لون إطار صندوق المراجعة"
 
 #: book-review.php:125
 msgid "Rating Images"
-msgstr "Bewertungsbilder"
+msgstr "صور التقييم"
 
 #: book-review.php:126
 msgid "Configure the images to use for displaying ratings."
-msgstr "Konfigurieren Sie die Bilder für die Anzeige der Bewertungen."
+msgstr "تهيئة الصور لاستخدامها لعرض التقييم"
 
 #: book-review.php:132
 msgid "Show rating on home page"
-msgstr "Bewertung auf der Heimseite anzeigen"
+msgstr "عرض التقييم على الصفحة الرئيسية للموقع"
 
 #: book-review.php:135
 msgid ""
 "Whether to show the rating image on your home page when summary text is used."
-msgstr ""
-"Ob Bilder für die Bewertung auf Ihrer Heimseite angezeigt werden sollen, "
-"wenn eine Kurzbeschreibung angefügt ist."
+msgstr "لعرض صورة التقييم  في صفحة موقعك الرئيسية عند استخدام النص الموجز."
 
 #: book-review.php:147
 msgid "Use default rating images"
-msgstr "Standardbilder für Bewertung verwenden"
+msgstr "استخدام صور التقييم الافتراضية"
 
 #: book-review.php:150
 msgid "Whether to use the default rating images or your own."
-msgstr ""
-"Ob für die Bewertung Standardbilder oder Ihre eigenen Bilder verwendet "
-"werden sollen"
+msgstr "إختيار صور التقييم الإفتراضية أو الخاصة بك"
 
 #: book-review.php:163
 msgid "Rating Image URLs"
-msgstr "URLs für Bewertungsbilder"
+msgstr "روابط صور التقييم"
 
 #: book-review.php:166
 msgid ""
 "To use your own rating images, enter the URL of an image for each rating "
 "below (1-5)."
 msgstr ""
-"Wenn Sie Ihre eigenen Bewerungsbilder verwenden wollen, fügen Sie unten die "
-"URL des Bildes für jede Bewertungsstufe (1-5) ein."
+"لاستخدام صورالتقييم المخصصة، أدخل رابط الصورة لكل تقييم في مايلي (1-5)."
 
 #: book-review.php:181
 msgid "One-star Image URL"
-msgstr "URL für Ein-Stern-Bild"
+msgstr "رابط لصورة نجمة واحدة"
 
 #: book-review.php:185
 msgid "Two-star Image URL"
-msgstr "URL für Zwei-Stern-Bild"
+msgstr "رابط لصورة نجمتين"
 
 #: book-review.php:189
 msgid "Three-star Image URL"
-msgstr "URL für Drei-Stern-Bild"
+msgstr "رابط لصورة 3 نجوم"
 
 #: book-review.php:193
 msgid "Four-star Image URL"
-msgstr "URL für Vier-Stern-Bild"
+msgstr "رابط لصورة 4 نجوم"
 
 #: book-review.php:197
 msgid "Five-star Image URL"
-msgstr "URL für Fünf-Stern-Bild"
+msgstr "رابط لصورة 5 نجوم"
 
 #: book-review.php:210
 msgid "Links"
-msgstr "Verweise"
+msgstr "رابط"
 
 #: book-review.php:211
 msgid ""
 "Configure the links that you would like to display with every book review."
-msgstr ""
-"Konfigurieren Sie die Verweise, die bei jeder Buchbesprechung angezeigt "
-"werden sollen."
+msgstr "تهيئة الروابط التي ترغب في عرضها مع كل مراجعة لكتاب."
 
 #: book-review.php:217
 msgid "Number of Links"
-msgstr "Anzahl der Verweise"
+msgstr "عدد الروابط"
 
 #: book-review.php:220
 msgid "Select the number of links you would like to add to each book review."
-msgstr ""
-"Wählen Sie die Anzahl von Verweisen, die Sie jeder Buchbesprechung "
-"hinzufügen wollen."
+msgstr "حدد عدد الروابط التي ترغب في إضافتها إلى كل مراجعة لكتاب."
 
 #: book-review.php:232
 msgid "Open links in new tab"
-msgstr "Verweise in neuem Tab öffnen"
+msgstr "فتح الروابط في علامة تبويب جديدة"
 
 #: book-review.php:235
 msgid "Whether to open links in the same window or in a new tab."
-msgstr ""
-"Ob Verweise im selben Browser-Fenster oder in einem neuen Browser-Tab "
-"geöffnet werden sollen."
+msgstr "لفتح الروابط في نفس النافذة أو في علامة تبويب جديدة."
 
 #: book-review.php:251
 msgid "Link Text"
-msgstr "Verweistext"
+msgstr "نص الارتباط"
 
 #: book-review.php:254
 msgid ""
 "Enter the text for each link. For every link added here, a new field will be "
 "shown in the Book Info section when editing a post."
 msgstr ""
-"Geben Sie den Text für jeden Verweis ein. Für jeden hier hinzugefügten "
-"Verweis wird ein neues Feld in der Sektion 'Buch-Info' angezeigt."
+"أدخل النص لكل ارتباط. لكل وصلة مضافة هنا، سيظهر الحقل الجديد في قسم معلومات "
+"الكتاب عند تحرير المشاركة."
 
 #: book-review.php:261
 msgid "Link Image URL"
-msgstr "URL des Bildes für den betreffenden Verweis"
+msgstr "رابط الصورة"
 
 #: book-review.php:264
 msgid ""
 "If you would like to show links as images, enter the URL of an image for "
 "each link below. If you leave this field blank, links will be shown as text."
 msgstr ""
-"Wenn Sie Verweise als Bilder anzeigen wollen, geben Sie nachstehend die URL "
-"eines Bildes für den entsprechenden Verweis an. Wenn dieses Feld "
-"freigelassen wird, werden Verweise als Text angezeigt."
+"إذا كنت ترغب في اظهار الروابط كصور، أدخل عنوان URL للصورة لكل رابط أدناه. "
+"إذا تركت هذا الحقل فارغا، سيتم عرض الروابط كنص."
 
 #. Plugin Name of the plugin/theme
 msgid "Book Review"
-msgstr "Buchbesprechung"
+msgstr "مراجعة كتاب"
 
 #. Description of the plugin/theme
 msgid ""
 "Add book information such as title, author, publisher and cover photo to "
 "enhance your review posts."
 msgstr ""
-"Fügen Sie Ihrer Buchbesprechung buchrelevante Angaben wie Titel, Autor, "
-"Verlag und Umschlagbild hinzu."
+"إضافة معلومات مثل عنوان الكتاب والمؤلف والناشر وصورة الغلاف لتعزيز مشاركات "
+"المراجعة."
