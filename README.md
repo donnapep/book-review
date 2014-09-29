@@ -5,7 +5,7 @@
 **Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
 **Requires at least:** 3.5  
 **Tested up to:** 4.0  
-**Stable tag:** 2.1.4  
+**Stable tag:** 2.1.5  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -98,6 +98,9 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
 
 ## Changelog ##
+
+### 2.1.5 ###
+* Renamed Arabic translation files.
 
 ### 2.1.4 ###
 * Added Arabic & French translation files.
