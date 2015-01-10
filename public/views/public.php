@@ -146,13 +146,27 @@
   </div>
 
   <!-- Links -->
-  <?php if ( count( $links ) > 0 ) { ?>
   <ul id="book-review-links" class="links">
-    <?php foreach ( $links as $link ) { ?>
+    <?php
+      do_action( 'book_review_before_render_links', $links_option );
+
+      foreach( $results as $result ) { ?>
     <li>
-      <?php echo $link ?>
+        <?php
+          if ( !empty( $result->image_url ) ) {
+            echo '<a class="custom-link" href="' . $result->url . '" ' . $target . '>' .
+              '<img src="' . $result->image_url . '" alt="' . $result->text . '" />' .
+              '</a>';
+          }
+          else {
+            echo '<a class="custom-link" href="' . $result->url . '" ' . $target . '>' . $result->text . '</a>';
+          }
+        ?>
     </li>
-    <?php } ?>
+    <?php
+      }
+
+      do_action( 'book_review_after_render_links', $links_option );
+    ?>
   </ul>
-  <?php } ?>
 </div>

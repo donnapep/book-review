@@ -4,8 +4,8 @@
 **Author URI:** http://donnapeplinskie.com  
 **Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
 **Requires at least:** 3.5  
-**Tested up to:** 4.0  
-**Stable tag:** 2.1.5  
+**Tested up to:** 4.1  
+**Stable tag:** 2.1.6  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -39,12 +39,12 @@ If the *Book Info* section has been filled out, these details (with the exceptio
 * Customizable background and border colours.
 * Ability to optionally show ratings on the home page when summary text is used.
 * Use the built-in star rating images or specify your own.
-* Configure up to five links of your choosing. These can be text-based links or you can provide your own images.
+* Configure text or image-based custom links.
 * Open your custom links in the same tab or in a new one.
 * Show an archive of your reviews by title or genre.
 
 ## Internationalization ##
-This plugin supports the following translations: Arabic, Chinese, French, German, Italian, Russian, and Spanish.
+This plugin supports the following translations: Arabic, Chinese, Czech, French, German, Italian, Russian, and Spanish.
 
 If you would like to volunteer to translate this plugin into another language, or would like to update an existing file to include any missing translation text, please contact me at donnapep@gmail.com.
 
@@ -76,15 +76,15 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 ## Screenshots ##
 
 ###1. Book Review Settings###
-![Book Review Settings](http://donnapeplinskie.com/wp-content/uploads/2014/05/screenshot-1.png)
+![Book Review Settings](https://ps.w.org/book-review/assets/screenshot-1.png?rev=1055669)
 ###2. Book Info###
-![Book Info](http://donnapeplinskie.com/wp-content/uploads/2014/05/screenshot-2.png)
+![Book Info](https://ps.w.org/book-review/assets/screenshot-2.png?rev=1055669)
 ###3. Book Info on a Sample Post###
-![Book Info on a Sample Post](http://bookwookie.ca/wp-content/uploads/2013/08/Book_Review_Plugin.png)
+![Book Info on a Sample Post](https://ps.w.org/book-review/assets/screenshot-3.png?rev=1055669)
 ###4. Archives by Title###
-![Archives by Title](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-title.png)
+![Archives by Title](https://ps.w.org/book-review/assets/screenshot-4.png?rev=1055669)
 ###5. Archives by Genre###
-![Archives by Genre](http://bookwookie.ca/wp-content/uploads/2013/08/archives-by-genre.png)
+![Archives by Genre](https://ps.w.org/book-review/assets/screenshot-5.png?rev=1055669)
 
 ## Resources ##
 * Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
@@ -98,6 +98,13 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
 
 ## Changelog ##
+
+### 2.1.6 ###
+* Changed Book Review Settings to be a tabbed interface.
+* Removed limit of only being able to configure 5 custom links.
+* Added ability to set individual custom links to inactive.
+* Added custom hooks for developers.
+* Added Czech translation files.
 
 ### 2.1.5 ###
 * Renamed Arabic translation files.

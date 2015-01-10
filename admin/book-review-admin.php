@@ -46,26 +46,24 @@ class Book_Review_Admin {
    * @since     1.0.0
    */
   private function __construct() {
-    /*
-     * Call $plugin_slug from public plugin class.
-     */
+    global $wpdb;
+
     $plugin = Book_Review::get_instance();
     $this->plugin_slug = $plugin->get_plugin_slug();
 
+    $wpdb->book_review_custom_links = "{$wpdb->prefix}book_review_custom_links";
+    $wpdb->book_review_custom_link_urls = "{$wpdb->prefix}book_review_custom_link_urls";
+    
     // Load admin style sheet and JavaScript.
-    add_action( 'admin_enqueue_scripts', array( $this,
-      'enqueue_admin_styles' ) );
-    add_action( 'admin_enqueue_scripts', array( $this,
-      'enqueue_admin_scripts' ) );
+    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
+    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
     // Add the options page and menu item.
     add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 
     // Add an action link pointing to the options page.
-    $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) .
-      $this->plugin_slug . '.php' );
-    add_filter( 'plugin_action_links_' . $plugin_basename,
-      array( $this, 'add_action_links' ) );
+    $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_slug . '.php' );
+    add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
     /*
      * Define custom functionality.
@@ -78,9 +76,11 @@ class Book_Review_Admin {
     add_action( 'load-post-new.php', array( $this, 'meta_box_setup' ) );
     add_action( 'manage_posts_custom_column', array( $this, 'column_content' ),
       10, 2 );
+    //add_action( 'wp_ajax_delete_link', array( $this, 'delete_link' ) );
     add_action( 'wp_ajax_get_book_info', array( $this, 'get_book_info' ) );
 
     add_filter( 'manage_posts_columns', array( $this, 'column_heading' ) );
+    add_filter( 'postbox_classes_post_book-review-meta-box', array( $this, 'add_metabox_class' ) );
   }
 
   /**
@@ -144,20 +144,28 @@ class Book_Review_Admin {
    * @return    null    Return early if no settings page is registered.
    */
   public function enqueue_admin_scripts( $hook_suffix ) {
+    $handle = $this->plugin_slug . '-admin-script';
+
     if ( !isset( $this->plugin_screen_hook_suffix ) ) {
       return;
     }
 
     if ( $hook_suffix == 'post-new.php' || $hook_suffix == 'post.php' ) {
-      wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url(
+      wp_enqueue_script( $handle, plugins_url(
         'assets/js/meta-box.js', __FILE__ ), array( 'jquery' ),
         Book_Review::VERSION );
       wp_enqueue_script( 'jquery-ui-spinner' );
     }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
-      wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url(
+      wp_enqueue_script( $handle, plugins_url(
         'assets/js/admin.js', __FILE__ ), array( 'jquery', 'wp-color-picker' ),
         Book_Review::VERSION );
+
+      // Localize the script - part of delete custom link functionality.
+      // $translation_array = array( 'confirm_message' => __( 'Are you sure you want to delete this link? '.
+      //   'All of the associated URLs that have been entered in the "Book Info" section of ' .
+      //   'every post will also be deleted. This action cannot be undone.', $this->plugin_slug ) );
+      // wp_localize_script( $handle, 'book_review_confirm', $translation_array );
     }
   }
 
@@ -192,32 +200,96 @@ class Book_Review_Admin {
    * @since    2.0.0
    */
   public function display_plugin_admin_page() {
-    // General
-    $general_defaults = array(
-      'book_review_box_position' => 'top',
-      'book_review_date_format' => 'none',
-    );
-    $general = get_option( 'book_review_general' );
-    $general = wp_parse_args( $general, $general_defaults );
+    include_once( 'views/tabs.php' );
+  }
 
-    // Rating Images
-    $ratings_defaults = array(
-      'book_review_rating_default' => 1
-    );
-    $ratings = get_option( 'book_review_ratings' );
-    $ratings = wp_parse_args( $ratings, $ratings_defaults );
+  /**
+   * Add tabbed navigation.
+   *
+   * @since    2.1.6
+   */
+  public function render_tabs( ) {
+    $tabs = apply_filters( 'book_review_tabs', array(
+      'appearance' => __( 'Appearance', $this->plugin_slug ),
+      'images' => __( 'Rating Images', $this->plugin_slug ),
+      'links' => __( 'Links', $this->plugin_slug ),
+      'advanced' => __( 'Advanced', $this->plugin_slug )
+    ) );
 
-    // Links
-    $links = get_option( 'book_review_links' );
+    if ( isset ( $_GET['tab'] ) ) {
+      $active_tab = $_GET['tab'];
+    }
+    else {
+      $active_tab = 'appearance';
+    }
 
-    // Advanced
-    $advanced = get_option( 'book_review_advanced' );
+    foreach( $tabs as $tab => $name ) {
+      $class = ( $tab == $active_tab ) ? ' nav-tab-active' : '';
+      echo "<a class='nav-tab$class' href='?page=book-review&tab=$tab'>$name</a>";
+    }
+  }
 
-    // Tooltip
+  /**
+   * Display the content for a particular tab.
+   *
+   * @since    2.1.4
+   */
+  public function render_tabbed_content() {
+    if ( isset ( $_GET['tab'] ) ) {
+      $active_tab = $_GET['tab'];
+    }
+    else {
+      $active_tab = 'appearance';
+    }
+
     $tooltip = '<img src="' . plugins_url( 'assets/images/tooltip.gif',
       __FILE__ ) . '" />';
 
-    include_once( 'views/admin.php' );
+    do_action( 'book_review_before_tabs' );
+
+    if ( $active_tab == 'appearance' ) {
+      $general_defaults = array(
+        'book_review_box_position' => 'top',
+        'book_review_bg_color' => '',
+        'book_review_border_color' => '',
+        'book_review_date_format' => 'none',
+      );
+      $general = get_option( 'book_review_general' );
+      $general = wp_parse_args( $general, $general_defaults );
+
+      include_once( 'views/appearance.php' );
+    }
+    else if ( $active_tab == 'images' ) {
+      $ratings_defaults = array(
+        'book_review_rating_home' => 0,
+        'book_review_rating_default' => 1
+      );
+      $ratings = get_option( 'book_review_ratings' );
+      $ratings = wp_parse_args( $ratings, $ratings_defaults );
+
+      include_once( 'views/images.php' );
+    }
+    else if ( $active_tab == 'links' ) {
+      $links_defaults = array(
+        'book_review_target' => 0,
+      );
+      $links_option = get_option( 'book_review_links', $links_defaults );
+      $links_option = wp_parse_args( $links_option, $links_defaults );
+
+      // Get custom links.
+      global $wpdb;
+
+      $results = $wpdb->get_results( "SELECT * FROM {$wpdb->book_review_custom_links}" );
+
+      include_once( 'views/links.php' );
+    }
+    else if ( $active_tab == 'advanced' ) {
+      $advanced = get_option( 'book_review_advanced' );
+
+      include_once( 'views/advanced.php' );
+    }
+
+    do_action( 'book_review_after_tabs' );
   }
 
   /**
@@ -240,12 +312,10 @@ class Book_Review_Admin {
    * @since    1.0.0
    */
   public function init_menu() {
-    register_setting( 'book_review_options', 'book_review_general' );
-    register_setting( 'book_review_options', 'book_review_ratings',
-      array( $this, 'validate_rating_images' ) );
-    register_setting( 'book_review_options', 'book_review_links',
-      array( $this, 'validate_links' ) );
-    register_setting( 'book_review_options', 'book_review_advanced' );
+    register_setting( 'general_options', 'book_review_general' );
+    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'validate_rating_images_tab' ) );
+    register_setting( 'links_options', 'book_review_links', array( $this, 'validate_links_tab' ) );
+    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'validate_advanced_tab' ) );
   }
 
   /**
@@ -253,16 +323,11 @@ class Book_Review_Admin {
    *
    * @since     1.0.0
    */
-  public function validate_rating_images( $input ) {
-    $output = array();
+  public function validate_rating_images_tab( $input ) {
     $image_error = false;
-
-    $output['book_review_rating_home'] =
-      isset( $input['book_review_rating_home'] )
-      ? $input['book_review_rating_home'] : '';
-    $output['book_review_rating_default'] =
-      isset( $input['book_review_rating_default'] )
-      ? $input['book_review_rating_default'] : '';
+    $output = array();
+    $output['book_review_rating_home'] = isset( $input['book_review_rating_home'] ) ? $input['book_review_rating_home'] : '';
+    $output['book_review_rating_default'] = isset( $input['book_review_rating_default'] ) ? $input['book_review_rating_default'] : '';
 
     // Iterate over every rating image URL field.
     for ( $i = 1; $i <= 5; $i++ ) {
@@ -293,7 +358,7 @@ class Book_Review_Admin {
       );
     }
 
-    return $output;
+    return apply_filters( 'book_review_validate_rating_images_tab', $output, $input );
   }
 
   /**
@@ -301,37 +366,100 @@ class Book_Review_Admin {
    *
    * @since     1.0.0
    */
-  public function validate_links( $input ) {
+  public function validate_links_tab( $input ) {
     $output = array();
-    $link_error = false;
+    $output['book_review_target'] = isset( $input['book_review_target'] ) ? $input['book_review_target'] : '';
 
-    $output['book_review_num_links'] = $input['book_review_num_links'];
-    $output['book_review_link_target'] = $input['book_review_link_target'];
+    if ( isset( $input ) ) {
+      foreach ( $input as $key => $value ) {
+        $error = false;
 
-    for ( $i = 1; $i <= ( int )$input['book_review_num_links']; $i++ ) {
-      $text = trim( $input['book_review_link_text' . $i] );
-      $output['book_review_link_image' . $i] =
-        esc_url_raw( trim( $input['book_review_link_image' . $i] ) );
+        // Custom Links
+        if ( is_array( $value ) ) {
+          $id = '';
+          $text = '';
+          $image_url = '';
 
-      if ( empty( $text ) ) {
-        $link_error = true;
-      }
-      else {
-        $output['book_review_link_text' . $i] = sanitize_text_field( $text );
+          foreach( $value as $link_key => $link_value ) {
+            // An unchecked checkbox will not be POSTed and so its value will not be set.
+            $active = 0;
+
+            if ( $link_key == 'id' ) {
+              $id = trim( $link_value );
+            }
+            else if ( $link_key == 'text' ) {
+              $text = sanitize_text_field( $link_value );
+
+              // Link Text is a required field.
+              if ( empty( $text ) ) {
+                $error = true;
+              }
+            }
+            else if ( $link_key == 'image' ) {
+              $image_url = esc_url_raw( $link_value );
+            }
+            else if ( $link_key == 'active' ) {
+              $active = (int)$link_value;
+            }
+          }
+
+          if ( !$error ) {
+            global $wpdb;
+
+            // Insert a new row.
+            if ( empty( $id ) ) {
+              $wpdb->insert(
+                $wpdb->book_review_custom_links,
+                array(
+                  'text' => $text,
+                  'image_url' => $image_url,
+                  'active' => $active
+                ),
+                array( '%s', '%s', '%d' )
+              );
+            }
+            // Update the existing row.
+            else {
+              $wpdb->update(
+                $wpdb->book_review_custom_links,
+                array(
+                  'text' => $text,
+                  'image_url' => $image_url,
+                  'active' => $active
+                ),
+                array( 'custom_link_id' => $id ),
+                array( '%s', '%s', '%d' ),
+                array( '%d' )
+              );
+            }
+          }
+          else {
+            add_settings_error(
+              'book_review_links',
+              'link-error',
+              'Link Text is a required field. Please ensure you enter text for each link.',
+              'error'
+            );
+          }
+        }
       }
     }
 
-    if ( $link_error ) {
-      add_settings_error(
-        'book_review_links',
-        'link-error',
-        'Link Text is a required field. Please ensure you either enter text for
-          each link or decrease the number of links you want to show.',
-        'error'
-      );
-    }
+    return apply_filters( 'book_review_validate_links_tab', $output, $input );
+  }
 
-    return $output;
+  /**
+   * Validate fields on Advanced tab.
+   *
+   * @since     2.1.6
+   */
+  public function validate_advanced_tab( $input ) {
+    $output = array();
+    $api_key = $input['book_review_api_key'];
+
+    $output['book_review_api_key'] = isset( $api_key ) ? sanitize_text_field( $api_key ) : '';
+
+    return apply_filters( 'book_review_validate_advanced_tab', $output, $input );
   }
 
   /**
@@ -359,28 +487,33 @@ class Book_Review_Admin {
   }
 
   /**
-   * Render options in the Number of Links dropdown.
-   *
-   * @since     1.0.0
-   */
-  public function render_num_links_field() {
-    $options = get_option( 'book_review_links' );
-    $items = array(
-      '0' => 'None',
-      '1' => '1',
-      '2' => '2',
-      '3' => '3',
-      '4' => '4',
-      '5' => '5'
-    );
+  * Delete a custom link.
+  */
+  // public function delete_link() {
+  //   $id = intval( $_POST['id'] );
+  //   $is_valid_nonce = ( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'book_review_delete_link' ) );
 
-    foreach( $items as $type => $item ) {
-      $selected = ( $options['book_review_num_links'] == $type ) ?
-        'selected="selected"' : '';
-      echo '<option value="' . $type . '" '. $selected . '>' . $item .
-        '</option>';
-    }
-  }
+  //   if ( ( current_user_can( 'manage_options' ) ) && $is_valid_nonce ) {
+  //     // TODO: Also delete the URLs associated with this custom link in the wp_postmeta table.
+  //     global $wpdb;
+
+  //     $wpdb->delete(
+  //       $wpdb->book_review_custom_links,
+  //       array( 'custom_link_id' => $id ),
+  //       array( '%d')
+  //     );
+
+  //     $result['success'] = true;
+  //   }
+  //   else {
+  //     $result['success'] = false;
+  //   }
+
+  //   $result = json_encode( $result );
+
+  //   echo $result;
+  //   die();
+  // }
 
   /**
    * Meta box setup function.
@@ -422,6 +555,17 @@ class Book_Review_Admin {
   }
 
   /**
+   * Add CSS classes to the meta box container.
+   *
+   * @since    2.1.6
+   */
+  public function add_metabox_class( $classes ) {
+    array_push( $classes, 'book-review-meta' );
+
+    return $classes;
+  }
+
+  /**
    * Display meta box.
    *
    * @since    1.0.0
@@ -443,7 +587,7 @@ class Book_Review_Admin {
       $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
     }
 
-    $book_review_cover_url = esc_url ( $book_review_cover_url );
+    $book_review_cover_url = $book_review_cover_url;
     $book_review_archive_post = isset( $values['book_review_archive_post'][0] )
       ? $values['book_review_archive_post'][0] : '1';
 
@@ -535,98 +679,89 @@ class Book_Review_Admin {
    * @param    object    $post_id    Object for the current post.
    */
   public function save_meta_box( $post_id ) {
-    // Bail if we're doing an auto save.
-    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-      return;
+    global $wpdb;
 
-    // If our nonce isn't there, or we can't verify it, bail.
-    if ( !isset( $_POST['book-review-meta-box-nonce'] )
-      || !wp_verify_nonce( $_POST['book-review-meta-box-nonce'],
-        'save_meta_box_nonce' ) )
-      return;
+    // Check save status.
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'book-review-meta-box-nonce' ] ) && wp_verify_nonce( $_POST[ 'book-review-meta-box-nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
 
-    // If our current user can't edit this post, bail.
-    if ( !current_user_can( 'edit_post' ) )
-      return;
-
-    if ( isset( $_POST['book_review_isbn'] ) )
-      update_post_meta( $post_id, 'book_review_isbn',
-        sanitize_text_field( $_POST['book_review_isbn'] ) );
-
-    // Get the posted data and sanitize it.
-    if ( isset( $_POST['book_review_title'] ) ) {
-      update_post_meta( $post_id, 'book_review_title',
-        sanitize_text_field( $_POST['book_review_title'] ) );
-      update_post_meta( $post_id, 'book_review_archive_title',
-        $this->get_archive_title() );
+    // Exit depending on save status.
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
     }
 
-    if ( isset( $_POST['book_review_series'] ) )
-      update_post_meta( $post_id, 'book_review_series',
-        sanitize_text_field( $_POST['book_review_series'] ) );
+    if ( isset( $_POST['book_review_isbn'] ) && strlen( trim( $_POST['book_review_isbn'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_isbn', sanitize_text_field( $_POST['book_review_isbn'] ) );
 
-    if ( isset( $_POST['book_review_author'] ) )
-      update_post_meta( $post_id, 'book_review_author',
-        sanitize_text_field( $_POST['book_review_author'] ) );
+    // Get the posted data and sanitize it.
+    if ( isset( $_POST['book_review_title'] ) && strlen( trim( $_POST['book_review_title'] ) ) > 0 ) {
+      update_post_meta( $post_id, 'book_review_title', sanitize_text_field( $_POST['book_review_title'] ) );
+      update_post_meta( $post_id, 'book_review_archive_title', $this->get_archive_title() );
+    }
 
-    if ( isset( $_POST['book_review_genre'] ) )
-      update_post_meta( $post_id, 'book_review_genre',
-        sanitize_text_field( $_POST['book_review_genre'] ) );
+    if ( isset( $_POST['book_review_series'] ) && strlen( trim( $_POST['book_review_series'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_series', sanitize_text_field( $_POST['book_review_series'] ) );
 
-    if ( isset( $_POST['book_review_publisher'] ) )
-      update_post_meta( $post_id, 'book_review_publisher',
-        sanitize_text_field( $_POST['book_review_publisher'] ) );
+    if ( isset( $_POST['book_review_author'] ) && strlen( trim( $_POST['book_review_author'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_author', sanitize_text_field( $_POST['book_review_author'] ) );
 
-    if ( isset( $_POST['book_review_release_date'] ) )
-      update_post_meta( $post_id, 'book_review_release_date',
-        sanitize_text_field( $_POST['book_review_release_date'] ) );
+    if ( isset( $_POST['book_review_genre'] ) && strlen( trim( $_POST['book_review_genre'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_genre', sanitize_text_field( $_POST['book_review_genre'] ) );
 
-    if ( isset( $_POST['book_review_format'] ) )
-      update_post_meta( $post_id, 'book_review_format',
-        sanitize_text_field( $_POST['book_review_format'] ) );
+    if ( isset( $_POST['book_review_publisher'] ) && strlen( trim( $_POST['book_review_publisher'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_publisher', sanitize_text_field( $_POST['book_review_publisher'] ) );
 
-    if ( isset( $_POST['book_review_pages'] ) )
-      update_post_meta( $post_id, 'book_review_pages',
-        sanitize_text_field( $_POST['book_review_pages'] ) );
+    if ( isset( $_POST['book_review_release_date'] ) && strlen( trim( $_POST['book_review_release_date'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_release_date', sanitize_text_field( $_POST['book_review_release_date'] ) );
 
-    if ( isset( $_POST['book_review_source'] ) )
-      update_post_meta( $post_id, 'book_review_source',
-        sanitize_text_field( $_POST['book_review_source'] ) );
+    if ( isset( $_POST['book_review_format'] ) && strlen( trim( $_POST['book_review_format'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_format', sanitize_text_field( $_POST['book_review_format'] ) );
 
-    if ( isset( $_POST['book_review_link1'] ) )
-      update_post_meta( $post_id, 'book_review_link1',
-        esc_url_raw( $_POST['book_review_link1'] ) );
+    if ( isset( $_POST['book_review_pages'] ) && strlen( trim( $_POST['book_review_pages'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_pages', sanitize_text_field( $_POST['book_review_pages'] ) );
 
-    if ( isset( $_POST['book_review_link2'] ) )
-      update_post_meta( $post_id, 'book_review_link2',
-        esc_url_raw( $_POST['book_review_link2'] ) );
+    if ( isset( $_POST['book_review_source'] ) && strlen( trim( $_POST['book_review_source'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_source', sanitize_text_field( $_POST['book_review_source'] ) );
 
-    if ( isset( $_POST['book_review_link3'] ) )
-      update_post_meta( $post_id, 'book_review_link3',
-        esc_url_raw( $_POST['book_review_link3'] ) );
+    if ( isset( $_POST['book_review_cover_url'] ) && strlen( trim( $_POST['book_review_cover_url'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_cover_url', esc_url_raw( $_POST['book_review_cover_url'] ) );
 
-    if ( isset( $_POST['book_review_link4'] ) )
-      update_post_meta( $post_id, 'book_review_link4',
-        esc_url_raw( $_POST['book_review_link4'] ) );
+    if ( isset( $_POST['book_review_summary'] ) && strlen( trim( $_POST['book_review_summary'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_summary', $_POST['book_review_summary'] );
 
-    if ( isset( $_POST['book_review_link5'] ) )
-      update_post_meta( $post_id, 'book_review_link5',
-        esc_url_raw( $_POST['book_review_link5'] ) );
+    if ( isset( $_POST['book_review_rating'] ) && strlen( trim( $_POST['book_review_rating'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_rating', $_POST['book_review_rating'] );
 
-    if ( isset( $_POST['book_review_cover_url'] ) )
-      update_post_meta( $post_id, 'book_review_cover_url',
-        esc_url_raw( $_POST['book_review_cover_url'] ) );
+    if ( isset( $_POST['book_review_archive_post'] ) && strlen( trim( $_POST['book_review_archive_post'] ) ) > 0 )
+      update_post_meta( $post_id, 'book_review_archive_post', $_POST['book_review_archive_post'] );
 
-    if ( isset( $_POST['book_review_summary'] ) )
-      update_post_meta( $post_id, 'book_review_summary',
-        $_POST['book_review_summary'] );
+    // For every entry in the custom_links table, save an entry to the custom_link_urls table.
+    $sql = "SELECT custom_link_id FROM {$wpdb->book_review_custom_links} WHERE active = 1";
+    $results = $wpdb->get_results( $sql );
 
-    if ( isset( $_POST['book_review_rating'] ) )
-      update_post_meta( $post_id, 'book_review_rating',
-       $_POST['book_review_rating'] );
+    foreach( $results as $result ) {
+      $link = $_POST['book_review_custom_link' . $result->custom_link_id];
 
-    update_post_meta( $post_id, 'book_review_archive_post',
-      $_POST['book_review_archive_post'] );
+      if ( isset( $link ) && strlen( trim( $link ) ) > 0 ) {
+        $sql = "INSERT INTO {$wpdb->book_review_custom_link_urls} (post_id, custom_link_id, url)
+          VALUES (%d, %d, %s) ON DUPLICATE KEY UPDATE url = %s";
+        $sql = $wpdb->prepare($sql, $post_id, $result->custom_link_id, $link, $link);
+
+        $wpdb->query($sql);
+      }
+      // Delete link from table if the field is empty.
+      else {
+        $wpdb->delete(
+           $wpdb->book_review_custom_link_urls,
+          array(
+            'post_id' => $post_id, 
+            'custom_link_id '=> $result->custom_link_id,
+          ),
+          array( '%d', '%d' )
+        );
+      }
+    }
   }
 
   /**
@@ -634,32 +769,29 @@ class Book_Review_Admin {
    *
    * @since    2.0.0
    */
-  public function render_links() {
-    $values = get_post_custom( $post->ID );
-    $links = get_option( 'book_review_links' );
-    $num_links = $links['book_review_num_links'];
+  public function render_links( $post ) {
+    global $wpdb;
 
-    // Generate the Link Image URLs.
-    $link_urls = array();
+    // Get the link text and link URLs.
+    $sql = "SELECT links.custom_link_id, links.text, urls.url
+      FROM {$wpdb->book_review_custom_links} AS links
+      LEFT OUTER JOIN {$wpdb->book_review_custom_link_urls} AS urls ON links.custom_link_id = urls.custom_link_id
+        AND urls.post_id = $post->ID
+        WHERE links.active = 1";
 
-    for ( $i = 1; $i <= 5; $i++ ) {
-      $link_urls[$i] = isset( $values['book_review_link' . $i] ) ?
-        esc_url( $values['book_review_link' . $i][0] ) : '';
-    }
+    $results = $wpdb->get_results( $sql );
 
-    // Render links outside of PHP code, otherwise they will be slightly
-    // misaligned.
-    for ( $i = 1; $i <= 5; $i++ ) {
-      if ( isset( $links['book_review_link_text' . $i] )
-        && ( $num_links >= $i ) ) { ?>
-        <label for="<?php echo 'book_review_link' . $i; ?>">
-          <?php echo $links['book_review_link_text' . $i]; ?> URL:
+    // Render links outside of PHP code, otherwise they will be slightly misaligned.
+    foreach( $results as $result ) { ?>
+      <div class="row">
+        <label for="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>">
+          <?php echo esc_html( $result->text ) . ' '; _e( 'URL', $this->plugin_slug ); ?>:
         </label>
-        <input type="text" id="<?php echo 'book_review_link' . $i; ?>"
-          name="<?php echo 'book_review_link' . $i; ?>"
-          value="<?php echo $link_urls[$i]; ?>" />
-        <br />
-      <?php }
+        <input type="text" id="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>"
+          name="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>"
+          value="<?php echo esc_url( $result->url ); ?>" />
+      </div>
+    <?php
     }
   }
 
@@ -671,7 +803,7 @@ class Book_Review_Admin {
   public function render_rating( $rating ) {
     // Show the Rating dropdown.
     $items = array(
-      '-1' => __( 'Select...', 'book-review' ),
+      '-1' => __( 'Select...', $this->plugin_slug ),
       '1' => '1',
       '2' => '2',
       '3' => '3',
@@ -745,8 +877,8 @@ class Book_Review_Admin {
    */
   private function get_archive_title() {
     $title = trim( $_POST['book_review_title'] );
-    $stopwords = array( __( 'the', 'book-review' ), __( 'a', 'book-review' ),
-      __( 'an', 'book-review' ) );
+    $stopwords = array( __( 'the', $this->plugin_slug ), __( 'a', $this->plugin_slug ),
+      __( 'an', $this->plugin_slug ) );
     /* Translations may specify multiple stopwords for each English word.
        Separate them into a comma-delimited list in order to avoid a
        multi-dimensional array. */
@@ -783,7 +915,7 @@ class Book_Review_Admin {
    * @since    1.9.0
    */
   public function column_heading( $columns ) {
-    return array_merge( $columns, array( 'rating' => __( 'Rating' ) ) );
+    return array_merge( $columns, array( 'rating' => __( 'Rating', $this->plugin_slug ) ) );
   }
 
   /**

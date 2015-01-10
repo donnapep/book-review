@@ -28,7 +28,7 @@ class Book_Review {
    *
    * @var     string
    */
-  const VERSION = '2.1.5';
+  const VERSION = '2.1.6';
 
   /**
    * Unique identifier for your plugin.
@@ -101,6 +101,20 @@ class Book_Review {
       self::$instance = new self;
     }
 
+    $version = get_option( 'book_review_version' );
+
+    // Database version does not exist before version 2.1.6.
+    if ( empty( $version ) ) {
+      // Add the option first since sometimes get_instance gets called again before
+      // the tables are created and the data converted.
+      add_option( 'book_review_version', self::VERSION );
+      self::create_tables();
+      self::convert_data();
+    }
+    else if ( $version != self::VERSION ) {
+      update_option( 'book_review_version', self::VERSION );
+    }
+
     return self::$instance;
   }
 
@@ -115,6 +129,9 @@ class Book_Review {
    *                                       activated on an individual blog.
    */
   public static function activate( $network_wide ) {
+    error_log('activate');
+    error_log($network_wide);
+
     if ( function_exists( 'is_multisite' ) && is_multisite() ) {
       if ( $network_wide ) {
         // Get all blog ids.
@@ -176,6 +193,8 @@ class Book_Review {
    * @param    int    $blog_id    ID of the new blog.
    */
   public function activate_new_site( $blog_id ) {
+    error_log('activate_new_site');
+
     if ( 1 !== did_action( 'wpmu_new_blog' ) ) {
       return;
     }
@@ -212,7 +231,145 @@ class Book_Review {
    * @since    2.0.0
    */
   private static function single_activate() {
-    // @TODO: Define activation functionality here
+    error_log('single_activate');
+    $version = get_option( 'book_review_version' );
+
+    if ( empty( $version ) ) {
+      add_option( 'book_review_version', self::VERSION );
+      self::create_tables();
+    }
+    else if ( $version != self::VERSION ) {
+      update_option( 'book_review_version', self::VERSION );
+    }
+  }
+
+  /**
+   * Creates the tables that the plugin uses.
+   *
+   * @since    2.1.6
+   */
+  private static function create_tables() {
+    error_log('create_tables');
+    global $wpdb;
+
+    /*
+     * We'll set the default character set and collation for this table.
+     * If we don't do this, some characters could end up being converted
+     * to just ?'s when saved in our table.
+     */
+    $charset_collate = '';
+
+    if ( !empty( $wpdb->charset ) ) {
+      $charset_collate = "DEFAULT CHARACTER SET {$wpdb->charset}";
+    }
+
+    if ( !empty( $wpdb->collate ) ) {
+      $charset_collate .= " COLLATE {$wpdb->collate}";
+    }
+
+    // Create table for custom links.
+    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}book_review_custom_links (
+      custom_link_id int NOT NULL AUTO_INCREMENT,
+      text varchar(100) NOT NULL,
+      image_url varchar(200),
+      active int(1) NOT NULL DEFAULT 1,
+      UNIQUE KEY id (custom_link_id)
+    ) $charset_collate;";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+
+    // Create table for custom link URLs.
+    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}book_review_custom_link_urls (
+      post_id bigint(20) NOT NULL,
+      custom_link_id int NOT NULL,
+      url varchar(200),
+      UNIQUE KEY id (post_id, custom_link_id)
+    ) $charset_collate;";
+
+    dbDelta( $sql );
+  }
+
+  /**
+   * Migrates custom links from native tables to custom tables.
+   *
+   * @since    2.1.6
+   */
+  private static function convert_data() {
+    error_log('convert_data');
+    global $wpdb;
+
+    $links = array();
+    $links_option = get_option( 'book_review_links' );
+    $target = isset( $links_option['book_review_link_target'] ) ? $links_option['book_review_link_target'] : -1;
+    $num_links = isset( $links_option['book_review_num_links'] ) ? ( int )$links_option['book_review_num_links'] : 0;
+
+    // Iterate over all of the custom links in the options table.
+    for ( $i = 1; $i <= $num_links; $i++ ) {
+      $text = $links_option['book_review_link_text' . $i];
+      $image_url = $links_option['book_review_link_image' . $i];
+      $new_link = array(
+        'text' => $text,
+        'image_url' => $image_url
+      );
+
+      array_push( $links, $new_link );
+    }
+
+    // Add the link text and image to the book_review_custom_links table.
+    foreach ( $links as $link ) {
+      $success = $wpdb->insert(
+        $wpdb->prefix . "book_review_custom_links",
+        array(
+          'text' => $link['text'],
+          'image_url' => $link['image_url']
+        ),
+        array( '%s', '%s' )
+      );
+
+      // In case of failure, remove any rows that may already have been inserted.
+      if ( $success != 1 ) {
+        $sql = "DELETE FROM {$wpdb->prefix}book_review_custom_links";
+        $wpdb->query($sql);
+        $wpdb->print_error();
+        return;
+      }
+    }
+
+    // Delete the links option and then save the target back since it's the
+    // only setting that needs to be preserved.
+    if ( $target != -1 ) {
+      delete_option( 'book_review_links' );
+      add_option( 'book_review_links', array( 'book_review_target' => $target ) );
+    }
+
+    // Populate the book_review_custom_link_urls table.
+    $sql = "INSERT INTO {$wpdb->prefix}book_review_custom_link_urls (post_id, custom_link_id, url)
+      SELECT meta.post_id, links.custom_link_id, meta.meta_value
+      FROM {$wpdb->prefix}postmeta AS meta
+      INNER JOIN {$wpdb->prefix}book_review_custom_links AS links ON links.custom_link_id = SUBSTRING(meta.meta_key, -1)
+      WHERE meta_key IN ('book_review_link1', 'book_review_link2', 'book_review_link3', 'book_review_link4', 'book_review_link5')
+        AND meta_value <> ''";
+
+    // Run query.
+    $success = $wpdb->query($sql);
+
+    // There was a problem executing the query.
+    if ($success === false) {
+      $wpdb->print_error();
+      return;
+    }
+    // Delete links from the postmeta table.
+    else {
+      $sql = "DELETE FROM {$wpdb->prefix}postmeta
+        WHERE meta_key IN ('book_review_link1', 'book_review_link2', 'book_review_link3', 'book_review_link4', 'book_review_link5')";
+      $success = $wpdb->query($sql);
+
+      if ($success === false) {
+        $wpdb->print_error();
+        return;
+      }
+    }
   }
 
   /**
@@ -265,40 +422,40 @@ class Book_Review {
    * @return   string   Revised content of the post.
    */
   public function inject_book_details( $content ) {
+    global $wpdb;
+
     if ( is_home() || is_single() || is_feed() ) {
       $values = get_post_custom();
 
       // General
       $general_defaults = array(
         'book_review_box_position' => 'top',
+        'book_review_bg_color' => '',
+        'book_review_border_color' => '',
         'book_review_date_format' => 'none',
       );
-      $general = get_option( 'book_review_general' );
-      $general = wp_parse_args( $general, $general_defaults );
+      $general_option = get_option( 'book_review_general' );
+      $general_option = wp_parse_args( $general_option, $general_defaults );
 
       // Set the value for each key.
       foreach ( array( 'book_review_cover_url', 'book_review_title',
         'book_review_series', 'book_review_author', 'book_review_genre',
         'book_review_publisher', 'book_review_release_date',
         'book_review_format', 'book_review_pages', 'book_review_source',
-        'book_review_rating', 'book_review_summary', 'book_review_link1',
-        'book_review_link2', 'book_review_link3', 'book_review_link4',
-        'book_review_link5' ) as $var ) {
+        'book_review_rating', 'book_review_summary' ) as $var ) {
         $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
       }
 
       // Title must be specified.
       if ( !empty( $book_review_title ) ) {
         // Settings
-        $box_position = $general['book_review_box_position'];
-        $bg_color = $general['book_review_bg_color'];
-        $border_color = $general['book_review_border_color'];
+        $box_position = $general_option['book_review_box_position'];
+        $bg_color = $general_option['book_review_bg_color'];
+        $border_color = $general_option['book_review_border_color'];
+        $bg_style = '';
 
         // Don't apply inline CSS to an RSS feed.
-        if ( is_feed() ) {
-          $bg_style = '';
-        }
-        else {
+        if ( !is_feed() ) {
           if ( isset( $bg_color ) && !empty( $bg_color ) ) {
             $bg_style = 'style="background-color: ' . $bg_color . ';';
           }
@@ -321,10 +478,30 @@ class Book_Review {
         // Rating
         $book_review_rating_url = $this->get_rating_image( $book_review_rating );
 
-        // Links
-        $links = $this->create_links( array(
-          $book_review_link1, $book_review_link2, $book_review_link3,
-          $book_review_link4, $book_review_link5 ) );
+        // Link target
+        $links_defaults = array(
+          'book_review_target' => 0,
+        );
+        $links_option = get_option( 'book_review_links', $links_defaults );
+        $links_option = wp_parse_args( $links_option, $links_defaults );
+
+        if ( $links_option['book_review_target'] == '1' ) {
+          $target = 'target=_blank';
+        }
+        else {
+          $target = '';
+        }
+
+        // Custom links
+        $links_table = $wpdb->prefix . "book_review_custom_links";
+        $link_urls_table = $wpdb->prefix . 'book_review_custom_link_urls';
+        $sql = "SELECT links.text, links.image_url, urls.url
+          FROM $links_table AS links
+          INNER JOIN $link_urls_table AS urls ON links.custom_link_id = urls.custom_link_id
+            AND urls.post_id = " . get_the_ID() .
+          " WHERE links.active = 1";
+
+        $results = $wpdb->get_results( $sql );
 
         // Review Box Position
         ob_start();
@@ -354,11 +531,11 @@ class Book_Review {
   public function inject_book_rating( $content ) {
     if ( is_home() || is_archive() || is_search() ) {
       $values = get_post_custom( get_the_ID() );
-      $ratings = get_option( 'book_review_ratings' );
+      $ratings_option = get_option( 'book_review_ratings' );
 
-      if ( ( isset( $ratings['book_review_rating_home'] ) != null )
+      if ( ( isset( $ratings_option['book_review_rating_home'] ) != null )
         && ( isset( $values['book_review_rating'] ) != null ) ) {
-        if ( $ratings['book_review_rating_home'] == '1' ) {
+        if ( $ratings_option['book_review_rating_home'] == '1' ) {
           $rating = $values['book_review_rating'][0];
           $src = $this->get_rating_image( $rating );
 
@@ -568,7 +745,7 @@ class Book_Review {
         if ( $show_rating == 'true' ) {
           $values = get_post_custom_values( 'book_review_rating',
             $result->post_id );
-          $ratings = get_option( 'book_review_ratings' );
+          $ratings_option = get_option( 'book_review_ratings' );
           $rating = $values[0];
 
           $book_review_rating_url = $this->get_rating_image( $rating );
@@ -620,68 +797,6 @@ class Book_Review {
   }
 
   /**
-   * Return an array containing HTML elements representing the links.
-   *
-   * @since    2.1.1
-   *
-   * @param    array    $link_urls    Array of link URLs.
-   *
-   * @return   array    Array of link elements.
-   */
-  public function create_links( $link_urls ) {
-    $link_elems = array();
-
-    // Get link settings.
-    $link_defaults = array(
-      'book_review_num_links' => 'none',
-      'book_review_link_target' => 0,
-    );
-    $link_settings = get_option( 'book_review_links' );
-    $link_settings = wp_parse_args( $link_settings, $link_defaults );
-    $num_links = $link_settings['book_review_num_links'];
-    $link_target = $link_settings['book_review_link_target'];
-
-    // Link target
-    if ( $link_target == '1' ) {
-      $target = 'target=_blank';
-    }
-    else {
-      $target = '';
-    }
-
-    // Create HTML link elements.
-    for ( $i = 1; $i <= $num_links; $i++ ) {
-      $link_url = $link_urls[$i - 1];
-      $link_text = isset( $link_settings['book_review_link_text' . $i] ) ?
-        $link_settings['book_review_link_text' . $i] : '';
-      $link_image = isset( $link_settings['book_review_link_image' . $i] ) ?
-        $link_settings['book_review_link_image' . $i] : '';
-
-      // A link has been entered for this post.
-      if ( !empty( $link_url ) ) {
-        // A link image URL has been specified in the settings.
-        if ( !empty( $link_image ) ) {
-          $link_elem = '<a class="custom-link" href="' . $link_url . '" ' .
-            $target . '>' . '<img src="' . $link_image . '" alt="' . $link_text
-            . '" />' . '</a>';
-        }
-        // Use link text instead.
-        else {
-          $link_elem = '<a class="custom-link" href="' . $link_url . '" ' .
-            $target . '>' . $link_text . '</a>';
-        }
-
-        array_push( $link_elems, $link_elem );
-      }
-      else {
-        array_push( $link_elems, '' );
-      }
-    }
-
-    return $link_elems;
-  }
-
-  /**
    * Return the URL of the rating image.
    *
    * @since    1.0.0
@@ -695,11 +810,11 @@ class Book_Review {
       $ratings_defaults = array(
         'book_review_rating_default' => 1
       );
-      $ratings = get_option( 'book_review_ratings' );
-      $ratings = wp_parse_args( $ratings, $ratings_defaults );
+      $ratings_option = get_option( 'book_review_ratings' );
+      $ratings_option = wp_parse_args( $ratings_option, $ratings_defaults );
 
       // Use default images.
-      if ( $ratings['book_review_rating_default'] == '1' ) {
+      if ( $ratings_option['book_review_rating_default'] == '1' ) {
         if ( $rating == '1' ) {
           $src = plugins_url( 'assets/one-star.png', dirname( __FILE__ ) );
         }
@@ -718,7 +833,7 @@ class Book_Review {
       }
       // Use custom images.
       else {
-        $src = $ratings['book_review_rating_image' . $rating];
+        $src = $ratings_option['book_review_rating_image' . $rating];
       }
 
       return $src;
