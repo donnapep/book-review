@@ -76,15 +76,15 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 ## Screenshots ##
 
 ###1. Book Review Settings###
-![Book Review Settings](https://ps.w.org/book-review/assets/screenshot-1.png?rev=1055669)
+![Book Review Settings](https://cloud.githubusercontent.com/assets/1190420/5692227/a2c1d80c-98ba-11e4-865d-4667943fed02.png)
 ###2. Book Info###
-![Book Info](https://ps.w.org/book-review/assets/screenshot-2.png?rev=1055669)
+![Book Info](https://cloud.githubusercontent.com/assets/1190420/5692230/a2c64090-98ba-11e4-8326-d111d87c7f1a.png)
 ###3. Book Info on a Sample Post###
-![Book Info on a Sample Post](https://ps.w.org/book-review/assets/screenshot-3.png?rev=1055669)
+![Book Info on a Sample Post](https://cloud.githubusercontent.com/assets/1190420/5692229/a2c5fae0-98ba-11e4-9323-e690aa648fea.png)
 ###4. Archives by Title###
-![Archives by Title](https://ps.w.org/book-review/assets/screenshot-4.png?rev=1055669)
+![Archives by Title](https://cloud.githubusercontent.com/assets/1190420/5692228/a2c37a0e-98ba-11e4-9f34-789dac88c24b.png)
 ###5. Archives by Genre###
-![Archives by Genre](https://ps.w.org/book-review/assets/screenshot-5.png?rev=1055669)
+![Archives by Genre](https://cloud.githubusercontent.com/assets/1190420/5692231/a2c73978-98ba-11e4-8534-1a140584bfec.png)
 
 ## Resources ##
 * Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
