@@ -28,7 +28,7 @@ class Book_Review {
    *
    * @var     string
    */
-  const VERSION = '2.1.6';
+  const VERSION = '2.1.7';
 
   /**
    * Unique identifier for your plugin.
@@ -129,9 +129,6 @@ class Book_Review {
    *                                       activated on an individual blog.
    */
   public static function activate( $network_wide ) {
-    error_log('activate');
-    error_log($network_wide);
-
     if ( function_exists( 'is_multisite' ) && is_multisite() ) {
       if ( $network_wide ) {
         // Get all blog ids.
@@ -193,8 +190,6 @@ class Book_Review {
    * @param    int    $blog_id    ID of the new blog.
    */
   public function activate_new_site( $blog_id ) {
-    error_log('activate_new_site');
-
     if ( 1 !== did_action( 'wpmu_new_blog' ) ) {
       return;
     }
@@ -231,7 +226,6 @@ class Book_Review {
    * @since    2.0.0
    */
   private static function single_activate() {
-    error_log('single_activate');
     $version = get_option( 'book_review_version' );
 
     if ( empty( $version ) ) {
@@ -249,7 +243,6 @@ class Book_Review {
    * @since    2.1.6
    */
   private static function create_tables() {
-    error_log('create_tables');
     global $wpdb;
 
     /*
@@ -296,7 +289,6 @@ class Book_Review {
    * @since    2.1.6
    */
   private static function convert_data() {
-    error_log('convert_data');
     global $wpdb;
 
     $links = array();
@@ -506,6 +498,8 @@ class Book_Review {
         // Review Box Position
         ob_start();
         include( 'views/public.php' );
+        
+        $content = '<div itemprop="reviewBody">' . $content . '</div>';
 
         if ( $box_position == 'top' ) {
           $content = ob_get_clean() . $content;

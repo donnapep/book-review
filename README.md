@@ -5,7 +5,7 @@
 **Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
 **Requires at least:** 3.5  
 **Tested up to:** 4.1  
-**Stable tag:** 2.1.6  
+**Stable tag:** 2.1.7  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -42,6 +42,7 @@ If the *Book Info* section has been filled out, these details (with the exceptio
 * Configure text or image-based custom links.
 * Open your custom links in the same tab or in a new one.
 * Show an archive of your reviews by title or genre.
+* Show details like rating, author and published date in search engine results pages.
 
 ## Internationalization ##
 This plugin supports the following translations: Arabic, Chinese, Czech, French, German, Italian, Russian, and Spanish.
@@ -85,6 +86,8 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 ![Archives by Title](https://cloud.githubusercontent.com/assets/1190420/5692228/a2c37a0e-98ba-11e4-9f34-789dac88c24b.png)
 ###5. Archives by Genre###
 ![Archives by Genre](https://cloud.githubusercontent.com/assets/1190420/5692231/a2c73978-98ba-11e4-8534-1a140584bfec.png)
+###6. Google Search Results Page###
+![Google Search Results Page](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
 
 ## Resources ##
 * Full documentation for the WordPress Book Review Plugin can be found on my [blog](http://donnapeplinskie.com/wordpress-book-review-plugin/).
@@ -98,6 +101,9 @@ If you are showing thumbnails of the book covers in your archives, then you shou
 * I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
 
 ## Changelog ##
+
+### 2.1.7 ###
+* Fixed broken schema markup so that ratings, author and published date show in a search engine results page.
 
 ### 2.1.6 ###
 * Changed Book Review Settings to be a tabbed interface.

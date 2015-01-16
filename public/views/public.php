@@ -13,8 +13,12 @@
  */
 ?>
 
-<div itemscope itemtype="http://schema.org/Book" id="book-review"
-  <?php echo $bg_style ?>>
+<div id="book-review" itemscope itemtype="http://schema.org/Review" <?php echo $bg_style ?>>
+  <!-- Meta for schema.org -->
+  <meta itemprop="headline" content="<?php echo get_the_title(); ?>">
+  <!-- author is mandatory! -->
+  <meta itemprop="author" content="<?php echo get_the_author(); ?>">
+  <meta itemprop="datePublished" content="<?php the_date( 'Y-m-d' ); ?>">
   <!-- Cover -->
   <?php if ( !empty( $book_review_cover_url ) ) { ?>
   <img itemprop="image" id="book_review_cover_image" class="cover"
@@ -28,8 +32,8 @@
   <label for="book_review_title">
     <?php _e( 'Title', $this->plugin_slug ) ?>:
   </label>
-  <span itemprop="name" id="book_review_title">
-    <?php echo $book_review_title ?>
+  <span itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing" id="book_review_title">
+    <span itemprop="name"><?php echo $book_review_title ?></span>
   </span>
   <br>
   <?php } ?>
@@ -50,9 +54,8 @@
   <label for="book_review_author">
     <?php _e( 'Author', $this->plugin_slug ) ?>:
   </label>
-  <span itemprop="author" itemscope itemtype="http://schema.org/Person"
-    id="book_review_author">
-    <span itemprop="name">
+  <span id="book_review_author">
+    <span>
       <?php echo $book_review_author ?>
     </span>
   </span>
@@ -86,8 +89,6 @@
   <label for="book_review_release_date">
     <?php _e( 'Release Date', $this->plugin_slug ) ?>:
   </label>
-  <meta itemprop="datePublished" content="<?php date( 'Y-m-d',
-    strtotime( $book_review_release_date ) ) ?>">
   <span id="book_review_release_date">
     <?php echo $book_review_release_date ?>
   </span>
@@ -99,7 +100,7 @@
   <label for="book_review_format">
     <?php _e( 'Format', $this->plugin_slug ) ?>:
   </label>
-  <span itemprop="bookFormatType" id="book_review_format">
+  <span id="book_review_format">
     <?php echo $book_review_format ?>
   </span>
   <br>
@@ -110,7 +111,7 @@
   <label for="book_review_pages">
     <?php _e( 'Pages', $this->plugin_slug ) ?>:
   </label>
-  <span itemprop="numberOfPages" id="book_review_pages">
+  <span id="book_review_pages">
     <?php echo $book_review_pages ?>
   </span>
   <br>
@@ -127,23 +128,21 @@
   <br>
   <?php } ?>
 
-  <div itemprop="review" itemscope itemtype="http://schema.org/Review">
-    <!-- Rating -->
-    <?php if ( !empty ( $book_review_rating_url ) ) { ?>
-    <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-      <meta itemprop="ratingValue" content="<?php echo $book_review_rating ?>">
-      <img id="book_review_rating_image" class="rating"
-        src="<?php echo $book_review_rating_url ?>" />
-      <br>
-    </div>
-    <?php } ?>
-    <!-- Summary / Synopsis -->
-    <?php if ( !empty( $book_review_summary ) ) { ?>
-    <div itemprop="description" id="book_review_summary">
-      <?php echo wpautop( $book_review_summary, true ) ?>
-    </div>
-    <?php } ?>
+  <!-- Rating -->
+  <?php if ( !empty ( $book_review_rating_url ) ) { ?>
+  <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+    <meta itemprop="ratingValue" content="<?php echo $book_review_rating ?>">
+    <img id="book_review_rating_image" class="rating"
+      src="<?php echo $book_review_rating_url ?>" />
+    <br>
   </div>
+  <?php } ?>
+  <!-- Summary / Synopsis -->
+  <?php if ( !empty( $book_review_summary ) ) { ?>
+  <div id="book_review_summary">
+    <?php echo wpautop( $book_review_summary, true ) ?>
+  </div>
+  <?php } ?>
 
   <!-- Links -->
   <ul id="book-review-links" class="links">
