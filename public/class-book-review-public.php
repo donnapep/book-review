@@ -1,401 +1,70 @@
 <?php
 /**
- * Book Review
+ * The public-facing functionality of the plugin.
  *
- * @package   Book_Review
- * @author    Donna Peplinskie <donnapep@gmail.com>
- * @license   GPL-2.0+
- * @link      http://donnapeplinskie.com
- * @copyright 2014 Donna Peplinskie
+ * @link       http://donnapeplinskie.com
+ * @since      2.1.8
+ *
+ * @package    Book_Review
+ * @subpackage Book_Review/public
  */
-
 /**
- * Plugin class. This class should ideally be used to work with the
- * public-facing side of the WordPress site.
+ * The public-facing functionality of the plugin.
  *
- * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `book-review-admin.php`
+ * Defines the plugin name, version, and two examples hooks for how to
+ * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package Book_Review
- * @author  Donna Peplinskie <donnapep@gmail.com>
+ * @package    Book_Review
+ * @subpackage Book_Review/public
+ * @author     Donna Peplinskie <donnapep@gmail.com>
  */
-
-class Book_Review {
+class Book_Review_Public {
   /**
-   * Plugin version, used for cache-busting of style and script file references.
+   * The ID of this plugin.
    *
-   * @since   2.0.0
-   *
-   * @var     string
+   * @since    1.0.0
+   * @access   private
+   * @var      string    $plugin_name    The ID of this plugin.
    */
-  const VERSION = '2.1.7';
-
-  /**
-   * Unique identifier for your plugin.
-   *
-   *
-   * The variable name is used as the text domain when internationalizing
-   * strings of text. Its value should match the Text Domain file header in the
-   * main plugin file.
-   *
-   * @since    2.0.0
-   *
-   * @var      string
-   */
-  protected $plugin_slug = 'book-review';
+  private $plugin_name;
 
   /**
-   * Instance of this class.
+   * The version of this plugin.
    *
-   * @since    2.0.0
-   *
-   * @var      object
+   * @since    1.0.0
+   * @access   private
+   * @var      string    $version    The current version of this plugin.
    */
-  protected static $instance = null;
+  private $version;
 
   /**
-   * Initialize the plugin by setting localization and loading public scripts
-   * and styles.
+   * Initialize the class and set its properties.
    *
-   * @since     1.0.0
+   * @since    1.0.0
+   * @var      string    $plugin_name       The name of the plugin.
+   * @var      string    $version    The version of this plugin.
    */
-  private function __construct() {
-    // Load plugin text domain.
-    add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
-    // Activate plugin when new blog is added.
-    add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
-
-    // Load public-facing style sheet.
-    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-
-    /* Define custom functionality. Refer to
-     * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-     */
-    add_filter( 'the_excerpt', array( $this, 'inject_book_rating' ) );
-    add_filter( 'the_content', array( $this, 'inject_book_details' ) );
-    add_shortcode( 'book_review_archives', array( $this, 'handle_shortcode' ) );
+  public function __construct( $plugin_name, $version ) {
+    $this->plugin_name = $plugin_name;
+    $this->version = $version;
   }
 
   /**
-   * Return the plugin slug.
-   *
-   * @since    2.0.0
-   *
-   * @return    Plugin slug variable.
-   */
-  public function get_plugin_slug() {
-    return $this->plugin_slug;
-  }
-
-  /**
-   * Return an instance of this class.
-   *
-   * @since     2.0.0
-   *
-   * @return    object    A single instance of this class.
-   */
-  public static function get_instance() {
-    // If the single instance hasn't been set, set it now.
-    if ( null == self::$instance ) {
-      self::$instance = new self;
-    }
-
-    $version = get_option( 'book_review_version' );
-
-    // Database version does not exist before version 2.1.6.
-    if ( empty( $version ) ) {
-      // Add the option first since sometimes get_instance gets called again before
-      // the tables are created and the data converted.
-      add_option( 'book_review_version', self::VERSION );
-      self::create_tables();
-      self::convert_data();
-    }
-    else if ( $version != self::VERSION ) {
-      update_option( 'book_review_version', self::VERSION );
-    }
-
-    return self::$instance;
-  }
-
-  /**
-   * Fired when the plugin is activated.
-   *
-   * @since    2.0.0
-   *
-   * @param    boolean    $network_wide    True if WPMU superadmin uses
-   *                                       "Network Activate" action, false if
-   *                                       WPMU is disabled or plugin is
-   *                                       activated on an individual blog.
-   */
-  public static function activate( $network_wide ) {
-    if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-      if ( $network_wide ) {
-        // Get all blog ids.
-        $blog_ids = self::get_blog_ids();
-
-        foreach ( $blog_ids as $blog_id ) {
-          switch_to_blog( $blog_id );
-          self::single_activate();
-        }
-
-        restore_current_blog();
-      }
-      else {
-        self::single_activate();
-      }
-    }
-    else {
-      self::single_activate();
-    }
-  }
-
-  /**
-   * Fired when the plugin is deactivated.
-   *
-   * @since    2.0.0
-   *
-   * @param    boolean    $network_wide    True if WPMU superadmin uses
-   *                                       "Network Deactivate" action, false if
-   *                                       WPMU is disabled or plugin is
-   *                                       deactivated on an individual blog.
-   */
-  public static function deactivate( $network_wide ) {
-    if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-      if ( $network_wide ) {
-        // Get all blog ids.
-        $blog_ids = self::get_blog_ids();
-
-        foreach ( $blog_ids as $blog_id ) {
-          switch_to_blog( $blog_id );
-          self::single_deactivate();
-        }
-
-        restore_current_blog();
-      }
-      else {
-        self::single_deactivate();
-      }
-    }
-    else {
-      self::single_deactivate();
-    }
-  }
-
-  /**
-   * Fired when a new site is activated with a WPMU environment.
-   *
-   * @since    2.0.0
-   *
-   * @param    int    $blog_id    ID of the new blog.
-   */
-  public function activate_new_site( $blog_id ) {
-    if ( 1 !== did_action( 'wpmu_new_blog' ) ) {
-      return;
-    }
-
-    switch_to_blog( $blog_id );
-    self::single_activate();
-    restore_current_blog();
-  }
-
-  /**
-   * Get all blog ids of blogs in the current network that are:
-   * - not archived
-   * - not spam
-   * - not deleted
-   *
-   * @since    2.0.0
-   *
-   * @return   array|false    The blog ids, false if no matches.
-   */
-  private static function get_blog_ids() {
-    global $wpdb;
-
-    // Get an array of blog ids.
-    $sql = "SELECT blog_id FROM $wpdb->blogs
-      WHERE archived = '0' AND spam = '0'
-      AND deleted = '0'";
-
-    return $wpdb->get_col( $sql );
-  }
-
-  /**
-   * Fired for each blog when the plugin is activated.
-   *
-   * @since    2.0.0
-   */
-  private static function single_activate() {
-    $version = get_option( 'book_review_version' );
-
-    if ( empty( $version ) ) {
-      add_option( 'book_review_version', self::VERSION );
-      self::create_tables();
-    }
-    else if ( $version != self::VERSION ) {
-      update_option( 'book_review_version', self::VERSION );
-    }
-  }
-
-  /**
-   * Creates the tables that the plugin uses.
-   *
-   * @since    2.1.6
-   */
-  private static function create_tables() {
-    global $wpdb;
-
-    /*
-     * We'll set the default character set and collation for this table.
-     * If we don't do this, some characters could end up being converted
-     * to just ?'s when saved in our table.
-     */
-    $charset_collate = '';
-
-    if ( !empty( $wpdb->charset ) ) {
-      $charset_collate = "DEFAULT CHARACTER SET {$wpdb->charset}";
-    }
-
-    if ( !empty( $wpdb->collate ) ) {
-      $charset_collate .= " COLLATE {$wpdb->collate}";
-    }
-
-    // Create table for custom links.
-    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}book_review_custom_links (
-      custom_link_id int NOT NULL AUTO_INCREMENT,
-      text varchar(100) NOT NULL,
-      image_url varchar(200),
-      active int(1) NOT NULL DEFAULT 1,
-      UNIQUE KEY id (custom_link_id)
-    ) $charset_collate;";
-
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $sql );
-
-    // Create table for custom link URLs.
-    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}book_review_custom_link_urls (
-      post_id bigint(20) NOT NULL,
-      custom_link_id int NOT NULL,
-      url varchar(200),
-      UNIQUE KEY id (post_id, custom_link_id)
-    ) $charset_collate;";
-
-    dbDelta( $sql );
-  }
-
-  /**
-   * Migrates custom links from native tables to custom tables.
-   *
-   * @since    2.1.6
-   */
-  private static function convert_data() {
-    global $wpdb;
-
-    $links = array();
-    $links_option = get_option( 'book_review_links' );
-    $target = isset( $links_option['book_review_link_target'] ) ? $links_option['book_review_link_target'] : -1;
-    $num_links = isset( $links_option['book_review_num_links'] ) ? ( int )$links_option['book_review_num_links'] : 0;
-
-    // Iterate over all of the custom links in the options table.
-    for ( $i = 1; $i <= $num_links; $i++ ) {
-      $text = $links_option['book_review_link_text' . $i];
-      $image_url = $links_option['book_review_link_image' . $i];
-      $new_link = array(
-        'text' => $text,
-        'image_url' => $image_url
-      );
-
-      array_push( $links, $new_link );
-    }
-
-    // Add the link text and image to the book_review_custom_links table.
-    foreach ( $links as $link ) {
-      $success = $wpdb->insert(
-        $wpdb->prefix . "book_review_custom_links",
-        array(
-          'text' => $link['text'],
-          'image_url' => $link['image_url']
-        ),
-        array( '%s', '%s' )
-      );
-
-      // In case of failure, remove any rows that may already have been inserted.
-      if ( $success != 1 ) {
-        $sql = "DELETE FROM {$wpdb->prefix}book_review_custom_links";
-        $wpdb->query($sql);
-        $wpdb->print_error();
-        return;
-      }
-    }
-
-    // Delete the links option and then save the target back since it's the
-    // only setting that needs to be preserved.
-    if ( $target != -1 ) {
-      delete_option( 'book_review_links' );
-      add_option( 'book_review_links', array( 'book_review_target' => $target ) );
-    }
-
-    // Populate the book_review_custom_link_urls table.
-    $sql = "INSERT INTO {$wpdb->prefix}book_review_custom_link_urls (post_id, custom_link_id, url)
-      SELECT meta.post_id, links.custom_link_id, meta.meta_value
-      FROM {$wpdb->prefix}postmeta AS meta
-      INNER JOIN {$wpdb->prefix}book_review_custom_links AS links ON links.custom_link_id = SUBSTRING(meta.meta_key, -1)
-      WHERE meta_key IN ('book_review_link1', 'book_review_link2', 'book_review_link3', 'book_review_link4', 'book_review_link5')
-        AND meta_value <> ''";
-
-    // Run query.
-    $success = $wpdb->query($sql);
-
-    // There was a problem executing the query.
-    if ($success === false) {
-      $wpdb->print_error();
-      return;
-    }
-    // Delete links from the postmeta table.
-    else {
-      $sql = "DELETE FROM {$wpdb->prefix}postmeta
-        WHERE meta_key IN ('book_review_link1', 'book_review_link2', 'book_review_link3', 'book_review_link4', 'book_review_link5')";
-      $success = $wpdb->query($sql);
-
-      if ($success === false) {
-        $wpdb->print_error();
-        return;
-      }
-    }
-  }
-
-  /**
-   * Fired for each blog when the plugin is deactivated.
-   *
-   * @since    2.0.0
-   */
-  private static function single_deactivate() {
-    // @TODO: Define deactivation functionality here
-  }
-
-  /**
-   * Load the plugin text domain for translation.
+   * Register the stylesheets for the public-facing side of the site.
    *
    * @since    1.0.0
    */
-  public function load_plugin_textdomain() {
-    $domain = $this->plugin_slug;
-    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-
-    load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' .
-      $domain . '-' . $locale . '.mo' );
-    load_plugin_textdomain( $domain, FALSE, basename( plugin_dir_path(
-      dirname( __FILE__ ) ) ) . '/languages/' );
-  }
-
-  /**
-   * Register and enqueue public-facing style sheet.
-   *
-   * @since    2.0.0
-   */
   public function enqueue_styles() {
-    wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url(
-      'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+    /**
+     * An instance of this class should be passed to the run() function
+     * defined in Plugin_Name_Public_Loader as all of the hooks are defined
+     * in that particular class.
+     *
+     * The Plugin_Name_Public_Loader will then create the relationship
+     * between the defined hooks and the functions defined in this
+     * class.
+     */
+    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-public.css', array(), $this->version, 'all' );
   }
 
   /**
@@ -440,6 +109,8 @@ class Book_Review {
 
       // Title must be specified.
       if ( !empty( $book_review_title ) ) {
+        $plugin = Book_Review::get_instance();
+
         // Settings
         $box_position = $general_option['book_review_box_position'];
         $bg_color = $general_option['book_review_bg_color'];
@@ -468,7 +139,7 @@ class Book_Review {
         }
 
         // Rating
-        $book_review_rating_url = $this->get_rating_image( $book_review_rating );
+        $book_review_rating_url = $plugin->get_rating()->get_rating_image( $book_review_rating );
 
         // Link target
         $links_defaults = array(
@@ -497,8 +168,8 @@ class Book_Review {
 
         // Review Box Position
         ob_start();
-        include( 'views/public.php' );
-        
+        include( 'partials/book-review-public.php' );
+
         $content = '<div itemprop="reviewBody">' . $content . '</div>';
 
         if ( $box_position == 'top' ) {
@@ -530,8 +201,9 @@ class Book_Review {
       if ( ( isset( $ratings_option['book_review_rating_home'] ) != null )
         && ( isset( $values['book_review_rating'] ) != null ) ) {
         if ( $ratings_option['book_review_rating_home'] == '1' ) {
+          $plugin = Book_Review::get_instance();
           $rating = $values['book_review_rating'][0];
-          $src = $this->get_rating_image( $rating );
+          $src = $plugin->get_rating()->get_rating_image( $rating );
 
           if ( !empty( $src) ) {
             $content = '<p class="book_review_rating_image"><img src="' .
@@ -556,6 +228,7 @@ class Book_Review {
   public function handle_shortcode( $atts ) {
     global $wpdb;
 
+    $plugin = Book_Review::get_instance();
     $prefix = $wpdb->prefix;
 
     extract( shortcode_atts( array(
@@ -742,7 +415,7 @@ class Book_Review {
           $ratings_option = get_option( 'book_review_ratings' );
           $rating = $values[0];
 
-          $book_review_rating_url = $this->get_rating_image( $rating );
+          $book_review_rating_url = $plugin->get_rating()->get_rating_image( $rating );
 
           if ( !empty ( $book_review_rating_url ) ) {
             if ( $show_cover == 'true' ) {
@@ -788,53 +461,6 @@ class Book_Review {
     }
 
     return $dimensions;
-  }
-
-  /**
-   * Return the URL of the rating image.
-   *
-   * @since    1.0.0
-   *
-   * @param    string    $rating    User rating of the book.
-   *
-   * @return   string    URL of the rating image.
-   */
-  public function get_rating_image( $rating ) {
-    if ( !empty( $rating ) && ( $rating != '-1' ) ) {
-      $ratings_defaults = array(
-        'book_review_rating_default' => 1
-      );
-      $ratings_option = get_option( 'book_review_ratings' );
-      $ratings_option = wp_parse_args( $ratings_option, $ratings_defaults );
-
-      // Use default images.
-      if ( $ratings_option['book_review_rating_default'] == '1' ) {
-        if ( $rating == '1' ) {
-          $src = plugins_url( 'assets/one-star.png', dirname( __FILE__ ) );
-        }
-        else if ( $rating == '2' ) {
-          $src = plugins_url( 'assets/two-star.png', dirname( __FILE__ ) );
-        }
-        else if ( $rating == '3' ) {
-          $src = plugins_url( 'assets/three-star.png', dirname( __FILE__ ) );
-        }
-        else if ( $rating == '4' ) {
-          $src = plugins_url( 'assets/four-star.png', dirname( __FILE__ ) );
-        }
-        else if ( $rating == '5' ) {
-          $src = plugins_url( 'assets/five-star.png', dirname( __FILE__ ) );
-        }
-      }
-      // Use custom images.
-      else {
-        $src = $ratings_option['book_review_rating_image' . $rating];
-      }
-
-      return $src;
-    }
-    else {
-      return '';
-    }
   }
 }
 ?>

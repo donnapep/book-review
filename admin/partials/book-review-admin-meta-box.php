@@ -14,12 +14,12 @@
 <!-- ISBN -->
 <div class="row" style="<?php echo esc_attr( $show_isbn ); ?>">
   <label for="book_review_isbn">
-    <?php _e( 'ISBN', $this->plugin_slug ) ?>:
+    <?php _e( 'ISBN', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_isbn" name="book_review_isbn"
     value="<?php echo esc_attr( $book_review_isbn ); ?>" />
   <a id="get-book-info" href="#" class="button-primary">
-    <?php _e( 'Get Book Info', $this->plugin_slug ) ?>
+    <?php _e( 'Get Book Info', $this->plugin_name ) ?>
   </a>
   <span class="spinner"></span>
   <span id="ajax_isbn_nonce" class="hidden"><?php echo wp_create_nonce( 'ajax_isbn_nonce' ); ?></span>
@@ -28,7 +28,7 @@
 <!-- Title -->
 <div class="row">
   <label for="book_review_title">
-    <?php _e( 'Title', $this->plugin_slug ) ?>:
+    <?php _e( 'Title', $this->plugin_name ) ?>:
     <span class="required">*</span>
   </label>
   <input type="text" id="book_review_title" name="book_review_title"
@@ -38,7 +38,7 @@
 <!-- Series -->
 <div class="row">
   <label for="book_review_series">
-    <?php _e( 'Series', $this->plugin_slug ) ?>:
+    <?php _e( 'Series', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_series" name="book_review_series"
     value="<?php echo esc_attr( $book_review_series ); ?>" />
@@ -47,7 +47,7 @@
 <!-- Author -->
 <div class="row">
   <label for="book_review_author">
-    <?php _e( 'Author', $this->plugin_slug ) ?>:
+    <?php _e( 'Author', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_author" name="book_review_author"
     value="<?php echo esc_attr( $book_review_author ); ?>" />
@@ -56,7 +56,7 @@
 <!-- Genre -->
 <div class="row">
   <label for="book_review_genre">
-    <?php _e( 'Genre', $this->plugin_slug ) ?>:
+    <?php _e( 'Genre', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_genre" name="book_review_genre"
     value="<?php echo esc_attr( $book_review_genre ); ?>" />
@@ -65,7 +65,7 @@
 <!-- Publisher -->
   <div class="row">
   <label for="book_review_publisher">
-    <?php _e( 'Publisher', $this->plugin_slug ) ?>:
+    <?php _e( 'Publisher', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_publisher" name="book_review_publisher"
     value="<?php echo esc_attr( $book_review_publisher ); ?>" />
@@ -75,7 +75,7 @@
 <!-- Release Date -->
 <div class="row">
   <label for="book_review_release_date">
-    <?php _e( 'Release Date', $this->plugin_slug ) ?>:
+    <?php _e( 'Release Date', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_release_date" name="book_review_release_date"
     value="<?php echo esc_attr( $book_review_release_date ); ?>" />
@@ -84,7 +84,7 @@
 <!-- Format -->
 <div class="row">
   <label for="book_review_format">
-    <?php _e( 'Format', $this->plugin_slug ) ?>:
+    <?php _e( 'Format', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_format" name="book_review_format"
     value="<?php echo esc_attr( $book_review_format ); ?>" />
@@ -93,7 +93,7 @@
 <!-- Pages -->
 <div class="row">
   <label for="book_review_pages">
-    <?php _e( 'Pages', $this->plugin_slug ) ?>:
+    <?php _e( 'Pages', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_pages" name="book_review_pages"
     value="<?php echo esc_attr( $book_review_pages ); ?>" />
@@ -102,7 +102,7 @@
 <!-- Source -->
 <div class="row">
   <label for="book_review_source">
-    <?php _e( 'Source', $this->plugin_slug ) ?>:
+    <?php _e( 'Source', $this->plugin_name ) ?>:
   </label>
   <input type="text" id="book_review_source" name="book_review_source"
     value="<?php echo esc_attr( $book_review_source ); ?>" />
@@ -114,12 +114,12 @@
 <!-- Cover URL -->
 <div class="row">
   <label for="book_review_cover_url">
-    <?php _e( 'Cover URL', $this->plugin_slug ) ?>:
+    <?php _e( 'Cover URL', $this->plugin_name ) ?>:
   </label>
   <input id="book_review_cover_url" name="book_review_cover_url" type="text"
     value="<?php echo esc_url( $book_review_cover_url ); ?>" />
   <a href="#" class="button-primary upload-image-button">
-    <?php _e( 'Upload Cover', $this->plugin_slug ) ?>
+    <?php _e( 'Upload Cover', $this->plugin_name ) ?>
   </a>
   <br>
   <img id="book_review_cover_image" class="cover-image" src="<?php echo esc_url( $book_review_cover_url ); ?>"
@@ -129,7 +129,7 @@
 <!-- Synopsis -->
 <div class="row">
   <label for="book_review_summary" class="summary">
-    <?php _e( 'Synopsis', $this->plugin_slug ) ?>:
+    <?php _e( 'Synopsis', $this->plugin_name ) ?>:
   </label>
   <?php wp_editor( $book_review_summary, 'book_review_summary', $args ); ?>
 </div>
@@ -137,7 +137,7 @@
 <!-- Rating -->
 <div class="row">
   <label for="book_review_rating">
-    <?php _e( 'Rating', $this->plugin_slug ) ?>:
+    <?php _e( 'Rating', $this->plugin_name ) ?>:
   </label>
   <select id="book_review_rating" name="book_review_rating">
     <?php $this->render_rating($book_review_rating); ?>
@@ -150,7 +150,7 @@
 <!-- Include post in archives -->
 <div class="row">
   <label for="book_review_archive_post">
-    <?php _e( 'Include post in archives', $this->plugin_slug ) ?>:
+    <?php _e( 'Include post in archives', $this->plugin_name ) ?>:
   </label>
   <input id="book_review_archive_post" type="checkbox"
     name="book_review_archive_post" value="1"

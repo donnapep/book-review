@@ -24,13 +24,13 @@
   <img itemprop="image" id="book_review_cover_image" class="cover"
     src="<?php echo $book_review_cover_url ?>"
     alt="<?php echo $book_review_title . ' ';
-      _e( 'Book Cover', $this->plugin_slug )?>" />
+      _e( 'Book Cover', $this->plugin_name )?>" />
   <?php } ?>
 
   <!-- Title -->
   <?php if ( !empty( $book_review_title ) ) { ?>
   <label for="book_review_title">
-    <?php _e( 'Title', $this->plugin_slug ) ?>:
+    <?php _e( 'Title', $this->plugin_name ) ?>:
   </label>
   <span itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing" id="book_review_title">
     <span itemprop="name"><?php echo $book_review_title ?></span>
@@ -41,7 +41,7 @@
   <!-- Series -->
   <?php if ( !empty( $book_review_series ) ) { ?>
   <label for="book_review_series">
-    <?php _e( 'Series', $this->plugin_slug ) ?>:
+    <?php _e( 'Series', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_series">
     <?php echo $book_review_series ?>
@@ -52,7 +52,7 @@
   <!-- Author -->
   <?php if ( !empty( $book_review_author ) ) { ?>
   <label for="book_review_author">
-    <?php _e( 'Author', $this->plugin_slug ) ?>:
+    <?php _e( 'Author', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_author">
     <span>
@@ -65,7 +65,7 @@
   <!-- Genre -->
   <?php if ( !empty( $book_review_genre ) ) { ?>
   <label for="book_review_genre">
-    <?php _e( 'Genre', $this->plugin_slug ) ?>:
+    <?php _e( 'Genre', $this->plugin_name ) ?>:
   </label>
   <span itemprop="genre" id="book_review_genre">
     <?php echo $book_review_genre ?>
@@ -76,7 +76,7 @@
   <!-- Publisher -->
   <?php if ( !empty( $book_review_publisher ) ) { ?>
   <label for="book_review_publisher">
-    <?php _e( 'Publisher', $this->plugin_slug ) ?>:
+    <?php _e( 'Publisher', $this->plugin_name ) ?>:
   </label>
   <span itemprop="publisher" id="book_review_publisher">
     <?php echo $book_review_publisher ?>
@@ -87,7 +87,7 @@
   <!-- Release Date -->
   <?php if ( !empty( $book_review_release_date ) ) { ?>
   <label for="book_review_release_date">
-    <?php _e( 'Release Date', $this->plugin_slug ) ?>:
+    <?php _e( 'Release Date', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_release_date">
     <?php echo $book_review_release_date ?>
@@ -98,7 +98,7 @@
   <!-- Format -->
   <?php if ( !empty( $book_review_format ) ) { ?>
   <label for="book_review_format">
-    <?php _e( 'Format', $this->plugin_slug ) ?>:
+    <?php _e( 'Format', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_format">
     <?php echo $book_review_format ?>
@@ -109,7 +109,7 @@
   <!-- Pages -->
   <?php if ( !empty( $book_review_pages ) ) { ?>
   <label for="book_review_pages">
-    <?php _e( 'Pages', $this->plugin_slug ) ?>:
+    <?php _e( 'Pages', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_pages">
     <?php echo $book_review_pages ?>
@@ -120,7 +120,7 @@
   <!-- Source -->
   <?php if ( !empty( $book_review_source ) ) { ?>
   <label for="book_review_source">
-    <?php _e( 'Source', $this->plugin_slug ) ?>:
+    <?php _e( 'Source', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_source">
     <?php echo $book_review_source ?>
