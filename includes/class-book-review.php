@@ -93,6 +93,10 @@ class Book_Review {
     $this->plugin_name = 'book-review';
     $this->version = '2.1.8';
 
+    if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
+      define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
+    }
+
     $this->load_dependencies();
     $this->set_locale();
     $this->define_activator_hooks();
@@ -124,41 +128,42 @@ class Book_Review {
     /**
      * The class responsible for defining all actions that occur upon plugin activation.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-book-review-activator.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-activator.php';
 
     /**
      * The class responsible for defining internationalization functionality
      * of the plugin.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-book-review-i18n.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-i18n.php';
 
     /**
      * The class responsible for orchestrating the actions and filters of the
      * core plugin.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-book-review-loader.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-loader.php';
 
     /**
      * The class responsible for defining all actions that relate to ratings.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-book-review-rating.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-rating.php';
 
     /**
      * The class responsible for defining all actions that occur in the Dashboard.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-book-review-admin.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'admin/class-book-review-admin.php';
 
     /**
      * The class responsible for defining all actions that relate to the meta box.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-book-review-meta-box.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'admin/class-book-review-meta-box.php';
 
     /**
      * The class responsible for defining all actions that occur in the public-facing
      * side of the site.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-book-review-public.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'public/class-book-review-public.php';
 
+    // TODO: Or make these public properties instead?
     $this->loader = new Book_Review_Loader();
     $this->rating = new Book_Review_Rating( $this->get_plugin_name() );
   }
@@ -180,6 +185,7 @@ class Book_Review {
   }
 
   private function define_activator_hooks() {
+    global $wp_filter;
     $plugin_activator = new Book_Review_Activator();
 
     // Trigger an action whenever a new blog is created within a multisite network.

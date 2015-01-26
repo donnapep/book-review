@@ -40,8 +40,6 @@ class Book_Review_Activator {
    *                                       activated on an individual blog.
    */
   public static function activate( $network_wide ) {
-    error_log('activate');
-
     if ( function_exists( 'is_multisite' ) && is_multisite() ) {
       if ( $network_wide ) {
         // Get all blog ids.
@@ -74,7 +72,6 @@ class Book_Review_Activator {
    * @return   array|false    The blog ids, false if no matches.
    */
   private static function get_blog_ids() {
-    error_log('get_blog_ids');
     global $wpdb;
 
     // Get an array of blog ids.
@@ -91,12 +88,12 @@ class Book_Review_Activator {
    * @since    2.1.6
    */
   private static function single_activate() {
-    error_log('single_activate');
     $version = get_option( 'book_review_version' );
 
     if ( empty( $version ) ) {
       add_option( 'book_review_version', self::VERSION );
       self::create_tables();
+      self::convert_data();
     }
     else if ( $version != self::VERSION ) {
       update_option( 'book_review_version', self::VERSION );
@@ -109,7 +106,6 @@ class Book_Review_Activator {
    * @since    2.1.6
    */
   private static function create_tables() {
-    error_log('create_tables');
     global $wpdb;
 
     /*
@@ -156,7 +152,6 @@ class Book_Review_Activator {
    * @since    2.1.6
    */
   private static function convert_data() {
-    error_log('convert_data');
     global $wpdb;
 
     $links = array();
@@ -241,7 +236,6 @@ class Book_Review_Activator {
    */
   // TODO: Should this be static or non-static?
   public static function activate_new_site( $blog_id ) {
-    error_log('activate_new_site');
     if ( 1 !== did_action( 'wpmu_new_blog' ) ) {
       return;
     }

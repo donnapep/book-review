@@ -39,7 +39,7 @@ class Book_Review_Loader {
    * @var      array    $filters    The filters registered with WordPress to fire when the plugin loads.
    */
   protected $filters;
-  
+
   /**
    * The array of shortcodes registered with WordPress.
    *
@@ -87,7 +87,7 @@ class Book_Review_Loader {
   public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
     $this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
   }
-  
+
   /**
    * Add a new shortcode to the collection to be registered with WordPress.
    *
@@ -132,6 +132,7 @@ class Book_Review_Loader {
    * @since    2.1.8
    */
   public function run() {
+    //global $wp_filter;
     foreach ( $this->filters as $hook ) {
       add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
     }
@@ -139,9 +140,12 @@ class Book_Review_Loader {
     foreach ( $this->actions as $hook ) {
       add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
     }
-    
+
     foreach ( $this->shortcodes as $hook ) {
       add_shortcode( $hook['hook'], array( $hook['component'], $hook['callback'] ) );
     }
+
+    //echo "<pre>"; print_r($wp_filter['wpmu_new_blog']); echo "</pre>";
+    //echo "<pre>"; print_r($wp_filter['manage_posts_columns']); echo "</pre>";
   }
 }

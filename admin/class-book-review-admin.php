@@ -200,9 +200,7 @@ class Book_Review_Admin {
       $active_tab = 'appearance';
     }
 
-    // TODO: Check src (plugin_dir_url( __DIR__ ) . 'includes/images/one-star.png';).
-    $tooltip = '<img src="' . plugins_url( 'images/tooltip.gif',
-      __FILE__ ) . '" />';
+    $tooltip = '<img src="' . plugins_url( 'images/tooltip.gif', __FILE__ ) . '" />';
 
     do_action( 'book_review_before_tabs' );
 

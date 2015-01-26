@@ -70,6 +70,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-book-review.php';
 function run_book_review() {
   $plugin = Book_Review::get_instance();
   $plugin->run();
+
+  return $plugin;
 }
 
 run_book_review();
