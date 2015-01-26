@@ -12,13 +12,13 @@
       <tr>
         <th>
           <label for="book_review_target">
-            <?php _e( 'Open links in new tab', $this->plugin_slug ) ?>:
+            <?php _e( 'Open links in new tab', $this->plugin_name ) ?>:
             &nbsp;&nbsp;
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'Whether to open links in the same window or ' .
-                  'in a new tab.', $this->plugin_slug ) ?>
+                  'in a new tab.', $this->plugin_name ) ?>
               </span>
             </a>
           </label>
@@ -33,10 +33,10 @@
     </tbody>
   </table>
 
-  <h3><?php _e( 'Custom Links', $this->plugin_slug ) ?></h3>
+  <h3><?php _e( 'Custom Links', $this->plugin_name ) ?></h3>
   <p>
     <?php _e( 'Configure the links that you would like to display with ' .
-      'every book review.', $this->plugin_slug ) ?>
+      'every book review.', $this->plugin_name ) ?>
   </p>
 
   <!-- Link Text and Link Image URLs -->
@@ -45,34 +45,34 @@
       <tr>
         <th>
           <label>
-            <?php _e( 'Link Text', $this->plugin_slug ) ?>&nbsp;&nbsp;
+            <?php _e( 'Link Text', $this->plugin_name ) ?>&nbsp;&nbsp;
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'Enter the text for each link. For every link ' .
                   'added here, a new field will be shown in the Book ' .
                   'Info section when editing a post.',
-                  $this->plugin_slug ) ?>
+                  $this->plugin_name ) ?>
               </span>
             </a>
           </label>
         </th>
         <th>
           <label>
-            <?php _e( 'Link Image URL', $this->plugin_slug ) ?>&nbsp;&nbsp;
+            <?php _e( 'Link Image URL', $this->plugin_name ) ?>&nbsp;&nbsp;
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'If you would like to show links as images, ' .
                   'enter the URL of an image for each link below. If you ' .
                   'leave this field blank, links will be shown as text.',
-                  $this->plugin_slug ) ?>
+                  $this->plugin_name ) ?>
               </span>
             </a>
           </label>
         </th>
         <th class="active">
-          <?php _e( 'Active', $this->plugin_slug ) ?>
+          <?php _e( 'Active', $this->plugin_name ) ?>
         </th>
         <!-- <th></th> -->
       </tr>
@@ -115,7 +115,7 @@
       ?>
     </tbody>
   </table>
-  <input class="add-link button" type="button" value="<?php _e( 'Add Link', $this->plugin_slug ) ?>" onclick="addLink();" />
+  <input class="add-link button" type="button" value="<?php _e( 'Add Link', $this->plugin_name ) ?>" onclick="addLink();" />
 
   <?php do_action( 'book_review_after_links_tab_content', $links_option ); ?>
   <?php @submit_button(); ?>

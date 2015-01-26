@@ -1,6 +1,6 @@
 <p>
   <?php _e( 'Configure the images to use for displaying ratings.',
-    $this->plugin_slug ) ?>
+    $this->plugin_name ) ?>
 </p>
 
 <form action="options.php" method="post">
@@ -15,13 +15,13 @@
       <tr>
         <th>
           <label for="book_review_rating_home">
-            <?php _e( 'Show rating on home page', $this->plugin_slug ) ?>:
+            <?php _e( 'Show rating on home page', $this->plugin_name ) ?>:
             &nbsp;&nbsp;
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'Whether to show the rating image on your home ' .
-                  'page when summary text is used.', $this->plugin_slug ) ?>
+                  'page when summary text is used.', $this->plugin_name ) ?>
               </span>
             </a>
           </label>
@@ -38,13 +38,13 @@
       <tr>
         <th>
           <label for="book_review_rating_default">
-            <?php _e( 'Use default rating images', $this->plugin_slug ) ?>:
+            <?php _e( 'Use default rating images', $this->plugin_name ) ?>:
             &nbsp;&nbsp;
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'Whether to use the default rating images or ' .
-                  'your own.', $this->plugin_slug ) ?>
+                  'your own.', $this->plugin_name ) ?>
               </span>
             </a>
           </label>
@@ -63,14 +63,14 @@
         <th>
           <h4>
             <label>
-              <?php _e( 'Rating Image URLs', $this->plugin_slug ) ?>
+              <?php _e( 'Rating Image URLs', $this->plugin_name ) ?>
               &nbsp;&nbsp;
               <a href="#" class="tooltip">
                 <?php echo $tooltip ?>
                 <span>
                   <?php _e( 'To use your own rating images, enter the ' .
                     'URL of an image for each rating below (1-5).',
-                    $this->plugin_slug ) ?>
+                    $this->plugin_name ) ?>
                 </span>
               </a>
             </label>
@@ -84,7 +84,7 @@
         <th>
           <label for="book_review_rating_image1">
             <?php
-              _e( 'One-star Image URL', $this->plugin_slug );
+              _e( 'One-star Image URL', $this->plugin_name );
             ?>:
           </label>
         </th>
@@ -101,7 +101,7 @@
         <th>
           <label for="book_review_rating_image2">
             <?php
-              _e( 'Two-star Image URL', $this->plugin_slug );
+              _e( 'Two-star Image URL', $this->plugin_name );
             ?>:
           </label>
         </th>
@@ -118,7 +118,7 @@
         <th>
           <label for="book_review_rating_image3">
             <?php
-              _e( 'Three-star Image URL', $this->plugin_slug );
+              _e( 'Three-star Image URL', $this->plugin_name );
             ?>:
           </label>
         </th>
@@ -135,7 +135,7 @@
         <th>
           <label for="book_review_rating_image4">
             <?php
-              _e( 'Four-star Image URL', $this->plugin_slug );
+              _e( 'Four-star Image URL', $this->plugin_name );
             ?>:
           </label>
         </th>
@@ -152,7 +152,7 @@
         <th>
           <label for="book_review_rating_image5">
             <?php
-              _e( 'Five-star Image URL', $this->plugin_slug );
+              _e( 'Five-star Image URL', $this->plugin_name );
             ?>:
           </label>
         </th>

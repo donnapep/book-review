@@ -9,13 +9,13 @@
       <!-- Review Box Position -->
       <tr>
         <th>
-          <?php _e( 'Review Box Position', $this->plugin_slug ) ?>:
+          <?php _e( 'Review Box Position', $this->plugin_name ) ?>:
           &nbsp;&nbsp;
           <a href="#" class="tooltip">
             <?php echo $tooltip ?>
             <span>
               <?php _e( 'Whether to show the review box at the top or ' .
-                'bottom of a post.', $this->plugin_slug ) ?>
+                'bottom of a post.', $this->plugin_name ) ?>
             </span>
           </a>
         </th>
@@ -26,7 +26,7 @@
             <?php echo checked( 'top', $general['book_review_box_position'],
               false ); ?>>
           <label for="book_review_box_position_top">
-            <?php _e( 'Top', $this->plugin_slug ) ?>
+            <?php _e( 'Top', $this->plugin_name ) ?>
           </label>
 
           <!-- Bottom -->
@@ -36,7 +36,7 @@
             <?php echo checked( 'bottom',
               $general['book_review_box_position'], false ); ?>>
           <label for="book_review_box_position_bottom">
-            <?php _e( 'Bottom', $this->plugin_slug ) ?>
+            <?php _e( 'Bottom', $this->plugin_name ) ?>
           </label>
         </td>
       </tr>
@@ -45,7 +45,7 @@
       <tr>
         <th>
           <label for="book_review_bg_color">
-            <?php _e( 'Review Box Background Color', $this->plugin_slug ) ?>:
+            <?php _e( 'Review Box Background Color', $this->plugin_name ) ?>:
           </label>
         </th>
         <td>
@@ -59,7 +59,7 @@
       <tr>
         <th>
           <label for="book_review_border_color">
-            <?php _e( 'Review Box Border Color', $this->plugin_slug ) ?>:
+            <?php _e( 'Review Box Border Color', $this->plugin_name ) ?>:
           </label>
         </th>
         <td>
@@ -73,12 +73,12 @@
       <tr>
         <th>
           <label for="book_review_date_format">
-            <?php _e( 'Release Date Format', $this->plugin_slug ) ?>:
+            <?php _e( 'Release Date Format', $this->plugin_name ) ?>:
             <a href="#" class="tooltip">
               <?php echo $tooltip ?>
               <span>
                 <?php _e( 'Format that the Release Date will be shown in.',
-                  $this->plugin_slug ) ?>
+                  $this->plugin_name ) ?>
               </span>
             </a>
           </label>
