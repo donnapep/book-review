@@ -39,25 +39,27 @@ OR
 
 ## Screenshots ##
 
-###1. Book Review Settings###
+###Book Review Settings###
 ![Book Review Settings](https://cloud.githubusercontent.com/assets/1190420/5692227/a2c1d80c-98ba-11e4-865d-4667943fed02.png)
-###2. Book Info###
+###Book Info###
 ![Book Info](https://cloud.githubusercontent.com/assets/1190420/5692230/a2c64090-98ba-11e4-8326-d111d87c7f1a.png)
-###3. Sample Post###
+###Sample Post###
 ![Book Info on a Sample Post](https://cloud.githubusercontent.com/assets/1190420/5692229/a2c5fae0-98ba-11e4-9323-e690aa648fea.png)
-###4. Archives by Title###
+###Archives by Title###
 ![Archives by Title](https://cloud.githubusercontent.com/assets/1190420/5692228/a2c37a0e-98ba-11e4-9f34-789dac88c24b.png)
-###5. Archives by Genre###
+###Archives by Genre###
 ![Archives by Genre](https://cloud.githubusercontent.com/assets/1190420/5692231/a2c73978-98ba-11e4-8534-1a140584bfec.png)
-###6. Google Search Results Page###
+###Google Search Results Page###
 ![Google Search Results Page](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
 
 ## Contributions ##
-Anyone is welcome to contribute to the WordPress Book Review Plugin. Please read the [contribution guidelines](https://github.com/donnapep/wordpress-book-review-plugin/blob/master/CONTRIBUTING.md) first. There are various ways to get involved:
+Anyone is welcome to contribute to the WordPress Book Review Plugin, but please read the [contribution guidelines](https://github.com/donnapep/wordpress-book-review-plugin/blob/master/CONTRIBUTING.md) first.
 
-1. Raise an [issue](https://github.com/donnapep/wordpress-book-review-plugin/issues) on GitHub.
-2. Create a pull request with your bug fixes and/or new features.
-3. Translate the plugin into different languages.
+There are various ways to get involved:
+
+* Raise an [issue](https://github.com/donnapep/wordpress-book-review-plugin/issues) on GitHub.
+* Create a pull request with your bug fixes and/or new features.
+* Translate the plugin into different languages.
 
 ## Resources ##
 * Official documentation for the WordPress Book Review Plugin can be found [here](http://donnapeplinskie.com/wordpress-book-review-plugin/).
