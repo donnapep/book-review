@@ -6,11 +6,11 @@ __Please Note:__ GitHub is for bug reports and contributions only - if you have 
 
 ## Contribution Ideas ##
 
-The following are improvements that are on the product roadmap but that have not yet been implemented:
+The following are improvements that are on the product roadmap but have not yet been implemented:
 
 * Setting for configuring the border thickness of the review box.
 * Add the ability to reorder custom links (drag and drop).
-* Fix errors in debug.log on a fresh WordPress install and when viewing the archives.
+* Fix errors in `debug.log` on a fresh WordPress install and when viewing the archives.
 * Keep track of the version that a user upgraded from.
 * Make the archives responsive.
 * Add filtering to the archives or allow filtering as part of the shortcode.
@@ -33,7 +33,7 @@ The following are improvements that are on the product roadmap but that have not
 
 ## Code Documentation ##
 
-* Please ensure that every function is well-documented and follows the same conventions that other functions use.
+* Please ensure that every function is well-documented and follows the same conventions as other functions.
 * Please use spaces and not tabs. The space indent size should be 2 for all code.
 
 Once you've submitted your pull request, I will review and recommend changes or improvements if necessary.

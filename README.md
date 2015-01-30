@@ -1,17 +1,4 @@
 # WordPress Book Review Plugin #
-**Contributors:** donnapep  
-**Tags:** book, review, rating, book review, book blog, book blogger, book blogging  
-**Author URI:** http://donnapeplinskie.com  
-**Plugin URI:** http://donnapeplinskie.com/wordpress-book-review-plugin/  
-**Requires at least:** 3.5  
-**Tested up to:** 4.1  
-**Stable tag:** 2.1.8  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
-
-Save countless hours, drive more traffic to your site, and maybe even earn some extra money. Spend your time on what really matters - writing reviews!
-
-## Description ##
 
 The WordPress Book Review plugin saves you time when writing your book review posts – no more copying and pasting or manually entering in a book’s details. Instead, you can focus on the important stuff, like actually writing your reviews!
 
@@ -56,7 +43,7 @@ OR
 ![Book Review Settings](https://cloud.githubusercontent.com/assets/1190420/5692227/a2c1d80c-98ba-11e4-865d-4667943fed02.png)
 ###2. Book Info###
 ![Book Info](https://cloud.githubusercontent.com/assets/1190420/5692230/a2c64090-98ba-11e4-8326-d111d87c7f1a.png)
-###3. Book Info on a Sample Post###
+###3. Sample Post###
 ![Book Info on a Sample Post](https://cloud.githubusercontent.com/assets/1190420/5692229/a2c5fae0-98ba-11e4-9323-e690aa648fea.png)
 ###4. Archives by Title###
 ![Archives by Title](https://cloud.githubusercontent.com/assets/1190420/5692228/a2c37a0e-98ba-11e4-9f34-789dac88c24b.png)
@@ -66,16 +53,14 @@ OR
 ![Google Search Results Page](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
 
 ## Contributions ##
-Anyone is welcome to contribute to the WordPress Book Review Plugin. Please read the [contribution guidelines](https://github.com/donnapep/wordpress-book-review-plugin/blob/master/CONTRIBUTING.md) first.
-
-There are various ways to contribute:
+Anyone is welcome to contribute to the WordPress Book Review Plugin. Please read the [contribution guidelines](https://github.com/donnapep/wordpress-book-review-plugin/blob/master/CONTRIBUTING.md) first. There are various ways to get involved:
 
 1. Raise an [issue](https://github.com/donnapep/wordpress-book-review-plugin/issues) on GitHub.
 2. Create a pull request with your bug fixes and/or new features.
 3. Translate the plugin into different languages.
 
 ## Resources ##
-** Official documentation for the WordPress Book Review Plugin can be found [here](http://donnapeplinskie.com/wordpress-book-review-plugin/).
+* Official documentation for the WordPress Book Review Plugin can be found [here](http://donnapeplinskie.com/wordpress-book-review-plugin/).
 * Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
 * If you have problems, questions or suggestions, please post them in the [support forum](https://wordpress.org/support/plugin/book-review).
 
