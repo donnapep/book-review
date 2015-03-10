@@ -9,7 +9,7 @@ And, if you’re interested in throwing monetization into the mix, the WordPress
 Sound pretty good? Then check out the [full documentation](http://wpreviewplugins.com/book-review/) to learn more about what the WordPress Book Review plugin can do for you!
 
 ## Feature Requests ##
-For a comprehensive list of feature requests, or to vote on your favorites, please see the [Book Review Roadmap](https://trello.com/b/rlglE0Gf/book-review-roadmap). You can submit your own requests in the [Feature Requests forum](http://wpreviewplugins.com/support/forum/feature-requests/).
+For a comprehensive list of feature requests, or to vote for your favorites, please see the [Book Review Roadmap](https://trello.com/b/rlglE0Gf/book-review-roadmap). You can submit your own requests in the [Feature Requests forum](http://wpreviewplugins.com/support/forum/feature-requests/).
 
 ## Internationalization ##
 This plugin supports the following translations (with thanks to the translators!):
@@ -70,7 +70,7 @@ There are various ways to get involved:
 * If you have problems, questions or suggestions, please post them in the [General Support forum](http://wpreviewplugins.com/support/forum/general-support/).
 
 ## About Me ##
-* I’m a front-end web developer with a fondness for WordPress. I blog about web and professional development at [donnapeplinskie.com](http://donnapeplinskie.com/).
-* I’m author of the [WordPress Book Review Plugin](http://wpreviewplugins.com/) and [WordPress Date and Time Widget](http://wordpress.org/plugins/date-and-time-widget/).
-* I’m a developer advocate for [Rise Vision](http://risevision.com/).
+* I’m the founder of [WPReviewPlugins.com](http://wpreviewplugins.com/).
+* I’m a front-end developer & developer advocate for [Rise Vision](http://risevision.com/).
 * I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
+* I blog about web and professional development at [donnapeplinskie.com](http://donnapeplinskie.com/).

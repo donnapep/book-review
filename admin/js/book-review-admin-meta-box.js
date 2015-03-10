@@ -150,13 +150,18 @@ jQuery(document).ready(function($) {
             }
           }
           else if (json.status === "error") {
-            $(".error-details").html("Sorry, something went wrong. Please " +
-              "check to ensure that you have created a Google API Key and " +
-              "that it has been entered correctly on the Book Review " +
-              "Settings page. If you continue to experience problems, please " +
-              "<a href='mailto:donnapep@gmail.com'>email</a> your Google API " +
-              "key and the ISBN that you are trying to retrieve book " +
-              "information for. Thanks!").show();
+            $(".error-details").html("<p>Sorry, but something went wrong. Please check to ensure " +
+              "that you have created a Google API Key and that it has been entered correctly on " +
+              "the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check " +
+              "to ensure that the correct IP address for your server has been entered into the " +
+              "<a href='https://code.google.com/apis/console' target='_blank'>Google Developers " +
+              "Console</a>. If in doubt, you may leave the IP address field empty. See the " +
+              "<a href='http://wpreviewplugins.com/book-review/#advanced' target='_blank'> " +
+              "documentation</a> for more information.</p><p>If you are still having trouble, " +
+              "please leave a message in the " +
+              "<a href='http://wpreviewplugins.com/support/forum/general-support/' " +
+              "target='_blank'>General Support forum</a>. Be sure to include the URL of your web " +
+              "site in your post. Thanks!").show();
             console.log("Error message: " + json.data);
           }
         }

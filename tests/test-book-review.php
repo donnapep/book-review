@@ -1,6 +1,5 @@
 <?php
 
-// TODO: Test hooks are created.
 class Book_Review_Tests extends WP_UnitTestCase {
   protected $object;
 
@@ -73,14 +72,5 @@ class Book_Review_Tests extends WP_UnitTestCase {
   public function testPublicFileLoads() {
     $this->assertFileExists( BOOK_REVIEW_PLUGIN_DIR . 'public/class-book-review-public.php' );
   }
-
-  //public function testActivatorHooks() {
-    // Use tests_add_filter to hook into an action or filter before it gets called.
-    //global $wp_filter;
-
-    //$this->assertarrayHasKey( 'activate_new_site', $wp_filter['wpmu_new_blog'][10] );
-    // The ID changes every time.
-    //$this->assertarrayHasKey( 'activate_new_site', $wp_filter['wpmu_new_blog'][10]['000000000e577996000000005a8a8ccdactivate_new_site]'] );
-  //}
 }
 

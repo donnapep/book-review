@@ -1,19 +1,12 @@
 # Contribution Guidelines #
 
-All contributions are greatly appreciated and more than welcome. If you like, you can post to the [support forum](https://wordpress.org/support/plugin/book-review) first to see if your contribution idea is one that aligns with the overall goals of the plugin. When contributing, please ensure you follow the guidelines below.
+All contributions are greatly appreciated and more than welcome. When contributing, please ensure you follow the guidelines below.
 
-__Please Note:__ GitHub is for bug reports and contributions only - if you have a support question or a request for a customization, it's best to use the [support forum](https://wordpress.org/support/plugin/book-review).
+__Please Note:__ GitHub is for bug reports and contributions only - if you have a support question or a feature request, it's best to use the [forums](http://wpreviewplugins.com/support/).
 
 ## Contribution Ideas ##
 
-The following are improvements that are on the product roadmap but have not yet been implemented:
-
-* Setting for configuring the border thickness of the review box.
-* Add the ability to reorder custom links (drag and drop).
-* Fix errors in `debug.log` on a fresh WordPress install and when viewing the archives.
-* Keep track of the version that a user upgraded from.
-* Make the archives responsive.
-* Add filtering to the archives or allow filtering as part of the shortcode.
+Please see the [Book Review Roadmap](https://trello.com/b/rlglE0Gf/book-review-roadmap) for ideas currently under consideration.
 
 ## Getting Started ##
 

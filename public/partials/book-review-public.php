@@ -13,7 +13,7 @@
  */
 ?>
 
-<div id="book-review" itemscope itemtype="http://schema.org/Review" <?php echo $bg_style ?>>
+<div id="book-review" itemscope itemtype="http://schema.org/Review" <?php echo $review_box_style ?>>
   <!-- Meta for schema.org -->
   <meta itemprop="headline" content="<?php echo get_the_title(); ?>">
   <!-- author is mandatory! -->

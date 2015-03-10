@@ -93,6 +93,7 @@ class Book_Review_Public {
         'book_review_box_position' => 'top',
         'book_review_bg_color' => '',
         'book_review_border_color' => '',
+        'book_review_border_width' => '1',
         'book_review_date_format' => 'none',
       );
       $general_option = get_option( 'book_review_general' );
@@ -115,26 +116,26 @@ class Book_Review_Public {
         $box_position = $general_option['book_review_box_position'];
         $bg_color = $general_option['book_review_bg_color'];
         $border_color = $general_option['book_review_border_color'];
-        $bg_style = '';
+        $border_width = $general_option['book_review_border_width'];
+        $review_box_style = '';
 
         // Don't apply inline CSS to an RSS feed.
         if ( !is_feed() ) {
-          if ( isset( $bg_color ) && !empty( $bg_color ) ) {
-            $bg_style = 'style="background-color: ' . $bg_color . ';';
-          }
+          $review_box_style = 'style="border-style: solid;';
 
           if ( isset( $border_color ) && !empty( $border_color ) ) {
-            if ( isset( $bg_style ) ) {
-              $bg_style .= ' border: 1px solid ' . $border_color . ';"';
-            }
-            else {
-              $bg_style = 'style="border: 1px solid ' . $border_color . ';"';
-            }
+            $review_box_style .= ' border-color: ' . $border_color . ';';
+          }
+
+          if ( isset( $border_width ) && ( !empty( $border_width ) || ( $border_width == 0 ) ) ) {
+            $review_box_style .= ' border-width: ' . $border_width . 'px;';
+          }
+
+          if ( isset( $bg_color ) && !empty( $bg_color ) ) {
+            $review_box_style .= ' background-color: ' . $bg_color . ';"';
           }
           else {
-            if ( isset( $bg_style ) ) {
-              $bg_style .= '"';
-            }
+            $review_box_style .= '"';
           }
         }
 

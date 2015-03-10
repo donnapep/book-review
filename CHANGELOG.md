@@ -1,5 +1,11 @@
 # Change Log #
 
+## 2.1.9 ##
+* Added Review Box Border Width setting.
+* Removed tooltips from Book Review Settings.
+* Updated error message that displays when unable to retrieve book info.
+* Updated links throughout plugin.
+
 ## 2.1.8 ##
 * Fixed data in Book Info section not updating when field cleared.
 * Restructured code to conform to WordPress Plugin Boilerplate 3.0.

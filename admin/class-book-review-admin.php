@@ -209,8 +209,10 @@ class Book_Review_Admin {
         'book_review_box_position' => 'top',
         'book_review_bg_color' => '',
         'book_review_border_color' => '',
+        'book_review_border_width' => '1',
         'book_review_date_format' => 'none',
       );
+
       $general = get_option( 'book_review_general' );
       $general = wp_parse_args( $general, $general_defaults );
 
@@ -269,10 +271,37 @@ class Book_Review_Admin {
    * @since    1.0.0
    */
   public function init_menu() {
-    register_setting( 'general_options', 'book_review_general' );
-    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'validate_rating_images_tab' ) );
-    register_setting( 'links_options', 'book_review_links', array( $this, 'validate_links_tab' ) );
-    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'validate_advanced_tab' ) );
+    register_setting( 'general_options', 'book_review_general', array( $this, 'validate_appearance' )  );
+    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'validate_rating_images' ) );
+    register_setting( 'links_options', 'book_review_links', array( $this, 'validate_links' ) );
+    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'validate_advanced' ) );
+  }
+
+  /**
+   * Validate fields on the Appearance tab.
+   *
+   * @since     2.1.9
+   */
+  public function validate_appearance( $input ) {
+    $output = array();
+    $output['book_review_box_position'] = $input['book_review_box_position'];
+    $output['book_review_bg_color'] = $input['book_review_bg_color'];
+    $output['book_review_border_color'] = $input['book_review_border_color'];
+    $output['book_review_date_format'] = $input['book_review_date_format'];
+
+    // Validate border width.
+    $input['book_review_border_width'] = trim( $input['book_review_border_width'] );
+    $output['book_review_border_width'] = intval( $input['book_review_border_width'] );
+
+    if ( !empty( $input['book_review_border_width'] ) && ( intval( $input['book_review_border_width'] ) == 0 ) ) {
+      add_settings_error(
+        'book_review_appearance',
+        'border-width-error',
+        'Review Box Border Width must be numeric.'
+      );
+    }
+
+    return apply_filters( 'book_review_validate_appearance', $output, $input );
   }
 
   /**
@@ -280,7 +309,7 @@ class Book_Review_Admin {
    *
    * @since     1.0.0
    */
-  public function validate_rating_images_tab( $input ) {
+  public function validate_rating_images( $input ) {
     $image_error = false;
     $output = array();
     $output['book_review_rating_home'] = isset( $input['book_review_rating_home'] ) ? $input['book_review_rating_home'] : '';
@@ -310,12 +339,11 @@ class Book_Review_Admin {
         'book_review_ratings',
         'image-error',
         'Rating Image URLs are required fields when not using the default
-          rating images. Please ensure you enter a URL for each rating.',
-        'error'
+          rating images. Please ensure you enter a URL for each rating.'
       );
     }
 
-    return apply_filters( 'book_review_validate_rating_images_tab', $output, $input );
+    return apply_filters( 'book_review_validate_rating_images', $output, $input );
   }
 
   /**
@@ -323,7 +351,7 @@ class Book_Review_Admin {
    *
    * @since     1.0.0
    */
-  public function validate_links_tab( $input ) {
+  public function validate_links( $input ) {
     $output = array();
     $output['book_review_target'] = isset( $input['book_review_target'] ) ? $input['book_review_target'] : '';
 
@@ -394,15 +422,14 @@ class Book_Review_Admin {
             add_settings_error(
               'book_review_links',
               'link-error',
-              'Link Text is a required field. Please ensure you enter text for each link.',
-              'error'
+              'Link Text is a required field. Please ensure you enter text for each link.'
             );
           }
         }
       }
     }
 
-    return apply_filters( 'book_review_validate_links_tab', $output, $input );
+    return apply_filters( 'book_review_validate_links', $output, $input );
   }
 
   /**
@@ -410,13 +437,13 @@ class Book_Review_Admin {
    *
    * @since     2.1.6
    */
-  public function validate_advanced_tab( $input ) {
+  public function validate_advanced( $input ) {
     $output = array();
     $api_key = $input['book_review_api_key'];
 
     $output['book_review_api_key'] = isset( $api_key ) ? sanitize_text_field( $api_key ) : '';
 
-    return apply_filters( 'book_review_validate_advanced_tab', $output, $input );
+    return apply_filters( 'book_review_validate_advanced', $output, $input );
   }
 
   /**

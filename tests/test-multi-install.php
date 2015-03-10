@@ -8,7 +8,6 @@ if ( is_multisite() ) :
 // TODO: Test failure when inserting rows into book_review_custom_links.
 // TODO: Test failure when inserting rows into book_review_custom_link_urls.
 class Book_Review_Multi_Install_Tests extends WP_UnitTestCase {
-  protected $object;
   protected $old_version = '2.1.6';
   protected $suppress = false;
 

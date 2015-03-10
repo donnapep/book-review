@@ -76,7 +76,7 @@ msgstr ""
 
 #: admin/views/advanced.php:2
 msgid ""
-"This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"http://donnapeplinskie.com/wordpress-book-review-plugin/\" target=\"_blank\">here</a>."
+"This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"http://wpreviewplugins.com/book-review/#advanced\" target=\"_blank\">here</a>."
 msgstr ""
 
 #: admin/views/advanced.php:22

@@ -6,8 +6,7 @@ if ( !is_multisite() ) :
    actually get created. Note that these tests are only applicable for a single site install.
    They won't run with multi-site configured, so in order to run this test suite the
    WP_TESTS_MULTISITE const in phpunit.xml will need to be removed and the tests re-run. */
-class Book_Review_Activator_Tests extends WP_UnitTestCase {
-  protected $object;
+class Book_Review_Single_Install_Tests extends WP_UnitTestCase {
   protected $old_version = '2.1.6';
 
   public function setup() {
