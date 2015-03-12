@@ -28,7 +28,7 @@ class Book_Review_Activator {
    * @access   protected
    * @var     string
    */
-  const VERSION = '2.1.9';
+  const VERSION = '2.1.10';
 
   /**
    * Fired when the plugin is activated.

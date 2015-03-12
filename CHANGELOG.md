@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.1.10 ##
+* Fixed issue with rating images not showing for PHP versions older than 5.3.0.
+
 ## 2.1.9 ##
 * Added Review Box Border Width setting.
 * Removed tooltips from Book Review Settings.

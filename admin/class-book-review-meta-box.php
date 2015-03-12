@@ -142,19 +142,19 @@ class Book_Review_Meta_Box {
     // Default rating image.
     if ( $ratings['book_review_rating_default'] == '1' ) {
       if ( $book_review_rating == '1' ) {
-        $src = plugin_dir_url( __DIR__ ) . 'includes/images/one-star.png';
+        $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/one-star.png';
       }
       else if ( $book_review_rating == '2' ) {
-        $src = plugin_dir_url( __DIR__ ) . 'includes/images/two-star.png';
+        $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/two-star.png';
       }
       else if ( $book_review_rating == '3' ) {
-        $src = plugin_dir_url( __DIR__ ) . 'includes/images/three-star.png';
+        $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png';
       }
       else if ( $book_review_rating == '4' ) {
-        $src = plugin_dir_url( __DIR__ ) . 'includes/images/four-star.png';
+        $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/four-star.png';
       }
       else if ( $book_review_rating == '5' ) {
-        $src = plugin_dir_url( __DIR__ ) . 'includes/images/five-star.png';
+        $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/five-star.png';
       }
       else {
         $src = '';

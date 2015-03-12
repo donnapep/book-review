@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.1.9';
+    $this->version = '2.1.10';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
@@ -211,7 +211,7 @@ class Book_Review {
     //$this->loader->add_action( 'wp_ajax_delete_link', $plugin_admin, 'delete_link' );
 
     // Filters
-    $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->get_plugin_name() . '.php' );
+    $plugin_basename = plugin_basename( plugin_dir_path( dirname(__FILE__) ) . $this->get_plugin_name() . '.php' );
     // Add link to the list of links to display on the plugins page.
     $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
     $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'column_heading' );
