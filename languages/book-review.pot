@@ -1,287 +1,322 @@
-# Copyright (C) 2014 Book Review
+# Copyright (C) 2015 Book Review
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.1.6\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/book-review\n"
-"POT-Creation-Date: 2014-12-28 17:47:16+00:00\n"
+"Project-Id-Version: Book Review 2.1.10\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
+"POT-Creation-Date: 2015-03-17 12:00:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: admin/book-review-admin.php:189
+#: admin/class-book-review-admin.php:124
+msgid "Please enter an ISBN."
+msgstr ""
+
+#: admin/class-book-review-admin.php:125
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr ""
+
+#: admin/class-book-review-admin.php:126
+msgid "<p>Sorry, something went wrong. Please check to ensure that you have created a Google API Key and that it has been entered correctly on the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to ensure that the correct IP address for your server has been entered into the <a href=\"%s\" target=\"_blank\"> Google Developers Console</a>. If in doubt, you may leave the IP address field empty. See the <a href=\"%s\" target=\"_blank\"> documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!"
+msgstr ""
+
+#: admin/class-book-review-admin.php:152
 msgid "Book Review Settings"
 msgstr ""
 
-#. #-#-#-#-#  plugin.pot (Book Review 2.1.6)  #-#-#-#-#
-#. Plugin Name of the plugin/theme
-#: admin/book-review-admin.php:190
+#: admin/class-book-review-admin.php:153
 msgid "Book Review"
 msgstr ""
 
-#: admin/book-review-admin.php:213
+#: admin/class-book-review-admin.php:176
 msgid "Appearance"
 msgstr ""
 
-#: admin/book-review-admin.php:214
+#: admin/class-book-review-admin.php:177
 msgid "Rating Images"
 msgstr ""
 
-#: admin/book-review-admin.php:215
+#: admin/class-book-review-admin.php:178
 msgid "Links"
 msgstr ""
 
-#: admin/book-review-admin.php:216
+#: admin/class-book-review-admin.php:179
 msgid "Advanced"
 msgstr ""
 
-#: admin/book-review-admin.php:304
+#: admin/class-book-review-admin.php:268
 msgid "Settings"
 msgstr ""
 
-#: admin/book-review-admin.php:472
+#: admin/class-book-review-admin.php:305
+msgid "Review Box Border Width must be numeric."
+msgstr ""
+
+#: admin/class-book-review-admin.php:346
+msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
+msgstr ""
+
+#: admin/class-book-review-admin.php:429
+msgid "Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+
+#: admin/class-book-review-admin.php:460
 msgid "None"
 msgstr ""
 
-#: admin/book-review-admin.php:547
-msgid "Book Info"
-msgstr ""
-
-#: admin/book-review-admin.php:788
-msgid "URL"
-msgstr ""
-
-#: admin/book-review-admin.php:806
-msgid "Select..."
-msgstr ""
-
-#: admin/book-review-admin.php:880
-msgid "the"
-msgstr ""
-
-#: admin/book-review-admin.php:880
-msgid "a"
-msgstr ""
-
-#: admin/book-review-admin.php:881
-msgid "an"
-msgstr ""
-
-#: admin/book-review-admin.php:918 admin/views/meta-box.php:140
+#: admin/class-book-review-admin.php:489
+#: admin/partials/book-review-admin-meta-box.php:140
 msgid "Rating"
 msgstr ""
 
-#: admin/views/advanced.php:2
-msgid ""
-"This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"http://wpreviewplugins.com/book-review/#advanced\" target=\"_blank\">here</a>."
+#: admin/class-book-review-meta-box.php:72
+msgid "Book Info"
 msgstr ""
 
-#: admin/views/advanced.php:22
+#: admin/class-book-review-meta-box.php:328
+msgid "URL"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:346
+msgid "Select..."
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:420
+msgid "the"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:420
+msgid "a"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:421
+msgid "an"
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:4
+msgid "This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"%s\" target=\"_blank\">here</a>."
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:21
 msgid "Google API Key"
 msgstr ""
 
-#: admin/views/advanced.php:26
-msgid ""
-"Your Google API key obtained from the Google Developers Console."
+#: admin/partials/book-review-admin-advanced.php:29
+msgid "Your Google API key obtained from the Google Developers Console."
 msgstr ""
 
-#: admin/views/appearance.php:12
+#: admin/partials/book-review-admin-appearance.php:13
 msgid "Review Box Position"
 msgstr ""
 
-#: admin/views/appearance.php:17
-msgid ""
-"Whether to show the review box at the top or bottom of a post."
-msgstr ""
-
-#: admin/views/appearance.php:29
+#: admin/partials/book-review-admin-appearance.php:22
 msgid "Top"
 msgstr ""
 
-#: admin/views/appearance.php:39
+#: admin/partials/book-review-admin-appearance.php:31
 msgid "Bottom"
 msgstr ""
 
-#: admin/views/appearance.php:48
+#: admin/partials/book-review-admin-appearance.php:35
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:45
 msgid "Review Box Background Color"
 msgstr ""
 
-#: admin/views/appearance.php:62
+#: admin/partials/book-review-admin-appearance.php:59
 msgid "Review Box Border Color"
 msgstr ""
 
-#: admin/views/appearance.php:76
+#: admin/partials/book-review-admin-appearance.php:73
+msgid "Review Box Border Width"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:80
+msgid "pixel(s)"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:88
 msgid "Release Date Format"
 msgstr ""
 
-#: admin/views/appearance.php:80
+#: admin/partials/book-review-admin-appearance.php:97
 msgid "Format that the Release Date will be shown in."
 msgstr ""
 
-#: admin/views/images.php:2
+#: admin/partials/book-review-admin-images.php:2
 msgid "Configure the images to use for displaying ratings."
 msgstr ""
 
-#: admin/views/images.php:18
-msgid "Show rating on home page"
+#: admin/partials/book-review-admin-images.php:17
+msgid "Excerpts"
 msgstr ""
 
-#: admin/views/images.php:23
-msgid ""
-"Whether to show the rating image on your home page when summary text is used."
+#: admin/partials/book-review-admin-images.php:24
+msgid "Show the rating in excerpts"
 msgstr ""
 
-#: admin/views/images.php:41
-msgid "Use default rating images"
+#: admin/partials/book-review-admin-images.php:33
+msgid "Default Rating Images"
 msgstr ""
 
-#: admin/views/images.php:46
-msgid ""
-"Whether to use the default rating images or your own."
+#: admin/partials/book-review-admin-images.php:41
+msgid "Use the default rating images"
 msgstr ""
 
-#: admin/views/images.php:66
+#: admin/partials/book-review-admin-images.php:49
 msgid "Rating Image URLs"
 msgstr ""
 
-#: admin/views/images.php:71
-msgid ""
-"To use your own rating images, enter the URL of an image for each rating below (1-5)."
+#: admin/partials/book-review-admin-images.php:51
+msgid "To use your own rating images, enter the URL of an image for each rating below (1-5)."
 msgstr ""
 
-#: admin/views/images.php:87
+#: admin/partials/book-review-admin-images.php:62
 msgid "One-star Image URL"
 msgstr ""
 
-#: admin/views/images.php:104
+#: admin/partials/book-review-admin-images.php:77
 msgid "Two-star Image URL"
 msgstr ""
 
-#: admin/views/images.php:121
+#: admin/partials/book-review-admin-images.php:92
 msgid "Three-star Image URL"
 msgstr ""
 
-#: admin/views/images.php:138
+#: admin/partials/book-review-admin-images.php:107
 msgid "Four-star Image URL"
 msgstr ""
 
-#: admin/views/images.php:155
+#: admin/partials/book-review-admin-images.php:122
 msgid "Five-star Image URL"
 msgstr ""
 
-#: admin/views/links.php:15
-msgid "Open links in new tab"
+#: admin/partials/book-review-admin-links.php:15
+msgid "Link Target"
 msgstr ""
 
-#: admin/views/links.php:20
-msgid ""
-"Whether to open links in the same window or in a new tab."
+#: admin/partials/book-review-admin-links.php:22
+msgid "Open links in a new tab"
 msgstr ""
 
-#: admin/views/links.php:36
+#: admin/partials/book-review-admin-links.php:28
 msgid "Custom Links"
 msgstr ""
 
-#: admin/views/links.php:38
-msgid ""
-"Configure the links that you would like to display with every book review."
+#: admin/partials/book-review-admin-links.php:32
+msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for additional details."
 msgstr ""
 
-#: admin/views/links.php:48
-msgid "Link Text"
+#: admin/partials/book-review-admin-links.php:43
+msgid "Link Text (required)"
 msgstr ""
 
-#: admin/views/links.php:52
-msgid ""
-"Enter the text for each link. For every link added here, a new field will be shown in the Book Info section when editing a post."
+#: admin/partials/book-review-admin-links.php:48
+msgid "Link Image URL (optional)"
 msgstr ""
 
-#: admin/views/links.php:62
-msgid "Link Image URL"
-msgstr ""
-
-#: admin/views/links.php:66
-msgid ""
-"If you would like to show links as images, enter the URL of an image for each link below. If you leave this field blank, links will be shown as text."
-msgstr ""
-
-#: admin/views/links.php:75
+#: admin/partials/book-review-admin-links.php:52
 msgid "Active"
 msgstr ""
 
-#: admin/views/links.php:118
+#: admin/partials/book-review-admin-links.php:95
 msgid "Add Link"
 msgstr ""
 
-#: admin/views/meta-box.php:17
+#: admin/partials/book-review-admin-meta-box.php:17
 msgid "ISBN"
 msgstr ""
 
-#: admin/views/meta-box.php:22
+#: admin/partials/book-review-admin-meta-box.php:22
 msgid "Get Book Info"
 msgstr ""
 
-#: admin/views/meta-box.php:31 public/views/public.php:29
+#: admin/partials/book-review-admin-meta-box.php:31
+#: public/partials/book-review-public.php:33
 msgid "Title"
 msgstr ""
 
-#: admin/views/meta-box.php:41 public/views/public.php:40
+#: admin/partials/book-review-admin-meta-box.php:41
+#: public/partials/book-review-public.php:44
 msgid "Series"
 msgstr ""
 
-#: admin/views/meta-box.php:50 public/views/public.php:51
+#: admin/partials/book-review-admin-meta-box.php:50
+#: public/partials/book-review-public.php:55
 msgid "Author"
 msgstr ""
 
-#: admin/views/meta-box.php:59 public/views/public.php:65
+#: admin/partials/book-review-admin-meta-box.php:59
+#: public/partials/book-review-public.php:68
 msgid "Genre"
 msgstr ""
 
-#: admin/views/meta-box.php:68 public/views/public.php:76
+#: admin/partials/book-review-admin-meta-box.php:68
+#: public/partials/book-review-public.php:79
 msgid "Publisher"
 msgstr ""
 
-#: admin/views/meta-box.php:78 public/views/public.php:87
+#: admin/partials/book-review-admin-meta-box.php:78
+#: public/partials/book-review-public.php:90
 msgid "Release Date"
 msgstr ""
 
-#: admin/views/meta-box.php:87 public/views/public.php:100
+#: admin/partials/book-review-admin-meta-box.php:87
+#: public/partials/book-review-public.php:101
 msgid "Format"
 msgstr ""
 
-#: admin/views/meta-box.php:96 public/views/public.php:111
+#: admin/partials/book-review-admin-meta-box.php:96
+#: public/partials/book-review-public.php:112
 msgid "Pages"
 msgstr ""
 
-#: admin/views/meta-box.php:105 public/views/public.php:122
+#: admin/partials/book-review-admin-meta-box.php:105
+#: public/partials/book-review-public.php:123
 msgid "Source"
 msgstr ""
 
-#: admin/views/meta-box.php:117
+#: admin/partials/book-review-admin-meta-box.php:117
 msgid "Cover URL"
 msgstr ""
 
-#: admin/views/meta-box.php:122
+#: admin/partials/book-review-admin-meta-box.php:122
 msgid "Upload Cover"
 msgstr ""
 
-#: admin/views/meta-box.php:132
+#: admin/partials/book-review-admin-meta-box.php:132
 msgid "Synopsis"
 msgstr ""
 
-#: admin/views/meta-box.php:153
+#: admin/partials/book-review-admin-meta-box.php:153
 msgid "Include post in archives"
 msgstr ""
 
-#: public/views/public.php:23
+#: public/partials/book-review-public.php:27
 msgid "Book Cover"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Book Review"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpreviewplugins.com/book-review/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Add book information such as title, author, publisher and cover photo to "
-"enhance your review posts."
+msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://donnapeplinskie.com"
 msgstr ""
