@@ -116,14 +116,19 @@ class Book_Review_Admin {
     if ( $hook_suffix == 'post-new.php' || $hook_suffix == 'post.php' ) {
       wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-review-admin-meta-box.js', array( 'jquery' ), $this->version, false );
       wp_enqueue_script( 'jquery-ui-spinner' );
+
+      $console_url = 'https://code.google.com/apis/console';
+      $advanced_url = 'http://wpreviewplugins.com/book-review/#advanced';
+      $forum_url = 'http://wpreviewplugins.com/support/forum/general-support/';
+      $translation_array = array(
+        'no_isbn' => __( 'Please enter an ISBN.', $this->plugin_name ),
+        'not_found' => __( 'A book with this ISBN was not found in the Google Books database.', $this->plugin_name ),
+        'unknown_error' => sprintf( __( '<p>Sorry, something went wrong. Please check to ensure that you have created a Google API Key and that it has been entered correctly on the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to ensure that the correct IP address for your server has been entered into the <a href="%s" target="_blank"> Google Developers Console</a>. If in doubt, you may leave the IP address field empty. See the <a href="%s" target="_blank"> documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href="%s" target="_blank">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!', $this->plugin_name ), esc_url( $console_url ), esc_url( $advanced_url ), esc_url( $forum_url ) ) );
+      wp_localize_script( $this->plugin_name, 'book_review_google_api', $translation_array );
     }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
-       wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-review-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
-      // Localize the script - part of delete custom link functionality.
-      // $translation_array = array( 'confirm_message' => __( 'Are you sure you want to delete this link? '.
-      //   'All of the associated URLs that have been entered in the "Book Info" section of ' .
-      //   'every post will also be deleted. This action cannot be undone.', $this->plugin_name ) );
-      // wp_localize_script( $handle, 'book_review_confirm', $translation_array );
+       wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-review-admin.js',
+        array( 'jquery', 'wp-color-picker' ), $this->version, false );
     }
   }
 
@@ -293,12 +298,15 @@ class Book_Review_Admin {
     $input['book_review_border_width'] = trim( $input['book_review_border_width'] );
     $output['book_review_border_width'] = intval( $input['book_review_border_width'] );
 
-    if ( !empty( $input['book_review_border_width'] ) && ( intval( $input['book_review_border_width'] ) == 0 ) ) {
-      add_settings_error(
-        'book_review_appearance',
-        'border-width-error',
-        'Review Box Border Width must be numeric.'
-      );
+    if ( $input['book_review_border_width'] != '0' ) {
+      // Value is empty or a string.
+      if ( intval( $input['book_review_border_width'] ) == 0 ) {
+        add_settings_error(
+          'book_review_appearance',
+          'border-width-error',
+          __( 'Review Box Border Width must be numeric.', $this->plugin_name )
+        );
+      }
     }
 
     return apply_filters( 'book_review_validate_appearance', $output, $input );
@@ -338,8 +346,7 @@ class Book_Review_Admin {
       add_settings_error(
         'book_review_ratings',
         'image-error',
-        'Rating Image URLs are required fields when not using the default
-          rating images. Please ensure you enter a URL for each rating.'
+        __( 'Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating.', $this->plugin_name )
       );
     }
 
@@ -364,13 +371,12 @@ class Book_Review_Admin {
           $id = '';
           $text = '';
           $image_url = '';
+          // An unchecked checkbox will not be POSTed and so its value will not be set.
+          $active = 0;
 
           foreach( $value as $link_key => $link_value ) {
-            // An unchecked checkbox will not be POSTed and so its value will not be set.
-            $active = 0;
-
             if ( $link_key == 'id' ) {
-              $id = trim( $link_value );
+              $id = sanitize_text_field( $link_value );
             }
             else if ( $link_key == 'text' ) {
               $text = sanitize_text_field( $link_value );
@@ -422,7 +428,7 @@ class Book_Review_Admin {
             add_settings_error(
               'book_review_links',
               'link-error',
-              'Link Text is a required field. Please ensure you enter text for each link.'
+              __( 'Link Text is a required field. Please ensure you enter text for each link.', $this->plugin_name )
             );
           }
         }
@@ -439,9 +445,9 @@ class Book_Review_Admin {
    */
   public function validate_advanced( $input ) {
     $output = array();
-    $api_key = $input['book_review_api_key'];
 
-    $output['book_review_api_key'] = isset( $api_key ) ? sanitize_text_field( $api_key ) : '';
+    $output['book_review_api_key'] = isset( $input['book_review_api_key'] ) ?
+      sanitize_text_field( $input['book_review_api_key'] ) : '';
 
     return apply_filters( 'book_review_validate_advanced', $output, $input );
   }
@@ -461,43 +467,16 @@ class Book_Review_Admin {
     );
 
     $options = get_option( 'book_review_general' );
+    $options['book_review_date_format'] = isset( $options['book_review_date_format'] ) ?
+      $options['book_review_date_format'] : 'none';
 
     foreach( $formats as $type => $format ) {
       $selected = ( $options['book_review_date_format'] == $type ) ?
-        'selected="selected"' : '';
-      echo '<option value="' . $type . '" '. $selected . '>' . $format .
-        '</option>';
+        "selected='selected'" : '';
+      echo "<option value='" . $type . "' ". $selected . ">" . $format .
+        "</option>";
     }
   }
-
-  /**
-  * Delete a custom link.
-  */
-  // public function delete_link() {
-  //   $id = intval( $_POST['id'] );
-  //   $is_valid_nonce = ( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'book_review_delete_link' ) );
-
-  //   if ( ( current_user_can( 'manage_options' ) ) && $is_valid_nonce ) {
-  //     // TODO: Also delete the URLs associated with this custom link in the wp_postmeta table.
-  //     global $wpdb;
-
-  //     $wpdb->delete(
-  //       $wpdb->book_review_custom_links,
-  //       array( 'custom_link_id' => $id ),
-  //       array( '%d')
-  //     );
-
-  //     $result['success'] = true;
-  //   }
-  //   else {
-  //     $result['success'] = false;
-  //   }
-
-  //   $result = json_encode( $result );
-
-  //   echo $result;
-  //   die();
-  // }
 
   /**
    * Add Rating column to Posts Admin screen.

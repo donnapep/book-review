@@ -24,8 +24,7 @@
   <img itemprop="image" id="book_review_cover_image" class="cover"
     src="<?php echo $book_review_cover_url ?>"
     alt="<?php echo $book_review_title . ' ';
-      _e( 'Book Cover', $this->plugin_name )?>" />
-  <?php } ?>
+      _e( 'Book Cover', $this->plugin_name )?>" /><?php } ?>
 
   <!-- Title -->
   <?php if ( !empty( $book_review_title ) ) { ?>
@@ -35,8 +34,7 @@
   <span itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing" id="book_review_title">
     <span itemprop="name"><?php echo $book_review_title ?></span>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Series -->
   <?php if ( !empty( $book_review_series ) ) { ?>
@@ -46,8 +44,7 @@
   <span id="book_review_series">
     <?php echo $book_review_series ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Author -->
   <?php if ( !empty( $book_review_author ) ) { ?>
@@ -59,8 +56,7 @@
       <?php echo $book_review_author ?>
     </span>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Genre -->
   <?php if ( !empty( $book_review_genre ) ) { ?>
@@ -70,8 +66,7 @@
   <span itemprop="genre" id="book_review_genre">
     <?php echo $book_review_genre ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Publisher -->
   <?php if ( !empty( $book_review_publisher ) ) { ?>
@@ -81,8 +76,7 @@
   <span itemprop="publisher" id="book_review_publisher">
     <?php echo $book_review_publisher ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Release Date -->
   <?php if ( !empty( $book_review_release_date ) ) { ?>
@@ -92,8 +86,7 @@
   <span id="book_review_release_date">
     <?php echo $book_review_release_date ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Format -->
   <?php if ( !empty( $book_review_format ) ) { ?>
@@ -103,8 +96,7 @@
   <span id="book_review_format">
     <?php echo $book_review_format ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Pages -->
   <?php if ( !empty( $book_review_pages ) ) { ?>
@@ -114,8 +106,7 @@
   <span id="book_review_pages">
     <?php echo $book_review_pages ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Source -->
   <?php if ( !empty( $book_review_source ) ) { ?>
@@ -125,8 +116,7 @@
   <span id="book_review_source">
     <?php echo $book_review_source ?>
   </span>
-  <br>
-  <?php } ?>
+  <br><?php } ?>
 
   <!-- Rating -->
   <?php if ( !empty ( $book_review_rating_url ) ) { ?>
@@ -141,8 +131,7 @@
   <?php if ( !empty( $book_review_summary ) ) { ?>
   <div id="book_review_summary">
     <?php echo wpautop( $book_review_summary, true ) ?>
-  </div>
-  <?php } ?>
+  </div><?php } ?>
 
   <!-- Links -->
   <ul id="book-review-links" class="links">

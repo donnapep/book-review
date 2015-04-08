@@ -57,37 +57,22 @@ class Book_Review_Meta_Box {
   }
 
   /**
-   * Add the meta box container to posts and custom post types.
+   * Add the meta box container.
    *
    * @since    1.0.0
    */
-  public function add_meta_box() {
-    $post_types = get_post_types();
-
-    foreach ( $post_types as $post_type ) {
-      if ( ( $post_type != 'page' ) && ( $post_type != 'attachment' ) &&
-        ( $post_type != 'revision' ) && ( $post_type != 'nav_menu_item' ) ) {
-        add_meta_box(
-          'book-review-meta-box',
-          __( 'Book Info', $this->plugin_name ),
-          array( $this, 'render_meta_box' ),
-          $post_type,
-          'normal',
-          'high'
-        );
-      }
+  public function add_meta_box( $post_type ) {
+    if ( ( $post_type != 'page' ) && ( $post_type != 'attachment' ) &&
+      ( $post_type != 'revision' ) && ( $post_type != 'nav_menu_item' ) ) {
+      add_meta_box(
+        'book-review-meta-box',
+        __( 'Book Info', $this->plugin_name ),
+        array( $this, 'render_meta_box' ),
+        $post_type,
+        'normal',
+        'high'
+      );
     }
-  }
-
-  /**
-   * Add CSS classes to the meta box container.
-   *
-   * @since    2.1.6
-   */
-  public function add_metabox_class( $classes ) {
-    array_push( $classes, 'book-review-meta' );
-
-    return $classes;
   }
 
   /**
@@ -109,15 +94,12 @@ class Book_Review_Meta_Box {
       'book_review_publisher', 'book_review_release_date', 'book_review_format',
       'book_review_pages', 'book_review_source', 'book_review_cover_url',
       'book_review_summary', 'book_review_rating', ) as $var ) {
-      $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
+      $$var = isset( $values[$var][0] ) ? $values[$var][0] : null;
     }
 
     $book_review_cover_url = $book_review_cover_url;
-    $book_review_archive_post = isset( $values['book_review_archive_post'][0] )
-      ? $values['book_review_archive_post'][0] : '1';
-
-    $api_key = isset( $advanced['book_review_api_key'] ) ?
-      $advanced['book_review_api_key'] : '';
+    $book_review_archive_post = isset( $values['book_review_archive_post'][0] ) ? $values['book_review_archive_post'][0] : '1';
+    $api_key = isset( $advanced['book_review_api_key'] ) ? $advanced['book_review_api_key'] : '';
     $args = array(
       'textarea_rows' => 15,
       'media_buttons' => false
@@ -223,7 +205,7 @@ class Book_Review_Meta_Box {
       $this->save_field( $post_id, 'book_review_archive_post', $_POST['book_review_archive_post']);
 
       // Save title used in archives.
-      if ( isset( $_POST['book_review_title'] ) ) {
+      if ( isset( $_POST['book_review_title'] ) && ( strlen( trim( $_POST['book_review_title'] ) ) > 0 ) ) {
         update_post_meta( $post_id, 'book_review_archive_title', $this->get_archive_title() );
       }
       else {
@@ -238,6 +220,7 @@ class Book_Review_Meta_Box {
         $link = $_POST['book_review_custom_link' . $result->custom_link_id];
 
         if ( isset( $link ) && strlen( trim( $link ) ) > 0 ) {
+          $link = esc_url_raw( $link);
           $sql = "INSERT INTO {$wpdb->book_review_custom_link_urls} (post_id, custom_link_id, url)
             VALUES (%d, %d, %s) ON DUPLICATE KEY UPDATE url = %s";
           $sql = $wpdb->prepare($sql, $post_id, $result->custom_link_id, $link, $link);
@@ -260,7 +243,8 @@ class Book_Review_Meta_Box {
   }
 
   private function save_text_field( $post_id, $name, $value ) {
-    if ( isset( $value ) ) {
+    // Don't save empty rows.
+    if ( isset( $value ) && ( strlen( trim( $value ) ) > 0 ) ) {
       update_post_meta( $post_id, $name, sanitize_text_field( $value ) );
     }
     else {
@@ -269,7 +253,8 @@ class Book_Review_Meta_Box {
   }
 
   private function save_url_field( $post_id, $name, $value ) {
-    if ( isset( $value ) ) {
+    // Don't save empty rows.
+    if ( isset( $value ) && ( strlen( trim( $value ) ) > 0 ) ) {
       update_post_meta( $post_id, $name, esc_url_raw( $value ) );
     }
     else {
@@ -278,7 +263,8 @@ class Book_Review_Meta_Box {
   }
 
   private function save_field( $post_id, $name, $value ) {
-    if ( isset( $value ) ) {
+    // Don't save empty rows.
+    if ( isset( $value ) && ( strlen( trim( $value ) ) > 0 ) ) {
       update_post_meta( $post_id, $name, $value );
     }
     else {
@@ -369,13 +355,17 @@ class Book_Review_Meta_Box {
       $advanced = get_option( 'book_review_advanced' );
       $api_key = $advanced['book_review_api_key'];
 
-      if ( isset( $api_key ) && !empty( $api_key ) ) {
-        $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' .
-          $_POST['isbn'] . '&key=' . $api_key;
-        $response = wp_remote_get( $url );
+      if ( isset( $_POST['isbn'] ) && isset( $api_key ) && !empty( $api_key ) ) {
+        $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . sanitize_text_field( $_POST['isbn'] )
+          . '&key=' . sanitize_text_field( $api_key );
+        $response = wp_remote_get( esc_url_raw( $url ) );
 
         try {
-          if ( $response['response']['code'] == 200 ) {
+          if ( is_wp_error( $response ) ) {
+            $result['status'] = 'error';
+            $result['data'] = $response->get_error_message();
+          }
+          else if ( $response['response']['code'] == 200 ) {
             $date_format = $options['book_review_date_format'];
             $body = $response['body'];
             $result['status'] = 'success';
@@ -384,9 +374,8 @@ class Book_Review_Meta_Box {
           }
           else {
             $result['status'] = 'error';
-            $result['data'] = $response['response']['code'] . ' ' .
-              $response['response']['message']
-              . ' to ' . $url . ' ' . $api_key;
+            $result['data'] = $response['response']['code'] . ' ' . $response['response']['message']
+              . ' to ' . $url;
           }
         }
         catch ( Exception $ex ) {
@@ -401,13 +390,13 @@ class Book_Review_Meta_Box {
     }
     else {
       $result['status'] = 'error';
-      $result['data'] = 'Invalid nonce' ;
+      $result['data'] = 'Invalid nonce';
     }
 
     $result = json_encode( $result );
 
     echo $result;
-    die();
+    wp_die();
   }
 
   /**
@@ -435,8 +424,7 @@ class Book_Review_Meta_Box {
 
       // Move stopword to the end if a match is found.
       if ( strtolower( $substring ) == ( $stopword . ' ' ) ) {
-        return sanitize_text_field( substr( $title, strlen( $stopword ) + 1 ) .
-          ', ' . $substring );
+        return sanitize_text_field( substr( $title, strlen( $stopword ) + 1 ) . ', ' . $substring );
       }
     }
 

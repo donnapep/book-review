@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.1.10';
+    $this->version = '2.1.11';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
@@ -231,9 +231,6 @@ class Book_Review {
     $this->loader->add_action( 'load-post.php', $plugin_meta_box, 'meta_box_setup' );
     $this->loader->add_action( 'load-post-new.php', $plugin_meta_box, 'meta_box_setup' );
     $this->loader->add_action( 'wp_ajax_get_book_info', $plugin_meta_box, 'get_book_info' );
-
-    // Filters
-    $this->loader->add_filter( 'postbox_classes_post_book-review-meta-box', $plugin_meta_box, 'add_metabox_class' );
   }
 
   /**

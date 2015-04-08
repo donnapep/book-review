@@ -1,5 +1,10 @@
 # Change Log #
 
+## 2.1.11 ##
+* Fixed issue with styling of meta box for custom post types.
+* Fixed issue processing the Google Books API response when some fields are not present.
+* Added Swedish & Norwegian translation files.
+
 ## 2.1.10 ##
 * Fixed issue with rating images not showing for PHP versions older than 5.3.0.
 

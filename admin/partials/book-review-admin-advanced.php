@@ -1,8 +1,9 @@
 <p>
-  <?php _e( 'This plugin uses the Google Books API to automatically populate the details of a ' .
-    'book. In order to take advantage of this feature, you must first sign up for and enter an ' .
-    'API key as described <a href="http://wpreviewplugins.com/book-review/#advanced"' .
-    ' target="_blank">here</a>.', $this->plugin_name ); ?>
+  <?php
+    $url = 'http://wpreviewplugins.com/book-review/#advanced';
+    $instructions = sprintf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( $url ) );
+    echo $instructions;
+  ?>
 </p>
 
 <form action="options.php" method="post">

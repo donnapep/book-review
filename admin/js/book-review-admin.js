@@ -1,38 +1,5 @@
 jQuery(document).ready(function($) {
   $(".color-picker").wpColorPicker();
-
-  /* Delete Custom Link */
-  // $(".delete").on("click", function(event) {
-  //   var self = this,
-  //     json, data;
-
-  //   if (window.confirm(book_review_confirm.confirm_message)) {
-  //     data = {
-  //       action: "delete_link",
-  //       id: $(this).data("id"),
-  //       nonce: $("#book_review_delete_link_" + $(this).data('id') + "_nonce").val()
-  //     };
-
-  //     $.post(ajaxurl, data, function(resp) {
-  //       try {
-  //         resp = JSON.parse(resp);
-
-  //         if (resp.success) {
-  //           $(self).closest("tr").remove();
-  //         }
-  //         else {
-  //           console.log("Invalid nonce");
-  //         }
-  //       }
-  //       catch (e) {
-  //         console.log("JSON parsing error: ", e);
-  //       }
-  //     });
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // });
 });
 
 /* Rating Images Tab */

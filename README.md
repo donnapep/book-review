@@ -20,8 +20,10 @@ This plugin supports the following translations (with thanks to the translators!
 * French (Guillaume Andreux)
 * German (Linguasoft)
 * Italian (James Garofalo)
+* Norwegian (Harald Indgul)
 * Russian (Alexander Wolf)
 * Spanish (Jose Luis Parra)
+* Swedish (Harald Indgul)
 
 If you would like to translate this plugin to another language, please review the Translations section of the [documentation](http://wpreviewplugins.com/book-review/#translations).
 

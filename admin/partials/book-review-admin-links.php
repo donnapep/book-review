@@ -27,11 +27,11 @@
 
   <h3><?php _e( 'Custom Links', $this->plugin_name ); ?></h3>
   <p>
-    <?php _e( 'Configure the links that you would like to display with every book review. For ' .
-      'every link added here, a new field will be shown in the <em>Book Info</em> section when ' .
-      'editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown ' .
-      'as text by default. Please see the <a href="http://wpreviewplugins.com/book-review/#links" ' .
-      'target="_blank">documentation</a> for additional details.', $this->plugin_name ); ?>
+    <?php
+      $url = 'http://wpreviewplugins.com/book-review/#links';
+      $instructions = sprintf( __( 'Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href="%s" target="_blank">documentation</a> for additional details.', $this->plugin_name ), esc_url( $url ) );
+      echo $instructions;
+    ?>
   </p>
 
   <!-- Link Text and Link Image URLs -->
@@ -74,7 +74,7 @@
         <td>
           <input type="text"
             name='<?php echo "book_review_links[{$index}][image]"; ?>'
-            value="<?php echo esc_attr( $result->image_url ); ?>" />
+            value="<?php echo esc_url( $result->image_url ); ?>" />
         </td>
         <td class="active">
           <input type="checkbox"
