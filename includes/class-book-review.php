@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.1.11';
+    $this->version = '2.1.12';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
@@ -186,6 +186,7 @@ class Book_Review {
 
   private function define_activator_hooks() {
     global $wp_filter;
+
     $plugin_activator = new Book_Review_Activator();
 
     // Trigger an action whenever a new blog is created within a multisite network.
@@ -247,8 +248,8 @@ class Book_Review {
     $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 
     // Filters
-    $this->loader->add_filter( 'the_excerpt', $plugin_public, 'inject_book_rating' );
-    $this->loader->add_filter( 'the_content', $plugin_public, 'inject_book_details' );
+    $this->loader->add_filter( 'the_excerpt', $plugin_public, 'add_rating' );
+    $this->loader->add_filter( 'the_content', $plugin_public, 'add_book_info' );
 
     // Shortcodes
     $this->loader->add_shortcode( 'book_review_archives', $plugin_public, 'handle_shortcode' );
@@ -278,7 +279,7 @@ class Book_Review {
    * The reference to the class that orchestrates the hooks with the plugin.
    *
    * @since     2.1.8
-   * @return    Book_Review_Loader    Orchestrates the hooks of the plugin.
+   * @return    Book_Review_Loader    Orchestrates the plugin's hooks.
    */
   public function get_loader() {
     return $this->loader;

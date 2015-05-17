@@ -19,6 +19,7 @@ This plugin supports the following translations (with thanks to the translators!
 * Czech (Radek Volf)
 * French (Guillaume Andreux)
 * German (Linguasoft)
+* Indonesian (Ardhi Sulaeman)
 * Italian (James Garofalo)
 * Norwegian (Harald Indgul)
 * Russian (Alexander Wolf)

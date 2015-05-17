@@ -1,8 +1,6 @@
 <p>
   <?php
-    $url = 'http://wpreviewplugins.com/book-review/#advanced';
-    $instructions = sprintf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( $url ) );
-    echo $instructions;
+    printf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ) );
   ?>
 </p>
 
@@ -18,7 +16,7 @@
       <tr>
         <th scope="row">
           <label for="book_review_api_key">
-            <?php _e( 'Google API Key', $this->plugin_name ); ?>:
+            <?php esc_html_e( 'Google API Key', $this->plugin_name ); ?>:
           </label>
         </th>
         <td>
@@ -26,8 +24,7 @@
             name="book_review_advanced[book_review_api_key]"
             value="<?php echo esc_attr( $advanced['book_review_api_key'] ); ?>">
           <p class="description">
-            <?php _e( 'Your Google API key obtained from the Google Developers Console.',
-              $this->plugin_name ); ?>
+            <?php esc_html_e( 'Your Google API key obtained from the Google Developers Console.', $this->plugin_name ); ?>
           </p>
         </td>
       </tr>

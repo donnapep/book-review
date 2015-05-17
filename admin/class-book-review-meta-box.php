@@ -43,12 +43,6 @@ class Book_Review_Meta_Box {
   /**
    * Meta box setup function.
    *
-   * NOTE:     Actions are points in the execution of a page or process
-   *           lifecycle that WordPress fires.
-   *
-   *           Actions:    http://codex.wordpress.org/Plugin_API#Actions
-   *           Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-   *
    * @since    2.0.0
    */
   public function meta_box_setup() {
@@ -66,7 +60,7 @@ class Book_Review_Meta_Box {
       ( $post_type != 'revision' ) && ( $post_type != 'nav_menu_item' ) ) {
       add_meta_box(
         'book-review-meta-box',
-        __( 'Book Info', $this->plugin_name ),
+        esc_html__( 'Book Info', $this->plugin_name ),
         array( $this, 'render_meta_box' ),
         $post_type,
         'normal',
@@ -97,7 +91,6 @@ class Book_Review_Meta_Box {
       $$var = isset( $values[$var][0] ) ? $values[$var][0] : null;
     }
 
-    $book_review_cover_url = $book_review_cover_url;
     $book_review_archive_post = isset( $values['book_review_archive_post'][0] ) ? $values['book_review_archive_post'][0] : '1';
     $api_key = isset( $advanced['book_review_api_key'] ) ? $advanced['book_review_api_key'] : '';
     $args = array(
@@ -172,7 +165,6 @@ class Book_Review_Meta_Box {
       $show_rating_image = 'display: block;';
     }
 
-    // We'll use this nonce field later on when saving.
     wp_nonce_field( 'save_meta_box_nonce', 'book-review-meta-box-nonce' );
 
     include_once( 'partials/book-review-admin-meta-box.php' );
@@ -230,10 +222,10 @@ class Book_Review_Meta_Box {
         // Delete link from table if the field is empty.
         else {
           $wpdb->delete(
-             $wpdb->book_review_custom_link_urls,
+            $wpdb->book_review_custom_link_urls,
             array(
               'post_id' => $post_id,
-              'custom_link_id '=> $result->custom_link_id,
+              'custom_link_id' => $result->custom_link_id,
             ),
             array( '%d', '%d' )
           );
@@ -310,12 +302,12 @@ class Book_Review_Meta_Box {
     // Render links outside of PHP code, otherwise they will be slightly misaligned.
     foreach( $results as $result ) { ?>
       <div class="row">
-        <label for="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>">
-          <?php echo esc_html( $result->text ) . ' '; _e( 'URL', $this->plugin_name ); ?>:
+        <label for="<?php echo esc_attr( 'book_review_custom_link' . $result->custom_link_id ); ?>">
+          <?php echo esc_html( $result->text ); ?>:
         </label>
-        <input type="text" id="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>"
-          name="<?php echo 'book_review_custom_link' . $result->custom_link_id; ?>"
-          value="<?php echo esc_url( $result->url ); ?>" />
+        <input type="text" id="<?php echo esc_attr( 'book_review_custom_link' . $result->custom_link_id ); ?>"
+          name="<?php echo esc_attr( 'book_review_custom_link' . $result->custom_link_id ); ?>"
+          value="<?php echo esc_url( $result->url ); ?>">
       </div>
     <?php
     }
@@ -339,8 +331,8 @@ class Book_Review_Meta_Box {
 
     foreach ( $items as $type => $item ) {
       $selected = ( $rating == $type ) ? 'selected="selected"' : '';
-      echo '<option value="' . $type . '" ' . $selected . '>' . $item .
-        '</option>';
+
+      echo '<option value="' . esc_attr( $type ) . '" ' . $selected . '>' . esc_html( $item ) . '</option>';
     }
   }
 
@@ -375,7 +367,7 @@ class Book_Review_Meta_Box {
           else {
             $result['status'] = 'error';
             $result['data'] = $response['response']['code'] . ' ' . $response['response']['message']
-              . ' to ' . $url;
+              . ' to ' . esc_url( $url );
           }
         }
         catch ( Exception $ex ) {
@@ -406,20 +398,21 @@ class Book_Review_Meta_Box {
    */
   private function get_archive_title() {
     $title = trim( $_POST['book_review_title'] );
-    $stopwords = array( __( 'the', $this->plugin_name ), __( 'a', $this->plugin_name ),
-      __( 'an', $this->plugin_name ) );
-    /* Translations may specify multiple stopwords for each English word.
-       Separate them into a comma-delimited list in order to avoid a
-       multi-dimensional array. */
+    $stopwords = array( esc_html__( 'the', $this->plugin_name ), esc_html__( 'a', $this->plugin_name ),
+      esc_html__( 'an', $this->plugin_name ) );
+
+    // Translations may specify multiple stopwords for each English word. Separate them into a
+    // comma-delimited list in order to avoid a multi-dimensional array.
     $stopwords = implode( ',', $stopwords );
+
     // Now put them back into a one-dimensional array.
     $stopwords = explode( ',', $stopwords );
 
     foreach ( $stopwords as $stopword ) {
       $stopword = trim( $stopword );
 
-      /* Check if first characters of the title is a stop word. Add a space at
-         the end of the stopword so that only full words are matched. */
+      // Check if first characters of the title is a stop word. Add a space at the end of the
+      // stopword so that only full words are matched.
       $substring = substr( $title, 0, strlen( $stopword ) + 1 );
 
       // Move stopword to the end if a match is found.
@@ -428,6 +421,6 @@ class Book_Review_Meta_Box {
       }
     }
 
-    return sanitize_text_field( $_POST['book_review_title'] );
+    return sanitize_text_field( $title );
   }
 }
