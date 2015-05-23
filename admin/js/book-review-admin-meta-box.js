@@ -57,12 +57,12 @@ jQuery(document).ready(function($) {
     }
     else {
       $(".error-details").hide();
-      $("#book-review-meta-box .spinner").css("display", "inline-block");
+      $("#book-review-meta-box .spinner").addClass("is-active");
 
       $.post(ajaxurl, data, function(response) {
         var json, data, i = 0;
 
-        $("#book-review-meta-box .spinner").hide();
+        $("#book-review-meta-box .spinner").removeClass("is-active");
 
         try {
           json = JSON.parse(response);

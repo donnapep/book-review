@@ -1,5 +1,14 @@
 # Change Log #
 
+## 2.1.12 ##
+* New: Add Indonesian translation.
+* New: Add `book_review_links` filter for rendering links in review box.
+* Tweak: Eliminate use of `extract` function.
+* Tweak: Don't close `<input>` or `<img>` tags.
+* Fix: Escape all variables.
+* Fix: Links defined in the *Book Info* meta box were not being removed when cleared.
+* Fix: Spinner in *Book Info* meta box for WordPress 4.2 and higher.
+
 ## 2.1.11 ##
 * Fixed issue with styling of meta box for custom post types.
 * Fixed issue processing the Google Books API response when some fields are not present.

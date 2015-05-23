@@ -68,7 +68,7 @@ class Book_Review_Public {
   }
 
   /**
-   * Inject book details into the post.
+   * Add the book info into the post.
    *
    * NOTE:  Filters are points of execution in which WordPress modifies data
    *        before saving it or sending it to the browser.
@@ -82,9 +82,7 @@ class Book_Review_Public {
    *
    * @return   string   Revised content of the post.
    */
-  public function inject_book_details( $content ) {
-    global $wpdb;
-
+  public function add_book_info( $content ) {
     if ( is_home() || is_single() || is_feed() ) {
       $values = get_post_custom();
 
@@ -121,7 +119,7 @@ class Book_Review_Public {
 
         // Don't apply inline CSS to an RSS feed.
         if ( !is_feed() ) {
-          $review_box_style = 'style="border-style: solid;';
+          $review_box_style = 'border-style: solid;';
 
           if ( isset( $border_color ) && !empty( $border_color ) ) {
             $review_box_style .= ' border-color: ' . $border_color . ';';
@@ -132,40 +130,15 @@ class Book_Review_Public {
           }
 
           if ( isset( $bg_color ) && !empty( $bg_color ) ) {
-            $review_box_style .= ' background-color: ' . $bg_color . ';"';
-          }
-          else {
-            $review_box_style .= '"';
+            $review_box_style .= ' background-color: ' . $bg_color . ';';
           }
         }
 
         // Rating
         $book_review_rating_url = $plugin->get_rating()->get_rating_image( $book_review_rating );
 
-        // Link target
-        $links_defaults = array(
-          'book_review_target' => 0,
-        );
-        $links_option = get_option( 'book_review_links', $links_defaults );
-        $links_option = wp_parse_args( $links_option, $links_defaults );
-
-        if ( $links_option['book_review_target'] == '1' ) {
-          $target = 'target=_blank';
-        }
-        else {
-          $target = '';
-        }
-
-        // Custom links
-        $links_table = $wpdb->prefix . "book_review_custom_links";
-        $link_urls_table = $wpdb->prefix . 'book_review_custom_link_urls';
-        $sql = "SELECT links.text, links.image_url, urls.url
-          FROM $links_table AS links
-          INNER JOIN $link_urls_table AS urls ON links.custom_link_id = urls.custom_link_id
-            AND urls.post_id = " . get_the_ID() .
-          " WHERE links.active = 1";
-
-        $results = $wpdb->get_results( $sql );
+        // Links
+        $links = $this->create_links();
 
         // Review Box Position
         ob_start();
@@ -186,7 +159,59 @@ class Book_Review_Public {
   }
 
   /**
-   * Inject rating into the excerpt.
+   * Creates the HTML for the links.
+   *
+   * @since    2.1.12
+   *
+   * @return   array   Links HTML
+   */
+  public function create_links() {
+    global $wpdb;
+
+    // Link target
+    $links_defaults = array(
+      'book_review_target' => 0,
+    );
+
+    $links_option = get_option( 'book_review_links' );
+    $links_option = wp_parse_args( $links_option, $links_defaults );
+
+    if ( $links_option['book_review_target'] == '1' ) {
+      $target = 'target=_blank';
+    }
+    else {
+      $target = '';
+    }
+
+    // Custom links
+    $links_table = $wpdb->prefix . "book_review_custom_links";
+    $link_urls_table = $wpdb->prefix . 'book_review_custom_link_urls';
+    $sql = "SELECT links.text, links.image_url, urls.url
+      FROM $links_table AS links
+      INNER JOIN $link_urls_table AS urls ON links.custom_link_id = urls.custom_link_id
+        AND urls.post_id = " . get_the_ID() .
+      " WHERE links.active = 1";
+
+    $results = $wpdb->get_results( $sql );
+    $links = array();
+
+    foreach( $results as $result ) {
+      if ( !empty( $result->image_url ) ) {
+        array_push( $links, '<li><a class="custom-link" href="' . esc_url( $result->url ) . '" ' . $target . '>' .
+          '<img src="' . esc_url( $result->image_url ) . '" alt="' . esc_attr( $result->text ) . '">' .
+          '</a></li>' );
+      }
+      else {
+        array_push( $links, '<li><a class="custom-link" href="' . esc_url( $result->url ) . '" ' . $target . '>' .
+          esc_html( $result->text ) . '</a></li>' );
+      }
+    }
+
+    return apply_filters( 'book_review_links', $links, get_the_ID(), $links_option );
+  }
+
+  /**
+   * Add rating to the excerpt.
    *
    * @since    1.0.0
    *
@@ -194,7 +219,7 @@ class Book_Review_Public {
    *
    * @return   string   Revised content of the excerpt.
    */
-  public function inject_book_rating( $content ) {
+  public function add_rating( $content ) {
     if ( is_home() || is_archive() || is_search() ) {
       $values = get_post_custom( get_the_ID() );
       $ratings_option = get_option( 'book_review_ratings' );
@@ -207,8 +232,8 @@ class Book_Review_Public {
           $src = $plugin->get_rating()->get_rating_image( $rating );
 
           if ( !empty( $src) ) {
-            $content = '<p class="book_review_rating_image"><img src="' .
-              $src . '"/>' . $content . '</p>';
+            $content = '<p class="book_review_rating_image"><img src="' . esc_url( $src ) . '">' .
+              $content . '</p>';
           }
         }
       }
@@ -232,13 +257,13 @@ class Book_Review_Public {
     $plugin = Book_Review::get_instance();
     $prefix = $wpdb->prefix;
 
-    extract( shortcode_atts( array(
+    $atts = shortcode_atts( array(
       'type' => 'title',
       'show_cover' => 'false',
       'show_rating' => 'false',
-    ), $atts ) );
+    ), $atts );
 
-    if ( $type == 'title' ) {
+    if ( $atts['type'] == 'title' ) {
       $query = "
         SELECT DISTINCT title.post_id, thumb.meta_value AS thumb,
           IFNULL(archive.meta_value, 1) AS archivePost,
@@ -258,10 +283,10 @@ class Book_Review_Public {
           ON title.post_id = archive.post_id
           AND archive.meta_key = 'book_review_archive_post'
         WHERE title.meta_key = 'book_review_title' AND title.meta_value <> ''
-          AND wp.post_status =  'publish'
+          AND wp.post_status = 'publish'
         ORDER BY title";
     }
-    else if ( $type == 'genre' ) {
+    else if ( $atts['type'] == 'genre' ) {
       $query = "
         SELECT DISTINCT genre.post_id, thumb.meta_value AS thumb,
           IFNULL(archive.meta_value, 1) AS archivePost,
@@ -304,21 +329,18 @@ class Book_Review_Public {
         if ( $thumb == '' ) {
           // This is faster than adding to the main query. Consider using this
           // approach for other fields instead of adding them to the main query.
-          $values = get_post_custom_values( 'book_review_cover_url',
-            $result->post_id );
+          $values = get_post_custom_values( 'book_review_cover_url', $result->post_id );
           $cover_url = $values[0];
-          $thumb = '<a href="' . get_permalink( $result->post_id ) .
-            '"><img src="' . $cover_url . '" style="max-width:' . $size[0] .
-            'px; max-height:' . $size[1] . 'px;" /></a>';
+          $thumb = '<a href="' . esc_url( get_permalink( $result->post_id ) ) .
+            '"><img src="' . esc_url( $cover_url ) . '" style="max-width:' . esc_attr( $size[0] ) .
+            'px; max-height:' . esc_attr( $size[1] ) . 'px;"></a>';
         }
         else {
           $url = wp_get_attachment_image_src( $result->thumb, 'thumbnail' );
-          $thumb = '<a href="' . get_permalink( $result->post_id ) . '">' .
-            $thumb . '</a>';
+          $thumb = '<a href="' . esc_url( get_permalink( $result->post_id ) ) . '">' . $thumb . '</a>';
         }
 
-
-        if ( $type == 'title' ) {
+        if ( $atts['type'] == 'title' ) {
           // Get first letter of title.
           $current = strtoupper( substr( $result->title, 0, 1 ) );
 
@@ -343,7 +365,7 @@ class Book_Review_Public {
               else {
                 $html[] = '<h4 class="header">#</h4>';
 
-                if ( $show_cover == 'true' ) {
+                if ( $atts['show_cover'] == 'true' ) {
                   $html[] = '<ul class="thumbs">';
                 }
                 else {
@@ -352,9 +374,9 @@ class Book_Review_Public {
               }
             }
             else {
-              $html[] = '<h4 class="header">' . $current . '</h4>';
+              $html[] = '<h4 class="header">' . esc_html( $current ) . '</h4>';
 
-              if ( $show_cover == 'true' ) {
+              if ( $atts['show_cover'] == 'true' ) {
                 $html[] = '<ul class="thumbs">';
               }
               else {
@@ -371,9 +393,9 @@ class Book_Review_Public {
           }
 
           if ( $current != $previous ) {
-            $html[] = '<h4 class="header">' . $current . '</h4>';
+            $html[] = '<h4 class="header">' . esc_html( $current ) . '</h4>';
 
-            if ( $show_cover == 'true' ) {
+            if ( $atts['show_cover'] == 'true' ) {
               $html[] = '<ul class="thumbs">';
             }
             else {
@@ -385,50 +407,49 @@ class Book_Review_Public {
         $html[] = '<li>';
 
         // Cover
-        if ( $show_cover == 'true' ) {
+        if ( $atts['show_cover'] == 'true' ) {
           if ( $thumb != '' ) {
             $html[] .= $thumb;
           }
         }
 
         // Title and author
-        if ( $show_cover == 'true' ) {
-          $html[] = '<h5 class="title"><a href="'. get_permalink(
-            $result->post_id ) . '">' . $result->title . '</a></h5>';
+        if ( $atts['show_cover'] == 'true' ) {
+          $html[] = '<h5 class="title"><a href="'. esc_url( get_permalink( $result->post_id ) ) .
+            '">' . esc_html( $result->title ) . '</a></h5>';
 
           if ( !empty( $result->author ) ) {
-            $html[] = '<p>by ' . $result->author . '</p>';
+            $html[] = '<p>by ' . esc_html( $result->author ) . '</p>';
           }
         }
         else {
-          $html[] = '<p><a href="'. get_permalink( $result->post_id ) . '">' .
-            $result->title . '</a>';
+          $html[] = '<p><a href="'. esc_url( get_permalink( $result->post_id ) ) . '">' .
+            esc_html( $result->title ) . '</a>';
 
           if ( !empty( $result->author ) ) {
-            $html[] = 'by ' . $result->author;
+            $html[] = 'by ' . esc_html( $result->author );
           }
         }
 
         // Rating
-        if ( $show_rating == 'true' ) {
-          $values = get_post_custom_values( 'book_review_rating',
-            $result->post_id );
+        if ( $atts['show_rating'] == 'true' ) {
+          $values = get_post_custom_values( 'book_review_rating', $result->post_id );
           $ratings_option = get_option( 'book_review_ratings' );
           $rating = $values[0];
 
           $book_review_rating_url = $plugin->get_rating()->get_rating_image( $rating );
 
           if ( !empty ( $book_review_rating_url ) ) {
-            if ( $show_cover == 'true' ) {
-              $html[] = '<p><img src="' . $book_review_rating_url . '" /></p>';
+            if ( $atts['show_cover'] == 'true' ) {
+              $html[] = '<p><img src="' . esc_url( $book_review_rating_url ) . '"></p>';
             }
             else {
-              $html[] = '<img src="' . $book_review_rating_url . '" />';
+              $html[] = '<img src="' . esc_url( $book_review_rating_url ) . '">';
             }
           }
         }
 
-        if ( $show_cover == 'false' ) {
+        if ( $atts['show_cover'] == 'false' ) {
           $html[] = '</p>';
         }
 
@@ -457,6 +478,7 @@ class Book_Review_Public {
       if ( in_array( $s, array( 'thumbnail' ) ) ) {
         $dimensions[0] = get_option( $s . '_size_w' );
         $dimensions[1] = get_option( $s . '_size_h' );
+
         break;
       }
     }

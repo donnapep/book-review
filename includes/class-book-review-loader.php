@@ -132,7 +132,6 @@ class Book_Review_Loader {
    * @since    2.1.8
    */
   public function run() {
-    //global $wp_filter;
     foreach ( $this->filters as $hook ) {
       add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
     }
@@ -144,8 +143,5 @@ class Book_Review_Loader {
     foreach ( $this->shortcodes as $hook ) {
       add_shortcode( $hook['hook'], array( $hook['component'], $hook['callback'] ) );
     }
-
-    //echo "<pre>"; print_r($wp_filter['wpmu_new_blog']); echo "</pre>";
-    //echo "<pre>"; print_r($wp_filter['manage_posts_columns']); echo "</pre>";
   }
 }

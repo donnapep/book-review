@@ -117,13 +117,10 @@ class Book_Review_Admin {
       wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-review-admin-meta-box.js', array( 'jquery' ), $this->version, false );
       wp_enqueue_script( 'jquery-ui-spinner' );
 
-      $console_url = 'https://code.google.com/apis/console';
-      $advanced_url = 'http://wpreviewplugins.com/book-review/#advanced';
-      $forum_url = 'http://wpreviewplugins.com/support/forum/general-support/';
       $translation_array = array(
-        'no_isbn' => __( 'Please enter an ISBN.', $this->plugin_name ),
-        'not_found' => __( 'A book with this ISBN was not found in the Google Books database.', $this->plugin_name ),
-        'unknown_error' => sprintf( __( '<p>Sorry, something went wrong. Please check to ensure that you have created a Google API Key and that it has been entered correctly on the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to ensure that the correct IP address for your server has been entered into the <a href="%s" target="_blank"> Google Developers Console</a>. If in doubt, you may leave the IP address field empty. See the <a href="%s" target="_blank"> documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href="%s" target="_blank">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!', $this->plugin_name ), esc_url( $console_url ), esc_url( $advanced_url ), esc_url( $forum_url ) ) );
+        'no_isbn' => esc_html__( 'Please enter an ISBN.', $this->plugin_name ),
+        'not_found' => esc_html__( 'A book with this ISBN was not found in the Google Books database.', $this->plugin_name ),
+        'unknown_error' => sprintf( __( '<p>Sorry, something went wrong. Please check to ensure that you have created a Google API Key and that it has been entered correctly on the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to ensure that the correct IP address for your server has been entered into the <a href="%s" target="_blank">Google Developers Console</a>. If in doubt, you may leave the IP address field empty. See the <a href="%s" target="_blank">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href="%s" target="_blank">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!', $this->plugin_name ), esc_url( 'https://code.google.com/apis/console' ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ), esc_url( 'http://wpreviewplugins.com/support/forum/general-support/' ) ) );
       wp_localize_script( $this->plugin_name, 'book_review_google_api', $translation_array );
     }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
@@ -149,8 +146,8 @@ class Book_Review_Admin {
      *        http://codex.wordpress.org/Administration_Menus
      */
     $this->plugin_screen_hook_suffix = add_options_page(
-      __( 'Book Review Settings', $this->plugin_name ),
-      __( 'Book Review', $this->plugin_name ),
+      esc_html__( 'Book Review Settings', $this->plugin_name ),
+      esc_html__( 'Book Review', $this->plugin_name ),
       'manage_options',
       $this->plugin_name,
       array( $this, 'display_plugin_admin_page' )
@@ -188,7 +185,9 @@ class Book_Review_Admin {
 
     foreach( $tabs as $tab => $name ) {
       $class = ( $tab == $active_tab ) ? ' nav-tab-active' : '';
-      echo "<a class='nav-tab$class' href='?page=book-review&tab=$tab'>$name</a>";
+
+      echo '<a class="' . esc_attr( 'nav-tab' . $class ) . '" href="' . esc_url( '?page=book-review&tab=' . $tab )
+        . '">' . esc_html( $name ) . '</a>';
     }
   }
 
@@ -204,8 +203,6 @@ class Book_Review_Admin {
     else {
       $active_tab = 'appearance';
     }
-
-    $tooltip = '<img src="' . plugins_url( 'images/tooltip.gif', __FILE__ ) . '" />';
 
     do_action( 'book_review_before_tabs' );
 
@@ -264,9 +261,8 @@ class Book_Review_Admin {
   public function add_action_links( $links ) {
     return array_merge(
       array(
-        'settings' => '<a href="' . admin_url( 'options-general.php?page=' .
-          $this->plugin_name ) . '">' . __( 'Settings', $this->plugin_name ) .
-        '</a>'
+        'settings' => '<a href="' . esc_url( admin_url( 'options-general.php?page=' .
+          $this->plugin_name ) ) . '">' . esc_html__( 'Settings', $this->plugin_name ) . '</a>'
       ), $links);
   }
 
@@ -304,7 +300,7 @@ class Book_Review_Admin {
         add_settings_error(
           'book_review_appearance',
           'border-width-error',
-          __( 'Review Box Border Width must be numeric.', $this->plugin_name )
+          esc_html__( 'Review Box Border Width must be numeric.', $this->plugin_name )
         );
       }
     }
@@ -346,7 +342,7 @@ class Book_Review_Admin {
       add_settings_error(
         'book_review_ratings',
         'image-error',
-        __( 'Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating.', $this->plugin_name )
+        esc_html__( 'Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating.', $this->plugin_name )
       );
     }
 
@@ -428,7 +424,7 @@ class Book_Review_Admin {
             add_settings_error(
               'book_review_links',
               'link-error',
-              __( 'Link Text is a required field. Please ensure you enter text for each link.', $this->plugin_name )
+              esc_html__( 'Link Text is a required field. Please ensure you enter text for each link.', $this->plugin_name )
             );
           }
         }
@@ -471,26 +467,19 @@ class Book_Review_Admin {
       $options['book_review_date_format'] : 'none';
 
     foreach( $formats as $type => $format ) {
-      $selected = ( $options['book_review_date_format'] == $type ) ?
-        "selected='selected'" : '';
-      echo "<option value='" . $type . "' ". $selected . ">" . $format .
-        "</option>";
+      $selected = ( $options['book_review_date_format'] == $type ) ? 'selected="selected"' : '';
+
+      echo '<option value="' . esc_attr( $type ) . '" ' . $selected . '>' . esc_html( $format ) . '</option>';
     }
   }
 
   /**
    * Add Rating column to Posts Admin screen.
    *
-   * NOTE:     Filters are points of execution in which WordPress modifies data
-   *           before saving it or sending it to the browser.
-   *
-   *           Filters: http://codex.wordpress.org/Plugin_API#Filters
-   *           Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-   *
    * @since    1.9.0
    */
   public function column_heading( $columns ) {
-    return array_merge( $columns, array( 'rating' => __( 'Rating', $this->plugin_name ) ) );
+    return array_merge( $columns, array( 'rating' => esc_html__( 'Rating', $this->plugin_name ) ) );
   }
 
   /**
@@ -507,8 +496,8 @@ class Book_Review_Admin {
         $rating = $values['book_review_rating'][0];
 
         if ( !empty( $rating ) && ( $rating != '-1' ) ) {
-          echo '<img src="' . $plugin->get_rating()->get_rating_image( $rating ) .
-            '" class="book_review_column_rating" />';
+          echo '<img src="' . esc_url( $plugin->get_rating()->get_rating_image( $rating ) ) .
+            '" class="book_review_column_rating">';
         }
       }
     }

@@ -53,33 +53,34 @@ class Book_Review_Rating {
       $ratings_defaults = array(
         'book_review_rating_default' => 1
       );
+
       $ratings_option = get_option( 'book_review_ratings' );
       $ratings_option = wp_parse_args( $ratings_option, $ratings_defaults );
 
       // Use default images.
       if ( $ratings_option['book_review_rating_default'] == '1' ) {
         if ( $rating == '1' ) {
-          $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/one-star.png';
+          $url = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/one-star.png';
         }
         else if ( $rating == '2' ) {
-          $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/two-star.png';
+          $url = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/two-star.png';
         }
         else if ( $rating == '3' ) {
-          $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png';
+          $url = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png';
         }
         else if ( $rating == '4' ) {
-          $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/four-star.png';
+          $url = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/four-star.png';
         }
         else if ( $rating == '5' ) {
-          $src = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/five-star.png';
+          $url = plugin_dir_url( dirname(__FILE__) ) . 'includes/images/five-star.png';
         }
       }
       // Use custom images.
       else {
-        $src = $ratings_option['book_review_rating_image' . $rating];
+        $url = $ratings_option['book_review_rating_image' . $rating];
       }
 
-      return $src;
+      return $url;
     }
     else {
       return '';

@@ -72,5 +72,7 @@ class Book_Review_Tests extends WP_UnitTestCase {
   public function testPublicFileLoads() {
     $this->assertFileExists( BOOK_REVIEW_PLUGIN_DIR . 'public/class-book-review-public.php' );
   }
+
+  // TODO: Test filters and actions were added.
 }
 

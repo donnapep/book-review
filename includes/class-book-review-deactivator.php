@@ -22,9 +22,6 @@
  */
 class Book_Review_Deactivator {
   /**
-   * Short Description. (use period)
-   *
-   * Long Description.
    *
    * @since    2.1.8
    */
