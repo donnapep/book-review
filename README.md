@@ -4,7 +4,10 @@ The WordPress Book Review plugin saves you time when writing your book review po
 
 The plugin can also help to increase traffic to your site by creating better-looking search results in Google that will make yours stand out from the rest.
 
-And, if you’re interested in throwing monetization into the mix, the WordPress Book Review plugin can help with its custom buy links feature. Members of the Amazon Associates Program, or people who are thinking of becoming members, can sign up to be notified when the [Affiliate Linkalizer for Amazon](http://wpreviewplugins.com/affiliate-linkalizer/) extension is released. This premium add-on will save you even more time and earn you even more money!
+## Monetization ##
+If you’re interested in throwing monetization into the mix, the WordPress Book Review plugin can help with its custom buy links feature.
+
+Members of the Amazon Associates Program, or people who are thinking of becoming members, will definitely be interested in Affiliate Linkalizer for Amazon. This premium add-on will save you even more time and earn you even more money! To be entered for a chance to win Affiliate Linkalizer for Amazon free for 12 months, please fill out this short [survey](http://donnapep.polldaddy.com/s/affiliate-linkalizer-for-amazon).
 
 Sound pretty good? Then check out the [full documentation](http://wpreviewplugins.com/book-review/) to learn more about what the WordPress Book Review plugin can do for you!
 
