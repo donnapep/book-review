@@ -2,7 +2,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      2.1.8
  *
  * @package    Book_Review
@@ -16,7 +16,7 @@
  *
  * @package    Book_Review
  * @subpackage Book_Review/public
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 class Book_Review_Public {
   /**

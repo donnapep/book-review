@@ -1,127 +1,203 @@
-# Copyright (C) 2014 Book Review
+# Copyright (C) 2015 Book Review
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.1.2\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/book-review\n"
-"POT-Creation-Date: 2014-07-26 17:39:41+00:00\n"
+"Project-Id-Version: Book Review 2.1.13\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
+"POT-Creation-Date: 2015-06-20 09:54-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-12-28 10:58-0500\n"
-"Last-Translator: Trax <trax@seznam.cz>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-06-20 10:07-0500\n"
+"X-Generator: Poedit 1.8.1\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Language: cs_CZ\n"
-"X-Generator: Poedit 1.7.1\n"
 
-#: admin/book-review-admin.php:181
+#: admin/class-book-review-admin.php:125
+msgid "Please enter an ISBN."
+msgstr ""
+
+#: admin/class-book-review-admin.php:126
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr ""
+
+#: admin/class-book-review-admin.php:127
+msgid ""
+"<p>Sorry, something went wrong. Please check to ensure that you have created "
+"a Google API Key and that it has been entered correctly on the <em>Advanced</"
+"em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to "
+"ensure that the correct IP address for your server has been entered into the "
+"<a href=\"%s\" target=\"_blank\">Google Developers Console</a>. If in doubt, "
+"you may leave the IP address field empty. See the <a href=\"%s\" target="
+"\"_blank\">documentation</a> for more information.</p><p>If you are still "
+"having trouble, please leave a message in the <a href=\"%s\" target=\"_blank"
+"\">General Support forum</a>. Be sure to include the URL of your web site in "
+"your post. Thanks!"
+msgstr ""
+
+#: admin/class-book-review-admin.php:153
 msgid "Book Review Settings"
 msgstr "Book Review Nastavení"
 
 #. Plugin Name of the plugin/theme
-#: admin/book-review-admin.php:182
+#: admin/class-book-review-admin.php:154
 msgid "Book Review"
 msgstr "Book Review"
 
-#: admin/book-review-admin.php:232
-msgid "Settings"
-msgstr "Nastavení"
-
-#: admin/book-review-admin.php:344
-msgid "None"
-msgstr "Nic"
-
-#: admin/book-review-admin.php:414
-msgid "Book Info"
-msgstr "Informace o knize"
-
-#: admin/book-review-admin.php:674
-msgid "Select..."
-msgstr "Výběr..."
-
-#: admin/book-review-admin.php:748
-msgid "the"
-msgstr " "
-
-#: admin/book-review-admin.php:748
-msgid "a"
-msgstr " "
-
-#: admin/book-review-admin.php:749
-msgid "an"
-msgstr " "
-
-#: admin/book-review-admin.php:786 admin/views/meta-box.php:128
-msgid "Rating"
-msgstr "Hodnocení"
-
-#: admin/views/admin.php:25
+#: admin/class-book-review-admin.php:177
 msgid "Appearance"
 msgstr "Vzhled"
 
-#: admin/views/admin.php:33
-msgid "Review Box Position"
-msgstr "Pozice recenzního boxu"
-
-#: admin/views/admin.php:38
-msgid "Whether to show the review box at the top or bottom of a post."
-msgstr "Má se ukazovat recenzní box v horní nebo dolní části příspěvku."
-
-#: admin/views/admin.php:50
-msgid "Top"
-msgstr "Horní"
-
-#: admin/views/admin.php:60
-msgid "Bottom"
-msgstr "Dolní"
-
-#: admin/views/admin.php:69
-msgid "Review Box Background Color"
-msgstr "Barva pozadí recenzního boxu"
-
-#: admin/views/admin.php:83
-msgid "Review Box Border Color"
-msgstr "Barva okraje recenzního boxu"
-
-#: admin/views/admin.php:97
-msgid "Release Date Format"
-msgstr "Formát data vydání"
-
-#: admin/views/admin.php:101
-msgid "Format that the Release Date will be shown in."
-msgstr "Formát data vydání, který se má zobrazovat."
-
-#: admin/views/admin.php:117
+#: admin/class-book-review-admin.php:178
 msgid "Rating Images"
 msgstr "Hodnocení ilustrací"
 
-#: admin/views/admin.php:120
+#: admin/class-book-review-admin.php:179
+msgid "Links"
+msgstr "Odkazy"
+
+#: admin/class-book-review-admin.php:180
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: admin/class-book-review-admin.php:269 tests/test-book-review-admin.php:73
+msgid "Settings"
+msgstr "Nastavení"
+
+#: admin/class-book-review-admin.php:307
+msgid "Review Box Border Width must be numeric."
+msgstr ""
+
+#: admin/class-book-review-admin.php:349
+msgid ""
+"Rating Image URLs are required fields when not using the default rating "
+"images. Please ensure you enter a URL for each rating."
+msgstr ""
+
+#: admin/class-book-review-admin.php:431
+msgid ""
+"Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+
+#: admin/class-book-review-admin.php:462
+msgid "None"
+msgstr "Nic"
+
+#: admin/class-book-review-admin.php:486
+#: admin/partials/book-review-admin-meta-box.php:141
+msgid "Rating"
+msgstr "Hodnocení"
+
+#: admin/class-book-review-meta-box.php:63
+msgid "Book Info"
+msgstr "Informace o knize"
+
+#: admin/class-book-review-meta-box.php:324
+msgid "Select..."
+msgstr "Výběr..."
+
+#: admin/class-book-review-meta-box.php:401
+msgid "the"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:401
+msgid "a"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:402
+msgid "an"
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:3
+msgid ""
+"This plugin uses the Google Books API to automatically populate the details "
+"of a book. In order to take advantage of this feature, you must first sign "
+"up for and enter an API key as described <a href=\"%s\" target=\"_blank"
+"\">here</a>."
+msgstr ""
+"Tento plugin používá Google Books API k automatickému vyplnění detailů "
+"knihy. Aby bylo možné tuto funkci používat, musíte se zaregistrovat a zadat "
+"klíč. Více informací <a href=\"%s\" target=\"_blank\">zde</a>."
+
+#: admin/partials/book-review-admin-advanced.php:19
+msgid "Google API Key"
+msgstr "Google API klíč"
+
+#: admin/partials/book-review-admin-advanced.php:28
+msgid ""
+"Your Google API key obtained from the <a href=\"%s\" target=\"_blank"
+"\">Google Developers Console</a>."
+msgstr ""
+"Váš Google API klíč získaný z <a href=\"%s\" target=\"_blank\">Google "
+"Developers Console</a>."
+
+#: admin/partials/book-review-admin-appearance.php:13
+msgid "Review Box Position"
+msgstr "Pozice recenzního boxu"
+
+#: admin/partials/book-review-admin-appearance.php:22
+msgid "Top"
+msgstr "Horní"
+
+#: admin/partials/book-review-admin-appearance.php:31
+msgid "Bottom"
+msgstr "Dolní"
+
+#: admin/partials/book-review-admin-appearance.php:35
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr "Má se ukazovat recenzní box v horní nebo dolní části příspěvku."
+
+#: admin/partials/book-review-admin-appearance.php:44
+msgid "Review Box Background Color"
+msgstr "Barva pozadí recenzního boxu"
+
+#: admin/partials/book-review-admin-appearance.php:58
+msgid "Review Box Border Color"
+msgstr "Barva okraje recenzního boxu"
+
+#: admin/partials/book-review-admin-appearance.php:72
+msgid "Review Box Border Width"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:79
+msgid "pixel(s)"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:87
+msgid "Release Date Format"
+msgstr "Formát data vydání"
+
+#: admin/partials/book-review-admin-appearance.php:96
+msgid "Format that the Release Date will be shown in."
+msgstr "Formát data vydání, který se má zobrazovat."
+
+#: admin/partials/book-review-admin-images.php:2
 msgid "Configure the images to use for displaying ratings."
 msgstr "Konfigurace obrázků pro zobrazení hodnocení."
 
-#: admin/views/admin.php:130
-msgid "Show rating on home page"
-msgstr "Ukázat hodnocení na home page"
+#: admin/partials/book-review-admin-images.php:17
+msgid "Excerpts"
+msgstr ""
 
-#: admin/views/admin.php:135
-msgid ""
-"Whether to show the rating image on your home page when summary text is used."
-msgstr "Zobrazení hodnocení na vaší home page, pokud je použito shrnutí."
+#: admin/partials/book-review-admin-images.php:24
+msgid "Show the rating in excerpts"
+msgstr ""
 
-#: admin/views/admin.php:153
-msgid "Use default rating images"
+#: admin/partials/book-review-admin-images.php:32
+msgid "Default Rating Images"
+msgstr ""
+
+#: admin/partials/book-review-admin-images.php:40
+msgid "Use the default rating images"
 msgstr "Použij defaultní obrázky hodnocení"
 
-#: admin/views/admin.php:158
-msgid "Whether to use the default rating images or your own."
-msgstr "Použití defaultních obrázků a nebo vlastních pro hodnocení."
-
-#: admin/views/admin.php:178
+#: admin/partials/book-review-admin-images.php:48
 msgid "Rating Image URLs"
 msgstr "URL obrázků hodnocení"
 
-#: admin/views/admin.php:183
+#: admin/partials/book-review-admin-images.php:50
 msgid ""
 "To use your own rating images, enter the URL of an image for each rating "
 "below (1-5)."
@@ -129,162 +205,156 @@ msgstr ""
 "Chcete-li použít vlastní obrázky pro hodnocení, zadejte adresu URL obrázků "
 "pro každé hodnocení (1 až 5)."
 
-#: admin/views/admin.php:199
+#: admin/partials/book-review-admin-images.php:61
 msgid "One-star Image URL"
 msgstr "Jedna hvězdička URL"
 
-#: admin/views/admin.php:216
+#: admin/partials/book-review-admin-images.php:76
 msgid "Two-star Image URL"
 msgstr "Dvě hvězdičky URL"
 
-#: admin/views/admin.php:233
+#: admin/partials/book-review-admin-images.php:91
 msgid "Three-star Image URL"
 msgstr "Tři hvězdičky URL"
 
-#: admin/views/admin.php:250
+#: admin/partials/book-review-admin-images.php:106
 msgid "Four-star Image URL"
 msgstr "Čtyři hvězdičky URL"
 
-#: admin/views/admin.php:267
+#: admin/partials/book-review-admin-images.php:121
 msgid "Five-star Image URL"
 msgstr "Pět hvězdiček URL"
 
-#: admin/views/admin.php:281
-msgid "Links"
-msgstr "Odkazy"
+#: admin/partials/book-review-admin-links.php:13
+msgid "Link Target"
+msgstr ""
 
-#: admin/views/admin.php:284
-msgid ""
-"Configure the links that you would like to display with every book review."
-msgstr "Konfigurace odkazů které chcete zobrazit u každé recenze."
-
-#: admin/views/admin.php:294
-msgid "Number of Links"
-msgstr "Počet odkazů"
-
-#: admin/views/admin.php:299
-msgid "Select the number of links you would like to add to each book review."
-msgstr "Vyberte počet odkazů, které chcete přidat u každé recenze."
-
-#: admin/views/admin.php:318
-msgid "Open links in new tab"
+#: admin/partials/book-review-admin-links.php:20
+msgid "Open links in a new tab"
 msgstr "Otevření odkazů v nové záložce"
 
-#: admin/views/admin.php:323
-msgid "Whether to open links in the same window or in a new tab."
-msgstr "Otevření odkazů ve stejném okně nebo v nové záložce."
-
-#: admin/views/admin.php:345
-msgid "Link Text"
-msgstr "Odkaz textu"
-
-#: admin/views/admin.php:349
-msgid ""
-"Enter the text for each link. For every link added here, a new field will be "
-"shown in the Book Info section when editing a post."
+#: admin/partials/book-review-admin-links.php:26
+msgid "Custom Links"
 msgstr ""
-"Vložte text pro každý odkaz. Informace o knize bude následně obsahovat vždy "
-"nové pole v editaci příspěvku."
 
-#: admin/views/admin.php:359
-msgid "Link Image URL"
-msgstr "Odkaz URL obrázku"
-
-#: admin/views/admin.php:363
+#: admin/partials/book-review-admin-links.php:29
 msgid ""
-"If you would like to show links as images, enter the URL of an image for "
-"each link below. If you leave this field blank, links will be shown as text."
+"Configure the links that you would like to display with every book review. "
+"For every link added here, a new field will be shown in the <em>Book Info</"
+"em> section when editing a post. If you leave the <em>Link Image URL</em> "
+"field blank, links will be shown as text by default. Please see the <a href="
+"\"%s\" target=\"_blank\">documentation</a> for additional details."
 msgstr ""
-"Pokud chcete ukázat jako odkazy obrázky, zadejte adresy URL pro každý "
-"obrázek. Pokud necháte pole prázdné, bude zobrazen odkaz jako text."
 
-#: admin/views/admin.php:447
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: admin/views/admin.php:450
-msgid ""
-"This plugin uses the Google Books API to automatically populate the details "
-"of a book. In order to take advantage of this feature, you must first sign "
-"up for and enter an API key as described <a href=\"http://donnapeplinskie."
-"com/wordpress-book-review-plugin/\" target=\"_blank\">here</a>."
+#: admin/partials/book-review-admin-links.php:39
+msgid "Link Text (required)"
 msgstr ""
-"Tento plugin používá Google Books API k automatickému vyplnění detailů "
-"knihy. Aby bylo možné tuto funkci používat, musíte se zaregistrovat a zadat "
-"klíč. Více informací <a href=\"http://donnapeplinskie.com/wordpress-book-"
-"review-plugin/\" target=\"_blank\">zde</a>."
 
-#: admin/views/admin.php:464
-msgid "Google API Key"
-msgstr "Google API klíč"
+#: admin/partials/book-review-admin-links.php:44
+msgid "Link Image URL (optional)"
+msgstr ""
 
-#: admin/views/admin.php:468
-msgid "Your Google API key obtained from the Google Developers Console."
-msgstr "Váš Google API klíč získaný z Google Developers Console."
+#: admin/partials/book-review-admin-links.php:48
+msgid "Active"
+msgstr ""
 
-#: admin/views/meta-box.php:17
+#: admin/partials/book-review-admin-links.php:90
+msgid "Add Link"
+msgstr ""
+
+#: admin/partials/book-review-admin-meta-box.php:18
 msgid "ISBN"
 msgstr "ISBN"
 
-#: admin/views/meta-box.php:22
+#: admin/partials/book-review-admin-meta-box.php:23
 msgid "Get Book Info"
 msgstr "Získat informace o knize"
 
-#: admin/views/meta-box.php:31 public/views/public.php:29
+#: admin/partials/book-review-admin-meta-box.php:32
+#: public/partials/book-review-public.php:35
 msgid "Title"
 msgstr "Název"
 
-#: admin/views/meta-box.php:40 public/views/public.php:40
+#: admin/partials/book-review-admin-meta-box.php:42
+#: public/partials/book-review-public.php:46
 msgid "Series"
 msgstr "Série"
 
-#: admin/views/meta-box.php:48 public/views/public.php:51
+#: admin/partials/book-review-admin-meta-box.php:51
+#: public/partials/book-review-public.php:57
 msgid "Author"
 msgstr "Autor"
 
-#: admin/views/meta-box.php:56 public/views/public.php:65
+#: admin/partials/book-review-admin-meta-box.php:60
+#: public/partials/book-review-public.php:70
 msgid "Genre"
 msgstr "Žánr"
 
-#: admin/views/meta-box.php:64 public/views/public.php:76
+#: admin/partials/book-review-admin-meta-box.php:69
+#: public/partials/book-review-public.php:81
 msgid "Publisher"
 msgstr "Vydavatel"
 
-#: admin/views/meta-box.php:72 public/views/public.php:87
+#: admin/partials/book-review-admin-meta-box.php:79
+#: public/partials/book-review-public.php:92
 msgid "Release Date"
 msgstr "Datum vydání"
 
-#: admin/views/meta-box.php:80 public/views/public.php:100
+#: admin/partials/book-review-admin-meta-box.php:88
+#: public/partials/book-review-public.php:103
 msgid "Format"
 msgstr "Formát"
 
-#: admin/views/meta-box.php:88 public/views/public.php:111
+#: admin/partials/book-review-admin-meta-box.php:97
+#: public/partials/book-review-public.php:114
 msgid "Pages"
 msgstr "Počet stran"
 
-#: admin/views/meta-box.php:96 public/views/public.php:122
+#: admin/partials/book-review-admin-meta-box.php:106
+#: public/partials/book-review-public.php:125
 msgid "Source"
 msgstr "Zdroj"
 
-#: admin/views/meta-box.php:107
+#: admin/partials/book-review-admin-meta-box.php:118
 msgid "Cover URL"
 msgstr "URL obálky"
 
-#: admin/views/meta-box.php:112
+#: admin/partials/book-review-admin-meta-box.php:123
 msgid "Upload Cover"
 msgstr "Upload obálky"
 
-#: admin/views/meta-box.php:121
+#: admin/partials/book-review-admin-meta-box.php:133
 msgid "Synopsis"
 msgstr "Synopse"
 
-#: admin/views/meta-box.php:139
+#: admin/partials/book-review-admin-meta-box.php:154
 msgid "Include post in archives"
 msgstr "Příspěvky v archivu"
 
-#: public/views/public.php:23
+#: admin/partials/book-review-admin-notice.php:5
+msgid "Thank you!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:9
+msgid ""
+"Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter "
+"to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</"
+"span> plugin free for 12 months!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:13
+msgid ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text"
+"\">Dismiss this notice.</span></a>"
+msgstr ""
+
+#: public/partials/book-review-public.php:29
 msgid "Book Cover"
 msgstr "Obálka knihy"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpreviewplugins.com/book-review/"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
@@ -293,3 +363,11 @@ msgid ""
 msgstr ""
 "Přidat informace o knize jako je autor, vydavatel a obálka pro vylepšení "
 "recenze."
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://donnapeplinskie.com/"
+msgstr ""

@@ -3,7 +3,7 @@
 /**
  * Defines functionality for serializing the options saved in the meta box.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      2.1.8
  *
  * @package    Book_Review
@@ -15,7 +15,7 @@
  *
  * @package    Book_Review
  * @subpackage Book_Review/admin
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 class Book_Review_Meta_Box {
   /**

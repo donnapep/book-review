@@ -1,0 +1,123 @@
+#book-review-notice {
+  /* Positioning */
+  position: relative;
+
+  /* Display & Box Model */
+  padding: 10px 38px 10px 10px;
+  border: 1px solid #f6af91;
+  border-bottom-width: 3px;
+
+  /* Visual */
+  font-size: 14px;
+  color: #ed6a48;
+  background-color: #fad7c8;
+  border-radius: 5px;
+}
+
+#book-review-notice .logo {
+  /* Display & Box Model */
+  float: left;
+}
+
+#book-review-notice .content {
+  /* Display & Box Model */
+  margin-left: 70px;
+}
+
+#book-review-notice .thank-you {
+  /* Display & Box Model */
+  margin-bottom: 10px;
+
+  /* Visual */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Call to Action */
+#book-review-notice .message a {
+  /* Display & Box Model */
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid #dd6141;
+
+  /* Visual */
+  color: #fff;
+  font-weight: 600;
+  background: #ed6a48;
+  border-radius: 5px;
+
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  transition: all .1s linear;
+}
+
+#book-review-notice .message a:hover {
+  /* Visual */
+  background: #f1885b;
+}
+
+#book-review-notice .linkalizer {
+  /* Visual */
+  font-weight: bold;
+}
+
+/* Dismiss Button */
+#book-review-notice .dismiss {
+  /* Positioning */
+  position: absolute;
+  top: 0;
+  right: 1px;
+
+  /* Display & Box Model */
+  padding: 9px;
+  border: none;
+  margin: 0;
+
+  /* Visual */
+  background: 0 0;
+  color: #ed6a48;
+  cursor: pointer;
+}
+
+#book-review-notice .dismiss:before {
+  /* Positioning */
+  position: relative;
+  top: 0;
+  left: 0;
+
+  /* Display & Box Model */
+  width: 20px;
+  height: 20px;
+  display: block!important;
+
+  /* Visual */
+  line-height: 20px;
+  background: 0 0;
+  color: #ed6a48;
+  content: '\f153';
+  font: 400 16px/1 dashicons;
+  speak: none;
+  text-align: center;
+  -webkit-font-smoothing: antialiased!important;
+}
+
+#book-review-notice .dismiss,
+#book-review-notice .dismiss::before {
+  /* Visual */
+  color: #ed6a48;
+}
+
+#book-review-notice .dismiss:active:before,
+#book-review-notice .dismiss:focus:before,
+#book-review-notice .dismiss:hover:before {
+  /* Visual */
+  color: #c00;
+}
+
+#book-review-notice .dismiss:focus {
+  /* Visual */
+  color: #c00;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 1px #5b9dd9,0 0 2px 1px rgba(30,140,190,.8);
+  box-shadow: 0 0 0 1px #5b9dd9,0 0 2px 1px rgba(30,140,190,.8);
+}

@@ -3,7 +3,7 @@
 /**
  * The dashboard-specific functionality of the plugin.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      1.0.0
  *
  * @package    Book_Review
@@ -18,7 +18,7 @@
  *
  * @package    Book_Review
  * @subpackage Book_Review/admin
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 
 class Book_Review_Admin {
@@ -30,6 +30,7 @@ class Book_Review_Admin {
    * @var      string    $plugin_name    The ID of this plugin.
    */
   private $plugin_name;
+
   /**
    * The version of this plugin.
    *
@@ -85,6 +86,9 @@ class Book_Review_Admin {
     }
     else if ( $hook_suffix == 'post-new.php' || $hook_suffix == 'post.php' ) {
       wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-meta-box.css', array(), $this->version, 'all' );
+    }
+    else if ( $hook_suffix == 'plugins.php' ) {
+      wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-admin-notice.css', array(), $this->version, 'all' );
     }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
       wp_enqueue_style( 'wp-color-picker' );

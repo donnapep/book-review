@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      2.1.8
  *
  * @package    Book_Review
@@ -22,7 +22,7 @@
  * @since      2.1.8
  * @package    Book_Review
  * @subpackage Book_Review/includes
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 class Book_Review_i18n {
   /**
