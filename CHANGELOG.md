@@ -1,5 +1,9 @@
 # Change Log #
 
+## 2.1.13 ##
+* New: Add dismissible admin notice when plugin is first activated.
+* New: Add link to Google Developers Console text on Advanced tab.
+
 ## 2.1.12 ##
 * New: Add Indonesian translation.
 * New: Add `book_review_links` filter for rendering links in review box.

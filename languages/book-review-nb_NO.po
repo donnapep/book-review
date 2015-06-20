@@ -2,115 +2,152 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.1.10\n"
+"Project-Id-Version: Book Review 2.1.13\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-03-17 12:00:58+00:00\n"
+"POT-Creation-Date: 2015-06-20 08:58-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-04-07 20:15-0500\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2015-06-20 10:07-0500\n"
+"X-Generator: Poedit 1.8.1\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: nb_NO\n"
-"X-Generator: Poedit 1.7.5\n"
 
-#: admin/class-book-review-admin.php:124
+#: admin/class-book-review-admin.php:125
 msgid "Please enter an ISBN."
 msgstr "Skriv inn et ISBN-nummer."
 
-#: admin/class-book-review-admin.php:125
-msgid "A book with this ISBN was not found in the Google Books database."
-msgstr "En bok med dette ISBN-nummeret ble ikke funnet i Google Books database."
-
 #: admin/class-book-review-admin.php:126
-msgid "<p>Sorry, something went wrong. Please check to ensure that you have created a Google API Key and that it has been entered correctly on the <em>Advanced</em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to ensure that the correct IP address for your server has been entered into the <a href=\"%s\" target=\"_blank\"> Google Developers Console</a>. If in doubt, you may leave the IP address field empty. See the <a href=\"%s\" target=\"_blank\"> documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!"
-msgstr "<p>Vi beklager. Noe gikk galt. Vennligst sjekk at du har opprettet en Google API-nøkkel og at den er korrekt i <em>Avansert</em> fliken i <em>Book Review -Innstillinger</em>.</p>. <p>Sjekk også at du bruker korrekt IP-adresse til din server i <a href=\"%s\" target=\"_blank\"> Google Developers Console</a>. Du kan, hvis du ønsker det la feltet med IP-adressen være tomt. Se <a href=\"%s\" target=\"_blank\"> dokumentasjonen</a> for mer informasjon.</p><p>Hvis du fortsatt får problemer, vennligst skriv en melding (engelsk språk) på vårt <a href=\"%s\" target=\"_blank\">generelle supportforum</a>. Ta med adressen til din nettside i din meldling. Tusen takk! "
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr ""
+"En bok med dette ISBN-nummeret ble ikke funnet i Google Books database."
 
-#: admin/class-book-review-admin.php:152
+#: admin/class-book-review-admin.php:127
+msgid ""
+"<p>Sorry, something went wrong. Please check to ensure that you have created "
+"a Google API Key and that it has been entered correctly on the <em>Advanced</"
+"em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to "
+"ensure that the correct IP address for your server has been entered into the "
+"<a href=\"%s\" target=\"_blank\">Google Developers Console</a>. If in doubt, "
+"you may leave the IP address field empty. See the <a href=\"%s\" target="
+"\"_blank\">documentation</a> for more information.</p><p>If you are still "
+"having trouble, please leave a message in the <a href=\"%s\" target=\"_blank"
+"\">General Support forum</a>. Be sure to include the URL of your web site in "
+"your post. Thanks!"
+msgstr ""
+"<p>Vi beklager. Noe gikk galt. Vennligst sjekk at du har opprettet en Google "
+"API-nøkkel og at den er korrekt i <em>Avansert</em> fliken i <em>Book Review "
+"-Innstillinger</em>.</p>. <p>Sjekk også at du bruker korrekt IP-adresse til "
+"din server i <a href=\"%s\" target=\"_blank\"> Google Developers Console</"
+"a>. Du kan, hvis du ønsker det la feltet med IP-adressen være tomt. Se <a "
+"href=\"%s\" target=\"_blank\"> dokumentasjonen</a> for mer informasjon.</"
+"p><p>Hvis du fortsatt får problemer, vennligst skriv en melding (engelsk "
+"språk) på vårt <a href=\"%s\" target=\"_blank\">generelle supportforum</a>. "
+"Ta med adressen til din nettside i din meldling. Tusen takk! "
+
+#: admin/class-book-review-admin.php:153
 msgid "Book Review Settings"
 msgstr "Book Review - Innstillinger"
 
-#: admin/class-book-review-admin.php:153
+#. Plugin Name of the plugin/theme
+#: admin/class-book-review-admin.php:154
 msgid "Book Review"
 msgstr "Book Review"
 
-#: admin/class-book-review-admin.php:176
+#: admin/class-book-review-admin.php:177
 msgid "Appearance"
 msgstr "Utseende"
 
-#: admin/class-book-review-admin.php:177
+#: admin/class-book-review-admin.php:178
 msgid "Rating Images"
 msgstr "Rangeringsbilder"
 
-#: admin/class-book-review-admin.php:178
+#: admin/class-book-review-admin.php:179
 msgid "Links"
 msgstr "Lenker"
 
-#: admin/class-book-review-admin.php:179
+#: admin/class-book-review-admin.php:180
 msgid "Advanced"
 msgstr "Avansert"
 
-#: admin/class-book-review-admin.php:268
+#: admin/class-book-review-admin.php:269 tests/test-book-review-admin.php:73
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: admin/class-book-review-admin.php:305
+#: admin/class-book-review-admin.php:307
 msgid "Review Box Border Width must be numeric."
 msgstr "Boksrammen for bokanmeldelsen må ha en numerisk verdi."
 
-#: admin/class-book-review-admin.php:346
-msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
-msgstr "Rangeringsbildenes nettadresse er obligatorisk hvis du ikke bruker standard rangeringsbilder. Forsikre deg om at du har en nettadresse for hver rangering. "
+#: admin/class-book-review-admin.php:349
+msgid ""
+"Rating Image URLs are required fields when not using the default rating "
+"images. Please ensure you enter a URL for each rating."
+msgstr ""
+"Rangeringsbildenes nettadresse er obligatorisk hvis du ikke bruker standard "
+"rangeringsbilder. Forsikre deg om at du har en nettadresse for hver "
+"rangering."
 
-#: admin/class-book-review-admin.php:429
-msgid "Link Text is a required field. Please ensure you enter text for each link."
-msgstr "Tekstlenker er obligatorisk. Vennligst forsikre deg om at du skriver en tekst for hver lenke. "
+#: admin/class-book-review-admin.php:431
+msgid ""
+"Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+"Tekstlenker er obligatorisk. Vennligst forsikre deg om at du skriver en "
+"tekst for hver lenke."
 
-#: admin/class-book-review-admin.php:460
+#: admin/class-book-review-admin.php:462
 msgid "None"
 msgstr "Ingen"
 
-#: admin/class-book-review-admin.php:489
-#: admin/partials/book-review-admin-meta-box.php:140
+#: admin/class-book-review-admin.php:486
+#: admin/partials/book-review-admin-meta-box.php:141
 msgid "Rating"
 msgstr "Rangering"
 
-#: admin/class-book-review-meta-box.php:72
+#: admin/class-book-review-meta-box.php:63
 msgid "Book Info"
 msgstr "Bokinformasjon"
 
-#: admin/class-book-review-meta-box.php:328
-msgid "URL"
-msgstr "Nettadresse"
-
-#: admin/class-book-review-meta-box.php:346
+#: admin/class-book-review-meta-box.php:324
 msgid "Select..."
 msgstr "Velg"
 
-#: admin/class-book-review-meta-box.php:420
+#: admin/class-book-review-meta-box.php:401
 msgid "the"
 msgstr "den"
 
-#: admin/class-book-review-meta-box.php:420
+#: admin/class-book-review-meta-box.php:401
 msgid "a"
 msgstr "en"
 
-#: admin/class-book-review-meta-box.php:421
+#: admin/class-book-review-meta-box.php:402
 msgid "an"
 msgstr "en"
 
-#: admin/partials/book-review-admin-advanced.php:4
-msgid "This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"%s\" target=\"_blank\">here</a>."
-msgstr "Dette tillegget bruker Google Books API for automatisk innhenting av bokdetaljer. For å kunne bruke denne funksjonen må du ført logge deg inn i Googles tjeneste og oppgi en API-nøkkel som beskrevet <a href=\"%s\" target=\"_blank\">her</a>."
+#: admin/partials/book-review-admin-advanced.php:3
+msgid ""
+"This plugin uses the Google Books API to automatically populate the details "
+"of a book. In order to take advantage of this feature, you must first sign "
+"up for and enter an API key as described <a href=\"%s\" target=\"_blank"
+"\">here</a>."
+msgstr ""
+"Dette tillegget bruker Google Books API for automatisk innhenting av "
+"bokdetaljer. For å kunne bruke denne funksjonen må du ført logge deg inn i "
+"Googles tjeneste og oppgi en API-nøkkel som beskrevet <a href=\"%s\" target="
+"\"_blank\">her</a>."
 
-#: admin/partials/book-review-admin-advanced.php:21
+#: admin/partials/book-review-admin-advanced.php:19
 msgid "Google API Key"
 msgstr "Google API-nøkkel"
 
-#: admin/partials/book-review-admin-advanced.php:29
-msgid "Your Google API key obtained from the Google Developers Console."
-msgstr "Din Google API-nøkkel innhentet fra Google Developers Console"
+#: admin/partials/book-review-admin-advanced.php:28
+msgid ""
+"Your Google API key obtained from the <a href=\"%s\" target=\"_blank"
+"\">Google Developers Console</a>."
+msgstr ""
+"Din Google API-nøkkel innhentet fra <a href=\"%s\" target=\"_blank\">Google "
+"Developers Console</a>."
 
 #: admin/partials/book-review-admin-appearance.php:13
 msgid "Review Box Position"
@@ -126,31 +163,32 @@ msgstr "Bunn"
 
 #: admin/partials/book-review-admin-appearance.php:35
 msgid "Whether to show the review box at the top or bottom of a post."
-msgstr "Om bokanmeldelsesboksen skal vises i toppen eller i bunnen av bloggposten."
+msgstr ""
+"Om bokanmeldelsesboksen skal vises i toppen eller i bunnen av bloggposten."
 
-#: admin/partials/book-review-admin-appearance.php:45
+#: admin/partials/book-review-admin-appearance.php:44
 msgid "Review Box Background Color"
 msgstr "Forhåndsvis bakgrunnsfarge"
 
-#: admin/partials/book-review-admin-appearance.php:59
+#: admin/partials/book-review-admin-appearance.php:58
 msgid "Review Box Border Color"
 msgstr "Forhåndsvis kantlinjens farge"
 
-#: admin/partials/book-review-admin-appearance.php:73
+#: admin/partials/book-review-admin-appearance.php:72
 msgid "Review Box Border Width"
 msgstr "Forhåndsvis boksens kantbredde"
 
-#: admin/partials/book-review-admin-appearance.php:80
+#: admin/partials/book-review-admin-appearance.php:79
 msgid "pixel(s)"
 msgstr "piksler"
 
-#: admin/partials/book-review-admin-appearance.php:88
+#: admin/partials/book-review-admin-appearance.php:87
 msgid "Release Date Format"
 msgstr "Publiseringsdato"
 
-#: admin/partials/book-review-admin-appearance.php:97
+#: admin/partials/book-review-admin-appearance.php:96
 msgid "Format that the Release Date will be shown in."
-msgstr "Datoformat for publiseringsdato"
+msgstr "Datoformat for publiseringsdato."
 
 #: admin/partials/book-review-admin-images.php:2
 msgid "Configure the images to use for displaying ratings."
@@ -164,144 +202,175 @@ msgstr "Utdrag"
 msgid "Show the rating in excerpts"
 msgstr "Vis rangering i utdrag"
 
-#: admin/partials/book-review-admin-images.php:33
+#: admin/partials/book-review-admin-images.php:32
 msgid "Default Rating Images"
 msgstr "Standard rangeringsbilder"
 
-#: admin/partials/book-review-admin-images.php:41
+#: admin/partials/book-review-admin-images.php:40
 msgid "Use the default rating images"
 msgstr "Bruk standard rangeringsbilder"
 
-#: admin/partials/book-review-admin-images.php:49
+#: admin/partials/book-review-admin-images.php:48
 msgid "Rating Image URLs"
 msgstr "Rangeringsbildets nettadresse"
 
-#: admin/partials/book-review-admin-images.php:51
-msgid "To use your own rating images, enter the URL of an image for each rating below (1-5)."
-msgstr "For å kunne bruke rangeringsbilder må du oppgi nettadressen for hvert rangeringsbilde under (1-5)."
+#: admin/partials/book-review-admin-images.php:50
+msgid ""
+"To use your own rating images, enter the URL of an image for each rating "
+"below (1-5)."
+msgstr ""
+"For å kunne bruke rangeringsbilder må du oppgi nettadressen for hvert "
+"rangeringsbilde under (1-5)."
 
-#: admin/partials/book-review-admin-images.php:62
+#: admin/partials/book-review-admin-images.php:61
 msgid "One-star Image URL"
 msgstr "Nettadressen til enstjerners bilde"
 
-#: admin/partials/book-review-admin-images.php:77
+#: admin/partials/book-review-admin-images.php:76
 msgid "Two-star Image URL"
 msgstr "Nettadressen til tostjerners bilde"
 
-#: admin/partials/book-review-admin-images.php:92
+#: admin/partials/book-review-admin-images.php:91
 msgid "Three-star Image URL"
 msgstr "Nettadressen til trestjerners bilde"
 
-#: admin/partials/book-review-admin-images.php:107
+#: admin/partials/book-review-admin-images.php:106
 msgid "Four-star Image URL"
 msgstr "Nettadressen til firestjerners bilde"
 
-#: admin/partials/book-review-admin-images.php:122
+#: admin/partials/book-review-admin-images.php:121
 msgid "Five-star Image URL"
 msgstr "Nettadressen til femstjerners bilde"
 
-#: admin/partials/book-review-admin-links.php:15
+#: admin/partials/book-review-admin-links.php:13
 msgid "Link Target"
 msgstr "Mållenk"
 
-#: admin/partials/book-review-admin-links.php:22
+#: admin/partials/book-review-admin-links.php:20
 msgid "Open links in a new tab"
 msgstr "Åpner lenker i ny flik"
 
-#: admin/partials/book-review-admin-links.php:28
+#: admin/partials/book-review-admin-links.php:26
 msgid "Custom Links"
 msgstr "Tilpass lenker"
 
-#: admin/partials/book-review-admin-links.php:32
-msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for additional details."
-msgstr "Tilpass lenker som du vil bruke for hver bokanmeldelse. For hver lenk du legger til her vil et nytt felt vises i <em>Bokinformasjonsdelen</em> når du legger til/endrer en post. Om du vil at <em>Nettadressen til bildet</em> skal være blankt, vil lenker vises som standard. Vennligst se <a href=\"%s\" target=\"_blank\">dokumentasjonen</a> for ytterligere detaljer"
+#: admin/partials/book-review-admin-links.php:29
+msgid ""
+"Configure the links that you would like to display with every book review. "
+"For every link added here, a new field will be shown in the <em>Book Info</"
+"em> section when editing a post. If you leave the <em>Link Image URL</em> "
+"field blank, links will be shown as text by default. Please see the <a href="
+"\"%s\" target=\"_blank\">documentation</a> for additional details."
+msgstr ""
+"Tilpass lenker som du vil bruke for hver bokanmeldelse. For hver lenk du "
+"legger til her vil et nytt felt vises i <em>Bokinformasjonsdelen</em> når du "
+"legger til/endrer en post. Om du vil at <em>Nettadressen til bildet</em> "
+"skal være blankt, vil lenker vises som standard. Vennligst se <a href=\"%s\" "
+"target=\"_blank\">dokumentasjonen</a> for ytterligere detaljer."
 
-#: admin/partials/book-review-admin-links.php:43
+#: admin/partials/book-review-admin-links.php:39
 msgid "Link Text (required)"
 msgstr "Tekstlenke (obligatorisk)"
 
-#: admin/partials/book-review-admin-links.php:48
+#: admin/partials/book-review-admin-links.php:44
 msgid "Link Image URL (optional)"
 msgstr "Nettadressen til bildelenk (valgfritt)"
 
-#: admin/partials/book-review-admin-links.php:52
+#: admin/partials/book-review-admin-links.php:48
 msgid "Active"
 msgstr "Aktiv"
 
-#: admin/partials/book-review-admin-links.php:95
+#: admin/partials/book-review-admin-links.php:90
 msgid "Add Link"
 msgstr "Legg til lenk"
 
-#: admin/partials/book-review-admin-meta-box.php:17
+#: admin/partials/book-review-admin-meta-box.php:18
 msgid "ISBN"
 msgstr "ISBN-nummer"
 
-#: admin/partials/book-review-admin-meta-box.php:22
+#: admin/partials/book-review-admin-meta-box.php:23
 msgid "Get Book Info"
 msgstr "Få bokinformasjon"
 
-#: admin/partials/book-review-admin-meta-box.php:31
-#: public/partials/book-review-public.php:33
+#: admin/partials/book-review-admin-meta-box.php:32
+#: public/partials/book-review-public.php:35
 msgid "Title"
 msgstr "Tittel"
 
-#: admin/partials/book-review-admin-meta-box.php:41
-#: public/partials/book-review-public.php:44
+#: admin/partials/book-review-admin-meta-box.php:42
+#: public/partials/book-review-public.php:46
 msgid "Series"
 msgstr "Serie"
 
-#: admin/partials/book-review-admin-meta-box.php:50
-#: public/partials/book-review-public.php:55
+#: admin/partials/book-review-admin-meta-box.php:51
+#: public/partials/book-review-public.php:57
 msgid "Author"
 msgstr "Forfatter"
 
-#: admin/partials/book-review-admin-meta-box.php:59
-#: public/partials/book-review-public.php:68
+#: admin/partials/book-review-admin-meta-box.php:60
+#: public/partials/book-review-public.php:70
 msgid "Genre"
 msgstr "Sjanger"
 
-#: admin/partials/book-review-admin-meta-box.php:68
-#: public/partials/book-review-public.php:79
+#: admin/partials/book-review-admin-meta-box.php:69
+#: public/partials/book-review-public.php:81
 msgid "Publisher"
 msgstr "Bokforlag"
 
-#: admin/partials/book-review-admin-meta-box.php:78
-#: public/partials/book-review-public.php:90
+#: admin/partials/book-review-admin-meta-box.php:79
+#: public/partials/book-review-public.php:92
 msgid "Release Date"
 msgstr "Publiseringsdato"
 
-#: admin/partials/book-review-admin-meta-box.php:87
-#: public/partials/book-review-public.php:101
+#: admin/partials/book-review-admin-meta-box.php:88
+#: public/partials/book-review-public.php:103
 msgid "Format"
 msgstr "Format"
 
-#: admin/partials/book-review-admin-meta-box.php:96
-#: public/partials/book-review-public.php:112
+#: admin/partials/book-review-admin-meta-box.php:97
+#: public/partials/book-review-public.php:114
 msgid "Pages"
 msgstr "Antall sider"
 
-#: admin/partials/book-review-admin-meta-box.php:105
-#: public/partials/book-review-public.php:123
+#: admin/partials/book-review-admin-meta-box.php:106
+#: public/partials/book-review-public.php:125
 msgid "Source"
 msgstr "Kilde"
 
-#: admin/partials/book-review-admin-meta-box.php:117
+#: admin/partials/book-review-admin-meta-box.php:118
 msgid "Cover URL"
 msgstr "Nettadresse til forside"
 
-#: admin/partials/book-review-admin-meta-box.php:122
+#: admin/partials/book-review-admin-meta-box.php:123
 msgid "Upload Cover"
 msgstr "Hent framside"
 
-#: admin/partials/book-review-admin-meta-box.php:132
+#: admin/partials/book-review-admin-meta-box.php:133
 msgid "Synopsis"
 msgstr "Utdrag"
 
-#: admin/partials/book-review-admin-meta-box.php:153
+#: admin/partials/book-review-admin-meta-box.php:154
 msgid "Include post in archives"
 msgstr "Inkluder posten i arkivet"
 
-#: public/partials/book-review-public.php:27
+#: admin/partials/book-review-admin-notice.php:5
+msgid "Thank you!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:9
+msgid ""
+"Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter "
+"to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</"
+"span> plugin free for 12 months!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:13
+msgid ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text"
+"\">Dismiss this notice.</span></a>"
+msgstr ""
+
+#: public/partials/book-review-public.php:29
 msgid "Book Cover"
 msgstr "Bokomslag"
 
@@ -310,14 +379,17 @@ msgid "http://wpreviewplugins.com/book-review/"
 msgstr "http://wpreviewplugins.com/book-review/"
 
 #. Description of the plugin/theme
-msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
-msgstr "Legg til bokinformasjon, som tittel, forfatter, bokforlag og forsidefoto for å forbedre din bokanmeldelse"
+msgid ""
+"Add book information such as title, author, publisher and cover photo to "
+"enhance your review posts."
+msgstr ""
+"Legg til bokinformasjon, som tittel, forfatter, bokforlag og forsidefoto for "
+"å forbedre din bokanmeldelse."
 
 #. Author of the plugin/theme
 msgid "Donna Peplinskie"
 msgstr "Donna Peplinskie"
 
 #. Author URI of the plugin/theme
-msgid "http://donnapeplinskie.com"
-msgstr "http://donnapeplinskie.com"
-
+msgid "http://donnapeplinskie.com/"
+msgstr "http://donnapeplinskie.com/"

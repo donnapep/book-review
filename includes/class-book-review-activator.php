@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      2.1.8
  *
  * @package    Book_Review
@@ -18,7 +18,7 @@
  * @since      2.1.8
  * @package    Book_Review
  * @subpackage Book_Review/includes
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 class Book_Review_Activator {
   /**
@@ -28,7 +28,7 @@ class Book_Review_Activator {
    * @access   protected
    * @var     string
    */
-  const VERSION = '2.1.12';
+  const VERSION = '2.1.13';
 
   /**
    * Fired when the plugin is activated.

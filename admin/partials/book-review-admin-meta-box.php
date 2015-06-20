@@ -3,9 +3,9 @@
  * Represents the view for the meta box on the posts page.
  *
  * @package   Book_Review
- * @author    Donna Peplinskie <donnapep@gmail.com>
+ * @author    Donna Peplinskie <support@wpreviewplugins.com>
  * @license   GPL-2.0+
- * @link      http://donnapeplinskie.com
+ * @link      http://wpreviewplugins.com/
  * @copyright 2014 Donna Peplinskie
  */
 ?>

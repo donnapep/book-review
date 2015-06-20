@@ -24,7 +24,10 @@
             name="book_review_advanced[book_review_api_key]"
             value="<?php echo esc_attr( $advanced['book_review_api_key'] ); ?>">
           <p class="description">
-            <?php esc_html_e( 'Your Google API key obtained from the Google Developers Console.', $this->plugin_name ); ?>
+            <?php
+              printf( __( 'Your Google API key obtained from the <a href="%s" target="_blank">Google Developers Console</a>.', $this->plugin_name ), esc_url( 'https://console.developers.google.com/' ) );
+            ?>
+            <?php esc_html_e( '', $this->plugin_name ); ?>
           </p>
         </td>
       </tr>

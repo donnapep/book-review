@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              Donna Peplinskie <donnapep@gmail.com>
+ * @link              Donna Peplinskie <support@wpreviewplugins.com>
  * @since             1.0.0
  * @package           Book_Review
  *
@@ -16,14 +16,14 @@
  * Plugin Name:       Book Review
  * Plugin URI:        http://wpreviewplugins.com/book-review/
  * Description:       Add book information such as title, author, publisher and cover photo to enhance your review posts.
- * Version:           2.1.12
+ * Version:           2.1.13
  * Author:            Donna Peplinskie
- * Author URI:        http://donnapeplinskie.com
+ * Author URI:        http://donnapeplinskie.com/
  * Text Domain:       book-review
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- * GitHub Plugin URI: https://github.com/donnapep/wordpress-book-review-plugin
+ * GitHub Plugin URI: https://github.com/donnapep/book-review
  */
 
 // If this file is called directly, abort.

@@ -3,7 +3,7 @@
 /**
  * Register all actions, filters and shortcodes for the plugin.
  *
- * @link       http://donnapeplinskie.com
+ * @link       http://wpreviewplugins.com/
  * @since      2.1.8
  *
  * @package    Book_Review
@@ -19,7 +19,7 @@
  *
  * @package    Book_Review
  * @subpackage Book_Review/includes
- * @author     Donna Peplinskie <donnapep@gmail.com>
+ * @author     Donna Peplinskie <support@wpreviewplugins.com>
  */
 class Book_Review_Loader {
   /**

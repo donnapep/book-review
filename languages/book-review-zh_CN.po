@@ -1,277 +1,369 @@
-# Copyright (C) 2014 Book Review
+# Copyright (C) 2015 Book Review
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.0.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/book-review\n"
-"POT-Creation-Date: 2014-05-13 01:19:35+00:00\n"
+"Project-Id-Version: Book Review 2.1.13\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
+"POT-Creation-Date: 2015-06-20 08:02-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-09-28 16:13-0500\n"
+"PO-Revision-Date: 2015-06-20 10:08-0500\n"
+"X-Generator: Poedit 1.8.1\n"
 "Last-Translator: \n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Poedit 1.6.9\n"
+"Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language: zh_CN\n"
 
-#: admin/book-review-admin.php:161
+#: admin/class-book-review-admin.php:125
+msgid "Please enter an ISBN."
+msgstr ""
+
+#: admin/class-book-review-admin.php:126
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr ""
+
+#: admin/class-book-review-admin.php:127
+msgid ""
+"<p>Sorry, something went wrong. Please check to ensure that you have created "
+"a Google API Key and that it has been entered correctly on the <em>Advanced</"
+"em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to "
+"ensure that the correct IP address for your server has been entered into the "
+"<a href=\"%s\" target=\"_blank\">Google Developers Console</a>. If in doubt, "
+"you may leave the IP address field empty. See the <a href=\"%s\" target="
+"\"_blank\">documentation</a> for more information.</p><p>If you are still "
+"having trouble, please leave a message in the <a href=\"%s\" target=\"_blank"
+"\">General Support forum</a>. Be sure to include the URL of your web site in "
+"your post. Thanks!"
+msgstr ""
+
+#: admin/class-book-review-admin.php:153
 msgid "Book Review Settings"
 msgstr "书籍综述设置"
 
 #. Plugin Name of the plugin/theme
-#: admin/book-review-admin.php:162
+#: admin/class-book-review-admin.php:154
 msgid "Book Review"
 msgstr "书籍综述"
 
-#: admin/book-review-admin.php:209
-msgid "Settings"
-msgstr "设置"
-
-#: admin/book-review-admin.php:412
-msgid "Book Info"
-msgstr "书籍信息"
-
-#: admin/book-review-admin.php:562
-msgid "Select..."
-msgstr "选择..."
-
-#: admin/book-review-admin.php:731
-msgid "the"
-msgstr ""
-
-#: admin/book-review-admin.php:731
-msgid "a"
-msgstr ""
-
-#: admin/book-review-admin.php:731
-msgid "an"
-msgstr ""
-
-#: admin/book-review-admin.php:766 admin/views/meta-box.php:58
-msgid "Rating"
-msgstr "评分"
-
-#: admin/views/admin.php:22
+#: admin/class-book-review-admin.php:177
 msgid "Appearance"
 msgstr "外观"
 
-#: admin/views/admin.php:27
+#: admin/class-book-review-admin.php:178
+msgid "Rating Images"
+msgstr ""
+
+#: admin/class-book-review-admin.php:179
+msgid "Links"
+msgstr "链接"
+
+#: admin/class-book-review-admin.php:180
+msgid "Advanced"
+msgstr "高级"
+
+#: admin/class-book-review-admin.php:269 tests/test-book-review-admin.php:73
+msgid "Settings"
+msgstr "设置"
+
+#: admin/class-book-review-admin.php:307
+msgid "Review Box Border Width must be numeric."
+msgstr ""
+
+#: admin/class-book-review-admin.php:349
+msgid ""
+"Rating Image URLs are required fields when not using the default rating "
+"images. Please ensure you enter a URL for each rating."
+msgstr ""
+
+#: admin/class-book-review-admin.php:431
+msgid ""
+"Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+
+#: admin/class-book-review-admin.php:462
+msgid "None"
+msgstr ""
+
+#: admin/class-book-review-admin.php:486
+#: admin/partials/book-review-admin-meta-box.php:141
+msgid "Rating"
+msgstr "评分"
+
+#: admin/class-book-review-meta-box.php:63
+msgid "Book Info"
+msgstr "书籍信息"
+
+#: admin/class-book-review-meta-box.php:324
+msgid "Select..."
+msgstr "选择..."
+
+#: admin/class-book-review-meta-box.php:401
+msgid "the"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:401
+msgid "a"
+msgstr ""
+
+#: admin/class-book-review-meta-box.php:402
+msgid "an"
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:3
+msgid ""
+"This plugin uses the Google Books API to automatically populate the details "
+"of a book. In order to take advantage of this feature, you must first sign "
+"up for and enter an API key as described <a href=\"%s\" target=\"_blank"
+"\">here</a>."
+msgstr ""
+"此插件可以使用 Google Books API 自动加载书籍的详细信息。为了充分使用该功能，"
+"你必须首先注册并输入一个 API Key。参考<a href=\"%s\" target=\"_blank\">这里</"
+"a>。"
+
+#: admin/partials/book-review-admin-advanced.php:19
+msgid "Google API Key"
+msgstr "Google API Key"
+
+#: admin/partials/book-review-admin-advanced.php:28
+msgid ""
+"Your Google API key obtained from the <a href=\"%s\" target=\"_blank"
+"\">Google Developers Console</a>."
+msgstr ""
+"您从 <a href=\"%s\" target=\"_blank\">Google Developers Console</a> 获取到的 "
+"Google API Key。"
+
+#: admin/partials/book-review-admin-appearance.php:13
 msgid "Review Box Position"
 msgstr "综述框位置"
 
-#: admin/views/admin.php:30
-msgid "Whether to show the review box at the top or bottom of a post."
-msgstr "在日志的顶部还是底部显示综述框。"
-
-#: admin/views/admin.php:34
+#: admin/partials/book-review-admin-appearance.php:22
 msgid "Top"
 msgstr "顶部"
 
-#: admin/views/admin.php:35
+#: admin/partials/book-review-admin-appearance.php:31
 msgid "Bottom"
 msgstr "底部"
 
-#: admin/views/admin.php:40
+#: admin/partials/book-review-admin-appearance.php:35
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr "在日志的顶部还是底部显示综述框。"
+
+#: admin/partials/book-review-admin-appearance.php:44
 msgid "Review Box Background Color"
 msgstr "综述框背景颜色"
 
-#: admin/views/admin.php:48
+#: admin/partials/book-review-admin-appearance.php:58
 msgid "Review Box Border Color"
 msgstr "综述框边框颜色"
 
-#: admin/views/admin.php:57
+#: admin/partials/book-review-admin-appearance.php:72
+msgid "Review Box Border Width"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:79
+msgid "pixel(s)"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:87
 msgid "Release Date Format"
 msgstr "出版日期格式"
 
-#: admin/views/admin.php:60
+#: admin/partials/book-review-admin-appearance.php:96
 msgid "Format that the Release Date will be shown in."
 msgstr "出版日期显示的格式。"
 
-#: admin/views/admin.php:70
-msgid "Rating Images"
-msgstr "评分图片"
-
-#: admin/views/admin.php:71
+#: admin/partials/book-review-admin-images.php:2
 msgid "Configure the images to use for displaying ratings."
 msgstr "配置显示评分的图片。"
 
-#: admin/views/admin.php:77
-msgid "Show rating on home page"
-msgstr "在首页显示评分"
+#: admin/partials/book-review-admin-images.php:17
+msgid "Excerpts"
+msgstr ""
 
-#: admin/views/admin.php:80
-msgid ""
-"Whether to show the rating image on your home page when summary text is used."
-msgstr "当加入摘要文字后，是否在首页显示评分图片。"
+#: admin/partials/book-review-admin-images.php:24
+msgid "Show the rating in excerpts"
+msgstr ""
 
-#: admin/views/admin.php:91
-msgid "Use default rating images"
+#: admin/partials/book-review-admin-images.php:32
+msgid "Default Rating Images"
+msgstr ""
+
+#: admin/partials/book-review-admin-images.php:40
+msgid "Use the default rating images"
 msgstr "使用默认评分图片"
 
-#: admin/views/admin.php:94
-msgid "Whether to use the default rating images or your own."
-msgstr "使用默认评分图片还是自定义的。"
-
-#: admin/views/admin.php:106
+#: admin/partials/book-review-admin-images.php:48
 msgid "Rating Image URLs"
 msgstr "评分图片地址"
 
-#: admin/views/admin.php:109
+#: admin/partials/book-review-admin-images.php:50
 msgid ""
 "To use your own rating images, enter the URL of an image for each rating "
 "below (1-5)."
 msgstr "使用自定义的评分图片，需为以下每一个评分等级（1-5）设置图片的地址。"
 
-#: admin/views/admin.php:123
+#: admin/partials/book-review-admin-images.php:61
 msgid "One-star Image URL"
 msgstr "一星图片地址"
 
-#: admin/views/admin.php:127
+#: admin/partials/book-review-admin-images.php:76
 msgid "Two-star Image URL"
 msgstr "两星图片地址"
 
-#: admin/views/admin.php:131
+#: admin/partials/book-review-admin-images.php:91
 msgid "Three-star Image URL"
 msgstr "三星图片地址"
 
-#: admin/views/admin.php:135
+#: admin/partials/book-review-admin-images.php:106
 msgid "Four-star Image URL"
 msgstr "四星图片地址"
 
-#: admin/views/admin.php:139
+#: admin/partials/book-review-admin-images.php:121
 msgid "Five-star Image URL"
 msgstr "五星图片地址"
 
-#: admin/views/admin.php:152
-msgid "Links"
-msgstr "链接"
+#: admin/partials/book-review-admin-links.php:13
+msgid "Link Target"
+msgstr ""
 
-#: admin/views/admin.php:153
-msgid ""
-"Configure the links that you would like to display with every book review."
-msgstr "配置书籍综述的链接显示。"
-
-#: admin/views/admin.php:159
-msgid "Number of Links"
-msgstr "链接个数"
-
-#: admin/views/admin.php:162
-msgid "Select the number of links you would like to add to each book review."
-msgstr "选择书籍综述显示的链接个数。"
-
-#: admin/views/admin.php:173
-msgid "Open links in new tab"
+#: admin/partials/book-review-admin-links.php:20
+msgid "Open links in a new tab"
 msgstr "在新标签页中打开链接"
 
-#: admin/views/admin.php:176
-msgid "Whether to open links in the same window or in a new tab."
-msgstr "在同一个窗口还是在新标签页中打开链接。"
-
-#: admin/views/admin.php:191
-msgid "Link Text"
-msgstr "链接文字"
-
-#: admin/views/admin.php:194
-msgid ""
-"Enter the text for each link. For every link added here, a new field will be "
-"shown in the Book Info section when editing a post."
+#: admin/partials/book-review-admin-links.php:26
+msgid "Custom Links"
 msgstr ""
-"输入每个链接显示的文字。对于以下添加的每个链接，在编辑日志的时候都会在“书籍信"
-"息”栏目中生成一个新的域。"
 
-#: admin/views/admin.php:200
-msgid "Link Image URL"
-msgstr "链接图片地址"
-
-#: admin/views/admin.php:203
+#: admin/partials/book-review-admin-links.php:29
 msgid ""
-"If you would like to show links as images, enter the URL of an image for "
-"each link below. If you leave this field blank, links will be shown as text."
+"Configure the links that you would like to display with every book review. "
+"For every link added here, a new field will be shown in the <em>Book Info</"
+"em> section when editing a post. If you leave the <em>Link Image URL</em> "
+"field blank, links will be shown as text by default. Please see the <a href="
+"\"%s\" target=\"_blank\">documentation</a> for additional details."
 msgstr ""
-"添加链接的图片地址，从而以图片形式显示链接。如果留空，则以文本形式显示。"
 
-#: admin/views/admin.php:219
-msgid "Advanced"
-msgstr "高级"
-
-#: admin/views/admin.php:220
-msgid ""
-"This plugin uses the Google Books API to automatically populate the details "
-"of a book. In order to take advantage of this feature, you must first sign "
-"up for and enter an API key as described <a href=\"http://donnapeplinskie."
-"com/wordpress-book-review-plugin/\" target=\"_blank\">here</a>."
+#: admin/partials/book-review-admin-links.php:39
+msgid "Link Text (required)"
 msgstr ""
-"此插件可以使用 Google Books API 自动加载书籍的详细信息。为了充分使用该功能，"
-"你必须首先注册并输入一个 API Key。参考<a href=\"http://donnapeplinskie.com/"
-"wordpress-book-review-plugin/\" target=\"_blank\">这里</a>。"
 
-#: admin/views/admin.php:228
-msgid "Google API Key"
-msgstr "Google API Key"
+#: admin/partials/book-review-admin-links.php:44
+msgid "Link Image URL (optional)"
+msgstr ""
 
-#: admin/views/admin.php:231
-msgid "Your Google API key obtained from the Google Developers Console."
-msgstr "您从 Google Developers Console 获取到的 Google API Key。"
+#: admin/partials/book-review-admin-links.php:48
+msgid "Active"
+msgstr ""
 
-#: admin/views/meta-box.php:16
+#: admin/partials/book-review-admin-links.php:90
+msgid "Add Link"
+msgstr ""
+
+#: admin/partials/book-review-admin-meta-box.php:18
+msgid "ISBN"
+msgstr ""
+
+#: admin/partials/book-review-admin-meta-box.php:23
 msgid "Get Book Info"
 msgstr "获取书籍信息"
 
-#: admin/views/meta-box.php:21 public/book-review.php:341
+#: admin/partials/book-review-admin-meta-box.php:32
+#: public/partials/book-review-public.php:35
 msgid "Title"
 msgstr "书名"
 
-#: admin/views/meta-box.php:24 public/book-review.php:346
+#: admin/partials/book-review-admin-meta-box.php:42
+#: public/partials/book-review-public.php:46
 msgid "Series"
 msgstr "系列"
 
-#: admin/views/meta-box.php:27 public/book-review.php:351
+#: admin/partials/book-review-admin-meta-box.php:51
+#: public/partials/book-review-public.php:57
 msgid "Author"
 msgstr "作者"
 
-#: admin/views/meta-box.php:30 public/book-review.php:356
+#: admin/partials/book-review-admin-meta-box.php:60
+#: public/partials/book-review-public.php:70
 msgid "Genre"
 msgstr "分类"
 
-#: admin/views/meta-box.php:33 public/book-review.php:361
+#: admin/partials/book-review-admin-meta-box.php:69
+#: public/partials/book-review-public.php:81
 msgid "Publisher"
 msgstr "出版社"
 
-#: admin/views/meta-box.php:36 public/book-review.php:366
+#: admin/partials/book-review-admin-meta-box.php:79
+#: public/partials/book-review-public.php:92
 msgid "Release Date"
 msgstr "出版日期"
 
-#: admin/views/meta-box.php:39 public/book-review.php:371
+#: admin/partials/book-review-admin-meta-box.php:88
+#: public/partials/book-review-public.php:103
 msgid "Format"
 msgstr "格式"
 
-#: admin/views/meta-box.php:42 public/book-review.php:376
+#: admin/partials/book-review-admin-meta-box.php:97
+#: public/partials/book-review-public.php:114
 msgid "Pages"
 msgstr "页数"
 
-#: admin/views/meta-box.php:45 public/book-review.php:381
+#: admin/partials/book-review-admin-meta-box.php:106
+#: public/partials/book-review-public.php:125
 msgid "Source"
-msgstr "来源\t"
+msgstr "来源"
 
-#: admin/views/meta-box.php:49
+#: admin/partials/book-review-admin-meta-box.php:118
 msgid "Cover URL"
 msgstr "封面地址"
 
-#: admin/views/meta-box.php:51
+#: admin/partials/book-review-admin-meta-box.php:123
 msgid "Upload Cover"
 msgstr "上传封面"
 
-#: admin/views/meta-box.php:55 public/book-review.php:412
+#: admin/partials/book-review-admin-meta-box.php:133
 msgid "Synopsis"
 msgstr "摘要"
 
-#: admin/views/meta-box.php:64
+#: admin/partials/book-review-admin-meta-box.php:154
 msgid "Include post in archives"
 msgstr "存档中加入此日志"
+
+#: admin/partials/book-review-admin-notice.php:5
+msgid "Thank you!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:9
+msgid ""
+"Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter "
+"to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</"
+"span> plugin free for 12 months!"
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:13
+msgid ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text"
+"\">Dismiss this notice.</span></a>"
+msgstr ""
+
+#: public/partials/book-review-public.php:29
+msgid "Book Cover"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpreviewplugins.com/book-review/"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
 "Add book information such as title, author, publisher and cover photo to "
 "enhance your review posts."
 msgstr "为您的书评日志添加书籍信息，包括书名、作者、出版者、封面图片等。"
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://donnapeplinskie.com/"
+msgstr ""
