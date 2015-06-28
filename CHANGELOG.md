@@ -1,5 +1,10 @@
 # Change Log #
 
+## 2.1.14 ##
+* New: Add Country dropdown to Advanced tab of Book Review settings.
+* Tweak: Apply WordPress CSS class names to input elements.
+* Fix: Fix 403 error from Google Books API for some users.
+
 ## 2.1.13 ##
 * New: Add dismissible admin notice when plugin is first activated.
 * New: Add link to Google Developers Console text on Advanced tab.

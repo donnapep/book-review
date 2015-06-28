@@ -58,8 +58,8 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
     $response = json_decode( $this->_last_response );
 
     // Empty ISBN returns multiple results.
-    $this->assertEquals( 'success', $response->status );
-    $this->assertObjectHasAttribute( 'data', $response );
+    $this->assertEquals( 'error', $response->status );
+    $this->assertEquals( 'No API key or empty ISBN', $response->data );
   }
 
   /**
@@ -112,7 +112,7 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
     $response = json_decode( $this->_last_response );
 
     $this->assertEquals( 'error', $response->status );
-    $this->assertEquals( 'No API key', $response->data );
+    $this->assertEquals( 'No API key or empty ISBN', $response->data );
   }
 
   /**
@@ -167,6 +167,40 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
     $this->assertEquals( 'Invalid nonce', $response->data );
   }
 
+  /**
+   * @covers Book_Review_Meta_Box::get_book_info
+   */
+  public function testGetBookInfoWithCountry() {
+    $_POST['isbn'] = '0525478817';
+    $_POST['nonce'] = wp_create_nonce( 'ajax_isbn_nonce' );
+
+    // Add Release Date Format.
+    $general = array(
+      'book_review_date_format' => 'medium'
+    );
+    add_option( 'book_review_general', $general );
+
+    // Add Google API Key.
+    $advanced = array(
+      'book_review_api_key' => 'AIzaSyCBbpjgTzdGQ0wZtCzfZ7xKRZI5cmiBHjQ',
+      'book_review_country' => 'CA'
+    );
+    add_option( 'book_review_advanced', $advanced );
+
+    try {
+      $this->_handleAjax( 'get_book_info' );
+    }
+    catch ( WPAjaxDieContinueException $e ) {
+      // We expected this; do nothing.
+    }
+
+    $response = json_decode( $this->_last_response );
+
+    $this->assertInternalType( 'object', $response );
+    $this->assertEquals( 'success', $response->status );
+    $this->assertObjectHasAttribute( 'data', $response );
+    $this->assertEquals( 'medium', $response->format );
+  }
 
   /**
    * @covers Book_Review_Meta_Box::get_book_info

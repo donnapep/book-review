@@ -73,8 +73,8 @@
           </label>
         </th>
         <td>
-          <input id="book_review_border_width" class="numeric-input"
-            type="text" name="book_review_general[book_review_border_width]"
+          <input id="book_review_border_width" class="small-text numeric-input"
+            type="number" step="1" min="1" name="book_review_general[book_review_border_width]"
             value="<?php echo esc_attr( $general['book_review_border_width'] ); ?>">
             <?php esc_html_e( 'pixel(s)', $this->plugin_name ); ?>
         </td>
