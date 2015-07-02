@@ -2,16 +2,15 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.1.13\n"
+"Project-Id-Version: Book Review 2.1.14\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-06-20 07:23-0500\n"
+"POT-Creation-Date: 2015-06-28 15:39:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-06-20 07:25-0500\n"
-"X-Generator: Poedit 1.8.1\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: admin/class-book-review-admin.php:125
 msgid "Please enter an ISBN."
@@ -22,24 +21,13 @@ msgid "A book with this ISBN was not found in the Google Books database."
 msgstr ""
 
 #: admin/class-book-review-admin.php:127
-msgid ""
-"<p>Sorry, something went wrong. Please check to ensure that you have created "
-"a Google API Key and that it has been entered correctly on the <em>Advanced</"
-"em> tab of the <em>Book Review Settings</em>.</p><p>Please also check to "
-"ensure that the correct IP address for your server has been entered into the "
-"<a href=\"%s\" target=\"_blank\">Google Developers Console</a>. If in doubt, "
-"you may leave the IP address field empty. See the <a href=\"%s\" target="
-"\"_blank\">documentation</a> for more information.</p><p>If you are still "
-"having trouble, please leave a message in the <a href=\"%s\" target=\"_blank"
-"\">General Support forum</a>. Be sure to include the URL of your web site in "
-"your post. Thanks!"
+msgid "<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href=\"%s\">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown.</p><p>Please also check to ensure that the correct IP address of your server has been entered into the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>. See the <a href=\"%s\" target=\"_blank\">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!"
 msgstr ""
 
 #: admin/class-book-review-admin.php:153
 msgid "Book Review Settings"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
 #: admin/class-book-review-admin.php:154
 msgid "Book Review"
 msgstr ""
@@ -60,30 +48,27 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: admin/class-book-review-admin.php:269 tests/test-book-review-admin.php:73
+#: admin/class-book-review-admin.php:541 tests/test-book-review-admin.php:73
 msgid "Settings"
 msgstr ""
 
-#: admin/class-book-review-admin.php:307
+#: admin/class-book-review-admin.php:579
 msgid "Review Box Border Width must be numeric."
 msgstr ""
 
-#: admin/class-book-review-admin.php:349
-msgid ""
-"Rating Image URLs are required fields when not using the default rating "
-"images. Please ensure you enter a URL for each rating."
+#: admin/class-book-review-admin.php:621
+msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
 msgstr ""
 
-#: admin/class-book-review-admin.php:431
-msgid ""
-"Link Text is a required field. Please ensure you enter text for each link."
+#: admin/class-book-review-admin.php:703
+msgid "Link Text is a required field. Please ensure you enter text for each link."
 msgstr ""
 
-#: admin/class-book-review-admin.php:462
+#: admin/class-book-review-admin.php:735
 msgid "None"
 msgstr ""
 
-#: admin/class-book-review-admin.php:486
+#: admin/class-book-review-admin.php:759
 #: admin/partials/book-review-admin-meta-box.php:141
 msgid "Rating"
 msgstr ""
@@ -96,24 +81,20 @@ msgstr ""
 msgid "Select..."
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:401
+#: admin/class-book-review-meta-box.php:420
 msgid "the"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:401
+#: admin/class-book-review-meta-box.php:420
 msgid "a"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:402
+#: admin/class-book-review-meta-box.php:421
 msgid "an"
 msgstr ""
 
 #: admin/partials/book-review-admin-advanced.php:3
-msgid ""
-"This plugin uses the Google Books API to automatically populate the details "
-"of a book. In order to take advantage of this feature, you must first sign "
-"up for and enter an API key as described <a href=\"%s\" target=\"_blank"
-"\">here</a>."
+msgid "This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
 #: admin/partials/book-review-admin-advanced.php:19
@@ -121,9 +102,11 @@ msgid "Google API Key"
 msgstr ""
 
 #: admin/partials/book-review-admin-advanced.php:28
-msgid ""
-"Your Google API key obtained from the <a href=\"%s\" target=\"_blank"
-"\">Google Developers Console</a>."
+msgid "Your Google API key obtained from the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>."
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:37
+msgid "Country"
 msgstr ""
 
 #: admin/partials/book-review-admin-appearance.php:13
@@ -191,9 +174,7 @@ msgid "Rating Image URLs"
 msgstr ""
 
 #: admin/partials/book-review-admin-images.php:50
-msgid ""
-"To use your own rating images, enter the URL of an image for each rating "
-"below (1-5)."
+msgid "To use your own rating images, enter the URL of an image for each rating below (1-5)."
 msgstr ""
 
 #: admin/partials/book-review-admin-images.php:61
@@ -229,12 +210,7 @@ msgid "Custom Links"
 msgstr ""
 
 #: admin/partials/book-review-admin-links.php:29
-msgid ""
-"Configure the links that you would like to display with every book review. "
-"For every link added here, a new field will be shown in the <em>Book Info</"
-"em> section when editing a post. If you leave the <em>Link Image URL</em> "
-"field blank, links will be shown as text by default. Please see the <a href="
-"\"%s\" target=\"_blank\">documentation</a> for additional details."
+msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for additional details."
 msgstr ""
 
 #: admin/partials/book-review-admin-links.php:39
@@ -327,20 +303,18 @@ msgid "Thank you!"
 msgstr ""
 
 #: admin/partials/book-review-admin-notice.php:9
-msgid ""
-"Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter "
-"to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</"
-"span> plugin free for 12 months!"
+msgid "Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</span> plugin free for 12 months!"
 msgstr ""
 
 #: admin/partials/book-review-admin-notice.php:13
-msgid ""
-"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text"
-"\">Dismiss this notice.</span></a>"
+msgid "<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Dismiss this notice.</span></a>"
 msgstr ""
 
 #: public/partials/book-review-public.php:29
 msgid "Book Cover"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Book Review"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -348,9 +322,7 @@ msgid "http://wpreviewplugins.com/book-review/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Add book information such as title, author, publisher and cover photo to "
-"enhance your review posts."
+msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
 msgstr ""
 
 #. Author of the plugin/theme

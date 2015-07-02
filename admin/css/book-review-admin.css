@@ -13,14 +13,6 @@
   margin-left: 10px;
 }
 
-.book-review-admin .text-input {
-  width: 70%;
-}
-
-.book-review-admin .numeric-input {
-  width: 10%;
-}
-
 /* Rating Images Tab */
 .rating {
   display: none;

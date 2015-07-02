@@ -34,7 +34,6 @@ function addLink() {
   linkText.setAttribute("name", "book_review_links[" + rowCount + "][text]");
 
   // Link Image URL
-  linkImage.className = "text-input";
   linkImage.setAttribute("type", "text");
   linkImage.setAttribute("name", "book_review_links[" + rowCount + "][image]");
 

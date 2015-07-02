@@ -343,13 +343,13 @@ class Book_Review_Meta_Box {
    */
   public function get_book_info() {
     if ( wp_verify_nonce( $_REQUEST['nonce'], 'ajax_isbn_nonce' ) ) {
-      $options = get_option( 'book_review_general' );
       $advanced = get_option( 'book_review_advanced' );
-      $api_key = $advanced['book_review_api_key'];
+      $api_key = isset( $advanced['book_review_api_key'] ) ? $advanced['book_review_api_key'] : '';
+      $country = isset( $advanced['book_review_country'] ) ? $advanced['book_review_country'] : '';
 
-      if ( isset( $_POST['isbn'] ) && isset( $api_key ) && !empty( $api_key ) ) {
-        $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . sanitize_text_field( $_POST['isbn'] )
-          . '&key=' . sanitize_text_field( $api_key );
+      // Don't make a request to the API if there is no API key or ISBN.
+      if ( !empty( $api_key ) && !empty( $_POST['isbn'] ) && ( strlen( trim( $_POST['isbn'] ) ) > 0 ) ) {
+        $url = $this->get_api_url( $_POST['isbn'], $api_key, $country );
         $response = wp_remote_get( esc_url_raw( $url ) );
 
         try {
@@ -358,7 +358,10 @@ class Book_Review_Meta_Box {
             $result['data'] = $response->get_error_message();
           }
           else if ( $response['response']['code'] == 200 ) {
+            $options = get_option( 'book_review_general' );
             $date_format = $options['book_review_date_format'];
+
+            // Response
             $body = $response['body'];
             $result['status'] = 'success';
             $result['data'] = $body;
@@ -377,7 +380,7 @@ class Book_Review_Meta_Box {
       }
       else {
         $result['status'] = 'error';
-        $result['data'] = 'No API key';
+        $result['data'] = 'No API key or empty ISBN';
       }
     }
     else {
@@ -389,6 +392,22 @@ class Book_Review_Meta_Box {
 
     echo $result;
     wp_die();
+  }
+
+  /**
+   * Get the Google Books API request URL.
+   *
+   * @since    2.1.14
+   */
+  private function get_api_url( $isbn, $api_key, $country ) {
+    $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . sanitize_text_field( $isbn ) .
+      '&key=' . sanitize_text_field( $api_key );
+
+    if ( !empty( $country ) ) {
+      $url = add_query_arg( 'country', $country, $url );
+    }
+
+    return $url;
   }
 
   /**

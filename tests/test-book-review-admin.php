@@ -87,8 +87,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_appearance
    */
   public function testValidateBorderWidth() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_box_position'] = 'top';
     $input['book_review_bg_color'] = '#ffffff';
@@ -106,8 +106,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_appearance
    */
   public function testValidateZeroBorderWidth() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_box_position'] = 'top';
     $input['book_review_bg_color'] = '#ffffff';
@@ -125,8 +125,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_appearance
    */
   public function testValidateEmptyBorderWidth() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_box_position'] = 'top';
     $input['book_review_bg_color'] = '#ffffff';
@@ -144,8 +144,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_appearance
    */
   public function testValidateInvalidBorderWidth() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_box_position'] = 'top';
     $input['book_review_bg_color'] = '#ffffff';
@@ -163,8 +163,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateExcerpts() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_home'] = '1';
     $input['book_review_rating_default'] = '1';
@@ -182,8 +182,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateNoExcerpts() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_default'] = '1';
     $input['book_review_rating_image1'] = '';
@@ -200,8 +200,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateDefaultImages() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_default'] = '1';
     $input['book_review_rating_image1'] = '';
@@ -218,8 +218,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateImageURLs() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_image1'] = 'http://url.to.image1.png';
     $input['book_review_rating_image2'] = 'http://url.to.image2.png';
@@ -240,8 +240,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateEmptyImageURLs() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_image1'] = '';
     $input['book_review_rating_image2'] = '';
@@ -262,8 +262,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateInvalidImageURLs() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_image1'] = 'url.to.image1.png';
     $input['book_review_rating_image2'] = 'url.to.image2.png';
@@ -283,8 +283,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_rating_images
    */
   public function testValidateDefaultImagesWithImageURLs() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_rating_default'] = '1';
     $input['book_review_rating_image1'] = '';
@@ -305,8 +305,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_links
    */
   public function testValidateLinkTarget() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_target'] = '1';
     $output = $this->plugin_admin->validate_links( $input );
@@ -318,8 +318,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_links
    */
   public function testValidateNoLinkTarget() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $output = $this->plugin_admin->validate_links( $input );
 
@@ -332,8 +332,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testInsertCustomLink() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = 'Goodreads';
@@ -357,8 +357,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testUpdateCustomLink() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = 'Goodreads';
@@ -390,8 +390,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testValidateEmptyLinkText() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = '';
@@ -410,8 +410,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testValidateInvalidLinkText() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = ' <div> This is  some markup </div> ';
@@ -433,8 +433,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testValidateInvalidLinkImageURL() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = 'Goodreads';
@@ -456,8 +456,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   public function testValidateInactiveLink() {
     global $wpdb;
 
-    $output = array();
     $input = array();
+    $output = array();
 
     // Add row.
     $input[1]['text'] = 'Goodreads';
@@ -476,10 +476,11 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_advanced
    */
   public function testValidateAPIKey() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_api_key'] = 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0';
+    $input['book_review_country'] = 'CA';
     $output = $this->plugin_admin->validate_advanced( $input );
 
     $this->assertEquals( 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0', $output['book_review_api_key'] );
@@ -489,9 +490,10 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_advanced
    */
   public function testValidateEmptyAPIKey() {
-    $output = array();
     $input = array();
+    $output = array();
 
+    $input['book_review_country'] = 'CA';
     $output = $this->plugin_admin->validate_advanced( $input );
 
     $this->assertEquals( '', $output['book_review_api_key'] );
@@ -501,13 +503,28 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Admin::validate_advanced
    */
   public function testValidateInvalidAPIKey() {
-    $output = array();
     $input = array();
+    $output = array();
 
     $input['book_review_api_key'] = '<script>alert("Injected javascript")</script>AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0';
+    $input['book_review_country'] = 'CA';
     $output = $this->plugin_admin->validate_advanced( $input );
 
     $this->assertEquals( 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0', $output['book_review_api_key'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::validate_advanced
+   */
+  public function testValidateCountry() {
+    $country = 'CA';
+    $input = array();
+    $output = array();
+
+    $input['book_review_country'] = $country;
+    $output = $this->plugin_admin->validate_advanced( $input );
+
+    $this->assertEquals( $country, $output['book_review_country'] );
   }
 
   /**
@@ -557,7 +574,7 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    */
   public function testColumnContent() {
     $meta_data = array( 'book_review_rating' => '3' );
-    $content = '<img src="http://example.org/wp-content/plugins/vagrant/www/github/wordpress-book-review-plugin/includes/images/three-star.png" class="book_review_column_rating">';
+    $content = '<img src="' . plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png" class="book_review_column_rating">';
     $post_id = $this->factory->post->create();
 
     foreach( $meta_data as $key => $value ) {

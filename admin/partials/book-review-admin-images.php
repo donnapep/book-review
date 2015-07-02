@@ -62,7 +62,7 @@
           </label>
         </th>
         <td>
-          <input id="book_review_rating_image1" class="text-input"
+          <input id="book_review_rating_image1" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image1]"
             value="<?php echo isset( $ratings['book_review_rating_image1'] ) ?
               esc_url( $ratings['book_review_rating_image1'] ) : ''; ?>">
@@ -77,7 +77,7 @@
           </label>
         </th>
         <td>
-          <input id="book_review_rating_image2" class="text-input"
+          <input id="book_review_rating_image2" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image2]"
             value="<?php echo isset( $ratings['book_review_rating_image2'] ) ?
               esc_url( $ratings['book_review_rating_image2'] ) : ''; ?>">
@@ -92,7 +92,7 @@
           </label>
         </th>
         <td>
-          <input id="book_review_rating_image3" class="text-input"
+          <input id="book_review_rating_image3" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image3]"
             value="<?php echo isset( $ratings['book_review_rating_image3'] ) ?
               esc_url( $ratings['book_review_rating_image3'] ) : ''; ?>">
@@ -107,7 +107,7 @@
           </label>
         </th>
         <td>
-          <input id="book_review_rating_image4" class="text-input"
+          <input id="book_review_rating_image4" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image4]"
             value="<?php echo isset( $ratings['book_review_rating_image4'] ) ?
               esc_url( $ratings['book_review_rating_image4'] ) : ''; ?>">
@@ -122,7 +122,7 @@
           </label>
         </th>
         <td>
-          <input id="book_review_rating_image5" class="text-input"
+          <input id="book_review_rating_image5" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image5]"
             value="<?php echo isset( $ratings['book_review_rating_image5'] ) ?
               esc_url( $ratings['book_review_rating_image5'] ) : ''; ?>">
