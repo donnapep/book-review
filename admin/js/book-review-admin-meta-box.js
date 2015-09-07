@@ -45,7 +45,6 @@ jQuery(document).ready(function($) {
     var volume = null;
     var author = "";
     var genre = "";
-    var dateFormat = "";
     var data = {
       action: "get_book_info",
       nonce: $("#ajax_isbn_nonce").text(),
@@ -114,8 +113,8 @@ jQuery(document).ready(function($) {
               }
 
               // Release Date
-              if (volume.hasOwnProperty("publishedDate")) {
-                showFormattedDate(volume.publishedDate, json.format);
+              if (json.releaseDate) {
+                setField($("#book_review_release_date"), json.releaseDate);
               }
 
               // Pages
@@ -175,45 +174,6 @@ jQuery(document).ready(function($) {
   function setField($elem, value) {
     if (!$.trim($elem.val()) && (value != null)) {
       $elem.val(value);
-    }
-  }
-
-  function showFormattedDate(releaseDate, format) {
-    var parts, currentDate, currentMonth, currentYear, months;
-
-    if (!$.trim($("#book_review_release_date").val()) && (releaseDate != null)) {
-      if (format !== "none") {
-        parts = releaseDate.split("-");
-
-        // Ensure that month, day and year have all been returned.
-        if (parts.length === 3) {
-          releaseDate = new Date(parts[0], parts[1] - 1, parts[2]);
-          currentDate = releaseDate.getDate();
-          currentMonth = releaseDate.getMonth();
-          currentYear = releaseDate.getFullYear();
-          months = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
-
-          if (format === "short") {
-            currentMonth++;
-            releaseDate = currentMonth + "/" + currentDate + "/" + currentYear;
-          }
-          else if (format === "european") {
-            currentMonth++;
-            releaseDate = currentDate + "/" + currentMonth + "/" + currentYear;
-          }
-          else if (format === "medium") {
-            releaseDate = months[currentMonth].substring(0, 3) + " " +
-              currentDate + " " + currentYear;
-          }
-          else if (format === "long") {
-            releaseDate = months[currentMonth] + " " + currentDate + ", " +
-              currentYear;
-          }
-        }
-      }
-
-      $("#book_review_release_date").val(releaseDate);
     }
   }
 });

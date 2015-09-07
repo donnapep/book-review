@@ -1,5 +1,9 @@
 # Change Log #
 
+## 2.2.0 ##
+* New: Add ability to select post types to show book information for.
+* Tweak: Remove Release Date Format field. Format is now controlled via the Date Format field in Settings > General.
+
 ## 2.1.14 ##
 * New: Add Country dropdown to Advanced tab of Book Review settings.
 * Tweak: Apply WordPress CSS class names to input elements.

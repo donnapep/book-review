@@ -1,14 +1,15 @@
-<p>
-  <?php
-    printf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ) );
-  ?>
-</p>
-
 <form action="options.php" method="post">
   <?php
     @settings_fields( 'advanced_options' );
     @do_settings_fields( 'advanced_options' );
   ?>
+
+  <div>
+    <h3><?php esc_html_e( 'Google API', $this->plugin_name ); ?></h3>
+    <p>
+      <?php printf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ) ); ?>
+    </p>
+  </div>
 
   <table class="form-table">
     <tbody>
@@ -31,6 +32,7 @@
           </p>
         </td>
       </tr>
+      <!-- Country -->
       <tr>
         <th scope="row">
           <label for="book_review_country">

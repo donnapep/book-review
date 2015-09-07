@@ -90,6 +90,7 @@
   <input class="add-link button" type="button" value="<?php esc_html_e( 'Add Link', $this->plugin_name ); ?>"
     onclick="addLink();">
 
+  <!-- TODO: Remove this. -->
   <?php do_action( 'book_review_after_links_options', $links_option ); ?>
   <?php @submit_button(); ?>
 </form>
