@@ -216,11 +216,24 @@ class Book_Review_Admin {
         'book_review_bg_color' => '',
         'book_review_border_color' => '',
         'book_review_border_width' => '1',
-        'book_review_date_format' => 'none',
+        'book_review_post_types' => array(
+          'post' => '1'
+        )
       );
 
       $general = get_option( 'book_review_general' );
       $general = wp_parse_args( $general, $general_defaults );
+
+      // Post Types
+      if ( isset( $general['book_review_post_types'] ) ) {
+        $general['book_review_post_types'] = wp_parse_args( $general['book_review_post_types'], $general_defaults['book_review_post_types'] );
+      }
+      else {
+        $general['book_review_post_types'] = $general_defaults['book_review_post_types'];
+      }
+
+      $post_types = $this->get_post_types();
+      $keys = array_keys( $post_types );
 
       include_once( 'partials/book-review-admin-appearance.php' );
     }
@@ -258,12 +271,30 @@ class Book_Review_Admin {
   }
 
   /**
-   * Render options in the Country dropdown.
+   * Returns the post types to show on the Appearance tab.
    *
-   * @since     2.1.14
+   * @since     2.2.0
    */
-  private function add_countries() {
-    $countries = array(
+  private function get_post_types() {
+    $args = array(
+      'public' => true
+    );
+
+    $post_types = get_post_types( $args, 'objects' );
+
+    // Exclude media.
+    unset( $post_types['attachment'] );
+
+    return $post_types;
+  }
+
+  /**
+   * Returns the countries.
+   *
+   * @since     2.2.0
+   */
+  private function get_countries() {
+    return array(
       ''   => '',
       'US' => 'United States',
       'CA' => 'Canada',
@@ -518,7 +549,15 @@ class Book_Review_Admin {
       'ZM' => 'Zambia',
       'ZW' => 'Zimbabwe'
     );
+  }
 
+  /**
+   * Render options in the Country dropdown.
+   *
+   * @since     2.1.14
+   */
+  private function add_countries() {
+    $countries = $this->get_countries();
     $advanced = get_option( 'book_review_advanced' );
     $selected_country = isset( $advanced['book_review_country'] ) ? $advanced['book_review_country'] : '';
 
@@ -548,48 +587,68 @@ class Book_Review_Admin {
    * @since    1.0.0
    */
   public function init_menu() {
-    register_setting( 'general_options', 'book_review_general', array( $this, 'validate_appearance' )  );
-    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'validate_rating_images' ) );
-    register_setting( 'links_options', 'book_review_links', array( $this, 'validate_links' ) );
-    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'validate_advanced' ) );
+    register_setting( 'general_options', 'book_review_general', array( $this, 'sanitize_appearance' )  );
+    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'sanitize_rating_images' ) );
+    register_setting( 'links_options', 'book_review_links', array( $this, 'sanitize_links' ) );
+    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'sanitize_advanced' ) );
   }
 
   /**
-   * Validate fields on the Appearance tab.
+   * Sanitize fields on the Appearance tab.
    *
    * @since     2.1.9
    */
-  public function validate_appearance( $input ) {
+  public function sanitize_appearance( $input ) {
     $output = array();
-    $output['book_review_box_position'] = $input['book_review_box_position'];
-    $output['book_review_bg_color'] = $input['book_review_bg_color'];
-    $output['book_review_border_color'] = $input['book_review_border_color'];
-    $output['book_review_date_format'] = $input['book_review_date_format'];
 
-    // Validate border width.
-    $input['book_review_border_width'] = trim( $input['book_review_border_width'] );
-    $output['book_review_border_width'] = intval( $input['book_review_border_width'] );
+    $output['book_review_box_position'] = isset( $input['book_review_box_position'] ) ?
+      $input['book_review_box_position'] : 'top';
+    $output['book_review_bg_color'] = isset( $input['book_review_bg_color'] ) ?
+      $input['book_review_bg_color'] : '';
+    $output['book_review_border_color'] = isset( $input['book_review_border_color'] ) ?
+      $input['book_review_border_color'] : '';
 
-    if ( $input['book_review_border_width'] != '0' ) {
-      // Value is empty or a string.
-      if ( intval( $input['book_review_border_width'] ) == 0 ) {
-        add_settings_error(
-          'book_review_appearance',
-          'border-width-error',
-          esc_html__( 'Review Box Border Width must be numeric.', $this->plugin_name )
-        );
+    // Sanitize border width.
+    if ( isset( $input['book_review_border_width'] ) ) {
+      $input['book_review_border_width'] = trim( $input['book_review_border_width'] );
+      $output['book_review_border_width'] = intval( $input['book_review_border_width'] );
+
+      if ( $input['book_review_border_width'] != '0' ) {
+        // Value is empty or a string.
+        if ( intval( $input['book_review_border_width'] ) == 0 ) {
+          add_settings_error(
+            'book_review_appearance',
+            'border-width-error',
+            esc_html__( 'Review Box Border Width must be numeric.', $this->plugin_name )
+          );
+        }
+      }
+    }
+    else {
+      $output['book_review_border_width'] = 0;
+    }
+
+    // Post Types - Only checked boxes are posted.
+    $allowed_post_types = array_keys( $this->get_post_types() );
+
+    foreach ( $allowed_post_types as $allowed_post_type ) {
+      if ( isset( $input['book_review_post_types'][$allowed_post_type] ) ) {
+        $output['book_review_post_types'][$allowed_post_type] = '1';
+      }
+      else {
+        $output['book_review_post_types'][$allowed_post_type] = '0';
       }
     }
 
-    return apply_filters( 'book_review_validate_appearance', $output, $input );
+    return $output;
   }
 
   /**
-   * Validate rating image URLs.
+   * Sanitize rating image URLs.
    *
    * @since     1.0.0
    */
-  public function validate_rating_images( $input ) {
+  public function sanitize_rating_images( $input ) {
     $image_error = false;
     $output = array();
     $output['book_review_rating_home'] = isset( $input['book_review_rating_home'] ) ? $input['book_review_rating_home'] : '';
@@ -622,15 +681,15 @@ class Book_Review_Admin {
       );
     }
 
-    return apply_filters( 'book_review_validate_rating_images', $output, $input );
+    return $output;
   }
 
   /**
-   * Validate link image URLs.
+   * Sanitize link image URLs.
    *
    * @since     1.0.0
    */
-  public function validate_links( $input ) {
+  public function sanitize_links( $input ) {
     $output = array();
     $output['book_review_target'] = isset( $input['book_review_target'] ) ? $input['book_review_target'] : '';
 
@@ -707,47 +766,32 @@ class Book_Review_Admin {
       }
     }
 
-    return apply_filters( 'book_review_validate_links', $output, $input );
+    return $output;
   }
 
   /**
-   * Validate fields on Advanced tab.
+   * Sanitize fields on Advanced tab.
    *
    * @since     2.1.6
    */
-  public function validate_advanced( $input ) {
+  public function sanitize_advanced( $input = array() ) {
     $output = array();
 
+    // API Key
     $output['book_review_api_key'] = isset( $input['book_review_api_key'] ) ?
       sanitize_text_field( $input['book_review_api_key'] ) : '';
-    $output['book_review_country'] = $input['book_review_country'];
 
-    return apply_filters( 'book_review_validate_advanced', $output, $input );
-  }
+    // Country
+    $allowed_countries = array_keys( $this->get_countries() );
 
-  /**
-   * Render options in the Release Date Format dropdown.
-   *
-   * @since     2.0.0
-   */
-  public function render_date_format_field() {
-    $formats = array(
-      'none' => __( 'None', $this->plugin_name ),
-      'short' => date( 'n/j/Y', current_time( 'timestamp', 0 ) ),
-      'european' => date( 'j/n/Y', current_time( 'timestamp', 0 ) ),
-      'medium' => date( 'M j Y', current_time( 'timestamp', 0 ) ),
-      'long' => date( 'F j, Y', current_time( 'timestamp', 0 ) ),
-    );
-
-    $options = get_option( 'book_review_general' );
-    $options['book_review_date_format'] = isset( $options['book_review_date_format'] ) ?
-      $options['book_review_date_format'] : 'none';
-
-    foreach( $formats as $type => $format ) {
-      $selected = ( $options['book_review_date_format'] == $type ) ? 'selected="selected"' : '';
-
-      echo '<option value="' . esc_attr( $type ) . '" ' . $selected . '>' . esc_html( $format ) . '</option>';
+    if ( isset( $input['book_review_country'] ) && in_array( $input['book_review_country'], $allowed_countries ) ) {
+      $output['book_review_country'] = $input['book_review_country'];
     }
+    else {
+      $output['book_review_country'] = '';
+    }
+
+    return $output;
   }
 
   /**

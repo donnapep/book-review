@@ -4,9 +4,12 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
   protected $plugin_name;
   protected $plugin_public;
   protected $plugin_meta;
+  protected $post_id;
 
   public function setup() {
     global $wpdb;
+    global $wp_query;
+    global $post;
 
     parent::setUp();
 
@@ -14,6 +17,13 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     $this->plugin_name = $plugin->get_plugin_name();
     $this->plugin_public = new Book_Review_Public( $this->plugin_name, $plugin->get_version() );
     $this->plugin_meta = new Book_Review_Meta_Box( $this->plugin_name );
+
+    $wp_query->is_home = true;
+    $this->post_id = $this->factory->post->create();
+    $post = get_post( $this->post_id);
+
+    update_post_meta( $this->post_id, 'book_review_title', 'The Giver' );
+    update_post_meta( $this->post_id, 'book_review_release_date', '2006-01-24' );
 
     $this->suppress = $wpdb->suppress_errors();
   }
@@ -35,6 +45,58 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     do_action( 'wp_enqueue_scripts' );
 
     $this->assertTrue( wp_style_is( $this->plugin_name ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_book_info
+   */
+  public function testAddBookInfoToPostByDefault() {
+    set_post_type( $this->post_id, 'post' );
+
+    $content = $this->plugin_public->add_book_info( '' );
+
+    $this->assertNotEquals( '', $content );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_book_info
+   */
+  public function testAddBookInfoToPage() {
+    $general = array();
+    $general['book_review_post_types'] = array(
+      'page' => '1'
+    );
+
+    add_option( 'book_review_general', $general );
+    set_post_type( $this->post_id, 'page' );
+
+    $content = $this->plugin_public->add_book_info( '' );
+
+    $this->assertNotEquals( '', $content );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_book_info
+   */
+  public function testAddBookInfoToPostWhenPageSet() {
+    $general = array();
+    $general['book_review_post_types'] = array(
+      'page' => '1'
+    );
+
+    add_option( 'book_review_general', $general );
+    set_post_type( $this->post_id, 'post' );
+
+    $content = $this->plugin_public->add_book_info( '' );
+
+    $this->assertNotEquals( '', $content );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_book_info
+   */
+  public function testAddBookInfoToCustomPostType() {
+
   }
 
   private function addPostMeta() {

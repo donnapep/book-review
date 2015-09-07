@@ -83,75 +83,93 @@ class Book_Review_Public {
    * @return   string   Revised content of the post.
    */
   public function add_book_info( $content ) {
-    if ( is_home() || is_single() || is_feed() ) {
-      $values = get_post_custom();
+    $general_defaults = array(
+      'book_review_box_position' => 'top',
+      'book_review_bg_color' => '',
+      'book_review_border_color' => '',
+      'book_review_border_width' => '1',
+      'book_review_post_types' => array(
+        'post' => '1'
+      )
+    );
 
-      // General
-      $general_defaults = array(
-        'book_review_box_position' => 'top',
-        'book_review_bg_color' => '',
-        'book_review_border_color' => '',
-        'book_review_border_width' => '1',
-        'book_review_date_format' => 'none',
-      );
-      $general_option = get_option( 'book_review_general' );
-      $general_option = wp_parse_args( $general_option, $general_defaults );
+    $general = get_option( 'book_review_general' );
+    $general = wp_parse_args( $general, $general_defaults );
 
-      // Set the value for each key.
-      foreach ( array( 'book_review_cover_url', 'book_review_title',
-        'book_review_series', 'book_review_author', 'book_review_genre',
-        'book_review_publisher', 'book_review_release_date',
-        'book_review_format', 'book_review_pages', 'book_review_source',
-        'book_review_rating', 'book_review_summary' ) as $var ) {
-        $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
-      }
+    if ( isset( $general['book_review_post_types'] ) ) {
+      $general['book_review_post_types'] = wp_parse_args( $general['book_review_post_types'], $general_defaults['book_review_post_types'] );
+    }
+    else {
+      $general['book_review_post_types'] = $general_defaults['book_review_post_types'];
+    }
 
-      // Title must be specified.
-      if ( !empty( $book_review_title ) ) {
-        $plugin = Book_Review::get_instance();
+    // Post Types
+    $current_post_type = get_post_type( get_the_ID() );
 
-        // Settings
-        $box_position = $general_option['book_review_box_position'];
-        $bg_color = $general_option['book_review_bg_color'];
-        $border_color = $general_option['book_review_border_color'];
-        $border_width = $general_option['book_review_border_width'];
-        $review_box_style = '';
+    foreach ( $general['book_review_post_types'] as $post_type => $value) {
+      if ( $current_post_type == $post_type ) {
+        if ( $value == '1' ) {
+          $values = get_post_custom();
 
-        // Don't apply inline CSS to an RSS feed.
-        if ( !is_feed() ) {
-          $review_box_style = 'border-style: solid;';
-
-          if ( isset( $border_color ) && !empty( $border_color ) ) {
-            $review_box_style .= ' border-color: ' . $border_color . ';';
+          // Set the value for each key.
+          foreach ( array( 'book_review_cover_url', 'book_review_title',
+            'book_review_series', 'book_review_author', 'book_review_genre',
+            'book_review_publisher', 'book_review_release_date',
+            'book_review_pages', 'book_review_source', 'book_review_rating',
+            'book_review_summary' ) as $var ) {
+            $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
           }
 
-          if ( isset( $border_width ) && ( !empty( $border_width ) || ( $border_width == 0 ) ) ) {
-            $review_box_style .= ' border-width: ' . $border_width . 'px;';
-          }
+          // Title must be specified.
+          if ( !empty( $book_review_title ) ) {
+            $plugin = Book_Review::get_instance();
 
-          if ( isset( $bg_color ) && !empty( $bg_color ) ) {
-            $review_box_style .= ' background-color: ' . $bg_color . ';';
+            // Settings
+            $box_position = $general['book_review_box_position'];
+            $bg_color = $general['book_review_bg_color'];
+            $border_color = $general['book_review_border_color'];
+            $border_width = $general['book_review_border_width'];
+            $review_box_style = '';
+
+            // Don't apply inline CSS to an RSS feed.
+            if ( !is_feed() ) {
+              $review_box_style = 'border-style: solid;';
+
+              if ( isset( $border_color ) && !empty( $border_color ) ) {
+                $review_box_style .= ' border-color: ' . $border_color . ';';
+              }
+
+              if ( isset( $border_width ) && ( !empty( $border_width ) || ( $border_width == 0 ) ) ) {
+                $review_box_style .= ' border-width: ' . $border_width . 'px;';
+              }
+
+              if ( isset( $bg_color ) && !empty( $bg_color ) ) {
+                $review_box_style .= ' background-color: ' . $bg_color . ';';
+              }
+            }
+
+            // Rating
+            $book_review_rating_url = $plugin->get_rating()->get_rating_image( $book_review_rating );
+
+            // Links
+            $links = $this->create_links();
+
+            // Review Box Position
+            ob_start();
+            include( 'partials/book-review-public.php' );
+
+            $content = '<div itemprop="reviewBody">' . $content . '</div>';
+
+            if ( $box_position == 'top' ) {
+              $content = ob_get_clean() . $content;
+            }
+            else {
+              $content = $content . ob_get_clean();
+            }
           }
         }
 
-        // Rating
-        $book_review_rating_url = $plugin->get_rating()->get_rating_image( $book_review_rating );
-
-        // Links
-        $links = $this->create_links();
-
-        // Review Box Position
-        ob_start();
-        include( 'partials/book-review-public.php' );
-
-        $content = '<div itemprop="reviewBody">' . $content . '</div>';
-
-        if ( $box_position == 'top' ) {
-          $content = ob_get_clean() . $content;
-        }
-        else {
-          $content = $content . ob_get_clean();
-        }
+        break;
       }
     }
 

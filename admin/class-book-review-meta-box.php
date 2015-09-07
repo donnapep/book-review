@@ -56,16 +56,49 @@ class Book_Review_Meta_Box {
    * @since    1.0.0
    */
   public function add_meta_box( $post_type ) {
-    if ( ( $post_type != 'page' ) && ( $post_type != 'attachment' ) &&
-      ( $post_type != 'revision' ) && ( $post_type != 'nav_menu_item' ) ) {
-      add_meta_box(
-        'book-review-meta-box',
-        esc_html__( 'Book Info', $this->plugin_name ),
-        array( $this, 'render_meta_box' ),
-        $post_type,
-        'normal',
-        'high'
-      );
+    $defaults = array();
+
+    // Maintain backwards compatibility by showing the meta box for posts and all custom post types,
+    // but only if the Post Types setting has never been saved.
+    $defaults['book_review_post_types'] = array(
+      'post' => '1'
+    );
+
+    $args = array(
+      'public'   => true,
+      '_builtin' => false
+    );
+
+    $cpts = get_post_types( $args, 'names' );
+
+    // Add a default value for each custom post type.
+    foreach ( $cpts as $cpt ) {
+      $defaults['book_review_post_types'][$cpt] = '1';
+    }
+
+    $general = get_option( 'book_review_general' );
+    $general = wp_parse_args( $general, $defaults );
+
+    if ( isset( $general['book_review_post_types'] ) ) {
+      $general['book_review_post_types'] = wp_parse_args( $general['book_review_post_types'], $defaults['book_review_post_types'] );
+    }
+    else {
+      $general['book_review_post_types'] = $defaults['book_review_post_types'];
+    }
+
+    foreach ( $general['book_review_post_types'] as $key => $value ) {
+      if ( ( $post_type == $key ) && ( $value == '1' ) ) {
+        add_meta_box(
+          'book-review-meta-box',
+          esc_html__( 'Book Info', $this->plugin_name ),
+          array( $this, 'render_meta_box' ),
+          $post_type,
+          'normal',
+          'high'
+        );
+
+        break;
+      }
     }
   }
 
@@ -358,14 +391,26 @@ class Book_Review_Meta_Box {
             $result['data'] = $response->get_error_message();
           }
           else if ( $response['response']['code'] == 200 ) {
-            $options = get_option( 'book_review_general' );
-            $date_format = $options['book_review_date_format'];
+            $json = json_decode( $response['body'] );
 
-            // Response
+            // Format the Release Date.
+            if ( isset( $json->items[0]->volumeInfo->publishedDate ) ) {
+              $published_date = $json->items[0]->volumeInfo->publishedDate;
+              $obj_date = DateTime::createFromFormat( 'Y-m-d', $published_date );
+
+              // Check that date is in the expected Y-m-d format.
+              if ( $obj_date != false ) {
+                // Format the date as per the WordPress "Date Format" setting.
+                $published_date = $obj_date->format( get_option( 'date_format' ) );
+              }
+
+              // Add the date to the result.
+              $result['releaseDate'] = $published_date;
+            }
+
             $body = $response['body'];
             $result['status'] = 'success';
             $result['data'] = $body;
-            $result['format'] = $date_format;
           }
           else {
             $result['status'] = 'error';

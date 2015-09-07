@@ -1,3 +1,6 @@
+<p>
+  <h3><?php esc_html_e( 'Review Box', $this->plugin_name ); ?></h3>
+</p>
 <form action="options.php" method="post">
   <?php
     @settings_fields( 'general_options' );
@@ -6,11 +9,11 @@
 
   <table class="form-table">
     <tbody>
-      <!-- Review Box Position -->
+      <!-- Position -->
       <tr>
         <th scope="row">
           <label for="book_review_box_position_top">
-            <?php esc_html_e( 'Review Box Position', $this->plugin_name ); ?>:
+            <?php esc_html_e( 'Position', $this->plugin_name ); ?>:
           </label>
         </th>
         <td>
@@ -37,11 +40,11 @@
         </td>
       </tr>
 
-      <!-- Review Box Background Color -->
+      <!-- Background Color -->
       <tr>
         <th scope="row">
           <label for="book_review_bg_color">
-            <?php esc_html_e( 'Review Box Background Color', $this->plugin_name ); ?>:
+            <?php esc_html_e( 'Background Color', $this->plugin_name ); ?>:
           </label>
         </th>
         <td>
@@ -51,11 +54,11 @@
         </td>
       </tr>
 
-      <!-- Review Box Border Color -->
+      <!-- Border Color -->
       <tr>
         <th scope="row">
           <label for="book_review_border_color">
-            <?php esc_html_e( 'Review Box Border Color', $this->plugin_name ); ?>:
+            <?php esc_html_e( 'Border Color', $this->plugin_name ); ?>:
           </label>
         </th>
         <td>
@@ -65,11 +68,11 @@
         </td>
       </tr>
 
-      <!-- Review Box Border Width -->
+      <!-- Border Width -->
       <tr>
         <th scope="row">
           <label for="book_review_border_width">
-            <?php esc_html_e( 'Review Box Border Width', $this->plugin_name ); ?>:
+            <?php esc_html_e( 'Border Width', $this->plugin_name ); ?>:
           </label>
         </th>
         <td>
@@ -79,22 +82,45 @@
             <?php esc_html_e( 'pixel(s)', $this->plugin_name ); ?>
         </td>
       </tr>
+    </tbody>
+  </table>
 
-      <!-- Release Date Format -->
+  <!-- Post Types -->
+  <div>
+    <h3><?php esc_html_e( 'Post Types', $this->plugin_name ); ?></h3>
+    <p>
+      <?php esc_html_e( 'Select the post types to show book information for.',
+        $this->plugin_name ); ?>
+    </p>
+  </div>
+
+  <table class="form-table">
+    <tbody>
       <tr>
         <th scope="row">
-          <label for="book_review_date_format">
-            <?php esc_html_e( 'Release Date Format', $this->plugin_name ); ?>:
-          </label>
+          <?php esc_html_e( 'Post Types', $this->plugin_name ); ?>:
         </th>
         <td>
-          <select id="book_review_date_format"
-            name="book_review_general[book_review_date_format]">
-            <?php esc_html( $this->render_date_format_field() ); ?>
-          </select>
-          <p class="description">
-            <?php esc_html_e( 'Format that the Release Date will be shown in.', $this->plugin_name ); ?>
-          </p>
+          <fieldset>
+            <legend class="screen-reader-text">
+              <span><?php esc_html_e( 'Post Types', $this->plugin_name ); ?></span>
+            </legend>
+
+            <?php foreach( $keys as $key ) {
+              if ( !empty( $post_types[$key]->label ) ) { ?>
+            <label for="book_review_<?php echo esc_attr( $key ); ?>">
+               <input id="book_review_<?php echo esc_attr( $key ); ?>" type="checkbox"
+               name="book_review_general[book_review_post_types][<?php echo esc_attr( $key ); ?>]"
+               value="1"
+               <?php checked( '1', isset( $general['book_review_post_types'][$key] ) ?
+                $general['book_review_post_types'][$key] : '' ); ?>>
+               <?php esc_html_e( $post_types[$key]->label ); ?>
+            </label>
+            <br>
+            <?php
+              }
+            } ?>
+          </fieldset>
         </td>
       </tr>
     </tbody>

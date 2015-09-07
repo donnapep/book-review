@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.1.14\n"
+"Project-Id-Version: Book Review 2.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-06-28 15:39:10+00:00\n"
+"POT-Creation-Date: 2015-08-20 11:18:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,105 +48,111 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: admin/class-book-review-admin.php:541 tests/test-book-review-admin.php:73
+#: admin/class-book-review-admin.php:580 tests/test-book-review-admin.php:73
 msgid "Settings"
 msgstr ""
 
-#: admin/class-book-review-admin.php:579
+#: admin/class-book-review-admin.php:622
 msgid "Review Box Border Width must be numeric."
 msgstr ""
 
-#: admin/class-book-review-admin.php:621
+#: admin/class-book-review-admin.php:680
 msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
 msgstr ""
 
-#: admin/class-book-review-admin.php:703
+#: admin/class-book-review-admin.php:762
 msgid "Link Text is a required field. Please ensure you enter text for each link."
 msgstr ""
 
-#: admin/class-book-review-admin.php:735
-msgid "None"
-msgstr ""
-
-#: admin/class-book-review-admin.php:759
+#: admin/class-book-review-admin.php:803
 #: admin/partials/book-review-admin-meta-box.php:141
 msgid "Rating"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:63
+#: admin/class-book-review-meta-box.php:93
 msgid "Book Info"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:324
+#: admin/class-book-review-meta-box.php:357
 msgid "Select..."
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:420
+#: admin/class-book-review-meta-box.php:465
 msgid "the"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:420
+#: admin/class-book-review-meta-box.php:465
 msgid "a"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:421
+#: admin/class-book-review-meta-box.php:466
 msgid "an"
 msgstr ""
 
-#: admin/partials/book-review-admin-advanced.php:3
+#: admin/partials/book-review-admin-advanced.php:8
+msgid "Google API"
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:10
 msgid "This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: admin/partials/book-review-admin-advanced.php:19
+#: admin/partials/book-review-admin-advanced.php:20
 msgid "Google API Key"
 msgstr ""
 
-#: admin/partials/book-review-admin-advanced.php:28
+#: admin/partials/book-review-admin-advanced.php:29
 msgid "Your Google API key obtained from the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>."
 msgstr ""
 
-#: admin/partials/book-review-admin-advanced.php:37
+#: admin/partials/book-review-admin-advanced.php:39
 msgid "Country"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:13
-msgid "Review Box Position"
+#: admin/partials/book-review-admin-appearance.php:2
+msgid "Review Box"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:22
+#: admin/partials/book-review-admin-appearance.php:16
+msgid "Position"
+msgstr ""
+
+#: admin/partials/book-review-admin-appearance.php:25
 msgid "Top"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:31
+#: admin/partials/book-review-admin-appearance.php:34
 msgid "Bottom"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:35
+#: admin/partials/book-review-admin-appearance.php:38
 msgid "Whether to show the review box at the top or bottom of a post."
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:44
-msgid "Review Box Background Color"
+#: admin/partials/book-review-admin-appearance.php:47
+msgid "Background Color"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:58
-msgid "Review Box Border Color"
+#: admin/partials/book-review-admin-appearance.php:61
+msgid "Border Color"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:72
-msgid "Review Box Border Width"
+#: admin/partials/book-review-admin-appearance.php:75
+msgid "Border Width"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:79
+#: admin/partials/book-review-admin-appearance.php:82
 msgid "pixel(s)"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:87
-msgid "Release Date Format"
+#: admin/partials/book-review-admin-appearance.php:90
+#: admin/partials/book-review-admin-appearance.php:101
+#: admin/partials/book-review-admin-appearance.php:106
+msgid "Post Types"
 msgstr ""
 
-#: admin/partials/book-review-admin-appearance.php:96
-msgid "Format that the Release Date will be shown in."
+#: admin/partials/book-review-admin-appearance.php:92
+msgid "Select the post types to show book information for."
 msgstr ""
 
 #: admin/partials/book-review-admin-images.php:2
@@ -313,8 +319,13 @@ msgstr ""
 #: public/partials/book-review-public.php:29
 msgid "Book Cover"
 msgstr ""
-#. Plugin Name of the plugin/theme
-msgid "Book Review"
+
+#: tests/test-book-review-meta-box.php:75
+msgid "Products"
+msgstr ""
+
+#: tests/test-book-review-meta-box.php:76
+msgid "Product"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

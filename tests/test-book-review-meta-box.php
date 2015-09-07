@@ -33,35 +33,79 @@ class Book_Review_Meta_Box_Tests extends WP_UnitTestCase {
    * TODO: Figure out how to test that an action was added.
    */
   public function testMetaBoxSetup() {
-
   }
 
   /**
    * @covers Book_Review_Meta_Box::add_meta_box
    */
-  public function testAddMetaBox() {
-    global $wp_meta_boxes;
-
-    $post_type = 'post';
-    $screen = convert_to_screen( $post_type );
-    $page = $screen->id;
-    $this->plugin_meta->add_meta_box( $post_type );
-
-    $this->assertArrayHasKey( 'book-review-meta-box', $wp_meta_boxes[$page]['normal']['high'] );
-  }
-
-  /**
-   * @covers Book_Review_Meta_Box::add_meta_box
-   */
-  public function testNoMetaBox() {
+  public function testNoMetaBoxOnPageByDefault() {
     global $wp_meta_boxes;
 
     $post_type = 'page';
     $screen = convert_to_screen( $post_type );
-    $page = $screen->id;
+    $screen_id = $screen->id;
     $this->plugin_meta->add_meta_box( $post_type );
 
-    $this->assertArrayNotHasKey( $page, $wp_meta_boxes );
+    $this->assertEquals( 0, count( $wp_meta_boxes ) );
+  }
+
+  /**
+   * @covers Book_Review_Meta_Box::add_meta_box
+   */
+  public function testAddMetaBoxToPostByDefault() {
+    global $wp_meta_boxes;
+
+    $post_type = 'post';
+    $screen = convert_to_screen( $post_type );
+    $screen_id = $screen->id;
+    $this->plugin_meta->add_meta_box( $post_type );
+
+    $this->assertArrayHasKey( 'book-review-meta-box', $wp_meta_boxes[$screen_id]['normal']['high'] );
+  }
+
+  /**
+   * @covers Book_Review_Meta_Box::add_meta_box
+   */
+  public function testAddMetaBoxToCustomPostTypeByDefault() {
+    global $wp_meta_boxes;
+
+    register_post_type( 'acme_product',
+      array(
+        'labels' => array(
+          'name' => __( 'Products' ),
+          'singular_name' => __( 'Product' )
+        ),
+        'public' => true,
+      )
+    );
+
+    $post_type = 'acme_product';
+    $screen = convert_to_screen( $post_type );
+    $screen_id = $screen->id;
+    $this->plugin_meta->add_meta_box( $post_type );
+
+    $this->assertArrayHasKey( 'book-review-meta-box', $wp_meta_boxes[$screen_id]['normal']['high'] );
+  }
+
+  /**
+   * @covers Book_Review_Meta_Box::add_meta_box
+   */
+  public function testAddMetaBoxBySetting() {
+    global $wp_meta_boxes;
+
+    $general = array();
+    $general['book_review_post_types'] = array(
+      'page' => '1'
+    );
+
+    add_option( 'book_review_general', $general );
+
+    $post_type = 'page';
+    $screen = convert_to_screen( $post_type );
+    $screen_id = $screen->id;
+    $this->plugin_meta->add_meta_box( $post_type );
+
+    $this->assertArrayHasKey( 'book-review-meta-box', $wp_meta_boxes[$screen_id]['normal']['high'] );
   }
 
   /**
@@ -84,7 +128,7 @@ class Book_Review_Meta_Box_Tests extends WP_UnitTestCase {
     $this->assertEquals( 'John Green', $custom_fields['book_review_author'][0] );
     $this->assertEquals( 'Young Adult', $custom_fields['book_review_genre'][0] );
     $this->assertEquals( 'Dutton Books', $custom_fields['book_review_publisher'][0] );
-    $this->assertEquals( 'January 12, 2012', $custom_fields['book_review_release_date'][0] );
+    $this->assertEquals( '2010-05-25', $custom_fields['book_review_release_date'][0] );
     $this->assertEquals( 'Paperback', $custom_fields['book_review_format'][0] );
     $this->assertEquals( '313', $custom_fields['book_review_pages'][0] );
     $this->assertEquals( 'Purchased', $custom_fields['book_review_source'][0] );
@@ -417,7 +461,7 @@ class Book_Review_Meta_Box_Tests extends WP_UnitTestCase {
     $_POST['book_review_author'] = 'John Green';
     $_POST['book_review_genre'] = 'Young Adult';
     $_POST['book_review_publisher'] = 'Dutton Books';
-    $_POST['book_review_release_date'] = 'January 12, 2012';
+    $_POST['book_review_release_date'] = '2010-05-25';
     $_POST['book_review_format'] = 'Paperback';
     $_POST['book_review_pages'] = '313';
     $_POST['book_review_source'] = 'Purchased';
