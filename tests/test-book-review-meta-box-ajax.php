@@ -8,7 +8,7 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     // Add Google API Key.
     $advanced = array(
-      'book_review_api_key' => 'AIzaSyCBbpjgTzdGQ0wZtCzfZ7xKRZI5cmiBHjQ'
+      'book_review_api_key' => 'AIzaSyC6M_RBobKajBT245xIQ_WfxX42BTXA_Oo'
     );
 
     add_option( 'book_review_advanced', $advanced );
@@ -268,7 +268,7 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     // Add Google API Key.
     $advanced = array(
-      'book_review_api_key' => 'AIzaSyCBbpjgTzdGQ0wZtCzfZ7xKRZI5cmiBHjQ',
+      'book_review_api_key' => 'AIzaSyC6M_RBobKajBT245xIQ_WfxX42BTXA_Oo',
       'book_review_country' => 'CA'
     );
 

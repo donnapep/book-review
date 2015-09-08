@@ -97,6 +97,8 @@ class Book_Review_Meta_Box {
           'high'
         );
 
+        do_action( 'book_review_meta_box', $post_type );
+
         break;
       }
     }

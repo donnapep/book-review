@@ -353,7 +353,7 @@ msgid "Book Cover"
 msgstr "Couverture du livre"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpreviewplugins.com/book-review/"
+msgid "http://wpreviewplugins.com/downloads/book-review/"
 msgstr ""
 
 #. Description of the plugin/theme

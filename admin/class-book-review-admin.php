@@ -124,7 +124,7 @@ class Book_Review_Admin {
       $translation_array = array(
         'no_isbn' => esc_html__( 'Please enter an ISBN.', $this->plugin_name ),
         'not_found' => esc_html__( 'A book with this ISBN was not found in the Google Books database.', $this->plugin_name ),
-        'unknown_error' => sprintf( __( '<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href="%s">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown.</p><p>Please also check to ensure that the correct IP address of your server has been entered into the <a href="%s" target="_blank">Google Developers Console</a>. See the <a href="%s" target="_blank">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href="%s" target="_blank">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!', $this->plugin_name ), esc_url( admin_url( 'options-general.php?page=' . $this->plugin_name ) . '&tab=advanced' ), esc_url( 'https://code.google.com/apis/console' ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ), esc_url( 'http://wpreviewplugins.com/support/forum/general-support/' ) ) );
+        'unknown_error' => sprintf( __( '<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href="%s">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown.</p><p>Please also check to ensure that the correct IP address of your server has been entered into the <a href="%s" target="_blank">Google Developers Console</a>. See the <a href="%s" target="_blank">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href="%s" target="_blank">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!', $this->plugin_name ), esc_url( admin_url( 'options-general.php?page=' . $this->plugin_name ) . '&tab=advanced' ), esc_url( 'https://code.google.com/apis/console' ), esc_url( 'http://wpreviewplugins.com/documentation/settings-advanced/' ), esc_url( 'http://wpreviewplugins.com/support/forum/general-support/' ) ) );
       wp_localize_script( $this->plugin_name, 'book_review_google_api', $translation_array );
     }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
@@ -140,15 +140,6 @@ class Book_Review_Admin {
    * @since    2.0.0
    */
   public function add_plugin_admin_menu() {
-    /*
-     * Add a settings page for this plugin to the Settings menu.
-     *
-     * NOTE:  Alternative menu locations are available via WordPress
-     *        administration menu functions.
-     *
-     *        Administration Menus:
-     *        http://codex.wordpress.org/Administration_Menus
-     */
     $this->plugin_screen_hook_suffix = add_options_page(
       esc_html__( 'Book Review Settings', $this->plugin_name ),
       esc_html__( 'Book Review', $this->plugin_name ),
