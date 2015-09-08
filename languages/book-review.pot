@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.2.0\n"
+"Project-Id-Version: Book Review 2.2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-08-20 11:18:56+00:00\n"
+"POT-Creation-Date: 2015-09-08 12:04:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,47 +24,47 @@ msgstr ""
 msgid "<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href=\"%s\">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown.</p><p>Please also check to ensure that the correct IP address of your server has been entered into the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>. See the <a href=\"%s\" target=\"_blank\">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!"
 msgstr ""
 
-#: admin/class-book-review-admin.php:153
+#: admin/class-book-review-admin.php:144
 msgid "Book Review Settings"
 msgstr ""
 
-#: admin/class-book-review-admin.php:154
+#: admin/class-book-review-admin.php:145
 msgid "Book Review"
 msgstr ""
 
-#: admin/class-book-review-admin.php:177
+#: admin/class-book-review-admin.php:168
 msgid "Appearance"
 msgstr ""
 
-#: admin/class-book-review-admin.php:178
+#: admin/class-book-review-admin.php:169
 msgid "Rating Images"
 msgstr ""
 
-#: admin/class-book-review-admin.php:179
+#: admin/class-book-review-admin.php:170
 msgid "Links"
 msgstr ""
 
-#: admin/class-book-review-admin.php:180
+#: admin/class-book-review-admin.php:171
 msgid "Advanced"
 msgstr ""
 
-#: admin/class-book-review-admin.php:580 tests/test-book-review-admin.php:73
+#: admin/class-book-review-admin.php:571 tests/test-book-review-admin.php:73
 msgid "Settings"
 msgstr ""
 
-#: admin/class-book-review-admin.php:622
+#: admin/class-book-review-admin.php:613
 msgid "Review Box Border Width must be numeric."
 msgstr ""
 
-#: admin/class-book-review-admin.php:680
+#: admin/class-book-review-admin.php:671
 msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
 msgstr ""
 
-#: admin/class-book-review-admin.php:762
+#: admin/class-book-review-admin.php:753
 msgid "Link Text is a required field. Please ensure you enter text for each link."
 msgstr ""
 
-#: admin/class-book-review-admin.php:803
+#: admin/class-book-review-admin.php:794
 #: admin/partials/book-review-admin-meta-box.php:141
 msgid "Rating"
 msgstr ""
@@ -73,19 +73,19 @@ msgstr ""
 msgid "Book Info"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:357
+#: admin/class-book-review-meta-box.php:359
 msgid "Select..."
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:465
+#: admin/class-book-review-meta-box.php:467
 msgid "the"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:465
+#: admin/class-book-review-meta-box.php:467
 msgid "a"
 msgstr ""
 
-#: admin/class-book-review-meta-box.php:466
+#: admin/class-book-review-meta-box.php:468
 msgid "an"
 msgstr ""
 
@@ -107,6 +107,10 @@ msgstr ""
 
 #: admin/partials/book-review-admin-advanced.php:39
 msgid "Country"
+msgstr ""
+
+#: admin/partials/book-review-admin-advanced.php:47
+msgid "The Google Books API requires your geographic location in order to return content."
 msgstr ""
 
 #: admin/partials/book-review-admin-appearance.php:2
@@ -329,7 +333,7 @@ msgid "Product"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpreviewplugins.com/book-review/"
+msgid "http://wpreviewplugins.com/downloads/book-review/"
 msgstr ""
 
 #. Description of the plugin/theme

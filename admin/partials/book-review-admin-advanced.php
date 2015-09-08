@@ -7,7 +7,7 @@
   <div>
     <h3><?php esc_html_e( 'Google API', $this->plugin_name ); ?></h3>
     <p>
-      <?php printf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/book-review/#advanced' ) ); ?>
+      <?php printf( __( 'This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href="%s" target="_blank">here</a>.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/documentation/settings-advanced/' ) ); ?>
     </p>
   </div>
 
@@ -44,9 +44,7 @@
             <?php $this->add_countries(); ?>
           </select>
           <p class="description">
-            <?php
-              esc_html_e( __( 'The Google Books API requires your geographic location in order to return content.', $this->plugin_name ) );
-            ?>
+            <?php esc_html_e( 'The Google Books API requires your geographic location in order to return content.', $this->plugin_name ); ?>
           </p>
         </td>
       </tr>

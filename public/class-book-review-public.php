@@ -70,12 +70,6 @@ class Book_Review_Public {
   /**
    * Add the book info into the post.
    *
-   * NOTE:  Filters are points of execution in which WordPress modifies data
-   *        before saving it or sending it to the browser.
-   *
-   *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-   *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-   *
    * @since    1.0.0
    *
    * @param    string    $content    Content of the post.

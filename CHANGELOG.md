@@ -1,5 +1,11 @@
 # Change Log #
 
+## 2.2.1 ##
+* New: Add Serbian translation.
+* New: Add `book_review_meta_box` hook for when *Book Info* meta box is added.
+* Tweak: Update website links.
+* Fix: Fix broken translation string on Advanced tab.
+
 ## 2.2.0 ##
 * New: Add ability to select post types to show book information for.
 * Tweak: Remove Release Date Format field. Format is now controlled via the Date Format field in Settings > General.
