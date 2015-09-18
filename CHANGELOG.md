@@ -1,10 +1,15 @@
 # Change Log #
 
+## 2.2.2 ##
+* New: Add Dutch translation.
+* Tweak: Internationalize countries on *Advanced* tab.
+* Fix: Fix *Format* not showing in review box.
+
 ## 2.2.1 ##
 * New: Add Serbian translation.
 * New: Add `book_review_meta_box` hook for when *Book Info* meta box is added.
 * Tweak: Update website links.
-* Fix: Fix broken translation string on Advanced tab.
+* Fix: Fix broken translation string on *Advanced* tab.
 
 ## 2.2.0 ##
 * New: Add ability to select post types to show book information for.

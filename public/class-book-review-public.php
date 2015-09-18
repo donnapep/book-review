@@ -109,8 +109,8 @@ class Book_Review_Public {
           foreach ( array( 'book_review_cover_url', 'book_review_title',
             'book_review_series', 'book_review_author', 'book_review_genre',
             'book_review_publisher', 'book_review_release_date',
-            'book_review_pages', 'book_review_source', 'book_review_rating',
-            'book_review_summary' ) as $var ) {
+            'book_review_format', 'book_review_pages', 'book_review_source',
+            'book_review_rating', 'book_review_summary' ) as $var ) {
             $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
           }
 

@@ -12,6 +12,9 @@
   color: #ed6a48;
   background-color: #fad7c8;
   border-radius: 5px;
+
+  /* Other */
+  overflow: auto;
 }
 
 #book-review-notice .logo {
@@ -39,6 +42,7 @@
   display: inline-block;
   padding: 10px 15px;
   border: 1px solid #dd6141;
+  margin: 0 5px 0;
 
   /* Visual */
   color: #fff;

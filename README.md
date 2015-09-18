@@ -20,6 +20,7 @@ This plugin supports the following translations (with thanks to the translators!
 * Arabic (منهل العدّاي‎)
 * Chinese (Vahi Chen)
 * Czech (Radek Volf)
+* Dutch (Petran Liket)
 * French (Guillaume Andreux)
 * German (Linguasoft)
 * Indonesian (Ardhi Sulaeman)
