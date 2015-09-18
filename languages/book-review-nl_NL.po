@@ -1,0 +1,424 @@
+# Copyright (C) 2015 Book Review
+# This file is distributed under the same license as the Book Review package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Book Review 2.2.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
+"POT-Creation-Date: 2015-09-08 16:49+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-09-10 12:34+0200\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.4\n"
+"Last-Translator: Petran Liket <info@petranliket.nl>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl_NL\n"
+
+#: admin/class-book-review-admin.php:125
+msgid "Please enter an ISBN."
+msgstr "Geef het ISBN-nummer in"
+
+#: admin/class-book-review-admin.php:126
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr "Er is in de Google database geen boek gevonden met dit ISBN-nummer"
+
+#: admin/class-book-review-admin.php:127
+msgid ""
+"<p>Sorry, but something went wrong. Please check to ensure that you have "
+"entered your Google API Key correctly on the <em>Advanced</em> tab of the <a "
+"href=\"%s\">Book Review Settings</a>, and that you have selected a "
+"<em>Country</em> from the dropdown.</p><p>Please also check to ensure that "
+"the correct IP address of your server has been entered into the <a href=\"%s"
+"\" target=\"_blank\">Google Developers Console</a>. See the <a href=\"%s\" "
+"target=\"_blank\">documentation</a> for more information.</p><p>If you are "
+"still having trouble, please leave a message in the <a href=\"%s\" target="
+"\"_blank\">General Support forum</a>. Be sure to include the URL of your web "
+"site in your post. Thanks!"
+msgstr ""
+"<p>Er is iets mis gegaan. Controleer a.u.b. of de ingevulde Google API-code "
+"correct is in <em>Geavanceerd</em> tab van de <a href=\"%s\">Book Review "
+"instellingen</a>, en dat er een <em>Land</em> is geselecteerd in het "
+"dropdown lijstje.</p><p>Controleer ook of het correcte IP-adres van uw "
+"server is ingevuld in de <a href=\"%s\" target=\"_blank\">Google Developers "
+"Console</a>. Lees de <a href=\"%s\" target=\"_blank\">documentatie</a> voor "
+"meer informatie.</p><p>Blijven er zich nog problemen voordoen, laat dan een "
+"bericht achter op het <a href=\"%s\" target=\"_blank\">General Support "
+"forum</a>. Vergeet daarbij niet om de juiste URL van uw website achter te "
+"laten. "
+
+#: admin/class-book-review-admin.php:144
+msgid "Book Review Settings"
+msgstr "Book Review instellingen"
+
+#: admin/class-book-review-admin.php:145
+msgid "Book Review"
+msgstr "Book Review"
+
+#: admin/class-book-review-admin.php:168
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: admin/class-book-review-admin.php:169
+msgid "Rating Images"
+msgstr "Waarderingsafbeeldingen"
+
+#: admin/class-book-review-admin.php:170
+msgid "Links"
+msgstr "Links"
+
+#: admin/class-book-review-admin.php:171
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: admin/class-book-review-admin.php:571 tests/test-book-review-admin.php:73
+msgid "Settings"
+msgstr "Instellingen"
+
+#: admin/class-book-review-admin.php:613
+msgid "Review Box Border Width must be numeric."
+msgstr "Recensie kaderrand moet een numerieke waarde hebben."
+
+#: admin/class-book-review-admin.php:671
+msgid ""
+"Rating Image URLs are required fields when not using the default rating "
+"images. Please ensure you enter a URL for each rating."
+msgstr ""
+"De URL's naar de waarderingsafbeeldingen zijn verplicht indien niet de "
+"standaard afbeeldingen worden gebruikt. Geef voor iedere afbeelding een "
+"aparte URL in."
+
+#: admin/class-book-review-admin.php:753
+msgid ""
+"Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+"Link tekst is een verplicht veld. Geef voor iedere link een aparte tekst in."
+
+#: admin/class-book-review-admin.php:794
+#: admin/partials/book-review-admin-meta-box.php:141
+msgid "Rating"
+msgstr "Waardering"
+
+#: admin/class-book-review-meta-box.php:93
+msgid "Book Info"
+msgstr "Boek info"
+
+#: admin/class-book-review-meta-box.php:359
+msgid "Select..."
+msgstr "Selecteer..."
+
+#: admin/class-book-review-meta-box.php:467
+msgid "the"
+msgstr "de"
+
+#: admin/class-book-review-meta-box.php:467
+msgid "a"
+msgstr "een"
+
+#: admin/class-book-review-meta-box.php:468
+msgid "an"
+msgstr "een"
+
+#: admin/partials/book-review-admin-advanced.php:8
+msgid "Google API"
+msgstr "Google API"
+
+#: admin/partials/book-review-admin-advanced.php:10
+msgid ""
+"This plugin uses the Google Books API to automatically populate the details "
+"of a book. In order to take advantage of this feature, you must first sign "
+"up for and enter an API key as described <a href=\"%s\" target=\"_blank"
+"\">here</a>."
+msgstr ""
+"Deze plugin gebruikt de Google Books API om automatisch informatie op te "
+"halen op basis van het ISBN-nummer. Om deze functie te kunnen gebruiken, "
+"dient u zich eerst aan te melden zoals  <a href=\"%s\" target=\"_blank"
+"\">hier</a> beschreven."
+
+#: admin/partials/book-review-admin-advanced.php:20
+msgid "Google API Key"
+msgstr "Google API sleutel"
+
+#: admin/partials/book-review-admin-advanced.php:29
+msgid ""
+"Your Google API key obtained from the <a href=\"%s\" target=\"_blank"
+"\">Google Developers Console</a>."
+msgstr ""
+"Uw Google API sleutel zoals verstrekt op de <a href=\"%s\" target=\"_blank"
+"\">Google Developers Console</a>."
+
+#: admin/partials/book-review-admin-advanced.php:39
+msgid "Country"
+msgstr "Land"
+
+#: admin/partials/book-review-admin-advanced.php:47
+msgid ""
+"The Google Books API requires your geographic location in order to return "
+"content."
+msgstr ""
+"De Google Books API heeft uw geografische positie nodig voor het leveren van "
+"de juiste informatie."
+
+#: admin/partials/book-review-admin-appearance.php:2
+msgid "Review Box"
+msgstr "Recensiekader"
+
+#: admin/partials/book-review-admin-appearance.php:16
+msgid "Position"
+msgstr "Positie"
+
+#: admin/partials/book-review-admin-appearance.php:25
+msgid "Top"
+msgstr "Boven"
+
+#: admin/partials/book-review-admin-appearance.php:34
+msgid "Bottom"
+msgstr "Onder"
+
+#: admin/partials/book-review-admin-appearance.php:38
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr ""
+"Kies hier of het recensiekader boven of onder de tekst moet worden geplaatst."
+
+#: admin/partials/book-review-admin-appearance.php:47
+msgid "Background Color"
+msgstr "Achtergrond kleur"
+
+#: admin/partials/book-review-admin-appearance.php:61
+msgid "Border Color"
+msgstr "Rand kleur"
+
+#: admin/partials/book-review-admin-appearance.php:75
+msgid "Border Width"
+msgstr "Rand dikte"
+
+#: admin/partials/book-review-admin-appearance.php:82
+msgid "pixel(s)"
+msgstr "pixel(s)"
+
+#: admin/partials/book-review-admin-appearance.php:90
+#: admin/partials/book-review-admin-appearance.php:101
+#: admin/partials/book-review-admin-appearance.php:106
+msgid "Post Types"
+msgstr "Pagina type"
+
+#: admin/partials/book-review-admin-appearance.php:92
+msgid "Select the post types to show book information for."
+msgstr "Kies de pagina typen op welke de boek informatie getoond moet worden."
+
+#: admin/partials/book-review-admin-images.php:2
+msgid "Configure the images to use for displaying ratings."
+msgstr "Configureer de afbeeldingen die gebruikt worden voor de waarderingen."
+
+#: admin/partials/book-review-admin-images.php:17
+msgid "Excerpts"
+msgstr "Samenvatting"
+
+#: admin/partials/book-review-admin-images.php:24
+msgid "Show the rating in excerpts"
+msgstr "Toon de waardering in de samenvatting"
+
+#: admin/partials/book-review-admin-images.php:32
+msgid "Default Rating Images"
+msgstr "Standaard waarderingsafbeeldingen"
+
+#: admin/partials/book-review-admin-images.php:40
+msgid "Use the default rating images"
+msgstr "Gebruik de standaard waarderingsafbeeldingen"
+
+#: admin/partials/book-review-admin-images.php:48
+msgid "Rating Image URLs"
+msgstr "Waarderingsafbeeldingen URL's"
+
+#: admin/partials/book-review-admin-images.php:50
+msgid ""
+"To use your own rating images, enter the URL of an image for each rating "
+"below (1-5)."
+msgstr ""
+"Om uw eigen waarderingsafbeeldingen te gebruiken geeft u voor iedere "
+"waardering een eigen URL in (1-5)"
+
+#: admin/partials/book-review-admin-images.php:61
+msgid "One-star Image URL"
+msgstr "1-ster URL"
+
+#: admin/partials/book-review-admin-images.php:76
+msgid "Two-star Image URL"
+msgstr "2-sterren URL"
+
+#: admin/partials/book-review-admin-images.php:91
+msgid "Three-star Image URL"
+msgstr "3-sterren URL"
+
+#: admin/partials/book-review-admin-images.php:106
+msgid "Four-star Image URL"
+msgstr "4-sterren URL"
+
+#: admin/partials/book-review-admin-images.php:121
+msgid "Five-star Image URL"
+msgstr "5-sterren URL"
+
+#: admin/partials/book-review-admin-links.php:13
+msgid "Link Target"
+msgstr "Link doel"
+
+#: admin/partials/book-review-admin-links.php:20
+msgid "Open links in a new tab"
+msgstr "Open link in een nieuw tabblad"
+
+#: admin/partials/book-review-admin-links.php:26
+msgid "Custom Links"
+msgstr "Eigen links"
+
+#: admin/partials/book-review-admin-links.php:29
+msgid ""
+"Configure the links that you would like to display with every book review. "
+"For every link added here, a new field will be shown in the <em>Book Info</"
+"em> section when editing a post. If you leave the <em>Link Image URL</em> "
+"field blank, links will be shown as text by default. Please see the <a href="
+"\"%s\" target=\"_blank\">documentation</a> for additional details."
+msgstr ""
+"Configureer de links die getoond moeten worden bij iedere boekrecensie. Voor "
+"iedere toegevoegde link komt een nieuw veld beschikbaar in de <em>Boek info</"
+"em> sectie. Als de <em>Link afbeelding URL</em> leeg gelaten wordt, zal de "
+"link getoond worden als een tekstlink. Lees de <a href=\"%s\" target=\"_blank"
+"\">documentatie</a> voor extra informatie."
+
+#: admin/partials/book-review-admin-links.php:39
+msgid "Link Text (required)"
+msgstr "Link tekst (verplicht)"
+
+#: admin/partials/book-review-admin-links.php:44
+msgid "Link Image URL (optional)"
+msgstr "Link afbeelding URL (optioneel)"
+
+#: admin/partials/book-review-admin-links.php:48
+msgid "Active"
+msgstr "Actief"
+
+#: admin/partials/book-review-admin-links.php:90
+msgid "Add Link"
+msgstr "Voeg link toe"
+
+#: admin/partials/book-review-admin-meta-box.php:18
+msgid "ISBN"
+msgstr "ISBN"
+
+#: admin/partials/book-review-admin-meta-box.php:23
+msgid "Get Book Info"
+msgstr "Haal boek informatie op"
+
+#: admin/partials/book-review-admin-meta-box.php:32
+#: public/partials/book-review-public.php:35
+msgid "Title"
+msgstr "Titel"
+
+#: admin/partials/book-review-admin-meta-box.php:42
+#: public/partials/book-review-public.php:46
+msgid "Series"
+msgstr "Serie"
+
+#: admin/partials/book-review-admin-meta-box.php:51
+#: public/partials/book-review-public.php:57
+msgid "Author"
+msgstr "Auteur"
+
+#: admin/partials/book-review-admin-meta-box.php:60
+#: public/partials/book-review-public.php:70
+msgid "Genre"
+msgstr "Genre"
+
+#: admin/partials/book-review-admin-meta-box.php:69
+#: public/partials/book-review-public.php:81
+msgid "Publisher"
+msgstr "Uitgever"
+
+#: admin/partials/book-review-admin-meta-box.php:79
+#: public/partials/book-review-public.php:92
+msgid "Release Date"
+msgstr "Uitgave datum"
+
+#: admin/partials/book-review-admin-meta-box.php:88
+#: public/partials/book-review-public.php:103
+msgid "Format"
+msgstr "Uitvoering"
+
+#: admin/partials/book-review-admin-meta-box.php:97
+#: public/partials/book-review-public.php:114
+msgid "Pages"
+msgstr "Pagina's"
+
+#: admin/partials/book-review-admin-meta-box.php:106
+#: public/partials/book-review-public.php:125
+msgid "Source"
+msgstr "Bron"
+
+#: admin/partials/book-review-admin-meta-box.php:118
+msgid "Cover URL"
+msgstr "Omslag URL"
+
+#: admin/partials/book-review-admin-meta-box.php:123
+msgid "Upload Cover"
+msgstr "Upload omslag"
+
+#: admin/partials/book-review-admin-meta-box.php:133
+msgid "Synopsis"
+msgstr "Synopsis"
+
+#: admin/partials/book-review-admin-meta-box.php:154
+msgid "Include post in archives"
+msgstr "Voeg recensie toe aan archieven"
+
+#: admin/partials/book-review-admin-notice.php:5
+msgid "Thank you!"
+msgstr "Dank u!"
+
+#: admin/partials/book-review-admin-notice.php:9
+msgid ""
+"Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter "
+"to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</"
+"span> plugin free for 12 months!"
+msgstr ""
+"Wilt u geld verdienen met uw reviews? <a href=\"%s\" target=\"_blank\">Klik "
+"hier om kans te maken</a> om de <span class=\"linkalizer\">Affiliate "
+"Linkalizer for Amazon</span> plugin 12 maanden gratis te mogen gebruiken!"
+
+#: admin/partials/book-review-admin-notice.php:13
+msgid ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text"
+"\">Dismiss this notice.</span></a>"
+msgstr ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Negeer "
+"deze opmerking.</span></a>"
+
+#: public/partials/book-review-public.php:29
+msgid "Book Cover"
+msgstr "Boek omslag"
+
+#: tests/test-book-review-meta-box.php:75
+msgid "Products"
+msgstr "Producten"
+
+#: tests/test-book-review-meta-box.php:76
+msgid "Product"
+msgstr "Product"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpreviewplugins.com/downloads/book-review/"
+msgstr "http://wpreviewplugins.com/downloads/book-review/"
+
+#. Description of the plugin/theme
+msgid ""
+"Add book information such as title, author, publisher and cover photo to "
+"enhance your review posts."
+msgstr ""
+"Voeg boek informatie toe zoals titel, auteur, uitgever, en omslag om uw "
+"recensies compleet te maken."
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr "Donna Peplinskie"
+
+#. Author URI of the plugin/theme
+msgid "http://donnapeplinskie.com/"
+msgstr "http://donnapeplinskie.com/"
