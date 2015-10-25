@@ -8,8 +8,9 @@
   border-bottom-width: 3px;
 
   /* Visual */
-  font-size: 14px;
-  color: #ed6a48;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  color: #cd5b45;
   background-color: #fad7c8;
   border-radius: 5px;
 
@@ -27,42 +28,29 @@
   margin-left: 70px;
 }
 
-#book-review-notice .thank-you {
+#book-review-notice .content div {
   /* Display & Box Model */
-  margin-bottom: 10px;
+  line-height: 1.6em;
+}
 
+#book-review-notice .thank-you {
   /* Visual */
-  font-weight: bold;
   font-size: 1.2em;
 }
 
 /* Call to Action */
-#book-review-notice .message a {
+#book-review-notice .cta {
   /* Display & Box Model */
   display: inline-block;
-  padding: 10px 15px;
-  border: 1px solid #dd6141;
-  margin: 0 5px 0;
+  padding: 6px 12px;
 
   /* Visual */
+  background: #cd5b45;
   color: #fff;
-  font-weight: 600;
-  background: #ed6a48;
-  border-radius: 5px;
-
-  -webkit-transition: all .1s linear;
-  -moz-transition: all .1s linear;
-  transition: all .1s linear;
-}
-
-#book-review-notice .message a:hover {
-  /* Visual */
-  background: #f1885b;
-}
-
-#book-review-notice .linkalizer {
-  /* Visual */
-  font-weight: bold;
+  font-weight: 400;
+  border-radius: 15px;
+  line-height: 1.428571429;
+  white-space: nowrap;
 }
 
 /* Dismiss Button */
@@ -79,7 +67,7 @@
 
   /* Visual */
   background: 0 0;
-  color: #ed6a48;
+  color: #cd5b45;
   cursor: pointer;
 }
 
@@ -97,7 +85,7 @@
   /* Visual */
   line-height: 20px;
   background: 0 0;
-  color: #ed6a48;
+  color: #cd5b45;
   content: '\f153';
   font: 400 16px/1 dashicons;
   speak: none;
@@ -108,7 +96,7 @@
 #book-review-notice .dismiss,
 #book-review-notice .dismiss::before {
   /* Visual */
-  color: #ed6a48;
+  color: #cd5b45;
 }
 
 #book-review-notice .dismiss:active:before,

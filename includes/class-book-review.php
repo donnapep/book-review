@@ -91,10 +91,14 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.2.2';
+    $this->version = '2.2.3';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
+    }
+
+    if ( !defined( 'BOOK_REVIEW_PLUGIN_URL' ) ) {
+      define( 'BOOK_REVIEW_PLUGIN_URL', plugin_dir_url( dirname( __FILE__ ) ) );
     }
 
     $this->load_dependencies();

@@ -1,21 +1,27 @@
-# WordPress Book Review Plugin #
+# Book Review #
 
-The WordPress Book Review plugin saves you time when writing your book review posts – no more copying and pasting or manually entering in a book’s details. Instead, you can focus on the important stuff, like actually writing your reviews!
+## Save Time ##
+Book Review saves you time when writing your reviews. No more copying and pasting or manually entering the details of a book. Instead, you provide the ISBN, and Book Review will automatically populate information like title, author, and even the cover photo for you.
 
-The plugin can also help to increase traffic to your site by creating better-looking search results in Google that will make yours stand out from the rest.
+## Increase Traffic ##
+Book Review can help increase traffic to your site by making your Google search result stand out from the rest. And that means more users clicking through to visit your site.
 
-## Monetization ##
-If you’re interested in throwing monetization into the mix, the WordPress Book Review plugin can help with its custom buy links feature.
+See the *Screenshots* below for an example of what your Google search result might look like.
 
-Members of the Amazon Associates Program, or people who are thinking of becoming members, will definitely be interested in Affiliate Linkalizer for Amazon. This premium add-on will save you even more time and earn you even more money! To be entered for a chance to win Affiliate Linkalizer for Amazon free for 12 months, please fill out this short [survey](http://wpreviewplugins.com/affiliate-linkalizer/).
+## Monetize Your Site ##
+If you’re interested in throwing monetization into the mix, Book Review can help with its custom links feature. Just enter the affiliate URLs for Amazon, Barnes & Noble, or any other online store, and Book Review will take care of adding the links to each of your reviews.
 
-Sound pretty good? Then check out the [full documentation](http://wpreviewplugins.com/documentation/) to learn more.
+[Learn more about Book Review](http://wpreviewplugins.com/product/book-review/#utm_source=github.com&utm_medium=partner&utm_campaign=book+review)
 
-## Feature Requests ##
-For a comprehensive list of feature requests, or to vote for your favorites, please see the [Book Review Roadmap](https://trello.com/b/rlglE0Gf/book-review-roadmap). You can submit your own requests in the [Feature Requests forum](http://wpreviewplugins.com/support/forum/feature-requests/).
+## Affiliate Linkalizer for Amazon ##
+Although Amazon can be a great way to monetize your reviews, there’s a problem – being a member of the Amazon Associates Program in a particular country does *not* mean that you will automatically earn a commission on purchases made by users residing in other countries. And that can add up to a lot of lost revenue!
+
+Affiliate Linkalizer for Amazon is a premium extension for Book Review that ensures you maximize your earnings by regaining that lost income.
+
+[Learn more about Affiliate Linkalizer for Amazon](http://wpreviewplugins.com/product/affiliate-linkalizer-amazon/#utm_source=github.com&utm_medium=partner&utm_campaign=linkalizer)
 
 ## Internationalization ##
-This plugin supports the following translations (with thanks to the translators!):
+This plugin supports the following translations (with credit to the translators):
 
 * Arabic (منهل العدّاي‎)
 * Chinese (Vahi Chen)
@@ -31,22 +37,22 @@ This plugin supports the following translations (with thanks to the translators!
 * Spanish (Jose Luis Parra)
 * Swedish (Harald Indgul)
 
-If you would like to translate this plugin to another language, please review the instructions in the [documentation](http://wpreviewplugins.com/documentation/translate-book-review/).
+If you would like to translate Book Review into another language, please see the instructions in the [documentation](http://wpreviewplugins.com/documentation/translate-book-review/).
 
 ## Installation ##
 
-1. In WordPress, go to *Plugins* > *Add Plugins*.
-1. Search for *book review plugin*.
-1. Click on *Install Now*.
-1. Click on *Activate Plugin*.
-1. Customize the settings by clicking on *Book Review* in the *Settings* menu.
+1. In WordPress, go to *Plugins* > *Add New*.
+1. In the *Search Plugins* field, enter "Book Review".
+1. Click *Install Now* to install the plugin.
+1. Click *Activate Plugin* to activate the plugin.
+1. Configure the settings by going to *Settings* > *Book Review*.
 
 OR
 
 1. Download the plugin and extract it.
 1. Upload the `book-review` folder to the `/wp-content/plugins/` directory on your server.
 1. Activate the plugin through the *Plugins* menu in WordPress.
-1. Customize the settings by clicking on *Book Review* in the *Settings* menu.
+1. Configure the settings by going to *Settings* > *Book Review*.
 
 ## Screenshots ##
 
@@ -64,21 +70,22 @@ OR
 ![Google Search Results Page](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
 
 ## Contributions ##
-Anyone is welcome to contribute to the WordPress Book Review Plugin, but please read the [contribution guidelines](https://github.com/donnapep/wordpress-book-review-plugin/blob/master/CONTRIBUTING.md) first.
+Anyone is welcome to contribute to the WordPress Book Review Plugin, but please read the [contribution guidelines](https://github.com/donnapep/book-review/blob/master/CONTRIBUTING.md) first.
 
 There are various ways to get involved:
 
-* Raise an [issue](https://github.com/donnapep/wordpress-book-review-plugin/issues) on GitHub.
+* Raise an [issue](https://github.com/donnapep/book-review/issues) on GitHub.
 * Create a pull request with your bug fixes and/or new features.
 * Translate the plugin into different languages.
 
 ## Resources ##
-* Official documentation for the WordPress Book Review Plugin can be found [here](http://wpreviewplugins.com/documentation/).
+* Official documentation for Book Review can be found at [WP Review Plugins](http://wpreviewplugins.com/documentation/).
+* If you have problems, questions or suggestions, please post them to the [Book Review Support](http://wpreviewplugins.com/support/forum/general-support/) forum.
+* For a comprehensive list of feature requests, or to vote for your favorites, please see the [Book Review Roadmap](https://trello.com/b/rlglE0Gf/book-review-roadmap).
+* You can submit your own requests in the [Feature Requests forum](http://wpreviewplugins.com/support/forum/feature-requests/).
 * Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
-* If you have problems, questions or suggestions, please post them in the [General Support forum](http://wpreviewplugins.com/support/forum/general-support/).
 
 ## About Me ##
-* I’m the founder of [WPReviewPlugins.com](http://wpreviewplugins.com/).
-* I’m a front-end developer & developer advocate for [Rise Vision](http://risevision.com/).
-* I’m founder and contributor of the [Book Wookie](http://bookwookie.ca) book blog.
+* I’m the founder of [WP Review Plugins](http://wpreviewplugins.com/).
+* I’m the founder of the [Book Wookie](http://bookwookie.ca) book blog.
 * I blog about web and professional development at [donnapeplinskie.com](http://donnapeplinskie.com/).
