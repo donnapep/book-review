@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.2.3 ##
+* Tweak: Update admin notice that shows when plugin is first activated.
+
 ## 2.2.2 ##
 * New: Add Dutch translation.
 * Tweak: Internationalize countries on *Advanced* tab.

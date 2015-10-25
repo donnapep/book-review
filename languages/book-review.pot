@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.2.2\n"
+"Project-Id-Version: Book Review 2.2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-09-18 20:49:49+00:00\n"
+"POT-Creation-Date: 2015-10-24 22:03:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1056,7 +1056,7 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-#: admin/class-book-review-admin.php:571 tests/test-book-review-admin.php:73
+#: admin/class-book-review-admin.php:571
 msgid "Settings"
 msgstr ""
 
@@ -1321,23 +1321,19 @@ msgid "Thank you!"
 msgstr ""
 
 #: admin/partials/book-review-admin-notice.php:9
-msgid "Want to monetize your book reviews? <a href=\"%s\" target=\"_blank\">Enter to win</a> the <span class=\"linkalizer\">Affiliate Linkalizer for Amazon</span> plugin free for 12 months!"
+msgid "Now that you're writing amazing reviews, why not monetize them?"
 msgstr ""
 
-#: admin/partials/book-review-admin-notice.php:13
+#: admin/partials/book-review-admin-notice.php:14
+msgid "<a class=\"cta\" href=\"%s\" target=\"_blank\">Learn more</a> about Affiliate Linkalizer for Amazon and how it can help you to earn income from your book reviews."
+msgstr ""
+
+#: admin/partials/book-review-admin-notice.php:18
 msgid "<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Dismiss this notice.</span></a>"
 msgstr ""
 
 #: public/partials/book-review-public.php:29
 msgid "Book Cover"
-msgstr ""
-
-#: tests/test-book-review-meta-box.php:75
-msgid "Products"
-msgstr ""
-
-#: tests/test-book-review-meta-box.php:76
-msgid "Product"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
