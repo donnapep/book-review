@@ -28,7 +28,7 @@ class Book_Review_Activator {
    * @access   protected
    * @var     string
    */
-  const VERSION = '2.2.3';
+  const VERSION = '2.3.0';
 
   /**
    * Fired when the plugin is activated.
@@ -234,7 +234,6 @@ class Book_Review_Activator {
    *
    * @param    int    $blog_id    ID of the new blog.
    */
-  // TODO: Should this be static or non-static?
   public static function activate_new_site( $blog_id ) {
     if ( 1 !== did_action( 'wpmu_new_blog' ) ) {
       return;

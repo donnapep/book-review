@@ -20,7 +20,7 @@
         <td>
           <input id="book_review_rating_home" type="checkbox"
             name="book_review_ratings[book_review_rating_home]" value="1"
-            <?php checked( '1', $ratings['book_review_rating_home'] ); ?>>
+            <?php checked( '1', $ratings_option['book_review_rating_home'] ); ?>>
           <?php esc_html_e( 'Show the rating in excerpts', $this->plugin_name ); ?>
         </td>
       </tr>
@@ -35,8 +35,7 @@
         <td>
           <input id="book_review_rating_default" type="checkbox"
             name="book_review_ratings[book_review_rating_default]" value="1"
-            <?php checked( '1', $ratings['book_review_rating_default'] ); ?>
-            onchange="showRatingImages();">
+            <?php checked( '1', $ratings_option['book_review_rating_default'] ); ?>>
           <?php esc_html_e( 'Use the default rating images', $this->plugin_name ); ?>
         </td>
       </tr>
@@ -64,8 +63,7 @@
         <td>
           <input id="book_review_rating_image1" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image1]"
-            value="<?php echo isset( $ratings['book_review_rating_image1'] ) ?
-              esc_url( $ratings['book_review_rating_image1'] ) : ''; ?>">
+            value="<?php echo $ratings_option['book_review_rating_image1']; ?>">
         </td>
       </tr>
 
@@ -79,8 +77,7 @@
         <td>
           <input id="book_review_rating_image2" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image2]"
-            value="<?php echo isset( $ratings['book_review_rating_image2'] ) ?
-              esc_url( $ratings['book_review_rating_image2'] ) : ''; ?>">
+            value="<?php echo $ratings_option['book_review_rating_image2']; ?>">
         </td>
       </tr>
 
@@ -94,8 +91,7 @@
         <td>
           <input id="book_review_rating_image3" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image3]"
-            value="<?php echo isset( $ratings['book_review_rating_image3'] ) ?
-              esc_url( $ratings['book_review_rating_image3'] ) : ''; ?>">
+            value="<?php echo $ratings_option['book_review_rating_image3']; ?>">
         </td>
       </tr>
 
@@ -109,8 +105,7 @@
         <td>
           <input id="book_review_rating_image4" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image4]"
-            value="<?php echo isset( $ratings['book_review_rating_image4'] ) ?
-              esc_url( $ratings['book_review_rating_image4'] ) : ''; ?>">
+            value="<?php echo $ratings_option['book_review_rating_image4']; ?>">
         </td>
       </tr>
 
@@ -124,8 +119,7 @@
         <td>
           <input id="book_review_rating_image5" class="regular-text text-input"
             type="text" name="book_review_ratings[book_review_rating_image5]"
-            value="<?php echo isset( $ratings['book_review_rating_image5'] ) ?
-              esc_url( $ratings['book_review_rating_image5'] ) : ''; ?>">
+            value="<?php echo $ratings_option['book_review_rating_image5']; ?>">
         </td>
       </tr>
     </tbody>
@@ -135,5 +129,5 @@
 </form>
 
 <script type="text/javascript">
-  showRatingImages();
+  // showRatingImages();
 </script>

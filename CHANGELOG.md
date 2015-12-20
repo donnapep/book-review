@@ -1,5 +1,12 @@
 # Change Log #
 
+## 2.3.0 ##
+* New: Add support for custom fields.
+* Tweak: Improved validation when saving settings and post meta.
+* Tweak: Add filters when retrieving post meta.
+* Tweak: Add filters when saving and retrieving settings.
+* Fix: *Include post in archives* now saves when not checked.
+
 ## 2.2.3 ##
 * Tweak: Update admin notice that shows when plugin is first activated.
 

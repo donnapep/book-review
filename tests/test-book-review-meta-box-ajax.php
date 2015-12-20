@@ -150,7 +150,7 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
    * @covers Book_Review_Meta_Box::get_book_info
    */
   public function testReleaseDateDefaultFormat() {
-    $_POST['isbn'] = '0439023513';
+    $_POST['isbn'] = '9780062390721';
 
     try {
       $this->_handleAjax( 'get_book_info' );
@@ -161,14 +161,14 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     $response = json_decode( $this->_last_response );
 
-    $this->assertEquals( 'August 24, 2010', $response->releaseDate );
+    $this->assertEquals( 'March 24, 2015', $response->releaseDate );
   }
 
   /**
    * @covers Book_Review_Meta_Box::get_book_info
    */
   public function testReleaseDateYmdFormat() {
-    $_POST['isbn'] = '0439023513';
+    $_POST['isbn'] = '9780062390721';
 
     update_option( 'date_format', 'Y-m-d' );
 
@@ -181,14 +181,14 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     $response = json_decode( $this->_last_response );
 
-    $this->assertEquals( '2010-08-24', $response->releaseDate );
+    $this->assertEquals( '2015-03-24', $response->releaseDate );
   }
 
   /**
    * @covers Book_Review_Meta_Box::get_book_info
    */
   public function testReleaseDatemdYFormat() {
-    $_POST['isbn'] = '0439023513';
+    $_POST['isbn'] = '9780062390721';
 
     update_option( 'date_format', 'm/d/Y' );
 
@@ -201,14 +201,14 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     $response = json_decode( $this->_last_response );
 
-    $this->assertEquals( '08/24/2010', $response->releaseDate );
+    $this->assertEquals( '03/24/2015', $response->releaseDate );
   }
 
   /**
    * @covers Book_Review_Meta_Box::get_book_info
    */
   public function testReleaseDatedmYFormat() {
-    $_POST['isbn'] = '0439023513';
+    $_POST['isbn'] = '9780062390721';
 
     update_option( 'date_format', 'd/m/Y' );
 
@@ -221,7 +221,7 @@ class Book_Review_Ajax extends WP_Ajax_UnitTestCase {
 
     $response = json_decode( $this->_last_response );
 
-    $this->assertEquals( '24/08/2010', $response->releaseDate );
+    $this->assertEquals( '24/03/2015', $response->releaseDate );
   }
 
   /**

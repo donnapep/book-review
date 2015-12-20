@@ -73,7 +73,7 @@ class Book_Review {
    * @return    object    A single instance of this class.
    */
   public static function get_instance() {
-    if ( null == self::$instance ) {
+    if ( self::$instance == null ) {
       self::$instance = new self;
     }
 
@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.2.3';
+    $this->version = '2.3.0';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
@@ -118,7 +118,8 @@ class Book_Review {
    * - Book_Review_Activator. Defines plugin activation functionality.
    * - Book_Review_i18n. Defines internationalization functionality.
    * - Book_Review_Loader. Orchestrates the hooks of the plugin.
-   * - Book_Review_Rating. Defines functionality for the ratings tab.
+   * - Book_Review_Settings. Returns the settings.
+   * - Book_Review_Book_Info. Returns information about a book.
    * - Book_Review_Admin. Defines all hooks for the dashboard.
    * - Book_Review_Meta_Box. Defines all hooks for the metabox.
    * - Book_Review_Public. Defines all hooks for the public side of the site.
@@ -148,9 +149,14 @@ class Book_Review {
     require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-loader.php';
 
     /**
-     * The class responsible for defining all actions that relate to ratings.
+     * The class responsible for returning the settings.
      */
-    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-rating.php';
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-settings.php';
+
+    /**
+     * The class responsible for returning information about a book.
+     */
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-book-info.php';
 
     /**
      * The class responsible for displaying admin notices when the plugin is activated.
@@ -173,9 +179,9 @@ class Book_Review {
      */
     require_once BOOK_REVIEW_PLUGIN_DIR . 'public/class-book-review-public.php';
 
-    // TODO: Or make these public properties instead?
     $this->loader = new Book_Review_Loader();
-    $this->rating = new Book_Review_Rating( $this->get_plugin_name() );
+    $this->settings = new Book_Review_Settings();
+    $this->book_info = new Book_Review_Book_Info( $this->get_plugin_name(), $this->get_settings() );
   }
 
   /**
@@ -225,17 +231,44 @@ class Book_Review {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Book_Review_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Book_Review_Admin( $this->get_plugin_name(), $this->get_version(),
+      $this->get_settings(), $this->get_book_info() );
+    $plugin_basename = plugin_basename( plugin_dir_path( dirname(__FILE__) ) . $this->get_plugin_name() . '.php' );
 
     // Actions
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-    $this->loader->add_action( 'admin_init', $plugin_admin, 'init_menu' );
+    $this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
     $this->loader->add_action( 'manage_posts_custom_column', $plugin_admin, 'column_content', 10, 2 );
 
     // Filters
-    $plugin_basename = plugin_basename( plugin_dir_path( dirname(__FILE__) ) . $this->get_plugin_name() . '.php' );
+    // Sanitization
+    $this->loader->add_filter( 'sanitize_book_review_box_position', $plugin_admin, 'sanitize_position' );
+    $this->loader->add_filter( 'sanitize_book_review_bg_color', $plugin_admin, 'sanitize_color' );
+    $this->loader->add_filter( 'sanitize_book_review_border_color', $plugin_admin, 'sanitize_color' );
+    $this->loader->add_filter( 'sanitize_book_review_border_width', $plugin_admin, 'sanitize_border_width' );
+    $this->loader->add_filter( 'sanitize_book_review_post_type', $plugin_admin, 'sanitize_post_type', 10, 2 );
+
+    $this->loader->add_filter( 'sanitize_book_review_rating_home', $plugin_admin, 'sanitize_checkbox' );
+    $this->loader->add_filter( 'sanitize_book_review_rating_default', $plugin_admin, 'sanitize_checkbox' );
+    $this->loader->add_filter( 'sanitize_book_review_rating_image1', $plugin_admin, 'sanitize_rating_image', 10, 3 );
+    $this->loader->add_filter( 'sanitize_book_review_rating_image2', $plugin_admin, 'sanitize_rating_image', 10, 3 );
+    $this->loader->add_filter( 'sanitize_book_review_rating_image3', $plugin_admin, 'sanitize_rating_image', 10, 3 );
+    $this->loader->add_filter( 'sanitize_book_review_rating_image4', $plugin_admin, 'sanitize_rating_image', 10, 3 );
+    $this->loader->add_filter( 'sanitize_book_review_rating_image5', $plugin_admin, 'sanitize_rating_image', 10, 3 );
+
+    $this->loader->add_filter( 'sanitize_book_review_target', $plugin_admin, 'sanitize_checkbox' );
+    $this->loader->add_filter( 'sanitize_book_review_link_id', $plugin_admin, 'sanitize_link_id' );
+    $this->loader->add_filter( 'sanitize_book_review_link_text', $plugin_admin, 'sanitize_link_text' );
+    $this->loader->add_filter( 'sanitize_book_review_link_url', $plugin_admin, 'sanitize_url' );
+    $this->loader->add_filter( 'sanitize_book_review_link_status', $plugin_admin, 'sanitize_link_status' );
+
+    $this->loader->add_filter( 'sanitize_book_review_custom_field', $plugin_admin, 'sanitize_text' );
+
+    $this->loader->add_filter( 'sanitize_book_review_api_key', $plugin_admin, 'sanitize_text' );
+    $this->loader->add_filter( 'sanitize_book_review_country', $plugin_admin, 'sanitize_country' );
+
     // Add link to the list of links to display on the plugins page.
     $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
     $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'column_heading' );
@@ -249,7 +282,7 @@ class Book_Review {
    * @access   private
    */
   private function define_meta_box_hooks() {
-    $plugin_meta_box = new Book_Review_Meta_Box( $this->get_plugin_name() );
+    $plugin_meta_box = new Book_Review_Meta_Box( $this->get_plugin_name(), $this->get_settings(), $this->get_book_info() );
 
     // Actions
     $this->loader->add_action( 'load-post.php', $plugin_meta_box, 'meta_box_setup' );
@@ -265,14 +298,15 @@ class Book_Review {
    * @access   private
    */
   private function define_public_hooks() {
-    $plugin_public = new Book_Review_Public( $this->get_plugin_name(), $this->get_version() );
+    $plugin_public = new Book_Review_Public( $this->get_plugin_name(), $this->get_version(),
+      $this->get_settings(), $this->get_book_info() );
 
     // Actions
     $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 
     // Filters
     $this->loader->add_filter( 'the_excerpt', $plugin_public, 'add_rating' );
-    $this->loader->add_filter( 'the_content', $plugin_public, 'add_book_info' );
+    $this->loader->add_filter( 'the_content', $plugin_public, 'display_book_info' );
 
     // Shortcodes
     $this->loader->add_shortcode( 'book_review_archives', $plugin_public, 'handle_shortcode' );
@@ -309,13 +343,23 @@ class Book_Review {
   }
 
   /**
-   * The reference to the class that handles rating images.
+   * The reference to the class that handles returning the settings.
    *
-   * @since     2.1.8
-   * @return    Book_Review_Loader    Handles rating images.
+   * @since     2.3.0
+   * @return    Book_Review_Settings    Returns the settings.
    */
-  public function get_rating() {
-    return $this->rating;
+  public function get_settings() {
+    return $this->settings;
+  }
+
+  /**
+   * The reference to the class that handles returning information about a book.
+   *
+   * @since     2.3.0
+   * @return    Book_Review_Book_Info    Returns information about a book.
+   */
+  public function get_book_info() {
+    return $this->book_info;
   }
 
   /**

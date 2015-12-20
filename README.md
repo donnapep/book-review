@@ -87,5 +87,5 @@ There are various ways to get involved:
 
 ## About Me ##
 * I’m the founder of [WP Review Plugins](http://wpreviewplugins.com/).
-* I’m the founder of the [Book Wookie](http://bookwookie.ca) book blog.
 * I blog about web and professional development at [donnapeplinskie.com](http://donnapeplinskie.com/).
+* I'm an avid reader and a fan of young adult fiction.

@@ -27,9 +27,9 @@
 .book-review-meta .cover-image,
 .book-review-meta .rating-image {
   /* This is based on the width and padding of the label. */
-  margin-left: 15%;
   padding-top: 5px;
   padding-left: 2em;
+  margin-left: 15%;
 }
 
 .book-review-meta input[type="text"],
@@ -63,8 +63,11 @@
 }
 
 .book-review-meta .spinner {
-  vertical-align: baseline;
+  /* Positioning */
   float: none;
+
+  /* Visual */
+  vertical-align: baseline;
 }
 
 .book-review-meta .error-details {
@@ -75,7 +78,15 @@
   margin-bottom: 20px;
 
   /* Visual */
-  color: #a94442;
   background-color: #f2dede;
+  color: #a94442;
   border-radius: 4px;
+}
+
+.book-review-meta .hide {
+  display: none;
+}
+
+.book-review-meta .show {
+  display: block;
 }

@@ -41,17 +41,44 @@ class Book_Review_Admin {
   private $version;
 
   /**
+   * The settings of this plugin.
+   *
+   * @since    2.3.0
+   * @access   private
+   * @var      Book_Review_Settings    $settings    Instance of Book_Review_Settings for
+   *                                                getting the settings.
+   */
+  private $settings;
+
+  /**
+   * The book information.
+   *
+   * @since    2.3.0
+   * @access   private
+   * @var      Book_Review_Book_Info    $book_info   Instance of Book_Review_Book_Info for
+   *                                                 getting information about a book.
+   */
+  private $book_info;
+
+  /**
    * Initialize the class and set its properties.
    *
    * @since    2.1.8
-   * @var      string    $plugin_name       The name of this plugin.
-   * @var      string    $version           The version of this plugin.
+   * @param    string                 $plugin_name  Plugin name
+   * @param    string                 $version      Plugin version
+   * @param    Book_Review_Settings   $settings     Instance of Book_Review_Settings for
+   *                                                  getting the settings.
+   * @param    Book_Review_Book_Info  $book_info    Instance of Book_Review_Book_Info for
+   *                                                  getting information about a book.
    */
-  public function __construct( $plugin_name, $version ) {
+  public function __construct( $plugin_name, $version, $settings, $book_info ) {
     global $wpdb;
 
     $this->plugin_name = $plugin_name;
     $this->version = $version;
+    $this->settings = $settings;
+    $this->book_info = $book_info;
+
     $wpdb->book_review_custom_links = "{$wpdb->prefix}book_review_custom_links";
   }
 
@@ -130,6 +157,7 @@ class Book_Review_Admin {
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-review-admin.js',
         array( 'jquery', 'wp-color-picker' ), $this->version, false );
+       wp_enqueue_script( 'jquery-ui-sortable' );
     }
   }
 
@@ -163,22 +191,23 @@ class Book_Review_Admin {
    *
    * @since    2.1.6
    */
-  public function render_tabs( ) {
+  public function render_tabs() {
     $tabs = apply_filters( 'book_review_tabs', array(
       'appearance' => __( 'Appearance', $this->plugin_name ),
       'images' => __( 'Rating Images', $this->plugin_name ),
       'links' => __( 'Links', $this->plugin_name ),
+      'fields' => __( 'Custom Fields', $this->plugin_name ),
       'advanced' => __( 'Advanced', $this->plugin_name )
     ) );
 
-    if ( isset ( $_GET['tab'] ) ) {
+    if ( isset( $_GET['tab'] ) ) {
       $active_tab = $_GET['tab'];
     }
     else {
       $active_tab = 'appearance';
     }
 
-    foreach( $tabs as $tab => $name ) {
+    foreach ( $tabs as $tab => $name ) {
       $class = ( $tab == $active_tab ) ? ' nav-tab-active' : '';
 
       echo '<a class="' . esc_attr( 'nav-tab' . $class ) . '" href="' . esc_url( '?page=book-review&tab=' . $tab )
@@ -192,7 +221,7 @@ class Book_Review_Admin {
    * @since    2.1.4
    */
   public function render_tabbed_content() {
-    if ( isset ( $_GET['tab'] ) ) {
+    if ( isset( $_GET['tab'] ) ) {
       $active_tab = $_GET['tab'];
     }
     else {
@@ -202,63 +231,567 @@ class Book_Review_Admin {
     do_action( 'book_review_before_tabs' );
 
     if ( $active_tab == 'appearance' ) {
-      $general_defaults = array(
-        'book_review_box_position' => 'top',
-        'book_review_bg_color' => '',
-        'book_review_border_color' => '',
-        'book_review_border_width' => '1',
-        'book_review_post_types' => array(
-          'post' => '1'
-        )
-      );
-
-      $general = get_option( 'book_review_general' );
-      $general = wp_parse_args( $general, $general_defaults );
-
-      // Post Types
-      if ( isset( $general['book_review_post_types'] ) ) {
-        $general['book_review_post_types'] = wp_parse_args( $general['book_review_post_types'], $general_defaults['book_review_post_types'] );
-      }
-      else {
-        $general['book_review_post_types'] = $general_defaults['book_review_post_types'];
-      }
-
+      $general_option = $this->settings->get_book_review_general_option();
       $post_types = $this->get_post_types();
       $keys = array_keys( $post_types );
 
       include_once( 'partials/book-review-admin-appearance.php' );
     }
     else if ( $active_tab == 'images' ) {
-      $ratings_defaults = array(
-        'book_review_rating_home' => 0,
-        'book_review_rating_default' => 1
-      );
-      $ratings = get_option( 'book_review_ratings' );
-      $ratings = wp_parse_args( $ratings, $ratings_defaults );
+      $ratings_option = $this->settings->get_book_review_ratings_option();
 
       include_once( 'partials/book-review-admin-images.php' );
     }
     else if ( $active_tab == 'links' ) {
-      $links_defaults = array(
-        'book_review_target' => 0,
-      );
-      $links_option = get_option( 'book_review_links', $links_defaults );
-      $links_option = wp_parse_args( $links_option, $links_defaults );
+      $links_option = $this->settings->get_book_review_links_option();
 
-      // Get custom links.
+      // Get links.
       global $wpdb;
 
       $results = $wpdb->get_results( "SELECT * FROM {$wpdb->book_review_custom_links}" );
 
       include_once( 'partials/book-review-admin-links.php' );
     }
+    else if ( $active_tab == 'fields' ) {
+      $fields_option = $this->settings->get_book_review_fields_option();
+
+      include_once( 'partials/book-review-admin-custom-fields.php' );
+    }
     else if ( $active_tab == 'advanced' ) {
-      $advanced = get_option( 'book_review_advanced' );
+      $advanced_option = $this->settings->get_book_review_advanced_option();
 
       include_once( 'partials/book-review-admin-advanced.php' );
     }
 
     do_action( 'book_review_after_tabs' );
+  }
+
+  /**
+   * Add settings action link to the plugins page.
+   *
+   * @since    2.0.0
+   */
+  public function add_action_links( $links ) {
+    return array_merge(
+      array(
+        'settings' => '<a href="' . esc_url( admin_url( 'options-general.php?page=' .
+          $this->plugin_name ) ) . '">' . esc_html__( 'Settings', $this->plugin_name ) . '</a>'
+      ), $links);
+  }
+
+  /**
+   * Register settings so that they will be saved.
+   *
+   * @since    1.0.0
+   */
+  public function register_settings() {
+    register_setting( 'general_options', 'book_review_general', array( $this, 'save_appearance' )  );
+    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'save_rating_images' ) );
+    register_setting( 'links_options', 'book_review_links', array( $this, 'save_links' ) );
+    register_setting( 'fields_options', 'book_review_fields', array( $this, 'save_custom_fields' ) );
+    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'save_advanced' ) );
+  }
+
+  /**
+   * Sanitize a checkbox.
+   *
+   * @since    2.3.0
+   * @param    string       $value        Unsanitized checkbox value
+   * @return   string                     Sanitized checkbox value
+   */
+  public function sanitize_checkbox( $value ) {
+    if ( '1' === trim( $value ) ) {
+      return '1';
+    }
+    else {
+      return '';
+    }
+  }
+
+  /**
+   * Sanitize text.
+   *
+   * @since    2.3.0
+   * @param    string       $text     Unsanitized text
+   * @return   string                 Sanitized text
+   */
+  public function sanitize_text( $text ) {
+    return sanitize_text_field( $text );
+  }
+
+  /**
+   * Sanitize a URL.
+   *
+   * @since    2.3.0
+   * @param    string       $url        Unsanitized URL
+   * @return   string                   Sanitized URL
+   */
+  public function sanitize_url( $url ) {
+    return esc_url_raw( $url );
+  }
+
+  /**
+   * Save Appearance tab.
+   *
+   * @since     2.1.9
+   */
+  public function save_appearance( $input = array() ) {
+    $output = array();
+
+    foreach ( $input as $key => $value ) {
+      // Post Types
+      if ( is_array( $value ) ) {
+        foreach ( $value as $post_type => $post_type_value ) {
+          $sanitized_post_type = apply_filters( 'sanitize_book_review_post_type', $post_type, $post_type_value );
+
+          // Save if valid post type.
+          if ( $sanitized_post_type !== false ) {
+            $output[$key][$post_type] = $sanitized_post_type;
+          }
+        }
+      }
+      else {
+        $sanitized_value = apply_filters( 'sanitize_' . $key, $value );
+
+        // Save if valid value.
+        if ( $sanitized_value !== false ) {
+          $output[$key] = $sanitized_value;
+        }
+      }
+    }
+
+    // Save unchecked post types as they will not be POSTed.
+    $post_types = array_keys( $this->get_post_types() );
+
+    // Check if any post types have been saved thus far.
+    if ( ( count( $post_types ) > 0) && !isset( $output['book_review_post_types'] ) ) {
+      $output['book_review_post_types'] = array();
+    }
+
+    // Save unchecked post types as '0'.
+    foreach ( $post_types as $post_type ) {
+      if ( !array_key_exists( $post_type, $output['book_review_post_types'] ) ) {
+        $output['book_review_post_types'][$post_type] = apply_filters( 'sanitize_book_review_post_type', $post_type, '0' );
+      }
+    }
+
+    return $output;
+  }
+
+  /**
+   * Sanitize review box position.
+   *
+   * @since    2.3.0
+   * @param    string    $position    Unsanitized position
+   * @return   string                 Sanitized position
+   */
+  public function sanitize_position( $position ) {
+    $position = sanitize_text_field( $position );
+    $allowed_positions = array( 'top', 'bottom' );
+
+    if ( in_array( $position, $allowed_positions ) ) {
+      return $position;
+    }
+
+    return 'top';
+  }
+
+  /**
+   * Sanitize a hex color.
+   *
+   * @since    2.3.0
+   * @param    string    $color    Unsanitized hex color
+   * @return   string              Sanitized hex color|empty string if invalid
+   */
+  public function sanitize_color( $color ) {
+    $color = $this->sanitize_hex_color( $color );
+
+    if ( is_null( $color ) ) {
+      return '';
+    }
+    else {
+      return $color;
+    }
+  }
+
+  /**
+   * Sanitize a hex color.
+   *
+   * @since    2.3.0
+   * @param    string       $color    Unsanitized hex color
+   * @return   string|void            ''|3 or 6 digit hex color (with #)|void
+   */
+  private function sanitize_hex_color( $color ) {
+    if ( '' === $color ) {
+      return '';
+    }
+
+    // 3 or 6 hex digits, or the empty string.
+    if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+      return $color;
+    }
+  }
+
+  /**
+   * Sanitize border width.
+   *
+   * @since    2.3.0
+   * @param    string    $width    Unsanitized border width
+   * @return   int                 Sanitized border width|false if invalid
+   */
+  public function sanitize_border_width( $width ) {
+    $width = trim( $width );
+    $sanitized_width = intval( $width );
+
+    // Zero width
+    if ( $width == '0' ) {
+      return 0;
+    }
+
+    // Non-integer width or negative width
+    if ( ( $sanitized_width == 0 ) || ( $sanitized_width < 0 ) ) {
+      $general_option = $this->settings->get_book_review_general_option( false );
+
+      if ( $sanitized_width == 0 ) {
+        add_settings_error(
+          'book_review_appearance',
+          'non-integer-border-width-error',
+          esc_html__( 'Review Box Border Width must be numeric.', $this->plugin_name )
+        );
+      }
+      else {
+        add_settings_error(
+          'book_review_appearance',
+          'negative-border-width-error',
+          esc_html__( 'Review Box Border Width must be greater than or equal to 0.', $this->plugin_name )
+        );
+      }
+
+      // Return previous value.
+      return isset( $general_option['book_review_border_width'] ) ? $general_option['book_review_border_width'] : false;
+    }
+
+    return $sanitized_width;
+  }
+
+  /**
+   * Sanitize a post type value.
+   *
+   * @since    2.3.0
+   * @param    string       $post_type    Post type
+   * @param    string       $value        Unsanitized post type value
+   * @return   string|bool                '1'|'0'|false if invalid post type
+   */
+  public function sanitize_post_type( $post_type, $value ) {
+    $allowed_post_types = array_keys( $this->get_post_types() );
+
+    if ( in_array( $post_type, $allowed_post_types ) ) {
+      if ( ( $value === '0' ) || ( $value === '1' ) ) {
+        return $value;
+      }
+    }
+
+    // Invalid post type or post type value.
+    return false;
+  }
+
+  /**
+   * Save Rating Images tab.
+   *
+   * @since     1.0.0
+   *
+   */
+  public function save_rating_images( $input = array() ) {
+    $output = array();
+
+    foreach ( $input as $key => $value ) {
+      // Search backwards starting from $key length characters from the end.
+      if ( strrpos( $key, 'book_review_rating_image', -strlen( $key ) ) !== false ) {
+        $sanitized_url = apply_filters( 'sanitize_' . $key, $key, $value,
+          isset( $output['book_review_rating_default'] ) ? $output['book_review_rating_default'] : '' );
+
+        // Save if valid URL.
+        if ( $sanitized_url !== '' ) {
+          $output[$key] = $sanitized_url;
+        }
+      }
+      else {
+        $output[$key] = apply_filters( 'sanitize_' . $key, $value );
+      }
+    }
+
+    // Save unchecked checkboxes as they will not be POSTed.
+    if ( !array_key_exists( 'book_review_rating_home', $output ) ) {
+      $output['book_review_rating_home'] = apply_filters( 'sanitize_book_review_rating_home', '' );
+    }
+
+    if ( !array_key_exists( 'book_review_rating_default', $output ) ) {
+      $output['book_review_rating_default'] = apply_filters( 'sanitize_book_review_rating_default', '' );
+    }
+
+    return $output;
+  }
+
+  /**
+   * Sanitize a rating image URL.
+   *
+   * @since    2.3.0
+   * @param    string       $option         Option name
+   * @param    string       $url            Unsanitized URL
+   * @param    string       $use_default    Sanitized value for 'Default Rating Images' checkbox
+   * @return   string                       Sanitized rating image URL|empty string if invalid
+   */
+  public function sanitize_rating_image( $option, $url, $use_default ) {
+    $url = $this->sanitize_url( $url );
+
+    // Not using default rating images and no rating image URL.
+    if ( ( $use_default === '' ) && ( $url === '' ) ) {
+      $ratings_option = $this->settings->get_book_review_ratings_option( false );
+
+      add_settings_error(
+        'book_review_ratings',
+        'rating-image-error',
+        esc_html__( 'Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating.', $this->plugin_name )
+      );
+
+      // Return previous value.
+      return isset( $ratings_option[$option] ) ? $ratings_option[$option] : '';
+    }
+
+    return $url;
+  }
+
+  /**
+   * Save Links tab.
+   *
+   * @since     1.0.0
+   */
+  public function save_links( $input = array() ) {
+    $output = array();
+
+    foreach ( $input as $key => $value ) {
+      // Links
+      if ( is_array( $value ) ) {
+        $id = '';
+        $text = '';
+        $url = '';
+        $active = 0;
+
+        foreach ( $value as $link_key => $link_value ) {
+          if ( $link_key == 'id' ) {
+            $id = apply_filters( 'sanitize_book_review_link_id', $link_value );
+          }
+          else if ( $link_key == 'text' ) {
+            $text = apply_filters( 'sanitize_book_review_link_text', $link_value );
+          }
+          else if ( $link_key == 'image' ) {
+            $url = apply_filters( 'sanitize_book_review_link_url', $link_value );
+          }
+          else if ( $link_key == 'active' ) {
+            $active = apply_filters( 'sanitize_book_review_link_status', $link_value );
+          }
+        }
+
+        $this->save_link( $id, $text, $url, $active );
+      }
+      else {
+        $output[$key] = apply_filters( 'sanitize_' . $key, $value );
+      }
+    }
+
+    // Save unchecked checkbox as it will not be POSTed.
+    if ( !array_key_exists( 'book_review_target', $output ) ) {
+      $output['book_review_target'] = apply_filters( 'sanitize_book_review_target', '' );
+    }
+
+    return $output;
+  }
+
+  /**
+   * Sanitize link ID.
+   *
+   * @since    2.3.0
+   * @param    string       $id        Unsanitized link ID
+   * @return   int                     Sanitized link ID|0 if invalid
+   */
+  public function sanitize_link_id( $id ) {
+    $id = intval( $id );
+
+    if ( $id > 0 ) {
+      return $id;
+    }
+    else {
+      return 0;
+    }
+  }
+
+  /**
+   * Sanitize link text.
+   *
+   * @since    2.3.0
+   * @param    string       $id        Unsanitized link text
+   * @return   string                  Sanitized link text
+   */
+  public function sanitize_link_text( $text ) {
+    $text = sanitize_text_field( $text );
+
+    // Link Text is a required field.
+    if ( $text === '' ) {
+      add_settings_error(
+        'book_review_links',
+        'link-text-error',
+        esc_html__( 'Link Text is a required field. Please ensure you enter text for each link.', $this->plugin_name )
+      );
+    }
+
+    return $text;
+  }
+
+  /**
+   * Sanitize link status.
+   *
+   * @since    2.3.0
+   * @param    string       $status    Unsanitized link status
+   * @return   int                     1
+   */
+  public function sanitize_link_status( $status ) {
+    // If this function is called then it means the checkbox was checked.
+    return 1;
+  }
+
+  /**
+   * Save a link.
+   *
+   * @since    2.3.0
+   * @param    int       $id      Sanitized link ID
+   * @param    string    $text    Sanitized link text
+   * @param    string    $url     Sanitized link URL
+   * @param    int       $active  Sanitized link status
+   */
+  private function save_link( $id, $text, $url, $active ) {
+    global $wpdb;
+
+    if ( ( $id !== 0 ) && ( $text !== '' ) ) {
+      // Insert a new row.
+      if ( $id === '' ) {
+        $wpdb->insert(
+          $wpdb->book_review_custom_links,
+          array(
+            'text' => $text,
+            'image_url' => $url,
+            'active' => $active
+          ),
+          array( '%s', '%s', '%d' )
+        );
+      }
+      // Update the existing row.
+      else {
+        $wpdb->update(
+          $wpdb->book_review_custom_links,
+          array(
+            'text' => $text,
+            'image_url' => $url,
+            'active' => $active
+          ),
+          array( 'custom_link_id' => $id ),
+          array( '%s', '%s', '%d' ),
+          array( '%d' )
+        );
+      }
+    }
+  }
+
+  /**
+   * Save Custom Fields tab.
+   *
+   * @since     2.2.0
+   */
+  public function save_custom_fields( $input = array() ) {
+    $output = array();
+
+    if ( isset( $input['fields'] ) ) {
+      $show_error = false;
+
+      foreach ( $input['fields'] as $field_id => $field_values ) {
+        $label = $field_values['label'];
+        $sanitized_field = apply_filters( 'sanitize_book_review_custom_field', $label );
+
+        // Save if field name is not empty.
+        if ( $sanitized_field !== '' ) {
+          $output['fields'][$field_id]['label'] = $sanitized_field;
+        }
+        else {
+          $show_error = true;
+        }
+      }
+
+      if ( $show_error ) {
+        add_settings_error(
+          'book_review_fields',
+          'custom-field-error',
+          esc_html__( 'Please enter a valid custom field name.', $this->plugin_name )
+        );
+      }
+    }
+
+    return $output;
+  }
+
+  /**
+   * Save Advanced tab.
+   *
+   * @since     2.1.6
+   */
+  public function save_advanced( $input = array() ) {
+    $output = array();
+
+    foreach ( $input as $key => $value ) {
+      $output[$key] = apply_filters( 'sanitize_' . $key, $value );
+    }
+
+    return $output;
+  }
+
+  /**
+   * Sanitize country.
+   *
+   * @since    2.3.0
+   * @param    string       $country     Unsanitized country
+   * @return   string                    Sanitized country
+   */
+  public function sanitize_country( $country ) {
+    $allowed_countries = array_keys( $this->get_countries() );
+
+    if ( in_array( $country, $allowed_countries ) ) {
+      return $country;
+    }
+
+    return '';
+  }
+
+  /**
+   * Add Rating column to Posts Admin screen.
+   *
+   * @since    1.9.0
+   */
+  public function column_heading( $columns ) {
+    return array_merge( $columns, array( 'rating' => esc_html__( 'Rating', $this->plugin_name ) ) );
+  }
+
+  /**
+   * Populate Rating column on Posts Admin screen.
+   *
+   * @since    1.9.0
+   */
+  public function column_content( $column, $post_id ) {
+    if ( $column == 'rating' ) {
+      $rating = $this->book_info->get_book_review_rating( $post_id );
+
+      if ( !empty( $rating ) && ( $rating != '-1' ) ) {
+        echo '<img src="' . esc_url( $this->book_info->get_book_review_rating_image( $post_id ) ) .
+          '" class="book_review_column_rating">';
+      }
+    }
   }
 
   /**
@@ -276,6 +809,7 @@ class Book_Review_Admin {
     // Exclude media.
     unset( $post_types['attachment'] );
 
+    // Will include post, page and any custom post types.
     return $post_types;
   }
 
@@ -552,266 +1086,10 @@ class Book_Review_Admin {
     $advanced = get_option( 'book_review_advanced' );
     $selected_country = isset( $advanced['book_review_country'] ) ? $advanced['book_review_country'] : '';
 
-    foreach( $countries as $country_code => $country ) {
+    foreach ( $countries as $country_code => $country ) {
       echo '<option value="' . esc_attr( $country_code ) . '"' . selected( $country_code, $selected_country, false ) . '>'
         . $country
         . '</option>';
-    }
-  }
-
-  /**
-   * Add settings action link to the plugins page.
-   *
-   * @since    2.0.0
-   */
-  public function add_action_links( $links ) {
-    return array_merge(
-      array(
-        'settings' => '<a href="' . esc_url( admin_url( 'options-general.php?page=' .
-          $this->plugin_name ) ) . '">' . esc_html__( 'Settings', $this->plugin_name ) . '</a>'
-      ), $links);
-  }
-
-  /**
-   * Register settings so that they will be saved.
-   *
-   * @since    1.0.0
-   */
-  public function init_menu() {
-    register_setting( 'general_options', 'book_review_general', array( $this, 'sanitize_appearance' )  );
-    register_setting( 'ratings_options', 'book_review_ratings', array( $this, 'sanitize_rating_images' ) );
-    register_setting( 'links_options', 'book_review_links', array( $this, 'sanitize_links' ) );
-    register_setting( 'advanced_options', 'book_review_advanced', array( $this, 'sanitize_advanced' ) );
-  }
-
-  /**
-   * Sanitize fields on the Appearance tab.
-   *
-   * @since     2.1.9
-   */
-  public function sanitize_appearance( $input ) {
-    $output = array();
-
-    $output['book_review_box_position'] = isset( $input['book_review_box_position'] ) ?
-      $input['book_review_box_position'] : 'top';
-    $output['book_review_bg_color'] = isset( $input['book_review_bg_color'] ) ?
-      $input['book_review_bg_color'] : '';
-    $output['book_review_border_color'] = isset( $input['book_review_border_color'] ) ?
-      $input['book_review_border_color'] : '';
-
-    // Sanitize border width.
-    if ( isset( $input['book_review_border_width'] ) ) {
-      $input['book_review_border_width'] = trim( $input['book_review_border_width'] );
-      $output['book_review_border_width'] = intval( $input['book_review_border_width'] );
-
-      if ( $input['book_review_border_width'] != '0' ) {
-        // Value is empty or a string.
-        if ( intval( $input['book_review_border_width'] ) == 0 ) {
-          add_settings_error(
-            'book_review_appearance',
-            'border-width-error',
-            esc_html__( 'Review Box Border Width must be numeric.', $this->plugin_name )
-          );
-        }
-      }
-    }
-    else {
-      $output['book_review_border_width'] = 0;
-    }
-
-    // Post Types - Only checked boxes are posted.
-    $allowed_post_types = array_keys( $this->get_post_types() );
-
-    foreach ( $allowed_post_types as $allowed_post_type ) {
-      if ( isset( $input['book_review_post_types'][$allowed_post_type] ) ) {
-        $output['book_review_post_types'][$allowed_post_type] = '1';
-      }
-      else {
-        $output['book_review_post_types'][$allowed_post_type] = '0';
-      }
-    }
-
-    return $output;
-  }
-
-  /**
-   * Sanitize rating image URLs.
-   *
-   * @since     1.0.0
-   */
-  public function sanitize_rating_images( $input ) {
-    $image_error = false;
-    $output = array();
-    $output['book_review_rating_home'] = isset( $input['book_review_rating_home'] ) ? $input['book_review_rating_home'] : '';
-    $output['book_review_rating_default'] = isset( $input['book_review_rating_default'] ) ? $input['book_review_rating_default'] : '';
-
-    // Iterate over every rating image URL field.
-    for ( $i = 1; $i <= 5; $i++ ) {
-      $value = trim( $input['book_review_rating_image' . $i] );
-
-      // Not using default rating images.
-      if ( empty( $output['book_review_rating_default'] ) ) {
-        if ( empty( $value ) ) {
-          $image_error = true;
-        }
-        else {
-          $output['book_review_rating_image' . $i] = esc_url_raw( $value );
-        }
-      }
-      // Using default rating images. Save them anyway.
-      else {
-        $output['book_review_rating_image' . $i] = esc_url_raw( $value );
-      }
-    }
-
-    if ( $image_error ) {
-      add_settings_error(
-        'book_review_ratings',
-        'image-error',
-        esc_html__( 'Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating.', $this->plugin_name )
-      );
-    }
-
-    return $output;
-  }
-
-  /**
-   * Sanitize link image URLs.
-   *
-   * @since     1.0.0
-   */
-  public function sanitize_links( $input ) {
-    $output = array();
-    $output['book_review_target'] = isset( $input['book_review_target'] ) ? $input['book_review_target'] : '';
-
-    if ( isset( $input ) ) {
-      foreach ( $input as $key => $value ) {
-        $error = false;
-
-        // Custom Links
-        if ( is_array( $value ) ) {
-          $id = '';
-          $text = '';
-          $image_url = '';
-          // An unchecked checkbox will not be POSTed and so its value will not be set.
-          $active = 0;
-
-          foreach( $value as $link_key => $link_value ) {
-            if ( $link_key == 'id' ) {
-              $id = sanitize_text_field( $link_value );
-            }
-            else if ( $link_key == 'text' ) {
-              $text = sanitize_text_field( $link_value );
-
-              // Link Text is a required field.
-              if ( empty( $text ) ) {
-                $error = true;
-              }
-            }
-            else if ( $link_key == 'image' ) {
-              $image_url = esc_url_raw( $link_value );
-            }
-            else if ( $link_key == 'active' ) {
-              $active = (int)$link_value;
-            }
-          }
-
-          if ( !$error ) {
-            global $wpdb;
-
-            // Insert a new row.
-            if ( empty( $id ) ) {
-              $wpdb->insert(
-                $wpdb->book_review_custom_links,
-                array(
-                  'text' => $text,
-                  'image_url' => $image_url,
-                  'active' => $active
-                ),
-                array( '%s', '%s', '%d' )
-              );
-            }
-            // Update the existing row.
-            else {
-              $wpdb->update(
-                $wpdb->book_review_custom_links,
-                array(
-                  'text' => $text,
-                  'image_url' => $image_url,
-                  'active' => $active
-                ),
-                array( 'custom_link_id' => $id ),
-                array( '%s', '%s', '%d' ),
-                array( '%d' )
-              );
-            }
-          }
-          else {
-            add_settings_error(
-              'book_review_links',
-              'link-error',
-              esc_html__( 'Link Text is a required field. Please ensure you enter text for each link.', $this->plugin_name )
-            );
-          }
-        }
-      }
-    }
-
-    return $output;
-  }
-
-  /**
-   * Sanitize fields on Advanced tab.
-   *
-   * @since     2.1.6
-   */
-  public function sanitize_advanced( $input = array() ) {
-    $output = array();
-
-    // API Key
-    $output['book_review_api_key'] = isset( $input['book_review_api_key'] ) ?
-      sanitize_text_field( $input['book_review_api_key'] ) : '';
-
-    // Country
-    $allowed_countries = array_keys( $this->get_countries() );
-
-    if ( isset( $input['book_review_country'] ) && in_array( $input['book_review_country'], $allowed_countries ) ) {
-      $output['book_review_country'] = $input['book_review_country'];
-    }
-    else {
-      $output['book_review_country'] = '';
-    }
-
-    return $output;
-  }
-
-  /**
-   * Add Rating column to Posts Admin screen.
-   *
-   * @since    1.9.0
-   */
-  public function column_heading( $columns ) {
-    return array_merge( $columns, array( 'rating' => esc_html__( 'Rating', $this->plugin_name ) ) );
-  }
-
-  /**
-   * Populate Rating column on Posts Admin screen.
-   *
-   * @since    1.9.0
-   */
-  public function column_content( $column, $post_id ) {
-    if ( $column == 'rating' ) {
-      $plugin = Book_Review::get_instance();
-      $values = get_post_custom( $post_id );
-
-      if ( isset( $values['book_review_rating'] ) != null ) {
-        $rating = $values['book_review_rating'][0];
-
-        if ( !empty( $rating ) && ( $rating != '-1' ) ) {
-          echo '<img src="' . esc_url( $plugin->get_rating()->get_rating_image( $rating ) ) .
-            '" class="book_review_column_rating">';
-        }
-      }
     }
   }
 }

@@ -31,7 +31,7 @@
   </p>
 
   <!-- Link Text and Link Image URLs -->
-  <table id="custom-links" class="links widefat">
+  <table id="custom-links" class="links widefat striped">
     <thead>
       <tr>
         <th class="text">
@@ -87,8 +87,7 @@
       ?>
     </tbody>
   </table>
-  <input class="add-link button" type="button" value="<?php esc_html_e( 'Add Link', $this->plugin_name ); ?>"
-    onclick="addLink();">
+  <input class="add-link button" type="button" value="<?php esc_html_e( 'Add Link', $this->plugin_name ); ?>">
 
   <?php @submit_button(); ?>
 </form>
