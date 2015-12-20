@@ -3,7 +3,6 @@
 class Book_Review_Public_Tests extends WP_UnitTestCase {
   protected $plugin_name;
   protected $plugin_public;
-  protected $plugin_meta;
   protected $post_id;
 
   public function setup() {
@@ -14,16 +13,14 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     parent::setUp();
 
     $plugin = run_book_review();
+
     $this->plugin_name = $plugin->get_plugin_name();
-    $this->plugin_public = new Book_Review_Public( $this->plugin_name, $plugin->get_version() );
-    $this->plugin_meta = new Book_Review_Meta_Box( $this->plugin_name );
+    $this->plugin_public = new Book_Review_Public( $this->plugin_name, $plugin->get_version(),
+      $plugin->get_settings(), $plugin->get_book_info() );
 
     $wp_query->is_home = true;
     $this->post_id = $this->factory->post->create();
-    $post = get_post( $this->post_id);
-
-    update_post_meta( $this->post_id, 'book_review_title', 'The Giver' );
-    update_post_meta( $this->post_id, 'book_review_release_date', '2006-01-24' );
+    $post = get_post( $this->post_id );
 
     $this->suppress = $wpdb->suppress_errors();
   }
@@ -48,72 +45,311 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
   }
 
   /**
-   * @covers Book_Review_Public::add_book_info
+   * @covers Book_Review_Public::display_book_info
    */
-  public function testAddBookInfoToPostByDefault() {
+  public function testNoBookInfoWhenNoTitle() {
     set_post_type( $this->post_id, 'post' );
 
-    $content = $this->plugin_public->add_book_info( '' );
+    $content = $this->plugin_public->display_book_info( '' );
 
-    $this->assertNotEquals( '', $content );
+    $this->assertEquals( '', $content );
   }
 
   /**
-   * @covers Book_Review_Public::add_book_info
+   * @covers Book_Review_Public::display_book_info
    */
-  public function testAddBookInfoToPage() {
-    $general = array();
-    $general['book_review_post_types'] = array(
-      'page' => '1'
-    );
-
-    add_option( 'book_review_general', $general );
-    set_post_type( $this->post_id, 'page' );
-
-    $content = $this->plugin_public->add_book_info( '' );
-
-    $this->assertNotEquals( '', $content );
-  }
-
-  /**
-   * @covers Book_Review_Public::add_book_info
-   */
-  public function testAddBookInfoToPostWhenPageSet() {
-    $general = array();
-    $general['book_review_post_types'] = array(
-      'page' => '1'
-    );
-
-    add_option( 'book_review_general', $general );
+  public function testBookInfoPostWhenPostTypesNotSet() {
     set_post_type( $this->post_id, 'post' );
+    update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
 
-    $content = $this->plugin_public->add_book_info( '' );
+    $content = $this->plugin_public->display_book_info( '' );
 
     $this->assertNotEquals( '', $content );
   }
 
   /**
-   * @covers Book_Review_Public::add_book_info
+   * @covers Book_Review_Public::display_book_info
    */
-  public function testAddBookInfoToCustomPostType() {
+  public function testBookInfoCPTWhenPostTypesNotSet() {
+    set_post_type( $this->post_id, 'documentation' );
+    update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
 
+    $content = $this->plugin_public->display_book_info( '' );
+
+    $this->assertNotEquals( '', $content );
   }
 
-  private function addPostMeta() {
-    $_POST['book_review_isbn'] = '0525478817';
-    $_POST['book_review_title'] = 'The Fault in Our Stars';
-    $_POST['book_review_series'] = 'None';
-    $_POST['book_review_author'] = 'John Green';
-    $_POST['book_review_genre'] = 'Young Adult';
-    $_POST['book_review_publisher'] = 'Dutton Books';
-    $_POST['book_review_release_date'] = 'January 12, 2012';
-    $_POST['book_review_format'] = 'Paperback';
-    $_POST['book_review_pages'] = '313';
-    $_POST['book_review_source'] = 'Purchased';
-    $_POST['book_review_cover_url'] = 'http://example.com/wp-content/uploads/2014/04/The_Fault_in_Our_Stars_Book_Cover.jpg';
-    $_POST['book_review_summary'] = 'Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis.';
-    $_POST['book_review_rating'] = '4';
-    $_POST['book_review_archive_post'] = '1';
-    $_POST['book-review-meta-box-nonce'] = wp_create_nonce( 'save_meta_box_nonce' );
+  /**
+   * @covers Book_Review_Public::display_book_info
+   */
+  public function testBookInfoCPTWhenPostTypeSelected() {
+    $general_option = array();
+    $general_option['book_review_post_types'] = array(
+      'documentation' => '1'
+    );
+
+    add_option( 'book_review_general', $general_option );
+    set_post_type( $this->post_id, 'documentation' );
+    update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
+
+    $content = $this->plugin_public->display_book_info( '' );
+
+    $this->assertNotEquals( '', $content );
   }
+
+  /**
+   * @covers Book_Review_Public::display_book_info
+   */
+  public function testNoBookInfoCPTWhenPostTypeNotSelected() {
+    $general_option = array();
+    $general_option['book_review_post_types'] = array(
+      'documentation' => '0'
+    );
+
+    add_option( 'book_review_general', $general_option );
+    set_post_type( $this->post_id, 'documentation' );
+    update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
+
+    $content = $this->plugin_public->display_book_info( '' );
+
+    $this->assertEquals( '', $content );
+  }
+
+  /**
+   * @covers Book_Review_Public::display_book_info
+   * TODO: Test showing book info at top of content.
+   */
+  // public function testTopPosition() {
+
+  // }
+
+  /**
+   * @covers Book_Review_Public::display_book_info
+   * TODO: Test showing book info at bottom of content.
+   */
+  // public function testBottomPosition() {
+
+  // }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testNoStyleForFeed() {
+    global $wp_query;
+
+    $wp_query->is_home = false;
+    $wp_query->is_feed = true;
+
+    $this->assertSame( '', $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testBorderColor() {
+    $style = 'style="border-style: solid; border-color: #fff; border-width: 1px;"';
+    $general_option = array(
+      'book_review_border_color' => '#fff'
+    );
+
+    add_option( 'book_review_general', $general_option );
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testNoBorderColor() {
+    $style = 'style="border-style: solid; border-width: 1px;"';
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testBorderWidth() {
+    $style = 'style="border-style: solid; border-width: 5px;"';
+    $general_option = array(
+      'book_review_border_width' => 5
+    );
+
+    add_option( 'book_review_general', $general_option );
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testNoBorderWidth() {
+    $style = 'style="border-style: solid;"';
+    $general_option = array(
+      'book_review_border_width' => 0
+    );
+
+    add_option( 'book_review_general', $general_option );
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testBackgroundColor() {
+    $style = 'style="border-style: solid; border-width: 1px; background-color: #e0e0e0;"';
+    $general_option = array(
+      'book_review_bg_color' => '#e0e0e0'
+    );
+
+    add_option( 'book_review_general', $general_option );
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_review_box_style
+   */
+  public function testNoBackgroundColor() {
+    $style = 'style="border-style: solid; border-width: 1px;"';
+
+    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_link_target
+   */
+  public function testLinkTarget() {
+    $links_option = array(
+      'book_review_target' => '1'
+    );
+
+    add_option( 'book_review_links', $links_option );
+
+    $this->assertSame( 'target="_blank"', $this->plugin_public->get_link_target() );
+  }
+
+  /**
+   * @covers Book_Review_Public::get_link_target
+   */
+  public function testNoLinkTarget() {
+    $this->assertSame( '', $this->plugin_public->get_link_target() );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testRatingInExcerpts() {
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+    update_post_meta( $this->post_id, 'book_review_rating', '1' );
+
+    $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
+      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testNoRatingInExcerpts() {
+    update_post_meta( $this->post_id, 'book_review_rating', '1' );
+
+    $this->assertSame( '', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testNoRating() {
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+
+    $this->assertSame( '', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testNoRatingSelected() {
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+    update_post_meta( $this->post_id, 'book_review_rating', '-1' );
+
+    $this->assertSame( '', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testRatingHomePage() {
+    global $wp_query;
+
+    $wp_query->is_home = true;
+
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+    update_post_meta( $this->post_id, 'book_review_rating', '1' );
+
+    $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
+      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testRatingArchivePage() {
+    global $wp_query;
+
+    $wp_query->is_home = false;
+    $wp_query->is_archive = true;
+
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+    update_post_meta( $this->post_id, 'book_review_rating', '1' );
+
+    $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
+      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Public::add_rating
+   */
+  public function testRatingSearchPage() {
+    global $wp_query;
+
+    $wp_query->is_home = false;
+    $wp_query->is_search = true;
+
+    $ratings_option = array(
+      'book_review_rating_home' => '1'
+    );
+
+    add_option( 'book_review_ratings', $ratings_option );
+    update_post_meta( $this->post_id, 'book_review_rating', '1' );
+
+    $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
+      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
+  }
+
+  // TODO: Add tests for shortcode.
 }

@@ -23,7 +23,7 @@
         <td>
           <input id="book_review_api_key" class="regular-text text-input" type="text"
             name="book_review_advanced[book_review_api_key]"
-            value="<?php echo esc_attr( $advanced['book_review_api_key'] ); ?>">
+            value="<?php echo esc_attr( $advanced_option['book_review_api_key'] ); ?>">
           <p class="description">
             <?php
               printf( __( 'Your Google API key obtained from the <a href="%s" target="_blank">Google Developers Console</a>.', $this->plugin_name ), esc_url( 'https://console.developers.google.com/' ) );

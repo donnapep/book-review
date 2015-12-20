@@ -1,6 +1,4 @@
-<p>
-  <h3><?php esc_html_e( 'Review Box', $this->plugin_name ); ?></h3>
-</p>
+<h3><?php esc_html_e( 'Review Box', $this->plugin_name ); ?></h3>
 <form action="options.php" method="post">
   <?php
     @settings_fields( 'general_options' );
@@ -20,7 +18,7 @@
           <!-- Top -->
           <input id="book_review_box_position_top" type="radio"
             name="book_review_general[book_review_box_position]" value="top"
-            <?php echo checked( 'top', $general['book_review_box_position'], false ); ?>>
+            <?php echo checked( 'top', $general_option['book_review_box_position'], false ); ?>>
           <label for="book_review_box_position_top">
             <?php esc_html_e( 'Top', $this->plugin_name ); ?>
           </label>
@@ -29,7 +27,7 @@
           <input id="book_review_box_position_bottom" type="radio"
             name="book_review_general[book_review_box_position]"
             value="bottom"
-            <?php echo checked( 'bottom', $general['book_review_box_position'], false ); ?>>
+            <?php echo checked( 'bottom', $general_option['book_review_box_position'], false ); ?>>
           <label for="book_review_box_position_bottom">
             <?php esc_html_e( 'Bottom', $this->plugin_name ); ?>
           </label>
@@ -50,7 +48,7 @@
         <td>
           <input id="book_review_bg_color" class="color-picker" type="text"
             name="book_review_general[book_review_bg_color]"
-            value="<?php echo esc_attr( $general['book_review_bg_color'] ); ?>">
+            value="<?php echo esc_attr( $general_option['book_review_bg_color'] ); ?>">
         </td>
       </tr>
 
@@ -64,7 +62,7 @@
         <td>
           <input id="book_review_border_color" class="color-picker"
             type="text" name="book_review_general[book_review_border_color]"
-            value="<?php echo esc_attr( $general['book_review_border_color'] ); ?>">
+            value="<?php echo esc_attr( $general_option['book_review_border_color'] ); ?>">
         </td>
       </tr>
 
@@ -77,8 +75,8 @@
         </th>
         <td>
           <input id="book_review_border_width" class="small-text numeric-input"
-            type="number" step="1" min="1" name="book_review_general[book_review_border_width]"
-            value="<?php echo esc_attr( $general['book_review_border_width'] ); ?>">
+            type="text" step="1" min="0" name="book_review_general[book_review_border_width]"
+            value="<?php echo esc_attr( $general_option['book_review_border_width'] ); ?>">
             <?php esc_html_e( 'pixel(s)', $this->plugin_name ); ?>
         </td>
       </tr>
@@ -106,14 +104,14 @@
               <span><?php esc_html_e( 'Post Types', $this->plugin_name ); ?></span>
             </legend>
 
-            <?php foreach( $keys as $key ) {
+            <?php foreach ( $keys as $key ) {
               if ( !empty( $post_types[$key]->label ) ) { ?>
             <label for="book_review_<?php echo esc_attr( $key ); ?>">
                <input id="book_review_<?php echo esc_attr( $key ); ?>" type="checkbox"
                name="book_review_general[book_review_post_types][<?php echo esc_attr( $key ); ?>]"
                value="1"
-               <?php checked( '1', isset( $general['book_review_post_types'][$key] ) ?
-                $general['book_review_post_types'][$key] : '' ); ?>>
+               <?php checked( '1', isset( $general_option['book_review_post_types'][$key] ) ?
+                $general_option['book_review_post_types'][$key] : '' ); ?>>
                <?php esc_html_e( $post_types[$key]->label ); ?>
             </label>
             <br>

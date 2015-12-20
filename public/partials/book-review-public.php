@@ -14,7 +14,7 @@
 ?>
 
 <div id="book-review" itemscope itemtype="http://schema.org/Review"
-  style="<?php echo esc_attr( $review_box_style ); ?>">
+  <?php echo $this->get_review_box_style(); ?>>
 
   <!-- Meta for schema.org -->
   <meta itemprop="headline" content="<?php echo esc_attr( get_the_title() ); ?>">
@@ -23,136 +23,178 @@
   <meta itemprop="datePublished" content="<?php esc_attr( the_date( 'Y-m-d' ) ); ?>">
 
   <!-- Cover -->
-  <?php if ( !empty( $book_review_cover_url ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_cover_url( $post_id ) ) ): ?>
   <img itemprop="image" id="book_review_cover_image" class="cover"
-    src="<?php echo esc_url( $book_review_cover_url ); ?>"
-    alt="<?php echo esc_attr( $book_review_title . ' ' . __( 'Book Cover', $this->plugin_name ) ); ?>">
-  <?php } ?>
+    src="<?php echo esc_url( $this->book_info->get_book_review_cover_url( $post_id ) ); ?>"
+    alt="<?php echo esc_attr( $this->book_info->get_book_review_title( $post_id ) . ' ' .
+      __( 'Book Cover', $this->plugin_name ) ); ?>">
+  <?php endif; ?>
 
   <!-- Title -->
-  <?php if ( !empty( $book_review_title ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_title( $post_id ) ) ): ?>
   <label for="book_review_title">
     <?php esc_html_e( 'Title', $this->plugin_name ); ?>:
   </label>
   <span itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing" id="book_review_title">
-    <span itemprop="name"><?php echo esc_html( $book_review_title ); ?></span>
+    <span itemprop="name"><?php echo esc_html( $this->book_info->get_book_review_title( $post_id ) ); ?></span>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Series -->
-  <?php if ( !empty( $book_review_series ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_series( $post_id ) ) ): ?>
   <label for="book_review_series">
     <?php esc_html_e( 'Series', $this->plugin_name ); ?>:
   </label>
   <span id="book_review_series">
-    <?php echo esc_html( $book_review_series ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_series( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Author -->
-  <?php if ( !empty( $book_review_author ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_author( $post_id ) ) ): ?>
   <label for="book_review_author">
     <?php esc_html_e( 'Author', $this->plugin_name ); ?>:
   </label>
   <span id="book_review_author">
     <span>
-      <?php echo esc_html( $book_review_author ); ?>
+      <?php echo esc_html( $this->book_info->get_book_review_author( $post_id ) ); ?>
     </span>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Genre -->
-  <?php if ( !empty( $book_review_genre ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_genre( $post_id ) ) ): ?>
   <label for="book_review_genre">
     <?php esc_html_e( 'Genre', $this->plugin_name ); ?>:
   </label>
   <span itemprop="genre" id="book_review_genre">
-    <?php echo esc_html( $book_review_genre ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_genre( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Publisher -->
-  <?php if ( !empty( $book_review_publisher ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_publisher( $post_id ) ) ): ?>
   <label for="book_review_publisher">
     <?php esc_html_e( 'Publisher', $this->plugin_name ); ?>:
   </label>
   <span itemprop="publisher" id="book_review_publisher">
-    <?php echo esc_html( $book_review_publisher ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_publisher( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Release Date -->
-  <?php if ( !empty( $book_review_release_date ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_release_date( $post_id ) ) ): ?>
   <label for="book_review_release_date">
     <?php esc_html_e( 'Release Date', $this->plugin_name ); ?>:
   </label>
   <span id="book_review_release_date">
-    <?php echo esc_html( $book_review_release_date ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_release_date( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Format -->
-  <?php if ( !empty( $book_review_format ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_format( $post_id ) ) ): ?>
   <label for="book_review_format">
     <?php esc_html_e( 'Format', $this->plugin_name ); ?>:
   </label>
   <span id="book_review_format">
-    <?php echo esc_html( $book_review_format ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_format( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Pages -->
-  <?php if ( !empty( $book_review_pages ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_pages( $post_id ) ) ): ?>
   <label for="book_review_pages">
     <?php esc_html_e( 'Pages', $this->plugin_name ); ?>:
   </label>
   <span id="book_review_pages">
-    <?php echo esc_html( $book_review_pages ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_pages( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Source -->
-  <?php if ( !empty( $book_review_source ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_source( $post_id ) ) ): ?>
   <label for="book_review_source">
     <?php esc_html_e( 'Source', $this->plugin_name ) ?>:
   </label>
   <span id="book_review_source">
-    <?php echo esc_html( $book_review_source ); ?>
+    <?php echo esc_html( $this->book_info->get_book_review_source( $post_id ) ); ?>
   </span>
   <br>
-  <?php } ?>
+  <?php endif; ?>
+
+  <!-- Custom Fields -->
+  <?php
+    $fields = $this->settings->get_book_review_fields_option();
+
+    foreach ( $fields['fields'] as $field_id => $field_values ):
+      if ( isset( $field_values['label'] ) ):
+        $value = $this->book_info->get_book_review_field( $post_id, $field_id );
+
+        if ( !empty( $value ) ) :
+  ?>
+  <label for="<?php echo esc_attr( $field_id ); ?>">
+    <?php echo esc_html( $field_values['label'] ) ?>:
+  </label>
+  <span id="<?php echo esc_attr( $field_id ); ?>">
+    <?php echo esc_html( $value ); ?>
+  </span>
+  <br>
+  <?php
+        endif;
+      endif;
+    endforeach;
+  ?>
 
   <!-- Rating -->
-  <?php if ( !empty( $book_review_rating_url ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_rating_image( $post_id ) ) ): ?>
   <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-    <meta itemprop="ratingValue" content="<?php echo esc_attr( $book_review_rating ); ?>">
+    <meta itemprop="ratingValue" content="<?php echo esc_attr( $this->book_info->get_book_review_rating( $post_id ) ); ?>">
     <img id="book_review_rating_image" class="rating"
-      src="<?php echo esc_url( $book_review_rating_url ); ?>">
+      src="<?php echo esc_url( $this->book_info->get_book_review_rating_image( $post_id ) ); ?>">
     <br>
   </div>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Summary / Synopsis -->
-  <?php if ( !empty( $book_review_summary ) ) { ?>
+  <?php if ( !empty( $this->book_info->get_book_review_summary( $post_id ) ) ): ?>
   <div id="book_review_summary">
-    <?php echo wpautop( $book_review_summary ); ?>
+    <?php echo wpautop( $this->book_info->get_book_review_summary( $post_id ) ); ?>
   </div>
-  <?php } ?>
+  <?php endif; ?>
 
   <!-- Links -->
   <ul id="book-review-links" class="links">
     <?php
-      foreach( $links as $link ) {
-        echo $link;
-      }
+      $links = $this->book_info->get_book_review_links( $post_id );
+
+      foreach ( $links as $link ):
+        if ( !empty( $link->url ) ) :
+          if ( !empty( $link->image_url ) ):
+    ?>
+    <li>
+      <a class="custom-link" href="<?php echo esc_attr( $link->url ); ?>" <?php echo $this->get_link_target(); ?>>
+        <img src="<?php echo esc_attr( $link->image_url ); ?>" alt="<?php echo esc_attr( $link->text ); ?>">
+      </a>
+    </li>
+    <?php elseif ( !empty( $link->text ) ) : ?>
+    <li>
+      <a class="custom-link" href="<?php echo esc_attr( $link->url ); ?>" <?php echo $this->get_link_target(); ?>>
+        <?php esc_html_e( $link->text ); ?>
+      </a>
+    </li>
+    <?php
+          endif;
+        endif;
+      endforeach;
     ?>
   </ul>
 </div>

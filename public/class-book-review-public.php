@@ -41,12 +41,18 @@ class Book_Review_Public {
    * Initialize the class and set its properties.
    *
    * @since    1.0.0
-   * @var      string    $plugin_name       The name of the plugin.
-   * @var      string    $version    The version of this plugin.
+   * @param    string                 $plugin_name  Plugin name
+   * @param    string                 $version      Plugin version
+   * @param    Book_Review_Settings   $settings     Instance of Book_Review_Settings for
+   *                                                  getting the settings.
+   * @param    Book_Review_Book_Info  $book_info    Instance of Book_Review_Book_Info for
+   *                                                  getting information about a book.
    */
-  public function __construct( $plugin_name, $version ) {
+  public function __construct( $plugin_name, $version, $settings, $book_info ) {
     $this->plugin_name = $plugin_name;
     $this->version = $version;
+    $this->settings = $settings;
+    $this->book_info = $book_info;
   }
 
   /**
@@ -55,20 +61,12 @@ class Book_Review_Public {
    * @since    1.0.0
    */
   public function enqueue_styles() {
-    /**
-     * An instance of this class should be passed to the run() function
-     * defined in Plugin_Name_Public_Loader as all of the hooks are defined
-     * in that particular class.
-     *
-     * The Plugin_Name_Public_Loader will then create the relationship
-     * between the defined hooks and the functions defined in this
-     * class.
-     */
-    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-public.css', array(), $this->version, 'all' );
+    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-public.css',
+      array(), $this->version, 'all' );
   }
 
   /**
-   * Add the book info into the post.
+   * Display the book info.
    *
    * @since    1.0.0
    *
@@ -76,94 +74,42 @@ class Book_Review_Public {
    *
    * @return   string   Revised content of the post.
    */
-  public function add_book_info( $content ) {
-    $general_defaults = array(
-      'book_review_box_position' => 'top',
-      'book_review_bg_color' => '',
-      'book_review_border_color' => '',
-      'book_review_border_width' => '1',
-      'book_review_post_types' => array(
-        'post' => '1'
-      )
-    );
+  public function display_book_info( $content ) {
+    $post_id = get_the_ID();
 
-    $general = get_option( 'book_review_general' );
-    $general = wp_parse_args( $general, $general_defaults );
+    // Title is a required field.
+    if ( !empty( $this->book_info->get_book_review_title( $post_id ) ) ) {
+      $show = false;
+      $general_option = $this->settings->get_book_review_general_option();
 
-    if ( isset( $general['book_review_post_types'] ) ) {
-      $general['book_review_post_types'] = wp_parse_args( $general['book_review_post_types'], $general_defaults['book_review_post_types'] );
-    }
-    else {
-      $general['book_review_post_types'] = $general_defaults['book_review_post_types'];
-    }
+      // Post Types
+      $post_types = $general_option['book_review_post_types'];
+      $current_post_type = get_post_type( $post_id );
 
-    // Post Types
-    $current_post_type = get_post_type( get_the_ID() );
+      // To maintain backwards compatibility, show the book info for custom post types that have not
+      // been saved in the settings yet.
+      if ( !isset( $post_types[$current_post_type] ) ) {
+        $show = true;
+      }
+      // Check if current post type has been selected in settings.
+      else if ( $post_types[$current_post_type] == '1' ) {
+        $show = true;
+      }
 
-    foreach ( $general['book_review_post_types'] as $post_type => $value) {
-      if ( $current_post_type == $post_type ) {
-        if ( $value == '1' ) {
-          $values = get_post_custom();
+      // Show the review box.
+      if ( $show ) {
+        ob_start();
+        include( 'partials/book-review-public.php' );
 
-          // Set the value for each key.
-          foreach ( array( 'book_review_cover_url', 'book_review_title',
-            'book_review_series', 'book_review_author', 'book_review_genre',
-            'book_review_publisher', 'book_review_release_date',
-            'book_review_format', 'book_review_pages', 'book_review_source',
-            'book_review_rating', 'book_review_summary' ) as $var ) {
-            $$var = isset( $values[$var][0] ) ? $values[$var][0] : '';
-          }
+        $content = '<div itemprop="reviewBody">' . $content . '</div>';
 
-          // Title must be specified.
-          if ( !empty( $book_review_title ) ) {
-            $plugin = Book_Review::get_instance();
-
-            // Settings
-            $box_position = $general['book_review_box_position'];
-            $bg_color = $general['book_review_bg_color'];
-            $border_color = $general['book_review_border_color'];
-            $border_width = $general['book_review_border_width'];
-            $review_box_style = '';
-
-            // Don't apply inline CSS to an RSS feed.
-            if ( !is_feed() ) {
-              $review_box_style = 'border-style: solid;';
-
-              if ( isset( $border_color ) && !empty( $border_color ) ) {
-                $review_box_style .= ' border-color: ' . $border_color . ';';
-              }
-
-              if ( isset( $border_width ) && ( !empty( $border_width ) || ( $border_width == 0 ) ) ) {
-                $review_box_style .= ' border-width: ' . $border_width . 'px;';
-              }
-
-              if ( isset( $bg_color ) && !empty( $bg_color ) ) {
-                $review_box_style .= ' background-color: ' . $bg_color . ';';
-              }
-            }
-
-            // Rating
-            $book_review_rating_url = $plugin->get_rating()->get_rating_image( $book_review_rating );
-
-            // Links
-            $links = $this->create_links();
-
-            // Review Box Position
-            ob_start();
-            include( 'partials/book-review-public.php' );
-
-            $content = '<div itemprop="reviewBody">' . $content . '</div>';
-
-            if ( $box_position == 'top' ) {
-              $content = ob_get_clean() . $content;
-            }
-            else {
-              $content = $content . ob_get_clean();
-            }
-          }
+        // Review Box Position
+        if ( $general_option['book_review_box_position'] === 'top' ) {
+          $content = ob_get_clean() . $content;
         }
-
-        break;
+        else if ( $general_option['book_review_box_position'] === 'bottom' ) {
+          $content = $content . ob_get_clean();
+        }
       }
     }
 
@@ -171,55 +117,55 @@ class Book_Review_Public {
   }
 
   /**
-   * Creates the HTML for the links.
+   * Retrieve the style attribute for the review box.
    *
-   * @since    2.1.12
+   * @since    2.3.0
    *
-   * @return   array   Links HTML
+   * @return   string   Style attribute or empty string if none.
    */
-  public function create_links() {
-    global $wpdb;
+  public function get_review_box_style() {
+    $general_option = $this->settings->get_book_review_general_option();
+    $border_color = $general_option['book_review_border_color'];
+    $border_width = $general_option['book_review_border_width'];
+    $bg_color = $general_option['book_review_bg_color'];
 
-    // Link target
-    $links_defaults = array(
-      'book_review_target' => 0,
-    );
+    // Don't apply inline CSS to an RSS feed.
+    if ( !is_feed() ) {
+      $style = 'border-style: solid;';
 
-    $links_option = get_option( 'book_review_links' );
-    $links_option = wp_parse_args( $links_option, $links_defaults );
+      if ( !empty( $border_color ) ) {
+        $style .= ' border-color: ' . $border_color . ';';
+      }
+
+      if ( !empty( $border_width ) ) {
+        $style .= ' border-width: ' . $border_width . 'px;';
+      }
+
+      if ( !empty( $bg_color ) ) {
+        $style .= ' background-color: ' . $bg_color . ';';
+      }
+
+      return 'style="' . esc_attr( $style ) . '"';
+    }
+
+    return '';
+  }
+
+  /**
+   * Retrieve the target attribute of a link.
+   *
+   * @since    2.3.0
+   *
+   * @return   string   Target attribute or empty string if none.
+   */
+  public function get_link_target() {
+    $links_option = $this->settings->get_book_review_links_option();
 
     if ( $links_option['book_review_target'] == '1' ) {
-      $target = 'target=_blank';
-    }
-    else {
-      $target = '';
+      return 'target="_blank"';
     }
 
-    // Custom links
-    $links_table = $wpdb->prefix . "book_review_custom_links";
-    $link_urls_table = $wpdb->prefix . 'book_review_custom_link_urls';
-    $sql = "SELECT links.text, links.image_url, urls.url
-      FROM $links_table AS links
-      INNER JOIN $link_urls_table AS urls ON links.custom_link_id = urls.custom_link_id
-        AND urls.post_id = " . get_the_ID() .
-      " WHERE links.active = 1";
-
-    $results = $wpdb->get_results( $sql );
-    $links = array();
-
-    foreach( $results as $result ) {
-      if ( !empty( $result->image_url ) ) {
-        array_push( $links, '<li><a class="custom-link" href="' . esc_url( $result->url ) . '" ' . $target . '>' .
-          '<img src="' . esc_url( $result->image_url ) . '" alt="' . esc_attr( $result->text ) . '">' .
-          '</a></li>' );
-      }
-      else {
-        array_push( $links, '<li><a class="custom-link" href="' . esc_url( $result->url ) . '" ' . $target . '>' .
-          esc_html( $result->text ) . '</a></li>' );
-      }
-    }
-
-    return apply_filters( 'book_review_links', $links, get_the_ID(), $links_option );
+    return '';
   }
 
   /**
@@ -233,20 +179,15 @@ class Book_Review_Public {
    */
   public function add_rating( $content ) {
     if ( is_home() || is_archive() || is_search() ) {
-      $values = get_post_custom( get_the_ID() );
-      $ratings_option = get_option( 'book_review_ratings' );
+      $rating = $this->book_info->get_book_review_rating( get_the_ID() );
+      $ratings_option = $this->settings->get_book_review_ratings_option( 'book_review_ratings' );
 
-      if ( ( isset( $ratings_option['book_review_rating_home'] ) != null )
-        && ( isset( $values['book_review_rating'] ) != null ) ) {
-        if ( $ratings_option['book_review_rating_home'] == '1' ) {
-          $plugin = Book_Review::get_instance();
-          $rating = $values['book_review_rating'][0];
-          $src = $plugin->get_rating()->get_rating_image( $rating );
+      if ( !empty( $rating ) && ( $ratings_option['book_review_rating_home'] == '1' ) ) {
+        $src = $this->book_info->get_book_review_rating_image( get_the_ID() );
 
-          if ( !empty( $src) ) {
-            $content = '<p class="book_review_rating_image"><img src="' . esc_url( $src ) . '">' .
-              $content . '</p>';
-          }
+        if ( !empty( $src) ) {
+          $content = '<p class="book_review_rating_image"><img src="' . esc_url( $src ) . '">' .
+            $content . '</p>';
         }
       }
     }
@@ -330,7 +271,7 @@ class Book_Review_Public {
     $html[] = '<div class="book-review-archives">';
     $size = $this->get_thumbnail_size();
 
-    foreach( $results as $result ) {
+    foreach ( $results as $result ) {
       // Only include this post if it has been flagged to be shown in the
       // archive.
       if ( $result->archivePost == 1 ) {
@@ -445,18 +386,14 @@ class Book_Review_Public {
 
         // Rating
         if ( $atts['show_rating'] == 'true' ) {
-          $values = get_post_custom_values( 'book_review_rating', $result->post_id );
-          $ratings_option = get_option( 'book_review_ratings' );
-          $rating = $values[0];
+          $rating_url = $this->book_info->get_book_review_rating_image( $result->post_id );
 
-          $book_review_rating_url = $plugin->get_rating()->get_rating_image( $rating );
-
-          if ( !empty ( $book_review_rating_url ) ) {
+          if ( !empty ( $rating_url ) ) {
             if ( $atts['show_cover'] == 'true' ) {
-              $html[] = '<p><img src="' . esc_url( $book_review_rating_url ) . '"></p>';
+              $html[] = '<p><img src="' . esc_url( $rating_url ) . '"></p>';
             }
             else {
-              $html[] = '<img src="' . esc_url( $book_review_rating_url ) . '">';
+              $html[] = '<img src="' . esc_url( $rating_url ) . '">';
             }
           }
         }
@@ -486,7 +423,7 @@ class Book_Review_Public {
   private function get_thumbnail_size() {
     $dimensions = array();
 
-    foreach( get_intermediate_image_sizes() as $s ) {
+    foreach ( get_intermediate_image_sizes() as $s ) {
       if ( in_array( $s, array( 'thumbnail' ) ) ) {
         $dimensions[0] = get_option( $s . '_size_w' );
         $dimensions[1] = get_option( $s . '_size_h' );

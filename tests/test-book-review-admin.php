@@ -12,10 +12,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
 
     $this->plugin = run_book_review();
     $this->plugin_name = $this->plugin->get_plugin_name();
-    $this->plugin_admin = new Book_Review_Admin( $this->plugin_name, $this->plugin->get_version() );
-
-    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-activator.php';
-    Book_Review_Activator::activate( false );
+    $this->plugin_admin = new Book_Review_Admin( $this->plugin_name, $this->plugin->get_version(),
+      $this->plugin->get_settings(), $this->plugin->get_book_info() );
 
     $this->suppress = $wpdb->suppress_errors();
   }
@@ -48,8 +46,8 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   /**
    * @covers Book_Review_Admin::render_tabs
    */
-  public function testDefaultActiveTab() {
-    $tabs = '<a class="nav-tab nav-tab-active" href="?page=book-review&#038;tab=appearance">Appearance</a><a class="nav-tab" href="?page=book-review&#038;tab=images">Rating Images</a><a class="nav-tab" href="?page=book-review&#038;tab=links">Links</a><a class="nav-tab" href="?page=book-review&#038;tab=advanced">Advanced</a>';
+  public function testDefaultTab() {
+    $tabs = '<a class="nav-tab nav-tab-active" href="?page=book-review&#038;tab=appearance">Appearance</a><a class="nav-tab" href="?page=book-review&#038;tab=images">Rating Images</a><a class="nav-tab" href="?page=book-review&#038;tab=links">Links</a><a class="nav-tab" href="?page=book-review&#038;tab=fields">Custom Fields</a><a class="nav-tab" href="?page=book-review&#038;tab=advanced">Advanced</a>';
 
     $this->expectOutputString( $tabs, $this->plugin_admin->render_tabs() );
   }
@@ -57,9 +55,9 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
   /**
    * @covers Book_Review_Admin::render_tabs
    */
-  public function testLinksActiveTab() {
+  public function testNonDefaultTab() {
     $_GET['tab'] = 'links';
-    $tabs = '<a class="nav-tab" href="?page=book-review&#038;tab=appearance">Appearance</a><a class="nav-tab" href="?page=book-review&#038;tab=images">Rating Images</a><a class="nav-tab nav-tab-active" href="?page=book-review&#038;tab=links">Links</a><a class="nav-tab" href="?page=book-review&#038;tab=advanced">Advanced</a>';
+    $tabs = '<a class="nav-tab" href="?page=book-review&#038;tab=appearance">Appearance</a><a class="nav-tab" href="?page=book-review&#038;tab=images">Rating Images</a><a class="nav-tab nav-tab-active" href="?page=book-review&#038;tab=links">Links</a><a class="nav-tab" href="?page=book-review&#038;tab=fields">Custom Fields</a><a class="nav-tab" href="?page=book-review&#038;tab=advanced">Advanced</a>';
 
     $this->expectOutputString( $tabs, $this->plugin_admin->render_tabs() );
   }
@@ -69,275 +67,546 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    */
   public function testAddActionLinks() {
     $action_link = array(
-      'settings' => '<a href="' . admin_url( 'options-general.php?page=' .
-        $this->plugin_name ) . '">' . __( 'Settings', $this->plugin_name ) .
-      '</a>');
+      'settings' => '<a href="http://example.org/wp-admin/options-general.php?page=book-review">Settings</a>'
+    );
 
-    $this->assertEquals( $action_link, $this->plugin_admin->add_action_links( array() ));
+    $this->assertEquals( $action_link, $this->plugin_admin->add_action_links( array() ) );
   }
 
-  /**
-   * @covers Book_Review_Admin::init_menu
+  /** The only thing that can be done when testing hooks is to ensure that one has been added.
+   *  It's not possible to check for the proper callback when using OOP.
    */
-  public function testRegisterSettings() {
-    // TODO
-  }
 
   /**
-   * @covers Book_Review_Admin::sanitize_appearance
+   * @covers Book_Review_Admin::register_settings
    */
-  public function testSanitizeBorderWidth() {
-    $input = array();
-    $output = array();
+  public function testRegisterGeneralSettings() {
+    global $wp_filter;
 
-    $input['book_review_box_position'] = 'top';
-    $input['book_review_bg_color'] = '#ffffff';
-    $input['book_review_border_color'] = '#e0e0e0';
-    $input['book_review_border_width'] = '1';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
+    $this->plugin_admin->register_settings();
 
-    $this->assertInternalType( 'integer', $output['book_review_border_width'], 'Border Width has correct type' );
-    $this->assertEquals( 1, $output['book_review_border_width'], 'Border Width has correct value' );
-    $this->assertEquals( 0, count( get_settings_errors( 'book_review_appearance' ) ), 'No errors' );
+    $this->assertArrayHasKey( 'sanitize_option_book_review_general', $wp_filter );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_appearance
+   * @covers Book_Review_Admin::register_settings
+   */
+  public function testRegisterRatingsSettings() {
+    global $wp_filter;
+
+    $this->plugin_admin->register_settings();
+
+    $this->assertArrayHasKey( 'sanitize_option_book_review_ratings', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::register_settings
+   */
+  public function testRegisterLinksSettings() {
+    global $wp_filter;
+
+    $this->plugin_admin->register_settings();
+
+    $this->assertArrayHasKey( 'sanitize_option_book_review_links', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::register_settings
+   */
+  public function testRegisterFieldsSettings() {
+    global $wp_filter;
+
+    $this->plugin_admin->register_settings();
+
+    $this->assertArrayHasKey( 'sanitize_option_book_review_fields', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::register_settings
+   */
+  public function testRegisterAdvancedSettings() {
+    global $wp_filter;
+
+    $this->plugin_admin->register_settings();
+
+    $this->assertArrayHasKey( 'sanitize_option_book_review_advanced', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_checkbox
+   */
+  public function testSanitizeValidCheckbox() {
+    $this->assertEquals( '1', $this->plugin_admin->sanitize_checkbox( '1' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_checkbox
+   */
+  public function testSanitizeInvalidCheckbox() {
+    $this->assertEquals( '', $this->plugin_admin->sanitize_checkbox( 'abc' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_text
+   */
+  public function testSanitizeValidText() {
+    $this->assertSame( 'My Custom Text', $this->plugin_admin->sanitize_text( 'My Custom Text' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_text
+   */
+  public function testSanitizeEmptyText() {
+    $this->assertSame( '', $this->plugin_admin->sanitize_text( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_text
+   */
+  public function testSanitizeInvalidText() {
+    $this->assertSame( 'My Custom Text', $this->plugin_admin->sanitize_text( '<script>alert("Injected javascript")</script>My Custom Text' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSanitizeValidUrl() {
+    $this->assertSame( 'http://url.to.image1.png', $this->plugin_admin->sanitize_url( 'http://url.to.image1.png' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSanitizeInvalidUrl() {
+    $this->assertSame( 'http://url.to.image1.png', $this->plugin_admin->sanitize_url( 'url.to.image1.png' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_appearance
+   */
+  public function testSaveAppearance() {
+    $input = array(
+      'book_review_box_position' => 'top',
+      'book_review_bg_color' => '#fff',
+      'book_review_border_color' => '#000',
+      'book_review_border_width' => 1,
+      'book_review_post_types' => array(
+        'post' => '1'
+      )
+    );
+
+    $output = $this->plugin_admin->save_appearance( $input );
+
+    $this->assertSame( 'top', $output['book_review_box_position'], 'Position' );
+    $this->assertSame( '#fff', $output['book_review_bg_color'], 'Background Color' );
+    $this->assertSame( '#000', $output['book_review_border_color'], 'Border Color' );
+    $this->assertSame( 1, $output['book_review_border_width'], 'Border Width' );
+    $this->assertSame( 2, count( $output['book_review_post_types'] ), 'Post type count' );
+    $this->assertArrayHasKey( 'post', $output['book_review_post_types'], 'Post key' );
+    $this->assertSame( '1', $output['book_review_post_types']['post'], 'Post value' );
+    $this->assertArrayHasKey( 'page', $output['book_review_post_types'], 'Page key' );
+    $this->assertSame( '0', $output['book_review_post_types']['page'], 'Page value' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_appearance
+   */
+  public function testSaveInvalidPostType() {
+    $input = array(
+      'book_review_post_types' => array(
+        'invalid' => '1'
+      )
+    );
+
+    $output = $this->plugin_admin->save_appearance( $input );
+
+    $this->assertArrayHasKey( 'book_review_post_types', $output, 'Post type' );
+    $this->assertArrayNotHasKey( 'invalid', $output['book_review_post_types'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_appearance
+   */
+  public function testSaveInvalidBorderWidth() {
+    $input = array(
+      'book_review_border_width' => '-5',
+    );
+
+    $output = $this->plugin_admin->save_appearance( $input );
+
+    $this->assertArrayNotHasKey( 'book_review_border_width', $output );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_appearance
+   */
+  public function testSaveNoAppearance() {
+    $output = $this->plugin_admin->save_appearance();
+
+    $this->assertSame( 2, count( $output['book_review_post_types'] ), 'Post type count' );
+    $this->assertArrayHasKey( 'post', $output['book_review_post_types'], 'Post key' );
+    $this->assertSame( '0', $output['book_review_post_types']['post'], 'Post value' );
+    $this->assertArrayHasKey( 'page', $output['book_review_post_types'], 'Page key' );
+    $this->assertSame( '0', $output['book_review_post_types']['page'], 'Page value' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_position
+   */
+  public function testSanitizeValidPosition() {
+    $this->assertEquals( 'bottom', $this->plugin_admin->sanitize_position( 'bottom' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_position
+   */
+  public function testSanitizeInvalidPosition() {
+    $this->assertEquals( 'top', $this->plugin_admin->sanitize_position( 'left' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_color
+   */
+  public function testSanitizeValidColor() {
+    $this->assertEquals( '#ffffff', $this->plugin_admin->sanitize_color( '#ffffff' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_color
+   */
+  public function testSanitizeInvalidColor() {
+    $this->assertEquals( '', $this->plugin_admin->sanitize_color( '#zab' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_color
+   */
+  public function testSanitizeEmptyColor() {
+    $this->assertEquals( '', $this->plugin_admin->sanitize_color( '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_border_width
+   */
+  public function testSanitizeValidBorderWidth() {
+    $width = $this->plugin_admin->sanitize_border_width( '1' );
+
+    $this->assertSame( 1, $width, 'Correct value' );
+    $this->assertEquals( 0, count( get_settings_errors( 'book_review_appearance' ) ), 'No error' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_border_width
    */
   public function testSanitizeZeroBorderWidth() {
-    $input = array();
-    $output = array();
+    $width = $this->plugin_admin->sanitize_border_width( '0' );
 
-    $input['book_review_box_position'] = 'top';
-    $input['book_review_bg_color'] = '#ffffff';
-    $input['book_review_border_color'] = '#e0e0e0';
-    $input['book_review_border_width'] = '0';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
-
-    $this->assertInternalType( 'integer', $output['book_review_border_width'], 'Border Width has correct type' );
-    $this->assertEquals( 0, $output['book_review_border_width'], 'Border Width has correct value' );
-    $this->assertEquals( 0, count( get_settings_errors( 'book_review_appearance' ) ), 'No errors' );
+    $this->assertSame( 0, $width, 'Correct value' );
+    $this->assertEquals( 0, count( get_settings_errors( 'book_review_appearance' ) ), 'No error' );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_appearance
+   * @covers Book_Review_Admin::sanitize_border_width
    */
-  public function testSanitizeEmptyBorderWidth() {
-    $input = array();
-    $output = array();
+  public function testSanitizeNonIntegerBorderWidth() {
+    global $wp_settings_errors;
 
-    $input['book_review_box_position'] = 'top';
-    $input['book_review_bg_color'] = '#ffffff';
-    $input['book_review_border_color'] = '#e0e0e0';
-    $input['book_review_border_width'] = '';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
+    $this->plugin_admin->sanitize_border_width( 'abc' );
 
-    $this->assertInternalType( 'integer', $output['book_review_border_width'], 'Border Width has correct type' );
-    $this->assertEquals( 0, $output['book_review_border_width'], 'Border Width has correct value' );
-    $this->assertEquals( 1, count( get_settings_errors( 'book_review_appearance' ) ), 'Error saving empty Border Width' );
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'non-integer-border-width-error', $wp_settings_errors[0]['code'], 'Error code' );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_appearance
+   * @covers Book_Review_Admin::sanitize_border_width
    */
-  public function testSanitizeInvalidBorderWidth() {
-    $input = array();
-    $output = array();
+  public function testSanitizeNegativeBorderWidth() {
+    global $wp_settings_errors;
 
-    $input['book_review_box_position'] = 'top';
-    $input['book_review_bg_color'] = '#ffffff';
-    $input['book_review_border_color'] = '#e0e0e0';
-    $input['book_review_border_width'] = 'abc';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
+    $this->plugin_admin->sanitize_border_width( '-5' );
 
-    $this->assertInternalType( 'integer', $output['book_review_border_width'], 'Border Width has correct type' );
-    $this->assertEquals( 0, $output['book_review_border_width'], 'Border Width has correct value' );
-    $this->assertEquals( 1, count( get_settings_errors( 'book_review_appearance' ) ), 'Error saving invalid Border Width' );
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'negative-border-width-error', $wp_settings_errors[0]['code'], 'Error code' );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::sanitize_border_width
    */
-  public function testSanitizeExcerpts() {
-    $input = array();
-    $output = array();
+  public function testSanitizeBorderWidthPreviousValue() {
+    $general_option = array(
+      'book_review_border_width' => 10
+    );
 
-    $input['book_review_rating_home'] = '1';
-    $input['book_review_rating_default'] = '1';
-    $input['book_review_rating_image1'] = '';
-    $input['book_review_rating_image2'] = '';
-    $input['book_review_rating_image3'] = '';
-    $input['book_review_rating_image4'] = '';
-    $input['book_review_rating_image5'] = '';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
+    update_option( 'book_review_general', $general_option );
 
-    $this->assertEquals( '1', $output['book_review_rating_home'] );
+    $this->assertSame( 10, $this->plugin_admin->sanitize_border_width( '-5' ), 'Correct value' );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::sanitize_border_width
    */
-  public function testSanitizeNoExcerpts() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_rating_default'] = '1';
-    $input['book_review_rating_image1'] = '';
-    $input['book_review_rating_image2'] = '';
-    $input['book_review_rating_image3'] = '';
-    $input['book_review_rating_image4'] = '';
-    $input['book_review_rating_image5'] = '';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
-
-    $this->assertEquals( '', $output['book_review_rating_home'] );
+  public function testSanitizeBorderWidthNoPreviousValue() {
+    $this->assertFalse( $this->plugin_admin->sanitize_border_width( '-5' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::sanitize_post_type
    */
-  public function testSanitizeDefaultImages() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_rating_default'] = '1';
-    $input['book_review_rating_image1'] = '';
-    $input['book_review_rating_image2'] = '';
-    $input['book_review_rating_image3'] = '';
-    $input['book_review_rating_image4'] = '';
-    $input['book_review_rating_image5'] = '';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
-
-    $this->assertEquals( '1', $output['book_review_rating_default'] );
+  public function testSanitizeValidPostType() {
+    $this->assertSame( '1', $this->plugin_admin->sanitize_post_type( 'post', '1' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::sanitize_post_type
    */
-  public function testSanitizeImageURLs() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_rating_image1'] = 'http://url.to.image1.png';
-    $input['book_review_rating_image2'] = 'http://url.to.image2.png';
-    $input['book_review_rating_image3'] = 'http://url.to.image3.png';
-    $input['book_review_rating_image4'] = 'http://url.to.image4.png';
-    $input['book_review_rating_image5'] = 'http://url.to.image5.png';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
-
-    $this->assertEquals( '', $output['book_review_rating_default'], 'Default Rating Images has correct value' );
-    $this->assertEquals( $input['book_review_rating_image1'], $output['book_review_rating_image1'], 'Image 1 has correct value' );
-    $this->assertEquals( $input['book_review_rating_image2'], $output['book_review_rating_image2'], 'Image 2 has correct value' );
-    $this->assertEquals( $input['book_review_rating_image3'], $output['book_review_rating_image3'], 'Image 3 has correct value' );
-    $this->assertEquals( $input['book_review_rating_image4'], $output['book_review_rating_image4'], 'Image 4 has correct value' );
-    $this->assertEquals( $input['book_review_rating_image5'], $output['book_review_rating_image5'], 'Image 5 has correct value' );
+  public function testSanitizeInvalidPostType() {
+    $this->assertFalse( $this->plugin_admin->sanitize_post_type( 'invalid', '1' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::sanitize_post_type
    */
-  public function testSanitizeEmptyImageURLs() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_rating_image1'] = '';
-    $input['book_review_rating_image2'] = '';
-    $input['book_review_rating_image3'] = '';
-    $input['book_review_rating_image4'] = '';
-    $input['book_review_rating_image5'] = '';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
-
-    $this->assertArrayNotHasKey( 'book_review_rating_image1', $output, 'Image 1 not saved' );
-    $this->assertArrayNotHasKey( 'book_review_rating_image2', $output, 'Image 2 not saved' );
-    $this->assertArrayNotHasKey( 'book_review_rating_image3', $output, 'Image 3 not saved' );
-    $this->assertArrayNotHasKey( 'book_review_rating_image4', $output, 'Image 4 not saved' );
-    $this->assertArrayNotHasKey( 'book_review_rating_image5', $output, 'Image 5 not saved' );
-    $this->assertEquals( 1, count( get_settings_errors( 'book_review_ratings' ) ), 'Error saving empty image URLs' );
+  public function testSanitizeInvalidPostTypeValue() {
+    $this->assertFalse( $this->plugin_admin->sanitize_post_type( 'post', 'abc' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::save_rating_images
    */
-  public function testSanitizeInvalidImageURLs() {
-    $input = array();
-    $output = array();
+  public function testSaveRatingImageUrl() {
+    $input = array(
+      'book_review_rating_image1' => 'http://url.to.image1.png'
+    );
 
-    $input['book_review_rating_image1'] = 'url.to.image1.png';
-    $input['book_review_rating_image2'] = 'url.to.image2.png';
-    $input['book_review_rating_image3'] = 'url.to.image3.png';
-    $input['book_review_rating_image4'] = 'url.to.image4.png';
-    $input['book_review_rating_image5'] = 'url.to.image5.png';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
+    $output = $this->plugin_admin->save_rating_images( $input );
 
-    $this->assertEquals( 'http://url.to.image1.png', $output['book_review_rating_image1'], 'Image 1 has correct value' );
-    $this->assertEquals( 'http://url.to.image2.png', $output['book_review_rating_image2'], 'Image 2 has correct value' );
-    $this->assertEquals( 'http://url.to.image3.png', $output['book_review_rating_image3'], 'Image 3 has correct value' );
-    $this->assertEquals( 'http://url.to.image4.png', $output['book_review_rating_image4'], 'Image 4 has correct value' );
-    $this->assertEquals( 'http://url.to.image5.png', $output['book_review_rating_image5'], 'Image 5 has correct value' );
+    $this->assertSame( 'http://url.to.image1.png', $output['book_review_rating_image1'] );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_rating_images
+   * @covers Book_Review_Admin::save_rating_images
    */
-  public function testSanitizeDefaultImagesWithImageURLs() {
-    $input = array();
-    $output = array();
+  public function testSaveRatingImageUrlWithDefault() {
+    $input = array(
+      'book_review_rating_default' => '1',
+      'book_review_rating_image1' => 'http://url.to.image1.png'
+    );
 
-    $input['book_review_rating_default'] = '1';
-    $input['book_review_rating_image1'] = '';
-    $input['book_review_rating_image2'] = 'http://url.to.image2.png';
-    $input['book_review_rating_image3'] = 'http://url.to.image3.gif';
-    $input['book_review_rating_image4'] = 'http://url.to.image4.bmp';
-    $input['book_review_rating_image5'] = 'http://url.to.image5.jpg';
-    $output = $this->plugin_admin->sanitize_rating_images( $input );
+    $output = $this->plugin_admin->save_rating_images( $input );
 
-    $this->assertEquals( '', $output['book_review_rating_image1'], 'Image 1 has correct value' );
-    $this->assertEquals( 'http://url.to.image2.png', $output['book_review_rating_image2'], 'Image 2 has correct value' );
-    $this->assertEquals( 'http://url.to.image3.gif', $output['book_review_rating_image3'], 'Image 3 has correct value' );
-    $this->assertEquals( 'http://url.to.image4.bmp', $output['book_review_rating_image4'], 'Image 4 has correct value' );
-    $this->assertEquals( 'http://url.to.image5.jpg', $output['book_review_rating_image5'], 'Image 5 has correct value' );
+    $this->assertSame( 'http://url.to.image1.png', $output['book_review_rating_image1'] );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::save_rating_images
    */
-  public function testSanitizeLinkTarget() {
-    $input = array();
-    $output = array();
+  public function testSaveEmptyRatingImageUrl() {
+    $input = array(
+      'book_review_rating_image1' => ''
+    );
 
-    $input['book_review_target'] = '1';
-    $output = $this->plugin_admin->sanitize_links( $input );
+    $output = $this->plugin_admin->save_rating_images( $input );
 
-    $this->assertEquals( '1', $output['book_review_target'] );
+    $this->assertArrayNotHasKey( 'book_review_rating_image1', $output );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::save_rating_images
    */
-  public function testSanitizeNoLinkTarget() {
-    $input = array();
-    $output = array();
+  public function testSaveExcerpts() {
+    $input = array(
+      'book_review_rating_home' => ' 1 '
+    );
 
-    $output = $this->plugin_admin->sanitize_links( $input );
+    $output = $this->plugin_admin->save_rating_images( $input );
 
-    $this->assertEquals( '', $output['book_review_target'] );
+    $this->assertSame( '1', $output['book_review_rating_home'] );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::save_rating_images
    */
-  public function testInsertCustomLink() {
+  public function testSaveInvalidExcerpts() {
+    $input = array(
+      'book_review_rating_home' => '5'
+    );
+
+    $output = $this->plugin_admin->save_rating_images( $input );
+
+    $this->assertSame( '', $output['book_review_rating_home'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_rating_images
+   */
+  public function testSaveNoExcerpts() {
+    $output = $this->plugin_admin->save_rating_images();
+
+    $this->assertSame( '', $output['book_review_rating_home'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_rating_images
+   */
+  public function testSaveDefaultRatingImages() {
+    $input = array(
+      'book_review_rating_default' => ' 1 '
+    );
+
+    $output = $this->plugin_admin->save_rating_images( $input );
+
+    $this->assertSame( '1', $output['book_review_rating_default'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_rating_images
+   */
+  public function testSaveInvalidDefaultRatingImages() {
+    $input = array(
+      'book_review_rating_default' => '-5'
+    );
+
+    $output = $this->plugin_admin->save_rating_images( $input );
+
+    $this->assertSame( '', $output['book_review_rating_default'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_rating_images
+   */
+  public function testSaveNoDefaultRatingImages() {
+    $output = $this->plugin_admin->save_rating_images();
+
+    $this->assertSame( '', $output['book_review_rating_default'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeValidRatingImage() {
+    $this->assertSame( 'http://url.to.image1.png',
+      $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', 'http://url.to.image1.png', '1' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeInvalidRatingImage() {
+    $this->assertSame( 'http://%20url.to.image1.png%20',
+      $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', ' url.to.image1.png ', '1' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeRatingImageNoDefault() {
+    $this->assertSame( 'http://url.to.image1.png',
+      $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', 'http://url.to.image1.png', '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeRatingImageError() {
+    global $wp_settings_errors;
+
+    $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', '', '' );
+
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'rating-image-error', $wp_settings_errors[0]['code'], 'Error code' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeRatingImagePreviousValue() {
+    $ratings_option = array(
+      'book_review_rating_image1' => 'http://url.to.image1.png'
+    );
+
+    update_option( 'book_review_ratings', $ratings_option );
+
+    $this->assertSame( 'http://url.to.image1.png',
+      $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', '', '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_rating_image
+   */
+  public function testSanitizeRatingImageNoPreviousValue() {
+    $this->assertSame( '', $this->plugin_admin->sanitize_rating_image( 'book_review_rating_image1', '', '' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::save_link
+   */
+  public function testSaveInvalidLinkId() {
     global $wpdb;
 
     $input = array();
     $output = array();
 
+    $this->create_tables();
+
+    // Add row.
+    $input[1]['id'] = '-1';
+    $input[1]['text'] = 'Goodreads';
+    $input[1]['image'] = 'http://url.to.Goodreads.png';
+    $this->plugin_admin->save_links( $input );
+
+    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
+
+    $this->assertEquals( 0, count( $results ) );
+
+    $this->drop_tables();
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::save_link
+   */
+  public function testSaveEmptyLinkText() {
+    global $wpdb;
+
+    $input = array();
+    $output = array();
+
+    $this->create_tables();
+
+    // Add row.
+    $input[1]['text'] = '';
+    $input[1]['image'] = 'http://url.to.Goodreads.png';
+    $input[1]['active'] = '1';
+    $this->plugin_admin->save_links( $input );
+
+    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
+
+    $this->assertEquals( 0, count( $results ) );
+
+    $this->drop_tables();
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::save_link
+   */
+  public function testInsertLink() {
+    global $wpdb;
+
+    $input = array();
+    $output = array();
+
+    $this->create_tables();
+
     // Add row.
     $input[1]['text'] = 'Goodreads';
     $input[1]['image'] = 'http://url.to.Goodreads.png';
     $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
+    $this->plugin_admin->save_links( $input );
 
     $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
+
     $this->assertEquals( 1, count( $results ), 'Single row added to book_review_custom_links' );
 
     foreach ( $results as $result ) {
@@ -345,31 +614,37 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
       $this->assertEquals( $input[1]['image'], $result->image_url, 'Link Image URL is correct' );
       $this->assertEquals( $input[1]['active'], $result->active, 'Active is correct' );
     }
+
+    $this->drop_tables();
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::save_link
    */
-  public function testUpdateCustomLink() {
+  public function testUpdateLink() {
     global $wpdb;
 
     $input = array();
     $output = array();
 
+    $this->create_tables();
+
     // Add row.
     $input[1]['text'] = 'Goodreads';
     $input[1]['image'] = 'http://url.to.Goodreads.png';
     $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
+    $this->plugin_admin->save_links( $input );
 
     // Update row.
     $input[1]['id'] = '1';
     $input[1]['text'] = 'Amazon.com';
     $input[1]['image'] = 'http://url.to.Amazon.png';
     $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
+    $this->plugin_admin->save_links( $input );
 
     $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
+
     $this->assertEquals( 1, count( $results ), 'Single row in book_review_custom_links' );
 
     foreach ( $results as $result ) {
@@ -378,264 +653,284 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
       $this->assertEquals( $input[1]['image'], $result->image_url, 'Link Image URL is correct' );
       $this->assertEquals( $input[1]['active'], $result->active, 'Active is correct' );
     }
+
+    $this->drop_tables();
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSaveLinkTarget() {
+    $input = array(
+      'book_review_target' => '1'
+    );
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '1', $output['book_review_target'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSaveInvalidLinkTarget() {
+    $input = array(
+      'book_review_target' => '5'
+    );
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['book_review_target'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSaveNoLinkTarget() {
+    $output = $this->plugin_admin->save_links();
+
+    $this->assertSame( '', $output['book_review_target'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_id
+   */
+  public function testSanitizeValidLinkId() {
+    $this->assertSame( 1, $this->plugin_admin->sanitize_link_id( '1' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_id
+   */
+  public function testSanitizeZeroLinkId() {
+    $this->assertSame( 0, $this->plugin_admin->sanitize_link_id( '0' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_id
+   */
+  public function testSanitizeNegativeLinkId() {
+    $this->assertSame( 0, $this->plugin_admin->sanitize_link_id( '-5' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_id
+   */
+  public function testSanitizeInvalidLinkId() {
+    $this->assertSame( 0, $this->plugin_admin->sanitize_link_id( 'invalid' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_text
+   */
+  public function testSanitizeValidLinkText() {
+    $this->assertSame( 'My Custom Link', $this->plugin_admin->sanitize_link_text( 'My Custom Link' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_text
    */
   public function testSanitizeEmptyLinkText() {
-    global $wpdb;
-
-    $input = array();
-    $output = array();
-
-    // Add row.
-    $input[1]['text'] = '';
-    $input[1]['image'] = 'http://url.to.Goodreads.png';
-    $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
-
-    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
-    $this->assertEquals( 0, count( $results ), 'Single row added to book_review_custom_links' );
-    $this->assertEquals( 1, count( get_settings_errors( 'book_review_links' ) ), 'Error saving empty Link Text' );
+    $this->assertSame( '', $this->plugin_admin->sanitize_link_text( '' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::sanitize_link_text
    */
   public function testSanitizeInvalidLinkText() {
-    global $wpdb;
-
-    $input = array();
-    $output = array();
-
-    // Add row.
-    $input[1]['text'] = ' <div> This is  some markup </div> ';
-    $input[1]['image'] = 'http://url.to.Goodreads.png';
-    $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
-
-    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
-    $this->assertEquals( 1, count( $results ), 'Single row added to book_review_custom_links' );
-
-    foreach ( $results as $result ) {
-      $this->assertEquals( 'This is some markup', $result->text, 'Link text is correct' );
-    }
+    $this->assertSame( 'My Custom Link', $this->plugin_admin->sanitize_link_text( '<script>alert("Injected javascript")</script>My Custom Link' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::sanitize_link_text
    */
-  public function testSanitizeInvalidLinkImageURL() {
-    global $wpdb;
+  public function testLinkTextError() {
+    global $wp_settings_errors;
 
-    $input = array();
-    $output = array();
+    $this->plugin_admin->sanitize_link_text( '' );
 
-    // Add row.
-    $input[1]['text'] = 'Goodreads';
-    $input[1]['image'] = 'url.to.Goodreads.png';
-    $input[1]['active'] = '1';
-    $this->plugin_admin->sanitize_links( $input );
-
-    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
-    $this->assertEquals( 1, count( $results ), 'Single row added to book_review_custom_links' );
-
-    foreach ( $results as $result ) {
-      $this->assertEquals( 'http://url.to.Goodreads.png', $result->image_url, 'Link Image URL is correct' );
-    }
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'link-text-error', $wp_settings_errors[0]['code'], 'Error code' );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_links
+   * @covers Book_Review_Admin::sanitize_link_status
    */
-  public function testSanitizeInactiveLink() {
-    global $wpdb;
-
-    $input = array();
-    $output = array();
-
-    // Add row.
-    $input[1]['text'] = 'Goodreads';
-    $input[1]['image'] = 'http://url.to.Goodreads.png';
-    $this->plugin_admin->sanitize_links( $input );
-
-    $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
-    $this->assertEquals( 1, count( $results ), 'Single row added to book_review_custom_links' );
-
-    foreach ( $results as $result ) {
-      $this->assertEquals( '0', $result->active, 'Custom Link is inactive' );
-    }
+  public function testSanitizeActiveLinkStatus() {
+    $this->assertSame( 1, $this->plugin_admin->sanitize_link_status( '1' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::sanitize_link_status
    */
-  public function testSanitizeAPIKey() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_api_key'] = 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0';
-    $output = $this->plugin_admin->sanitize_advanced( $input );
-
-    $this->assertEquals( 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0', $output['book_review_api_key'] );
+  public function testSanitizeInactiveLinkStatus() {
+    $this->assertSame( 1, $this->plugin_admin->sanitize_link_status( '0' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::sanitize_link_status
    */
-  public function testSanitizeInvalidAPIKey() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_api_key'] = '<script>alert("Injected javascript")</script>AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0';
-    $output = $this->plugin_admin->sanitize_advanced( $input );
-
-    $this->assertEquals( 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0', $output['book_review_api_key'] );
+  public function testSanitizeNegativeLinkStatus() {
+    $this->assertSame( 1, $this->plugin_admin->sanitize_link_status( '-5' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::sanitize_link_status
    */
-  public function testSanitizeAPIKeyNotSet() {
-    $input = array();
-    $output = array();
-
-    $output = $this->plugin_admin->sanitize_advanced( $input );
-
-    $this->assertEquals( '', $output['book_review_api_key'] );
+  public function testSanitizeInvalidLinkStatus() {
+    $this->assertSame( 1, $this->plugin_admin->sanitize_link_status( 'invalid' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::save_custom_fields
    */
-  public function testSanitizeCountry() {
-    $country = 'CA';
-    $input = array();
-    $output = array();
+  public function testSaveValidCustomField() {
+    $input = array(
+      'fields' => array(
+        'book_review_565adc1c2d403' => array(
+          'label' => 'Illustrator'
+        )
+      )
+    );
 
-    $input['book_review_country'] = $country;
-    $output = $this->plugin_admin->sanitize_advanced( $input );
+    $output = $this->plugin_admin->save_custom_fields( $input );
 
-    $this->assertEquals( $country, $output['book_review_country'] );
+    $this->assertSame( 'Illustrator', $output['fields']['book_review_565adc1c2d403']['label'] );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::save_custom_fields
+   */
+  public function testSaveNoCustomField() {
+    $output = $this->plugin_admin->save_custom_fields();
+
+    $this->assertArrayNotHasKey( 'fields', $output, 'No fields key' );
+    $this->assertSame( array(), $output, 'Return value' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_custom_fields
+   */
+  public function testCustomFieldError() {
+    global $wp_settings_errors;
+
+    $input = array(
+      'fields' => array(
+        'book_review_565adc1c2d403' => array(
+          'label' => ''
+        )
+      )
+    );
+
+    $output = $this->plugin_admin->save_custom_fields( $input );
+
+    $this->assertSame( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertSame( 'custom-field-error', $wp_settings_errors[0]['code'], 'Error code' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_advanced
+   */
+  public function testSaveAdvanced() {
+    $input = array(
+      'book_review_api_key' => 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0',
+      'book_review_country' => 'SO'
+    );
+
+    $output = $this->plugin_admin->save_advanced( $input );
+
+    $this->assertSame( 'AIzaSyBlL-VCuJ3yoCPHOMrGjO48Gjj3c216Md0', $output['book_review_api_key'], 'API key' );
+    $this->assertSame( 'SO', $output['book_review_country'], 'Country' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_advanced
+   */
+  public function testSaveNoAdvanced() {
+    $this->assertSame( array(), $this->plugin_admin->save_advanced() );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_country
+   */
+  public function testSanitizeValidCountry() {
+    $this->assertSame( 'CA', $this->plugin_admin->sanitize_country( 'CA' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_country
    */
   public function testSanitizeInvalidCountry() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_country'] = 'invalid';
-    $output = $this->plugin_admin->sanitize_advanced( $input );
-
-    $this->assertEquals( '', $output['book_review_country'] );
+    $this->assertSame( '', $this->plugin_admin->sanitize_country( 'invalid' ) );
   }
 
   /**
-   * @covers Book_Review_Admin::sanitize_advanced
+   * @covers Book_Review_Admin::sanitize_country
    */
-  public function testSanitizeCountryNotSet() {
-    $input = array();
-    $output = array();
-
-    $output = $this->plugin_admin->sanitize_advanced( $input );
-
-    $this->assertEquals( '', $output['book_review_country'] );
-  }
-
-  /**
-   * @covers Book_Review_Admin::sanitize_appearance
-   */
-  public function testSanitizePostType() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_post_types']['post'] = '1';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
-
-    $this->assertArrayHasKey( 'post', $output['book_review_post_types'], 'key' );
-    $this->assertEquals( '1', $output['book_review_post_types']['post'], 'value' );
-  }
-
-  /**
-   * @covers Book_Review_Admin::sanitize_appearance
-   */
-  public function testSanitizeInvalidPostType() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_post_types']['invalid'] = '1';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
-
-    $this->assertArrayNotHasKey( 'invalid', $output['book_review_post_types'] );
-  }
-
-  /**
-   * @covers Book_Review_Admin::sanitize_appearance
-   */
-  public function testSanitizeInvalidPostTypeValue() {
-    $input = array();
-    $output = array();
-
-    $input['book_review_post_types']['post'] = 'invalid';
-    $output = $this->plugin_admin->sanitize_appearance( $input );
-
-    $this->assertArrayHasKey( 'post', $output['book_review_post_types'], 'key' );
-    $this->assertEquals( '1', $output['book_review_post_types']['post'], 'value' );
-  }
-
-  /**
-   * @covers Book_Review_Admin::sanitize_appearance
-   */
-  public function testSanitizePostTypeNotSet() {
-    $input = array();
-    $output = array();
-
-    $output = $this->plugin_admin->sanitize_appearance( $input );
-
-    $this->assertArrayHasKey( 'post', $output['book_review_post_types'], 'post key' );
-    $this->assertArrayHasKey( 'page', $output['book_review_post_types'], 'page key' );
-    $this->assertEquals( '0', $output['book_review_post_types']['post'], 'post value' );
-    $this->assertEquals( '0', $output['book_review_post_types']['page'], 'page value' );
+  public function testSanitizeEmptyCountry() {
+    $this->assertSame( '', $this->plugin_admin->sanitize_country( '' ) );
   }
 
   /**
    * @covers Book_Review_Admin::column_heading
    */
   public function testColumnHeading() {
-    $output = $this->plugin_admin->column_heading( array() );
+    $output = $this->plugin_admin->column_heading( array( 'title' => 'Title' ) );
 
+    $this->assertArrayHasKey( 'title', $output, 'Title Column' );
     $this->assertArrayHasKey( 'rating', $output, 'Rating Column' );
   }
 
   /**
    * @covers Book_Review_Admin::column_content
    */
-  public function testColumnContent() {
-    $meta_data = array( 'book_review_rating' => '3' );
-    $content = '<img src="' . plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png" class="book_review_column_rating">';
+  public function testColumnContentValidRating() {
     $post_id = $this->factory->post->create();
+    $content = '<img src="' . plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png" class="book_review_column_rating">';
 
-    foreach( $meta_data as $key => $value ) {
-      update_post_meta( $post_id, $key, $value );
-    }
+    update_post_meta( $post_id, 'book_review_rating', '3' );
 
-    $this->expectOutputString( $content,  $this->plugin_admin->column_content( 'rating', $post_id ) );
+    $this->expectOutputString( $content, $this->plugin_admin->column_content( 'rating', $post_id ) );
   }
 
   /**
    * @covers Book_Review_Admin::column_content
    */
   public function testColumnContentNoRating() {
-    $meta_data = array( 'book_review_rating' => '-1' );
     $post_id = $this->factory->post->create();
 
-    foreach( $meta_data as $key => $value ) {
-      update_post_meta( $post_id, $key, $value );
-    }
+    update_post_meta( $post_id, 'book_review_rating', '-1' );
 
-    $this->expectOutputString( '',  $this->plugin_admin->column_content( 'rating', $post_id ) );
+    $this->expectOutputString( '', $this->plugin_admin->column_content( 'rating', $post_id ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::column_content
+   */
+  public function testColumnContentRatingNotSet() {
+    $post_id = $this->factory->post->create();
+
+    $this->expectOutputString( '', $this->plugin_admin->column_content( 'rating', $post_id ) );
+  }
+
+  /**
+   * Helper function to create custom tables.
+   */
+  private function create_tables() {
+    remove_filter( 'query', array( $this, '_create_temporary_tables' ) );
+    require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-activator.php';
+
+    Book_Review_Activator::activate( false );
+  }
+
+  /**
+   * Helper function to drop custom tables.
+   */
+  private function drop_tables() {
+    global $wpdb;
+
+    delete_option( 'book_review_version' );
+    remove_filter( 'query', array( $this, '_drop_temporary_tables' ) );
+
+    $wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'book_review_custom_links' );
+    $wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'book_review_custom_link_urls' );
   }
 }

@@ -292,7 +292,7 @@ class Book_Review_Multi_Install_Tests extends WP_UnitTestCase {
     );
     $post_id = $this->factory->post->create();
 
-    foreach( $meta_data as $key => $value ) {
+    foreach ( $meta_data as $key => $value ) {
       update_post_meta( $post_id, $key, $value );
     }
 
@@ -361,7 +361,7 @@ class Book_Review_Multi_Install_Tests extends WP_UnitTestCase {
     switch_to_blog( self::$blog_id );
     $post_id = $this->factory->post->create();
 
-    foreach( $meta_data as $key => $value ) {
+    foreach ( $meta_data as $key => $value ) {
       update_post_meta( $post_id, $key, $value );
     }
 
