@@ -76,9 +76,10 @@ class Book_Review_Public {
    */
   public function display_book_info( $content ) {
     $post_id = get_the_ID();
+    $title = $this->book_info->get_book_review_title( $post_id );
 
     // Title is a required field.
-    if ( !empty( $this->book_info->get_book_review_title( $post_id ) ) ) {
+    if ( !empty( $title ) ) {
       $show = false;
       $general_option = $this->settings->get_book_review_general_option();
 
