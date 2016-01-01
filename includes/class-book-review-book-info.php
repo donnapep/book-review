@@ -197,25 +197,73 @@ class Book_Review_Book_Info {
   }
 
   /**
-   * Retrieve the links.
+   * Retrieve the links meta that displays in the Book Info meta box.
    *
-   * @since    2.3.0
+   * @since    2.3.1
    *
    * @param    string    $post_id    ID of the current post.
    */
-  public function get_book_review_links( $post_id ) {
+  public function get_book_review_links_meta( $post_id ) {
     global $wpdb;
 
-    // Get the link text and link URLs.
     $sql = "SELECT links.custom_link_id, links.text, links.image_url, urls.url
       FROM {$wpdb->book_review_custom_links} AS links
       LEFT OUTER JOIN {$wpdb->book_review_custom_link_urls} AS urls ON links.custom_link_id = urls.custom_link_id
         AND urls.post_id = $post_id
       WHERE links.active = 1";
 
-    $links = $wpdb->get_results( $sql );
+    $links_meta = $wpdb->get_results( $sql );
 
-    return apply_filters( 'book_review_links', $links, $post_id );
+    return apply_filters( 'book_review_links_meta', $links_meta, $post_id );
+  }
+
+  /**
+   * Retrieve the links.
+   *
+   * @since    2.3.0
+   *
+   * @param    string    $post_id    ID of the current post.
+   */
+  public function get_book_review_links_html( $post_id ) {
+    global $wpdb;
+
+    $html = array();
+    $links_option = $this->settings->get_book_review_links_option();
+    $links = $this->get_book_review_links_meta( $post_id );
+
+    // Construct the HTML for each link.
+    foreach ( $links as $link ) {
+      if ( !empty( $link->url ) ) {
+        if ( !empty( $link->image_url ) ) {
+          array_push( $html, '<li><a class="custom-link" href="' . esc_url( $link->url ) . '"' .
+            $this->get_link_target() . '>' . '<img src="' . esc_url( $link->image_url ) .'" alt="' .
+            esc_attr( $link->text ) . '">' . '</a></li>' );
+        }
+        elseif ( !empty( $link->text ) ) {
+          array_push( $html, '<li><a class="custom-link" href="' . esc_url( $link->url ) . '"' .
+            $this->get_link_target() . '>' . esc_html( $link->text ) . '</a></li>' );
+        }
+      }
+    }
+
+    return apply_filters( 'book_review_links', $html, $post_id, $links_option );
+  }
+
+  /**
+   * Retrieve the target attribute of a link.
+   *
+   * @since    2.3.1
+   *
+   * @return   string   Target attribute or empty string if none.
+   */
+  private function get_link_target() {
+    $links_option = $this->settings->get_book_review_links_option();
+
+    if ( $links_option['book_review_target'] == '1' ) {
+      return ' target="_blank"';
+    }
+
+    return '';
   }
 
   /**

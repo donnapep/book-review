@@ -1,5 +1,8 @@
 # Book Review #
 
+## Review More Than Just Books ##
+One of the most powerful features of Book Review is the ability to add custom fields to each of your reviews. Custom fields enable you to review movies, music, TV shows and so much more!
+
 ## Save Time ##
 Book Review saves you time when writing your reviews. No more copying and pasting or manually entering the details of a book. Instead, you provide the ISBN, and Book Review will automatically populate information like title, author, and even the cover photo for you.
 
@@ -56,18 +59,26 @@ OR
 
 ## Screenshots ##
 
-###Book Review Settings###
-![Book Review Settings](https://cloud.githubusercontent.com/assets/1190420/5692227/a2c1d80c-98ba-11e4-865d-4667943fed02.png)
-###Book Info###
-![Book Info](https://cloud.githubusercontent.com/assets/1190420/5692230/a2c64090-98ba-11e4-8326-d111d87c7f1a.png)
-###Sample Post###
-![Book Info on a Sample Post](https://cloud.githubusercontent.com/assets/1190420/5692229/a2c5fae0-98ba-11e4-9323-e690aa648fea.png)
-###Archives by Title###
+### Settings - Appearance ###
+![Settings - Appearance](https://cloud.githubusercontent.com/assets/1190420/12072461/aa3c6d16-b0ad-11e5-85b9-efb284f44328.png)
+### Settings - Rating Images ###
+![Settings - Rating Images](https://cloud.githubusercontent.com/assets/1190420/12072467/aa474812-b0ad-11e5-86c8-3ca31844f9c5.png)
+### Settings - Links ###
+![Settings - Links](https://cloud.githubusercontent.com/assets/1190420/12072466/aa40fcb4-b0ad-11e5-8324-df75ae1db768.png)
+### Settings - Custom Fields ###
+![Settings - Custom Fields](https://cloud.githubusercontent.com/assets/1190420/12072463/aa400cb4-b0ad-11e5-8eda-821050ed8371.png)
+### Settings - Advanced ###
+![Settings - Advanced](https://cloud.githubusercontent.com/assets/1190420/12072464/aa406b8c-b0ad-11e5-9106-98ac8fa9e791.png)
+### Book Info ###
+![Book Info](https://cloud.githubusercontent.com/assets/1190420/12072462/aa3efa40-b0ad-11e5-9845-62aa7de7c1e8.png)
+### Sample Post ###
+![Sample Post](https://cloud.githubusercontent.com/assets/1190420/12072465/aa409134-b0ad-11e5-8323-ecf0365d5274.png)
+### Archives by Title ###
 ![Archives by Title](https://cloud.githubusercontent.com/assets/1190420/5692228/a2c37a0e-98ba-11e4-9f34-789dac88c24b.png)
-###Archives by Genre###
+### Archives by Genre ###
 ![Archives by Genre](https://cloud.githubusercontent.com/assets/1190420/5692231/a2c73978-98ba-11e4-8534-1a140584bfec.png)
-###Google Search Results Page###
-![Google Search Results Page](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
+### Google Search Result ###
+![Google Search Result](https://cloud.githubusercontent.com/assets/1190420/5770126/1a086cd6-9cf4-11e4-9881-fc517d73b29e.png)
 
 ## Contributions ##
 Anyone is welcome to contribute to the WordPress Book Review Plugin, but please read the [contribution guidelines](https://github.com/donnapep/book-review/blob/master/CONTRIBUTING.md) first.
@@ -86,6 +97,6 @@ There are various ways to get involved:
 * Follow me on [Google+](https://plus.google.com/u/0/+DonnaPeplinskie/posts), [Twitter](https://twitter.com/donnapep) or [LinkedIn](http://www.linkedin.com/in/donnapeplinskie).
 
 ## About Me ##
-* I’m the founder of [WP Review Plugins](http://wpreviewplugins.com/).
+* I’m the founder of [WP Review Plugins](http://wpreviewplugins.com/), a company specializing in creating review plugins for WordPress.
 * I blog about web and professional development at [donnapeplinskie.com](http://donnapeplinskie.com/).
 * I'm an avid reader and a fan of young adult fiction.

@@ -153,23 +153,6 @@ class Book_Review_Public {
   }
 
   /**
-   * Retrieve the target attribute of a link.
-   *
-   * @since    2.3.0
-   *
-   * @return   string   Target attribute or empty string if none.
-   */
-  public function get_link_target() {
-    $links_option = $this->settings->get_book_review_links_option();
-
-    if ( $links_option['book_review_target'] == '1' ) {
-      return 'target="_blank"';
-    }
-
-    return '';
-  }
-
-  /**
    * Add rating to the excerpt.
    *
    * @since    1.0.0

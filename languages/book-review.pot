@@ -1,14 +1,14 @@
-# Copyright (C) 2015 Book Review
+# Copyright (C) 2016 Book Review
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.3.0\n"
+"Project-Id-Version: Book Review 2.3.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2015-12-20 18:23:09+00:00\n"
+"POT-Creation-Date: 2016-01-01 16:37:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -1280,47 +1280,47 @@ msgid "Get Book Info"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:32
-#: public/partials/book-review-public.php:36
+#: public/partials/book-review-public.php:42
 msgid "Title"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:41
-#: public/partials/book-review-public.php:47
+#: public/partials/book-review-public.php:56
 msgid "Series"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:50
-#: public/partials/book-review-public.php:58
+#: public/partials/book-review-public.php:70
 msgid "Author"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:59
-#: public/partials/book-review-public.php:71
+#: public/partials/book-review-public.php:86
 msgid "Genre"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:68
-#: public/partials/book-review-public.php:82
+#: public/partials/book-review-public.php:100
 msgid "Publisher"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:78
-#: public/partials/book-review-public.php:93
+#: public/partials/book-review-public.php:114
 msgid "Release Date"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:87
-#: public/partials/book-review-public.php:104
+#: public/partials/book-review-public.php:128
 msgid "Format"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:96
-#: public/partials/book-review-public.php:115
+#: public/partials/book-review-public.php:142
 msgid "Pages"
 msgstr ""
 
 #: admin/partials/book-review-admin-meta-box.php:105
-#: public/partials/book-review-public.php:126
+#: public/partials/book-review-public.php:156
 msgid "Source"
 msgstr ""
 
@@ -1356,7 +1356,7 @@ msgstr ""
 msgid "<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Dismiss this notice.</span></a>"
 msgstr ""
 
-#: public/partials/book-review-public.php:30
+#: public/partials/book-review-public.php:33
 msgid "Book Cover"
 msgstr ""
 
