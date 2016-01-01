@@ -218,26 +218,6 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
   }
 
   /**
-   * @covers Book_Review_Public::get_link_target
-   */
-  public function testLinkTarget() {
-    $links_option = array(
-      'book_review_target' => '1'
-    );
-
-    add_option( 'book_review_links', $links_option );
-
-    $this->assertSame( 'target="_blank"', $this->plugin_public->get_link_target() );
-  }
-
-  /**
-   * @covers Book_Review_Public::get_link_target
-   */
-  public function testNoLinkTarget() {
-    $this->assertSame( '', $this->plugin_public->get_link_target() );
-  }
-
-  /**
    * @covers Book_Review_Public::add_rating
    */
   public function testRatingInExcerpts() {

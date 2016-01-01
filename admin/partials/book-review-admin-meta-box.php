@@ -130,7 +130,7 @@
 
   <!-- Links -->
   <?php
-    $links = $this->book_info->get_book_review_links( $post->ID );
+    $links = $this->book_info->get_book_review_links_meta( $post->ID );
 
     foreach ( $links as $link ):
   ?>

@@ -210,27 +210,11 @@
   <!-- Links -->
   <ul id="book-review-links" class="links">
     <?php
-      $links = $this->book_info->get_book_review_links( $post_id );
+      $links = $this->book_info->get_book_review_links_html( $post_id );
 
-      foreach ( $links as $link ):
-        if ( !empty( $link->url ) ) :
-          if ( !empty( $link->image_url ) ):
-    ?>
-    <li>
-      <a class="custom-link" href="<?php echo esc_attr( $link->url ); ?>" <?php echo $this->get_link_target(); ?>>
-        <img src="<?php echo esc_attr( $link->image_url ); ?>" alt="<?php echo esc_attr( $link->text ); ?>">
-      </a>
-    </li>
-    <?php elseif ( !empty( $link->text ) ) : ?>
-    <li>
-      <a class="custom-link" href="<?php echo esc_attr( $link->url ); ?>" <?php echo $this->get_link_target(); ?>>
-        <?php esc_html_e( $link->text ); ?>
-      </a>
-    </li>
-    <?php
-          endif;
-        endif;
-      endforeach;
+      foreach ( $links as $link ) {
+        echo $link;
+      }
     ?>
   </ul>
 </div>
