@@ -553,11 +553,19 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
     $input[1]['id'] = '-1';
     $input[1]['text'] = 'Goodreads';
     $input[1]['image'] = 'http://url.to.Goodreads.png';
+    $input[1]['active'] = '1';
     $this->plugin_admin->save_links( $input );
 
     $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'book_review_custom_links' );
 
-    $this->assertEquals( 0, count( $results ) );
+    $this->assertEquals( 1, count( $results ) );
+
+    foreach ( $results as $result ) {
+      $this->assertEquals( 1, $result->custom_link_id, 'Link ID is correct' );
+      $this->assertEquals( $input[1]['text'], $result->text, 'Link text is correct' );
+      $this->assertEquals( $input[1]['image'], $result->image_url, 'Link Image URL is correct' );
+      $this->assertEquals( 1, $result->active, 'Active is correct' );
+    }
 
     $this->drop_tables();
   }
@@ -600,6 +608,7 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
     $this->create_tables();
 
     // Add row.
+    $input[1]['id'] = '';
     $input[1]['text'] = 'Goodreads';
     $input[1]['image'] = 'http://url.to.Goodreads.png';
     $input[1]['active'] = '1';
@@ -610,6 +619,7 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
     $this->assertEquals( 1, count( $results ), 'Single row added to book_review_custom_links' );
 
     foreach ( $results as $result ) {
+      $this->assertEquals( 1, $result->custom_link_id, 'Link ID is correct' );
       $this->assertEquals( $input[1]['text'], $result->text, 'Link text is correct' );
       $this->assertEquals( $input[1]['image'], $result->image_url, 'Link Image URL is correct' );
       $this->assertEquals( $input[1]['active'], $result->active, 'Active is correct' );
@@ -631,6 +641,7 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
     $this->create_tables();
 
     // Add row.
+    $input[1]['id'] = '';
     $input[1]['text'] = 'Goodreads';
     $input[1]['image'] = 'http://url.to.Goodreads.png';
     $input[1]['active'] = '1';
