@@ -671,9 +671,9 @@ class Book_Review_Admin {
   private function save_link( $id, $text, $url, $active ) {
     global $wpdb;
 
-    if ( ( $id !== 0 ) && ( $text !== '' ) ) {
-      // Insert a new row.
-      if ( $id === '' ) {
+    if ( ( $id !== '' ) && ( $text !== '' ) ) {
+      // Insert a new row. If $id is 0, it means a new link is being added.
+      if ( $id === 0 ) {
         $wpdb->insert(
           $wpdb->book_review_custom_links,
           array(

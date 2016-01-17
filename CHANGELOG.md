@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.3.2 ##
+* Fix: Add a new link in the *Book Review Settings*.
+
 ## 2.3.1 ##
 * New: Add new `book_review_links_meta` filter for returning links meta used in the *Book Info* meta box.
 * Fix: Change `book_review_links` filter to return links HTML.
