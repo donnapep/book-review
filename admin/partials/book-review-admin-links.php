@@ -26,7 +26,7 @@
   <h3><?php esc_html_e( 'Custom Links', $this->plugin_name ); ?></h3>
   <p>
     <?php
-      printf( __( 'Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href="%s" target="_blank">documentation</a> for additional details.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/documentation/settings-links/' ) );
+      printf( __( 'Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href="%s" target="_blank">documentation</a> for more information.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/documentation/settings-links/' ) );
     ?>
   </p>
 

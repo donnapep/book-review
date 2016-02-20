@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.3.2\n"
+"Project-Id-Version: Book Review 2.3.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/book-review\n"
-"POT-Creation-Date: 2016-01-17 14:59:34+00:00\n"
+"POT-Creation-Date: 2016-02-20 18:43:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgid "A book with this ISBN was not found in the Google Books database."
 msgstr ""
 
 #: admin/class-book-review-admin.php:154
-msgid "<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href=\"%s\">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown.</p><p>Please also check to ensure that the correct IP address of your server has been entered into the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>. See the <a href=\"%s\" target=\"_blank\">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">General Support forum</a>. Be sure to include the URL of your web site in your post. Thanks!"
+msgid "<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href=\"%s\">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown. See the <a href=\"%s\" target=\"_blank\">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">Book Review Support forum</a>. Thanks!"
 msgstr ""
 
 #: admin/class-book-review-admin.php:172
@@ -1180,7 +1180,7 @@ msgid "Select the post types to show book information for."
 msgstr ""
 
 #: admin/partials/book-review-admin-custom-fields.php:10
-msgid "Custom fields provide the ability to show additional details about a book. Every custom field entered here will be shown in the <em>Book Info</em> section when editing a post. Click the <em>Add Field</em> button to add a new field, or drag and drop existing fields to reorder them."
+msgid "Custom fields provide the ability to show additional details about a book. Every custom field entered here will be shown in the <em>Book Info</em> section when editing a post. Click the <em>Add Field</em> button to add a new field, or drag and drop existing fields to reorder them. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
 msgstr ""
 
 #: admin/partials/book-review-admin-custom-fields.php:13
@@ -1192,7 +1192,7 @@ msgid "Add Field"
 msgstr ""
 
 #: admin/partials/book-review-admin-images.php:2
-msgid "Configure the images to use for displaying ratings."
+msgid "Configure the images to use to display ratings. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
 msgstr ""
 
 #: admin/partials/book-review-admin-images.php:17
@@ -1252,7 +1252,7 @@ msgid "Custom Links"
 msgstr ""
 
 #: admin/partials/book-review-admin-links.php:29
-msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for additional details."
+msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
 msgstr ""
 
 #: admin/partials/book-review-admin-links.php:39

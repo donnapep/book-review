@@ -1,5 +1,10 @@
 # Change Log #
 
+## 2.3.3 ##
+* Tweak: Update error message when retrieving book info.
+* Tweak: Add documentation links to *Rating Images* and *Custom Fields* tabs.
+* Tweak: Remove "by" in front of author name in archives.
+
 ## 2.3.2 ##
 * Fix: Add a new link in the *Book Review Settings*.
 
