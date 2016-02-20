@@ -1,5 +1,5 @@
 <p>
-  <?php esc_html_e( 'Configure the images to use for displaying ratings.', $this->plugin_name ); ?>
+  <?php printf( __( 'Configure the images to use to display ratings. Please see the <a href="%s" target="_blank">documentation</a> for more information.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/documentation/settings-rating-images/' ) ); ?>
 </p>
 
 <form action="options.php" method="post">

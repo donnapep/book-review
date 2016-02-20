@@ -356,7 +356,7 @@ class Book_Review_Public {
             '">' . esc_html( $result->title ) . '</a></h5>';
 
           if ( !empty( $result->author ) ) {
-            $html[] = '<p>by ' . esc_html( $result->author ) . '</p>';
+            $html[] = '<p>' . esc_html( $result->author ) . '</p>';
           }
         }
         else {
@@ -364,7 +364,7 @@ class Book_Review_Public {
             esc_html( $result->title ) . '</a>';
 
           if ( !empty( $result->author ) ) {
-            $html[] = 'by ' . esc_html( $result->author );
+            $html[] = esc_html( $result->author );
           }
         }
 
