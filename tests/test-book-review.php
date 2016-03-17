@@ -213,13 +213,40 @@ class Book_Review_Tests extends WP_UnitTestCase {
   /**
    * @covers Book_Review_Admin::define_admin_hooks
    */
-  public function testTargetFilter() {
+  public function testSiteLinkActiveFilter() {
     global $wp_filter;
 
-    $this->assertArrayHasKey( 'sanitize_book_review_target', $wp_filter );
+    $this->assertArrayHasKey( 'sanitize_book_review_site_link_active', $wp_filter );
   }
 
   /**
+   * @covers Book_Review_Admin::define_admin_hooks
+   */
+  public function testSiteLinkTypeFilter() {
+    global $wp_filter;
+
+    $this->assertArrayHasKey( 'sanitize_book_review_site_link_type', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::define_admin_hooks
+   */
+  public function testSiteLinkTextFilter() {
+    global $wp_filter;
+
+    $this->assertArrayHasKey( 'sanitize_book_review_site_link_text', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::define_admin_hooks
+   */
+  public function testSiteLinkUrlFilter() {
+    global $wp_filter;
+
+    $this->assertArrayHasKey( 'sanitize_book_review_site_link_url', $wp_filter );
+  }
+
+   /**
    * @covers Book_Review_Admin::define_admin_hooks
    */
   public function testLinkIdFilter() {
@@ -253,6 +280,15 @@ class Book_Review_Tests extends WP_UnitTestCase {
     global $wp_filter;
 
     $this->assertArrayHasKey( 'sanitize_book_review_link_status', $wp_filter );
+  }
+
+  /**
+   * @covers Book_Review_Admin::define_admin_hooks
+   */
+  public function testTargetFilter() {
+    global $wp_filter;
+
+    $this->assertArrayHasKey( 'sanitize_book_review_target', $wp_filter );
   }
 
   /**

@@ -58,7 +58,11 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
   /**
    * @covers Book_Review_Public::display_book_info
    */
-  public function testBookInfoPostWhenPostTypesNotSet() {
+  public function testBookInfoPostWhenPostTypesNotSet() {error_log('testBookInfoPostWhenPostTypesNotSet');
+    global $wp_the_query;
+
+    $wp_the_query = $this;
+    print_r($this->plugin_public);
     set_post_type( $this->post_id, 'post' );
     update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
 
@@ -229,7 +233,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -285,7 +289,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -306,7 +310,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -327,7 +331,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 

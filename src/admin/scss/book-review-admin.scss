@@ -1,0 +1,201 @@
+.book-review-admin {
+  width: 70%;
+  font-size: 16px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+   p {
+    font-size: 1em;
+  }
+
+  input[readonly] {
+    /* Display & Box Model */
+    border: 0;
+
+    /* Visual */
+    background: #fff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  input[type="radio"] {
+    margin-top: 0;
+    vertical-align: middle;
+  }
+
+  input[type="radio"]:not(:first-child) {
+    margin-left: 10px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  /* Rating Images */
+  .rating {
+    display: none;
+  }
+
+  /* Links */
+  .site-links,
+  .add-link {
+    display: inline-block;
+    margin-bottom: 1em;
+  }
+
+  .site-links label {
+    margin-right: 3em;
+  }
+
+  .postbox h4 {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    margin: 0;
+  }
+
+  .inside {
+    font-size: 1em;
+  }
+
+  .goodreads .link-type,
+  .barnes-noble .link-type {
+    height: 35px;
+  }
+
+  .link-type > * {
+    vertical-align: middle;
+  }
+
+  .links label {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: -4px;
+  }
+
+  .link-type {
+    img {
+      height: 34px;
+    }
+
+    .link {
+      color: #0073aa;
+      outline: 0;
+      text-decoration: underline;
+    }
+
+    .url-container {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+
+  .url-container,
+  .url {
+    width: 75%;
+  }
+
+  .name-container {
+    display: inline-block;
+      margin-left: 10px;
+  }
+
+  .ala {
+    font-style: italic;
+  }
+
+  /* Custom Links */
+  #custom-links {
+    font-size: 1em;
+    th {
+      overflow: visible;
+      line-height: normal;
+      font-size: 1em;
+    }
+
+    .text {
+      width: 25%;
+    }
+
+    .url {
+      width: 60%;
+    }
+
+    input[type="text"] {
+      width: 100%;
+    }
+
+    .active {
+      text-align: center;
+    }
+  }
+
+  .add-link,
+  .add-field {
+    margin-top: 10px;
+  }
+
+  .target-container {
+    margin-bottom: 0;
+  }
+
+  #fields {
+    max-width: 400px;
+
+    .label {
+      width: 75%;
+      max-width: 300px;
+    }
+  }
+
+  .field {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    margin: 6px 0 0;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.4em;
+    cursor: move;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+
+    .dashicons {
+      float: right;
+      margin: 5px 0;
+    }
+  }
+
+  .ui-sortable-placeholder {
+    height: 55px;
+    border: 2px dashed #aaa;
+    background: #e4e4e4;
+  }
+
+  .add-field {
+    margin-top: 10px;
+  }
+
+  /* Override default WordPress styling. */
+  .form-table {
+    font-size: 1em;
+
+    th, td {
+      font-size: 1em;
+    }
+  }
+
+  .nav-tab,
+  .form-wrap label {
+    font-size: 16px;
+  }
+
+}
+
+.js .book-review-admin .postbox .hndle {
+  cursor: default;
+}

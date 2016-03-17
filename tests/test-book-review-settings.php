@@ -392,6 +392,129 @@ class Book_Review_Settings_Tests extends WP_UnitTestCase {
   }
 
   /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultSiteLinks() {
+    $this->assertCount( 2, $this->settings->get_book_review_links_option()['sites'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultGoodreadsSiteLink() {
+    $this->assertCount( 4, $this->settings->get_book_review_links_option()['sites']['book_review_goodreads'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultGoodreadsSiteLinkType() {
+    $this->assertSame( 'button', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultGoodreadsSiteLinkText() {
+    $this->assertSame( 'Goodreads', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['text'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultGoodreadsSiteLinkUrl() {
+    $this->assertSame( '', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultGoodreadsSiteLinkActive() {
+    $this->assertSame( '0', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['active'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultBarnesNobleSiteLink() {
+    $this->assertCount( 4, $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultBarnesNobleSiteLinkType() {
+    $this->assertSame( 'button', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultBarnesNobleSiteLinkText() {
+    $this->assertSame( 'Barnes & Noble', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['text'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultBarnesNobleSiteLinkUrl() {
+    $this->assertSame( '', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testDefaultvSiteLinkActive() {
+    $this->assertSame( '0', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['active'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testNoDefaultGoodreadsSiteLink() {
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'text',
+          'text' => 'GR',
+          'url' => 'http://fakeurl.com/goodreads.png',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+
+    $this->assertSame( 'text', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['type'], 'Type' );
+    $this->assertSame( 'GR', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['text'], 'Text' );
+    $this->assertSame( 'http://fakeurl.com/goodreads.png', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['url'], 'URL' );
+    $this->assertSame( '1', $this->settings->get_book_review_links_option()['sites']['book_review_goodreads']['active'], 'Active' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::get_book_review_links_option
+   */
+  public function testNoDefaultBarnesNobleSiteLink() {
+    $links_option = array(
+      'sites' => array(
+        'book_review_barnes_noble' => array(
+          'type' => 'text',
+          'text' => 'B&N',
+          'url' => 'http://fakeurl.com/barnes-noble.png',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+
+    $this->assertSame( 'text', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['type'], 'Type' );
+    $this->assertSame( 'B&N', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['text'], 'Text' );
+    $this->assertSame( 'http://fakeurl.com/barnes-noble.png', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['url'], 'URL' );
+    $this->assertSame( '1', $this->settings->get_book_review_links_option()['sites']['book_review_barnes_noble']['active'], 'Active' );
+  }
+
+  /**
    * @covers Book_Review_Admin::get_book_review_fields_option
    */
   public function testDefaultField() {

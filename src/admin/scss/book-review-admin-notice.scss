@@ -1,0 +1,88 @@
+#book-review-notice {
+  position: relative;
+  overflow: auto;
+  padding: 10px 38px 10px 10px;
+  border: 1px solid #f6af91;
+  border-bottom-width: 3px;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  color: #cd5b45;
+  background-color: #fad7c8;
+  border-radius: 5px;
+
+  .logo {
+    float: left;
+  }
+
+  .content {
+    margin-left: 70px;
+
+    div {
+      line-height: 1.6em;
+    }
+  }
+
+  .thank-you {
+    font-size: 1.2em;
+  }
+
+  /* Call to Action */
+  .cta {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #cd5b45;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 15px;
+    line-height: 1.428571429;
+    white-space: nowrap;
+  }
+
+  /* Dismiss Button */
+  .dismiss {
+    position: absolute;
+    top: 0;
+    right: 1px;
+    padding: 9px;
+    border: none;
+    margin: 0;
+    background: 0 0;
+    color: #cd5b45;
+    cursor: pointer;
+    color: #cd5b45;
+
+    &:active:before,
+    &:focus:before,
+    &:hover:before {
+      color: #c00;
+    }
+
+    &:before {
+      position: relative;
+      top: 0;
+      left: 0;
+      display: block !important;
+      width: 20px;
+      height: 20px;
+      background: 0 0;
+      color: #cd5b45;
+      font: 400 16px/1 dashicons;
+      text-align: center;
+      line-height: 20px;
+      content: '\f153';
+      speak: none;
+      -webkit-font-smoothing: antialiased !important;
+    }
+
+    &::before {
+      color: #cd5b45;
+    }
+
+    &:focus {
+      color: #c00;
+      outline: 0;
+      -webkit-box-shadow: 0 0 0 1px #5b9dd9,0 0 2px 1px rgba(30,140,190,.8);
+      box-shadow: 0 0 0 1px #5b9dd9,0 0 2px 1px rgba(30,140,190,.8);
+    }
+  }
+}

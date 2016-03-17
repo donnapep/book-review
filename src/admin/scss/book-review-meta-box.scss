@@ -1,0 +1,85 @@
+.book-review-meta {
+  .row {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  label {
+    display: inline-block;
+    width: 15%;
+    padding-left: 1em;
+    padding-right: 1em;
+    /* Offset whitespace between 2 inline-block elements. */
+    margin-right: -4px;
+    font-weight: bold;
+  }
+
+  select {
+    width: 100px;
+  }
+
+  .cover-image {
+    max-height: 150px;
+  }
+
+  .cover-image,
+  .rating-image {
+    /* This is based on the width and padding of the label. */
+    padding-top: 5px;
+    padding-left: 2em;
+    margin-left: 15%;
+  }
+
+  input[type="text"],
+  #wp-book_review_summary-wrap {
+    /* Display & Box Model */
+    display: inline-block;
+    width: 60%;
+
+    /* Visual */
+    vertical-align: middle;
+  }
+
+  input[type="text"].short {
+    width: 30%;
+  }
+
+  #wp-book_review_summary-wrap {
+    padding-bottom: 0.83333333333333em;
+  }
+
+  .summary {
+    vertical-align: top;
+  }
+
+  .button-primary:active {
+    vertical-align: baseline;
+  }
+
+  .required {
+    color: red;
+  }
+
+  .spinner {
+    float: none;
+    vertical-align: baseline;
+  }
+
+  .error-details {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ebccd1;
+    margin-bottom: 20px;
+    background-color: #f2dede;
+    color: #a94442;
+    border-radius: 4px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+}

@@ -514,6 +514,35 @@ class Book_Review_Meta_Box_Tests extends WP_UnitTestCase {
 
   /**
    * @covers Book_Review_Meta_Box::save_meta_box
+   * @covers Book_Review_Meta_Box::save_url_field
+   */
+  public function testSaveSiteLinks() {
+    $post_id = $this->factory->post->create();
+    $_POST['book_review_sites'] = array(
+      'book_review_goodreads' => 'https://www.goodreads.com/book/show/20312459-descent',
+      'book_review_barnes_noble' => 'http://www.barnesandnoble.com/w/descent-tim-johnston/1117904882'
+    );
+
+    // Update
+    $this->create_post_meta();
+    $this->plugin_meta->save_meta_box( $post_id );
+
+    $this->assertSame( $_POST['book_review_sites']['book_review_goodreads'],
+      get_post_meta( $post_id, 'book_review_goodreads', true ), 'Goodreads' );
+    $this->assertSame( $_POST['book_review_sites']['book_review_barnes_noble'],
+      get_post_meta( $post_id, 'book_review_barnes_noble', true ), 'Amazon' );
+
+    // Delete
+    $_POST['book_review_sites']['book_review_goodreads'] = '';
+    $_POST['book_review_sites']['book_review_barnes_noble'] = '';
+    $this->plugin_meta->save_meta_box( $post_id );
+
+    $this->assertSame( '', get_post_meta( $post_id, 'book_review_goodreads', true ) );
+    $this->assertSame( '', get_post_meta( $post_id, 'book_review_barnes_noble', true ) );
+  }
+
+  /**
+   * @covers Book_Review_Meta_Box::save_meta_box
    */
   public function testSaveLinks() {
     global $wpdb;

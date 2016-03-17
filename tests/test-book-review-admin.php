@@ -539,6 +539,349 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
 
   /**
    * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_checkbox
+   */
+  public function testSaveActiveSiteLink() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '1';
+    $input['sites']['book_review_goodreads']['type'] = 'button';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( $input['sites']['book_review_goodreads']['active'], $output['sites']['book_review_goodreads']['active'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSaveNoGoodreadsSiteLink() {
+    $input = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'button';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['active'] );
+
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSaveNoAmazonSiteLink() {
+    $input = array();
+
+    $input['sites']['book_review_barnes_noble']['type'] = 'button';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_barnes_noble']['active'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_link_type
+   */
+  public function testSaveSiteLinkType() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'text';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( $input['sites']['book_review_goodreads']['type'], $output['sites']['book_review_goodreads']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_link_type
+   */
+  public function testSaveInvalidSiteLinkType() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'abc';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( 'button', $output['sites']['book_review_goodreads']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_text
+   */
+  public function testSaveSiteLinkText() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['text'] = 'Goodreads';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( $input['sites']['book_review_goodreads']['text'], $output['sites']['book_review_goodreads']['text'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_text
+   */
+  public function testSaveInvalidSiteLinkText() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['text'] = '<script>alert("Injected javascript")</script>My Custom Text';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( 'My Custom Text', $output['sites']['book_review_goodreads']['text'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveSiteLinkUrl() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['url'] = 'http://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( $input['sites']['book_review_goodreads']['url'], $output['sites']['book_review_goodreads']['url'], 'URL' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveSiteLinkUrlNoError() {
+     global $wp_settings_errors;
+
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '1';
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = 'http://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertEquals( 0, count( $wp_settings_errors ), 'Error count' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveInvalidSiteLinkUrl() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveInvalidSiteLinkUrlError() {
+     global $wp_settings_errors;
+
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '1';
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'custom-image-error', $wp_settings_errors[0]['code'], 'Error code' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveInactiveInvalidSiteLinkUrlNoError() {
+     global $wp_settings_errors;
+
+    $input = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '';
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $this->plugin_admin->save_links( $input );
+
+    $this->assertEquals( 0, count( $wp_settings_errors ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveActiveInvalidSiteLinkUrlNoError() {
+     global $wp_settings_errors;
+
+    $input = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '1';
+    $input['sites']['book_review_goodreads']['type'] = 'button';
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $this->plugin_admin->save_links( $input );
+
+    $this->assertEquals( 0, count( $wp_settings_errors ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveEmptySiteLinkUrl() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveEmptySiteLinkUrlError() {
+    global $wp_settings_errors;
+
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['active'] = '1';
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertEquals( 1, count( $wp_settings_errors ), 'Error count' );
+    $this->assertEquals( 'custom-image-error', $wp_settings_errors[0]['code'], 'Error code' );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveInvalidSiteLinkUrlNoLinkType() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   * @covers Book_Review_Admin::sanitize_url
+   */
+  public function testSaveInvalidSiteLinkUrlIncorrectLinkType() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'text';
+    $input['sites']['book_review_goodreads']['url'] = 'abc://url.to.Goodreads.png';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSavePreviousSiteLinkType() {
+    $input = array();
+    $output = array();
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'text',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( 'text', $output['sites']['book_review_goodreads']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testNoPreviousSiteLinkType() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( 'button', $output['sites']['book_review_goodreads']['type'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testSavePreviousSiteLinkUrl() {
+    $input = array();
+    $output = array();
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'custom',
+          'text' => 'Goodreads',
+          'url' => 'http://fakeurl.com/goodreads.png',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( 'http://fakeurl.com/goodreads.png', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
+   */
+  public function testNoPreviousSiteLinkUrl() {
+    $input = array();
+    $output = array();
+
+    $input['sites']['book_review_goodreads']['type'] = 'custom';
+    $input['sites']['book_review_goodreads']['url'] = '';
+    $output = $this->plugin_admin->save_links( $input );
+
+    $this->assertSame( '', $output['sites']['book_review_goodreads']['url'] );
+  }
+
+  /**
+   * @covers Book_Review_Admin::save_links
    * @covers Book_Review_Admin::save_link
    */
   public function testSaveInvalidLinkId() {
@@ -788,6 +1131,20 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    */
   public function testSanitizeInvalidLinkStatus() {
     $this->assertSame( 1, $this->plugin_admin->sanitize_link_status( 'invalid' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_type
+   */
+  public function testSanitizeValidLinkType() {
+    $this->assertSame( 'text', $this->plugin_admin->sanitize_link_type( 'text' ) );
+  }
+
+  /**
+   * @covers Book_Review_Admin::sanitize_link_type
+   */
+  public function testSanitizeInvalidLinkType() {
+    $this->assertSame( 'button', $this->plugin_admin->sanitize_link_type( 'invalid' ) );
   }
 
   /**
