@@ -1,5 +1,10 @@
 # Change Log #
 
+## 2.3.4 ##
+* New: Add *Site Links* section to the *Links* settings tab to facilitate adding Goodreads and/or Barnes & Noble links.
+* Tweak: Optimize Javascript and CSS files.
+* Fix: Fix an issue where the review box could potentially be shown in undesirable locations.
+
 ## 2.3.3 ##
 * Tweak: Update error message when retrieving book info.
 * Tweak: Add documentation links to *Rating Images* and *Custom Fields* tabs.

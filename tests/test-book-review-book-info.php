@@ -4,6 +4,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
   protected $plugin;
   protected $book_info;
   protected $post_id;
+  protected $link_url;
 
   public function setup() {
     global $wpdb;
@@ -16,6 +17,8 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
 
     // Create post.
     $this->post_id = $this->factory->post->create();
+
+    $this->link_url = 'https://www.goodreads.com/book/show/20312459-descent';
 
     // Suppress errors.
     $this->suppress = $wpdb->suppress_errors();
@@ -208,6 +211,271 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
   public function testNoField() {
     $this->assertSame( '', $this->book_info->get_book_review_field( $this->post_id,
       'book_review_565adc1c2d403' ) );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link
+   */
+  public function testSiteLink() {
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $this->link_url, $this->book_info->get_book_review_site_link( $this->post_id,
+      'book_review_goodreads' ) );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link
+   */
+  public function testNoSiteLink() {
+    $this->assertSame( '', $this->book_info->get_book_review_site_link( $this->post_id, 'book_review_goodreads' ) );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_button_site_link
+   * @covers Book_Review_Book_Info::get_button_site_link_url
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testSiteLinkGoodreadsButton() {
+    $html[] = '<a class="custom-link" href="' . $this->link_url . '">'.
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/goodreads.png" alt="Goodreads"></a>';
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'button',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_button_site_link
+   * @covers Book_Review_Book_Info::get_button_site_link_url
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testSiteLinkGoodreadsButtonWithTarget() {
+    $html[] = '<a class="custom-link" href="' . $this->link_url . '" target="_blank">'.
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/goodreads.png" alt="Goodreads"></a>';
+
+    // Add a site link.
+    $links_option = array(
+      'book_review_target' => '1',
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'button',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_button_site_link
+   * @covers Book_Review_Book_Info::get_button_site_link_url
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testSiteLinkBarnesNobleButton() {
+    $html[] = '<a class="custom-link" href="' . $this->link_url . '">'.
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/barnes-noble.png" alt="Barnes &amp; Noble"></a>';
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_barnes_noble' => array(
+          'type' => 'button',
+          'text' => 'Barnes & Noble',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_barnes_noble', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_text_site_link
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testTextSiteLinkText() {
+    $html[] = '<a class="custom-link" href="'. $this->link_url . '">Goodreads</a>';
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'text',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_text_site_link
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testTextSiteLinkTextWithTarget() {
+    $html[] = '<a class="custom-link" href="'. $this->link_url . '" target="_blank">Goodreads</a>';
+
+    // Add a site link.
+    $links_option = array(
+      'book_review_target' => '1',
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'text',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_custom_site_link
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testSiteLinkCustom() {
+    $html[] = '<a class="custom-link" href="' . $this->link_url . '">'.
+      '<img src="http://fakeurl.com/goodreads.png" alt="Goodreads"></a>';
+
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'custom',
+          'text' => 'Goodreads',
+          'url' => 'http://fakeurl.com/goodreads.png',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   * @covers Book_Review_Book_Info::get_custom_site_link
+   * @covers Book_Review_Book_Info::get_link_target
+   */
+  public function testSiteLinkCustomWithTarget() {
+    $html[] = '<a class="custom-link" href="' . $this->link_url . '" target="_blank">'.
+      '<img src="http://fakeurl.com/goodreads.png" alt="Goodreads"></a>';
+
+    // Add a site link.
+    $links_option = array(
+      'book_review_target' => '1',
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'custom',
+          'text' => 'Goodreads',
+          'url' => 'http://fakeurl.com/goodreads.png',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( $html[0], $this->book_info->get_book_review_site_link_html( $this->post_id )[0] );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   */
+  public function testSiteLinkNoLinkUrl() {
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'button',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '1'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+
+    $this->assertSame( array(), $this->book_info->get_book_review_site_link_html( $this->post_id ) );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   */
+  public function testInactiveSiteLink() {
+    // Add a site link.
+    $links_option = array(
+      'sites' => array(
+        'book_review_goodreads' => array(
+          'type' => 'button',
+          'text' => 'Goodreads',
+          'url' => '',
+          'active' => '0'
+        )
+      )
+    );
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( array(), $this->book_info->get_book_review_site_link_html( $this->post_id ) );
+  }
+
+  /**
+   * @covers Book_Review_Book_Info::get_book_review_site_link_html
+   */
+  public function testDefaultSiteLinks() {
+    $links_option = array();
+
+    update_option( 'book_review_links', $links_option );
+    update_post_meta( $this->post_id, 'book_review_goodreads', $this->link_url );
+
+    $this->assertSame( array(), $this->book_info->get_book_review_site_link_html( $this->post_id ) );
   }
 
   /**
@@ -575,7 +843,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
   public function testDefaultRatingImage() {
     update_post_meta( $this->post_id, 'book_review_rating', '4' );
 
-    $this->assertSame( 'http://example.org/wp-content/plugins/vagrant/www/wpmu-subdomain/wp-content/plugins/book-review/includes/images/four-star.png', $this->book_info->get_book_review_rating_image( $this->post_id ) );
+    $this->assertSame( 'http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/four-star.png', $this->book_info->get_book_review_rating_image( $this->post_id ) );
   }
 
   /**
