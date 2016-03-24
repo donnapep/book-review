@@ -1456,7 +1456,7 @@ msgid "Product"
 msgstr "Produto"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpreviewplugins.com/downloads/book-review/"
+msgid "http://wpreviewplugins.com/product/book-review/"
 msgstr ""
 
 #. Description of the plugin/theme

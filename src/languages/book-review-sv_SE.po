@@ -372,8 +372,8 @@ msgid "Book Cover"
 msgstr "Bokomslag"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpreviewplugins.com/downloads/book-review/"
-msgstr "http://wpreviewplugins.com/downloads/book-review/"
+msgid "http://wpreviewplugins.com/product/book-review/"
+msgstr "http://wpreviewplugins.com/product/book-review/"
 
 #. Description of the plugin/theme
 msgid ""
