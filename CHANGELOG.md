@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.3.5 ##
+* Fix: Update plugin homepage link.
+
 ## 2.3.4 ##
 * New: Add *Site Links* section to the *Links* settings tab to facilitate adding Goodreads and/or Barnes & Noble links.
 * Tweak: Optimize Javascript and CSS files.

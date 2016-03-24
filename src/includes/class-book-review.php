@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.3.4';
+    $this->version = '2.3.5';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
