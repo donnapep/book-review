@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Book Review package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Book Review 2.3.5\n"
+"Project-Id-Version: Book Review 2.3.6\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2016-03-24 10:50:57+00:00\n"
+"POT-Creation-Date: 2016-06-10 19:15:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -101,1011 +101,1011 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
-#: admin/class-book-review-admin.php:940
+#: admin/class-book-review-admin.php:942
 msgid "United States"
 msgstr ""
 
-#: admin/class-book-review-admin.php:941
+#: admin/class-book-review-admin.php:943
 msgid "Canada"
 msgstr ""
 
-#: admin/class-book-review-admin.php:942
+#: admin/class-book-review-admin.php:944
 msgid "United Kingdom"
 msgstr ""
 
-#: admin/class-book-review-admin.php:943
+#: admin/class-book-review-admin.php:945
 msgid "Afghanistan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:944
+#: admin/class-book-review-admin.php:946
 msgid "&#197;land Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:945
+#: admin/class-book-review-admin.php:947
 msgid "Albania"
 msgstr ""
 
-#: admin/class-book-review-admin.php:946
+#: admin/class-book-review-admin.php:948
 msgid "Algeria"
 msgstr ""
 
-#: admin/class-book-review-admin.php:947
+#: admin/class-book-review-admin.php:949
 msgid "American Samoa"
 msgstr ""
 
-#: admin/class-book-review-admin.php:948
+#: admin/class-book-review-admin.php:950
 msgid "Andorra"
 msgstr ""
 
-#: admin/class-book-review-admin.php:949
+#: admin/class-book-review-admin.php:951
 msgid "Angola"
 msgstr ""
 
-#: admin/class-book-review-admin.php:950
+#: admin/class-book-review-admin.php:952
 msgid "Anguilla"
 msgstr ""
 
-#: admin/class-book-review-admin.php:951
+#: admin/class-book-review-admin.php:953
 msgid "Antarctica"
 msgstr ""
 
-#: admin/class-book-review-admin.php:952
+#: admin/class-book-review-admin.php:954
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: admin/class-book-review-admin.php:953
+#: admin/class-book-review-admin.php:955
 msgid "Argentina"
 msgstr ""
 
-#: admin/class-book-review-admin.php:954
+#: admin/class-book-review-admin.php:956
 msgid "Armenia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:955
+#: admin/class-book-review-admin.php:957
 msgid "Aruba"
 msgstr ""
 
-#: admin/class-book-review-admin.php:956
+#: admin/class-book-review-admin.php:958
 msgid "Australia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:957
+#: admin/class-book-review-admin.php:959
 msgid "Austria"
 msgstr ""
 
-#: admin/class-book-review-admin.php:958
+#: admin/class-book-review-admin.php:960
 msgid "Azerbaijan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:959
+#: admin/class-book-review-admin.php:961
 msgid "Bahamas"
 msgstr ""
 
-#: admin/class-book-review-admin.php:960
+#: admin/class-book-review-admin.php:962
 msgid "Bahrain"
 msgstr ""
 
-#: admin/class-book-review-admin.php:961
+#: admin/class-book-review-admin.php:963
 msgid "Bangladesh"
 msgstr ""
 
-#: admin/class-book-review-admin.php:962
+#: admin/class-book-review-admin.php:964
 msgid "Barbados"
 msgstr ""
 
-#: admin/class-book-review-admin.php:963
+#: admin/class-book-review-admin.php:965
 msgid "Belarus"
 msgstr ""
 
-#: admin/class-book-review-admin.php:964
+#: admin/class-book-review-admin.php:966
 msgid "Belgium"
 msgstr ""
 
-#: admin/class-book-review-admin.php:965
+#: admin/class-book-review-admin.php:967
 msgid "Belize"
 msgstr ""
 
-#: admin/class-book-review-admin.php:966
+#: admin/class-book-review-admin.php:968
 msgid "Benin"
 msgstr ""
 
-#: admin/class-book-review-admin.php:967
+#: admin/class-book-review-admin.php:969
 msgid "Bermuda"
 msgstr ""
 
-#: admin/class-book-review-admin.php:968
+#: admin/class-book-review-admin.php:970
 msgid "Bhutan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:969
+#: admin/class-book-review-admin.php:971
 msgid "Bolivia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:970
+#: admin/class-book-review-admin.php:972
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr ""
 
-#: admin/class-book-review-admin.php:971
+#: admin/class-book-review-admin.php:973
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: admin/class-book-review-admin.php:972
+#: admin/class-book-review-admin.php:974
 msgid "Botswana"
 msgstr ""
 
-#: admin/class-book-review-admin.php:973
+#: admin/class-book-review-admin.php:975
 msgid "Bouvet Island"
 msgstr ""
 
-#: admin/class-book-review-admin.php:974
+#: admin/class-book-review-admin.php:976
 msgid "Brazil"
 msgstr ""
 
-#: admin/class-book-review-admin.php:975
+#: admin/class-book-review-admin.php:977
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: admin/class-book-review-admin.php:976
+#: admin/class-book-review-admin.php:978
 msgid "Brunei Darrussalam"
 msgstr ""
 
-#: admin/class-book-review-admin.php:977
+#: admin/class-book-review-admin.php:979
 msgid "Bulgaria"
 msgstr ""
 
-#: admin/class-book-review-admin.php:978
+#: admin/class-book-review-admin.php:980
 msgid "Burkina Faso"
 msgstr ""
 
-#: admin/class-book-review-admin.php:979
+#: admin/class-book-review-admin.php:981
 msgid "Burundi"
 msgstr ""
 
-#: admin/class-book-review-admin.php:980
+#: admin/class-book-review-admin.php:982
 msgid "Cambodia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:981
+#: admin/class-book-review-admin.php:983
 msgid "Cameroon"
 msgstr ""
 
-#: admin/class-book-review-admin.php:982
+#: admin/class-book-review-admin.php:984
 msgid "Cape Verde"
 msgstr ""
 
-#: admin/class-book-review-admin.php:983
+#: admin/class-book-review-admin.php:985
 msgid "Cayman Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:984
+#: admin/class-book-review-admin.php:986
 msgid "Central African Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:985
+#: admin/class-book-review-admin.php:987
 msgid "Chad"
 msgstr ""
 
-#: admin/class-book-review-admin.php:986
+#: admin/class-book-review-admin.php:988
 msgid "Chile"
 msgstr ""
 
-#: admin/class-book-review-admin.php:987
+#: admin/class-book-review-admin.php:989
 msgid "China"
 msgstr ""
 
-#: admin/class-book-review-admin.php:988
+#: admin/class-book-review-admin.php:990
 msgid "Christmas Island"
 msgstr ""
 
-#: admin/class-book-review-admin.php:989
+#: admin/class-book-review-admin.php:991
 msgid "Cocos Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:990
+#: admin/class-book-review-admin.php:992
 msgid "Colombia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:991
+#: admin/class-book-review-admin.php:993
 msgid "Comoros"
 msgstr ""
 
-#: admin/class-book-review-admin.php:992
+#: admin/class-book-review-admin.php:994
 msgid "Congo, Democratic People's Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:993
+#: admin/class-book-review-admin.php:995
 msgid "Congo, Republic of"
 msgstr ""
 
-#: admin/class-book-review-admin.php:994
+#: admin/class-book-review-admin.php:996
 msgid "Cook Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:995
+#: admin/class-book-review-admin.php:997
 msgid "Costa Rica"
 msgstr ""
 
-#: admin/class-book-review-admin.php:996
+#: admin/class-book-review-admin.php:998
 msgid "Cote d'Ivoire"
 msgstr ""
 
-#: admin/class-book-review-admin.php:997
+#: admin/class-book-review-admin.php:999
 msgid "Croatia/Hrvatska"
 msgstr ""
 
-#: admin/class-book-review-admin.php:998
+#: admin/class-book-review-admin.php:1000
 msgid "Cuba"
 msgstr ""
 
-#: admin/class-book-review-admin.php:999
+#: admin/class-book-review-admin.php:1001
 msgid "Cura&Ccedil;ao"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1000
+#: admin/class-book-review-admin.php:1002
 msgid "Cyprus"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1001
+#: admin/class-book-review-admin.php:1003
 msgid "Czech Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1002
+#: admin/class-book-review-admin.php:1004
 msgid "Denmark"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1003
+#: admin/class-book-review-admin.php:1005
 msgid "Djibouti"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1004
+#: admin/class-book-review-admin.php:1006
 msgid "Dominica"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1005
+#: admin/class-book-review-admin.php:1007
 msgid "Dominican Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1006
+#: admin/class-book-review-admin.php:1008
 msgid "East Timor"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1007
+#: admin/class-book-review-admin.php:1009
 msgid "Ecuador"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1008
+#: admin/class-book-review-admin.php:1010
 msgid "Egypt"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1009
+#: admin/class-book-review-admin.php:1011
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1010
+#: admin/class-book-review-admin.php:1012
 msgid "El Salvador"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1011
+#: admin/class-book-review-admin.php:1013
 msgid "Eritrea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1012
+#: admin/class-book-review-admin.php:1014
 msgid "Estonia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1013
+#: admin/class-book-review-admin.php:1015
 msgid "Ethiopia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1014
+#: admin/class-book-review-admin.php:1016
 msgid "Falkland Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1015
+#: admin/class-book-review-admin.php:1017
 msgid "Faroe Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1016
+#: admin/class-book-review-admin.php:1018
 msgid "Fiji"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1017
+#: admin/class-book-review-admin.php:1019
 msgid "Finland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1018
+#: admin/class-book-review-admin.php:1020
 msgid "France"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1019
+#: admin/class-book-review-admin.php:1021
 msgid "French Guiana"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1020
+#: admin/class-book-review-admin.php:1022
 msgid "French Polynesia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1021
+#: admin/class-book-review-admin.php:1023
 msgid "French Southern Territories"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1022
+#: admin/class-book-review-admin.php:1024
 msgid "Gabon"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1023
+#: admin/class-book-review-admin.php:1025
 msgid "Gambia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1024
+#: admin/class-book-review-admin.php:1026
 msgid "Georgia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1025
+#: admin/class-book-review-admin.php:1027
 msgid "Germany"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1026
+#: admin/class-book-review-admin.php:1028
 msgid "Greece"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1027
+#: admin/class-book-review-admin.php:1029
 msgid "Ghana"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1028
+#: admin/class-book-review-admin.php:1030
 msgid "Gibraltar"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1029
+#: admin/class-book-review-admin.php:1031
 msgid "Greenland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1030
+#: admin/class-book-review-admin.php:1032
 msgid "Grenada"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1031
+#: admin/class-book-review-admin.php:1033
 msgid "Guadeloupe"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1032
+#: admin/class-book-review-admin.php:1034
 msgid "Guam"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1033
+#: admin/class-book-review-admin.php:1035
 msgid "Guatemala"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1034
+#: admin/class-book-review-admin.php:1036
 msgid "Guernsey"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1035
+#: admin/class-book-review-admin.php:1037
 msgid "Guinea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1036
+#: admin/class-book-review-admin.php:1038
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1037
+#: admin/class-book-review-admin.php:1039
 msgid "Guyana"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1038
+#: admin/class-book-review-admin.php:1040
 msgid "Haiti"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1039
+#: admin/class-book-review-admin.php:1041
 msgid "Heard and McDonald Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1040
+#: admin/class-book-review-admin.php:1042
 msgid "Holy See (City Vatican State)"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1041
+#: admin/class-book-review-admin.php:1043
 msgid "Honduras"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1042
+#: admin/class-book-review-admin.php:1044
 msgid "Hong Kong"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1043
+#: admin/class-book-review-admin.php:1045
 msgid "Hungary"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1044
+#: admin/class-book-review-admin.php:1046
 msgid "Iceland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1045
+#: admin/class-book-review-admin.php:1047
 msgid "India"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1046
+#: admin/class-book-review-admin.php:1048
 msgid "Indonesia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1047
+#: admin/class-book-review-admin.php:1049
 msgid "Iran"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1048
+#: admin/class-book-review-admin.php:1050
 msgid "Iraq"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1049
+#: admin/class-book-review-admin.php:1051
 msgid "Ireland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1050
+#: admin/class-book-review-admin.php:1052
 msgid "Isle of Man"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1051
+#: admin/class-book-review-admin.php:1053
 msgid "Israel"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1052
+#: admin/class-book-review-admin.php:1054
 msgid "Italy"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1053
+#: admin/class-book-review-admin.php:1055
 msgid "Jamaica"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1054
+#: admin/class-book-review-admin.php:1056
 msgid "Japan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1055
+#: admin/class-book-review-admin.php:1057
 msgid "Jersey"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1056
+#: admin/class-book-review-admin.php:1058
 msgid "Jordan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1057
+#: admin/class-book-review-admin.php:1059
 msgid "Kazakhstan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1058
+#: admin/class-book-review-admin.php:1060
 msgid "Kenya"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1059
+#: admin/class-book-review-admin.php:1061
 msgid "Kiribati"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1060
+#: admin/class-book-review-admin.php:1062
 msgid "Kuwait"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1061
+#: admin/class-book-review-admin.php:1063
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1062
+#: admin/class-book-review-admin.php:1064
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1063
+#: admin/class-book-review-admin.php:1065
 msgid "Latvia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1064
+#: admin/class-book-review-admin.php:1066
 msgid "Lebanon"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1065
+#: admin/class-book-review-admin.php:1067
 msgid "Lesotho"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1066
+#: admin/class-book-review-admin.php:1068
 msgid "Liberia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1067
+#: admin/class-book-review-admin.php:1069
 msgid "Libyan Arab Jamahiriya"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1068
+#: admin/class-book-review-admin.php:1070
 msgid "Liechtenstein"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1069
+#: admin/class-book-review-admin.php:1071
 msgid "Lithuania"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1070
+#: admin/class-book-review-admin.php:1072
 msgid "Luxembourg"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1071
+#: admin/class-book-review-admin.php:1073
 msgid "Macau"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1072
+#: admin/class-book-review-admin.php:1074
 msgid "Macedonia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1073
+#: admin/class-book-review-admin.php:1075
 msgid "Madagascar"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1074
+#: admin/class-book-review-admin.php:1076
 msgid "Malawi"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1075
+#: admin/class-book-review-admin.php:1077
 msgid "Malaysia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1076
+#: admin/class-book-review-admin.php:1078
 msgid "Maldives"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1077
+#: admin/class-book-review-admin.php:1079
 msgid "Mali"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1078
+#: admin/class-book-review-admin.php:1080
 msgid "Malta"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1079
+#: admin/class-book-review-admin.php:1081
 msgid "Marshall Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1080
+#: admin/class-book-review-admin.php:1082
 msgid "Martinique"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1081
+#: admin/class-book-review-admin.php:1083
 msgid "Mauritania"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1082
+#: admin/class-book-review-admin.php:1084
 msgid "Mauritius"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1083
+#: admin/class-book-review-admin.php:1085
 msgid "Mayotte"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1084
+#: admin/class-book-review-admin.php:1086
 msgid "Mexico"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1085
+#: admin/class-book-review-admin.php:1087
 msgid "Micronesia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1086
+#: admin/class-book-review-admin.php:1088
 msgid "Moldova, Republic of"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1087
+#: admin/class-book-review-admin.php:1089
 msgid "Monaco"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1088
+#: admin/class-book-review-admin.php:1090
 msgid "Mongolia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1089
+#: admin/class-book-review-admin.php:1091
 msgid "Montenegro"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1090
+#: admin/class-book-review-admin.php:1092
 msgid "Montserrat"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1091
+#: admin/class-book-review-admin.php:1093
 msgid "Morocco"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1092
+#: admin/class-book-review-admin.php:1094
 msgid "Mozambique"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1093
+#: admin/class-book-review-admin.php:1095
 msgid "Myanmar"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1094
+#: admin/class-book-review-admin.php:1096
 msgid "Namibia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1095
+#: admin/class-book-review-admin.php:1097
 msgid "Nauru"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1096
+#: admin/class-book-review-admin.php:1098
 msgid "Nepal"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1097
+#: admin/class-book-review-admin.php:1099
 msgid "Netherlands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1098
+#: admin/class-book-review-admin.php:1100
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1099
+#: admin/class-book-review-admin.php:1101
 msgid "New Caledonia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1100
+#: admin/class-book-review-admin.php:1102
 msgid "New Zealand"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1101
+#: admin/class-book-review-admin.php:1103
 msgid "Nicaragua"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1102
+#: admin/class-book-review-admin.php:1104
 msgid "Niger"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1103
+#: admin/class-book-review-admin.php:1105
 msgid "Nigeria"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1104
+#: admin/class-book-review-admin.php:1106
 msgid "Niue"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1105
+#: admin/class-book-review-admin.php:1107
 msgid "Norfolk Island"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1106
+#: admin/class-book-review-admin.php:1108
 msgid "North Korea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1107
+#: admin/class-book-review-admin.php:1109
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1108
+#: admin/class-book-review-admin.php:1110
 msgid "Norway"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1109
+#: admin/class-book-review-admin.php:1111
 msgid "Oman"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1110
+#: admin/class-book-review-admin.php:1112
 msgid "Pakistan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1111
+#: admin/class-book-review-admin.php:1113
 msgid "Palau"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1112
+#: admin/class-book-review-admin.php:1114
 msgid "Palestinian Territories"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1113
+#: admin/class-book-review-admin.php:1115
 msgid "Panama"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1114
+#: admin/class-book-review-admin.php:1116
 msgid "Papua New Guinea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1115
+#: admin/class-book-review-admin.php:1117
 msgid "Paraguay"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1116
+#: admin/class-book-review-admin.php:1118
 msgid "Peru"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1117
+#: admin/class-book-review-admin.php:1119
 msgid "Phillipines"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1118
+#: admin/class-book-review-admin.php:1120
 msgid "Pitcairn Island"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1119
+#: admin/class-book-review-admin.php:1121
 msgid "Poland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1120
+#: admin/class-book-review-admin.php:1122
 msgid "Portugal"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1121
+#: admin/class-book-review-admin.php:1123
 msgid "Puerto Rico"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1122
+#: admin/class-book-review-admin.php:1124
 msgid "Qatar"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1123
+#: admin/class-book-review-admin.php:1125
 msgid "Republic of Kosovo"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1124
+#: admin/class-book-review-admin.php:1126
 msgid "Reunion Island"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1125
+#: admin/class-book-review-admin.php:1127
 msgid "Romania"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1126
+#: admin/class-book-review-admin.php:1128
 msgid "Russian Federation"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1127
+#: admin/class-book-review-admin.php:1129
 msgid "Rwanda"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1128
+#: admin/class-book-review-admin.php:1130
 msgid "Saint Barth&eacute;lemy"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1129
+#: admin/class-book-review-admin.php:1131
 msgid "Saint Helena"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1130
+#: admin/class-book-review-admin.php:1132
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1131
+#: admin/class-book-review-admin.php:1133
 msgid "Saint Lucia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1132
+#: admin/class-book-review-admin.php:1134
 msgid "Saint Martin (French)"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1133
+#: admin/class-book-review-admin.php:1135
 msgid "Saint Martin (Dutch)"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1134
+#: admin/class-book-review-admin.php:1136
 msgid "Saint Pierre and Miquelon"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1135
+#: admin/class-book-review-admin.php:1137
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1136
+#: admin/class-book-review-admin.php:1138
 msgid "San Marino"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1137
+#: admin/class-book-review-admin.php:1139
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1138
+#: admin/class-book-review-admin.php:1140
 msgid "Saudi Arabia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1139
+#: admin/class-book-review-admin.php:1141
 msgid "Senegal"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1140
+#: admin/class-book-review-admin.php:1142
 msgid "Serbia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1141
+#: admin/class-book-review-admin.php:1143
 msgid "Seychelles"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1142
+#: admin/class-book-review-admin.php:1144
 msgid "Sierra Leone"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1143
+#: admin/class-book-review-admin.php:1145
 msgid "Singapore"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1144
+#: admin/class-book-review-admin.php:1146
 msgid "Slovak Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1145
+#: admin/class-book-review-admin.php:1147
 msgid "Slovenia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1146
+#: admin/class-book-review-admin.php:1148
 msgid "Solomon Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1147
+#: admin/class-book-review-admin.php:1149
 msgid "Somalia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1148
+#: admin/class-book-review-admin.php:1150
 msgid "South Africa"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1149
+#: admin/class-book-review-admin.php:1151
 msgid "South Georgia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1150
+#: admin/class-book-review-admin.php:1152
 msgid "South Korea"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1151
+#: admin/class-book-review-admin.php:1153
 msgid "South Sudan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1152
+#: admin/class-book-review-admin.php:1154
 msgid "Spain"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1153
+#: admin/class-book-review-admin.php:1155
 msgid "Sri Lanka"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1154
+#: admin/class-book-review-admin.php:1156
 msgid "Sudan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1155
+#: admin/class-book-review-admin.php:1157
 msgid "Suriname"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1156
+#: admin/class-book-review-admin.php:1158
 msgid "Svalbard and Jan Mayen Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1157
+#: admin/class-book-review-admin.php:1159
 msgid "Swaziland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1158
+#: admin/class-book-review-admin.php:1160
 msgid "Sweden"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1159
+#: admin/class-book-review-admin.php:1161
 msgid "Switzerland"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1160
+#: admin/class-book-review-admin.php:1162
 msgid "Syrian Arab Republic"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1161
+#: admin/class-book-review-admin.php:1163
 msgid "Taiwan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1162
+#: admin/class-book-review-admin.php:1164
 msgid "Tajikistan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1163
+#: admin/class-book-review-admin.php:1165
 msgid "Tanzania"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1164
+#: admin/class-book-review-admin.php:1166
 msgid "Thailand"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1165
+#: admin/class-book-review-admin.php:1167
 msgid "Timor-Leste"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1166
+#: admin/class-book-review-admin.php:1168
 msgid "Togo"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1167
+#: admin/class-book-review-admin.php:1169
 msgid "Tokelau"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1168
+#: admin/class-book-review-admin.php:1170
 msgid "Tonga"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1169
+#: admin/class-book-review-admin.php:1171
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1170
+#: admin/class-book-review-admin.php:1172
 msgid "Tunisia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1171
+#: admin/class-book-review-admin.php:1173
 msgid "Turkey"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1172
+#: admin/class-book-review-admin.php:1174
 msgid "Turkmenistan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1173
+#: admin/class-book-review-admin.php:1175
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1174
+#: admin/class-book-review-admin.php:1176
 msgid "Tuvalu"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1175
+#: admin/class-book-review-admin.php:1177
 msgid "Uganda"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1176
+#: admin/class-book-review-admin.php:1178
 msgid "Ukraine"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1177
+#: admin/class-book-review-admin.php:1179
 msgid "United Arab Emirates"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1178
+#: admin/class-book-review-admin.php:1180
 msgid "Uruguay"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1179
+#: admin/class-book-review-admin.php:1181
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1180
+#: admin/class-book-review-admin.php:1182
 msgid "Uzbekistan"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1181
+#: admin/class-book-review-admin.php:1183
 msgid "Vanuatu"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1182
+#: admin/class-book-review-admin.php:1184
 msgid "Venezuela"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1183
+#: admin/class-book-review-admin.php:1185
 msgid "Vietnam"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1184
+#: admin/class-book-review-admin.php:1186
 msgid "Virgin Islands (British)"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1185
+#: admin/class-book-review-admin.php:1187
 msgid "Virgin Islands (USA)"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1186
+#: admin/class-book-review-admin.php:1188
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1187
+#: admin/class-book-review-admin.php:1189
 msgid "Western Sahara"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1188
+#: admin/class-book-review-admin.php:1190
 msgid "Western Samoa"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1189
+#: admin/class-book-review-admin.php:1191
 msgid "Yemen"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1190
+#: admin/class-book-review-admin.php:1192
 msgid "Zambia"
 msgstr ""
 
-#: admin/class-book-review-admin.php:1191
+#: admin/class-book-review-admin.php:1193
 msgid "Zimbabwe"
 msgstr ""
 
@@ -1417,18 +1417,6 @@ msgstr ""
 msgid "Book Cover"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
-msgid "http://wpreviewplugins.com/product/book-review/"
-msgstr ""
-
 #. Description of the plugin/theme
 msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Donna Peplinskie"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://donnapeplinskie.com/"
 msgstr ""
