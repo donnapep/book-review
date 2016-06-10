@@ -16,7 +16,7 @@
  * Plugin Name:       Book Review
  * Plugin URI:        http://wpreviewplugins.com/product/book-review/
  * Description:       Add book information such as title, author, publisher and cover photo to enhance your review posts.
- * Version:           2.3.6
+ * Version:           2.3.7
  * Author:            Donna Peplinskie
  * Author URI:        http://donnapeplinskie.com/
  * Text Domain:       book-review

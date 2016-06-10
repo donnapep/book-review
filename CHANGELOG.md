@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.3.7 ##
+* Fix: Restore missing CSS files.
+
 ## 2.3.6 ##
 * New: Add Turkish translation.
 * Fix: Fix countries not being translated on the *Advanced* tab.
