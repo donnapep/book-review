@@ -1,0 +1,1492 @@
+# Copyright (C) 2016 Book Review
+# This file is distributed under the same license as the Book Review package.
+# Atilla ÖNTAŞ <tarakbumba@gmail.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: Book Review 2.3.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/build\n"
+"POT-Creation-Date: 2016-03-24 10:50:57+00:00\n"
+"PO-Revision-Date: 2016-03-24 16:48+0300\n"
+"Last-Translator: Atilla ÖNTAŞ <tarakbumba@gmail.com>\n"
+"Language-Team: Turkish <ci18n-tr@ml.mageia.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#: admin/class-book-review-admin.php:144
+msgid "Please enter an ISBN."
+msgstr "Lütfen bir ISBN girin"
+
+#: admin/class-book-review-admin.php:145
+msgid "A book with this ISBN was not found in the Google Books database."
+msgstr "Google Books veritabanında bu ISBN ile kayıtlı bir kitap bulunamadı."
+
+#: admin/class-book-review-admin.php:146
+msgid "<p>Sorry, but something went wrong. Please check to ensure that you have entered your Google API Key correctly on the <em>Advanced</em> tab of the <a href=\"%s\">Book Review Settings</a>, and that you have selected a <em>Country</em> from the dropdown. See the <a href=\"%s\" target=\"_blank\">documentation</a> for more information.</p><p>If you are still having trouble, please leave a message in the <a href=\"%s\" target=\"_blank\">Book Review Support forum</a>. Thanks!"
+msgstr ""
+"<p>Üzgünüz; ancak bir şeyler ters gitti. Lütfen <a href=\"%s\">Kitap "
+"Eleştirisi Ayarları</a>ndaki <em>Gelişmiş</em> sekmesinde Google API "
+"anahtarını doğru girdiğinizden ve açılır menüden doğru <em>Ülke</em> "
+"seçtiğinizden emin olun. Daha fazla bilgi için <a href=\"%s\" "
+"target=\"_blank\">belgelendirme</a>ye bakın.</p><p>Yine de sorun yaşıyorsanız, "
+"lütfen <a href=\"%s\" target=\"_blank\">Kitap Eleştirisi Destek Forumu</a>nda "
+"bir ileti bırakın. Teşekkürler!"
+
+#: admin/class-book-review-admin.php:159
+#: admin/partials/book-review-admin-links.php:70
+#: admin/partials/book-review-admin-links.php:123
+msgid "Custom Image"
+msgstr "Kişisel Resim"
+
+#: admin/class-book-review-admin.php:160
+#: admin/partials/book-review-admin-links.php:77
+#: admin/partials/book-review-admin-links.php:130
+msgid "Set Custom Image"
+msgstr "Kişisel Resim Ayarla"
+
+#: admin/class-book-review-admin.php:164
+msgid "Field Name (e.g. Illustrator)"
+msgstr "Alan Adı (mesela Çizer)"
+
+#: admin/class-book-review-admin.php:180
+msgid "Book Review Settings"
+msgstr "Kitap Eleştirisi Ayarları"
+
+#: admin/class-book-review-admin.php:181
+msgid "Book Review"
+msgstr "Kitap Eleştirisi"
+
+#: admin/class-book-review-admin.php:204
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: admin/class-book-review-admin.php:205
+msgid "Rating Images"
+msgstr "Beğeni Resimleri"
+
+#: admin/class-book-review-admin.php:206
+msgid "Links"
+msgstr "Bağlantılar"
+
+#: admin/class-book-review-admin.php:207
+msgid "Custom Fields"
+msgstr "Kişisel Alanlar"
+
+#: admin/class-book-review-admin.php:208
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+#: admin/class-book-review-admin.php:286
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: admin/class-book-review-admin.php:467
+msgid "Review Box Border Width must be numeric."
+msgstr "Eleştiri Kutusu Kenarlığının Genişliği sayısal olmalıdır."
+
+#: admin/class-book-review-admin.php:474
+msgid "Review Box Border Width must be greater than or equal to 0."
+msgstr ""
+"Eleştiri Kutusu Kenarlığının Genişliği 0 veya ondan daha büyük olmalıdır."
+
+#: admin/class-book-review-admin.php:562
+msgid "Rating Image URLs are required fields when not using the default rating images. Please ensure you enter a URL for each rating."
+msgstr ""
+"Öntanımlı beğeni resimleri kullanılmadığı takdirde Beğeni Resmi Bağlantıları "
+"zorunlu alanlardır. Lütfen her oy için bir bağlantı girdiğinizden emin "
+"olun."
+
+#: admin/class-book-review-admin.php:681
+msgid "Oops! Looks like Custom Image is missing a URL."
+msgstr "Amanın! Kişisel Resimde bir bağlantı eksik gibi görünüyor."
+
+#: admin/class-book-review-admin.php:759
+msgid "Link Text is a required field. Please ensure you enter text for each link."
+msgstr ""
+"Bağlantı Metni zorunlu alandır. Lütfen her bağlantı için metin girdiğinizden "
+"emin olun."
+
+#: admin/class-book-review-admin.php:848
+msgid "Please enter a valid custom field name."
+msgstr "Lütfen geçerli bir kişisel alan adı girin."
+
+#: admin/class-book-review-admin.php:894
+#: admin/partials/book-review-admin-meta-box.php:197
+msgid "Rating"
+msgstr "Beğeni"
+
+#: admin/class-book-review-admin.php:940
+msgid "United States"
+msgstr "ABD"
+
+#: admin/class-book-review-admin.php:941
+msgid "Canada"
+msgstr "Kanada"
+
+#: admin/class-book-review-admin.php:942
+msgid "United Kingdom"
+msgstr "İngiltere"
+
+#: admin/class-book-review-admin.php:943
+msgid "Afghanistan"
+msgstr "Afganistan"
+
+#: admin/class-book-review-admin.php:944
+msgid "&#197;land Islands"
+msgstr "&#197;land Adaları"
+
+#: admin/class-book-review-admin.php:945
+msgid "Albania"
+msgstr "Arnavutluk"
+
+#: admin/class-book-review-admin.php:946
+msgid "Algeria"
+msgstr "Cezayir"
+
+#: admin/class-book-review-admin.php:947
+msgid "American Samoa"
+msgstr "Amerikan Samoası"
+
+#: admin/class-book-review-admin.php:948
+msgid "Andorra"
+msgstr "Andora"
+
+#: admin/class-book-review-admin.php:949
+msgid "Angola"
+msgstr "Angola"
+
+#: admin/class-book-review-admin.php:950
+msgid "Anguilla"
+msgstr "Angula"
+
+#: admin/class-book-review-admin.php:951
+msgid "Antarctica"
+msgstr "Antarktika"
+
+#: admin/class-book-review-admin.php:952
+msgid "Antigua and Barbuda"
+msgstr "Antiga ve Barbuda"
+
+#: admin/class-book-review-admin.php:953
+msgid "Argentina"
+msgstr "Arjantin"
+
+#: admin/class-book-review-admin.php:954
+msgid "Armenia"
+msgstr "Ermenistan"
+
+#: admin/class-book-review-admin.php:955
+msgid "Aruba"
+msgstr "Aruba"
+
+#: admin/class-book-review-admin.php:956
+msgid "Australia"
+msgstr "Avusturalya"
+
+#: admin/class-book-review-admin.php:957
+msgid "Austria"
+msgstr "Avusturya"
+
+#: admin/class-book-review-admin.php:958
+msgid "Azerbaijan"
+msgstr "Azerbaycan"
+
+#: admin/class-book-review-admin.php:959
+msgid "Bahamas"
+msgstr "Bahamalar"
+
+#: admin/class-book-review-admin.php:960
+msgid "Bahrain"
+msgstr "Bahreyn"
+
+#: admin/class-book-review-admin.php:961
+msgid "Bangladesh"
+msgstr "Bangladeş"
+
+#: admin/class-book-review-admin.php:962
+msgid "Barbados"
+msgstr "Barbados"
+
+#: admin/class-book-review-admin.php:963
+msgid "Belarus"
+msgstr "Beyaz Rusya"
+
+#: admin/class-book-review-admin.php:964
+msgid "Belgium"
+msgstr "Belçika"
+
+#: admin/class-book-review-admin.php:965
+msgid "Belize"
+msgstr "Belize"
+
+#: admin/class-book-review-admin.php:966
+msgid "Benin"
+msgstr "Benin"
+
+#: admin/class-book-review-admin.php:967
+msgid "Bermuda"
+msgstr "Bermuda"
+
+#: admin/class-book-review-admin.php:968
+msgid "Bhutan"
+msgstr "Bhutan"
+
+#: admin/class-book-review-admin.php:969
+msgid "Bolivia"
+msgstr "Bolivya"
+
+#: admin/class-book-review-admin.php:970
+msgid "Bonaire, Saint Eustatius and Saba"
+msgstr "Bonaire, Saint Eustatius ve Saba"
+
+#: admin/class-book-review-admin.php:971
+msgid "Bosnia and Herzegovina"
+msgstr "Bosna-Hersek"
+
+#: admin/class-book-review-admin.php:972
+msgid "Botswana"
+msgstr "Botsvana"
+
+#: admin/class-book-review-admin.php:973
+msgid "Bouvet Island"
+msgstr "Bouvet Adası"
+
+#: admin/class-book-review-admin.php:974
+msgid "Brazil"
+msgstr "Brezilya"
+
+#: admin/class-book-review-admin.php:975
+msgid "British Indian Ocean Territory"
+msgstr "Britanya Hint Okyanısı Toprakları"
+
+#: admin/class-book-review-admin.php:976
+msgid "Brunei Darrussalam"
+msgstr "Bruney Darüsselam"
+
+#: admin/class-book-review-admin.php:977
+msgid "Bulgaria"
+msgstr "Bulgaristan"
+
+#: admin/class-book-review-admin.php:978
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+#: admin/class-book-review-admin.php:979
+msgid "Burundi"
+msgstr "Burundi"
+
+#: admin/class-book-review-admin.php:980
+msgid "Cambodia"
+msgstr "Kamboçya"
+
+#: admin/class-book-review-admin.php:981
+msgid "Cameroon"
+msgstr "Kamerun"
+
+#: admin/class-book-review-admin.php:982
+msgid "Cape Verde"
+msgstr "Yeşil Burun Adaları"
+
+#: admin/class-book-review-admin.php:983
+msgid "Cayman Islands"
+msgstr "Kayman Adaları"
+
+#: admin/class-book-review-admin.php:984
+msgid "Central African Republic"
+msgstr "Orta Afrika Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:985
+msgid "Chad"
+msgstr "Çad"
+
+#: admin/class-book-review-admin.php:986
+msgid "Chile"
+msgstr "Şili"
+
+#: admin/class-book-review-admin.php:987
+msgid "China"
+msgstr "Çin"
+
+#: admin/class-book-review-admin.php:988
+msgid "Christmas Island"
+msgstr "Christmas Adası"
+
+#: admin/class-book-review-admin.php:989
+msgid "Cocos Islands"
+msgstr "Cocos Adaları"
+
+#: admin/class-book-review-admin.php:990
+msgid "Colombia"
+msgstr "Kolombiya"
+
+#: admin/class-book-review-admin.php:991
+msgid "Comoros"
+msgstr "Komoros"
+
+#: admin/class-book-review-admin.php:992
+msgid "Congo, Democratic People's Republic"
+msgstr "Kongo Demokratik Halk Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:993
+msgid "Congo, Republic of"
+msgstr "Kongo Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:994
+msgid "Cook Islands"
+msgstr "Cook Adaları"
+
+#: admin/class-book-review-admin.php:995
+msgid "Costa Rica"
+msgstr "Kosta Rika"
+
+#: admin/class-book-review-admin.php:996
+msgid "Cote d'Ivoire"
+msgstr "Fildişi Sahili"
+
+#: admin/class-book-review-admin.php:997
+msgid "Croatia/Hrvatska"
+msgstr "Hırvatistan"
+
+#: admin/class-book-review-admin.php:998
+msgid "Cuba"
+msgstr "Küba"
+
+#: admin/class-book-review-admin.php:999
+msgid "Cura&Ccedil;ao"
+msgstr "Cura&Ccedil;ao"
+
+#: admin/class-book-review-admin.php:1000
+msgid "Cyprus"
+msgstr "Kıbrıs"
+
+#: admin/class-book-review-admin.php:1001
+msgid "Czech Republic"
+msgstr "Çek Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1002
+msgid "Denmark"
+msgstr "Danimarka"
+
+#: admin/class-book-review-admin.php:1003
+msgid "Djibouti"
+msgstr "Cibuti"
+
+#: admin/class-book-review-admin.php:1004
+msgid "Dominica"
+msgstr "Dominika"
+
+#: admin/class-book-review-admin.php:1005
+msgid "Dominican Republic"
+msgstr "Dominik Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1006
+msgid "East Timor"
+msgstr "Doğu Timor"
+
+#: admin/class-book-review-admin.php:1007
+msgid "Ecuador"
+msgstr "Ekvador"
+
+#: admin/class-book-review-admin.php:1008
+msgid "Egypt"
+msgstr "Mısır"
+
+#: admin/class-book-review-admin.php:1009
+msgid "Equatorial Guinea"
+msgstr "Ekvatoral Gine"
+
+#: admin/class-book-review-admin.php:1010
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: admin/class-book-review-admin.php:1011
+msgid "Eritrea"
+msgstr "Eritre"
+
+#: admin/class-book-review-admin.php:1012
+msgid "Estonia"
+msgstr "Estonya"
+
+#: admin/class-book-review-admin.php:1013
+msgid "Ethiopia"
+msgstr "Etiyopya"
+
+#: admin/class-book-review-admin.php:1014
+msgid "Falkland Islands"
+msgstr "Falkland Adaları"
+
+#: admin/class-book-review-admin.php:1015
+msgid "Faroe Islands"
+msgstr "Faroe Adaları"
+
+#: admin/class-book-review-admin.php:1016
+msgid "Fiji"
+msgstr "Fiji"
+
+#: admin/class-book-review-admin.php:1017
+msgid "Finland"
+msgstr "Finlandiya"
+
+#: admin/class-book-review-admin.php:1018
+msgid "France"
+msgstr "Fransa"
+
+#: admin/class-book-review-admin.php:1019
+msgid "French Guiana"
+msgstr "Fransız Guyanası"
+
+#: admin/class-book-review-admin.php:1020
+msgid "French Polynesia"
+msgstr "Fransız Polinezyası"
+
+#: admin/class-book-review-admin.php:1021
+msgid "French Southern Territories"
+msgstr "Güney Fransız Toprakları"
+
+#: admin/class-book-review-admin.php:1022
+msgid "Gabon"
+msgstr "Gabon"
+
+#: admin/class-book-review-admin.php:1023
+msgid "Gambia"
+msgstr "Gambiya"
+
+#: admin/class-book-review-admin.php:1024
+msgid "Georgia"
+msgstr "Gürcistan"
+
+#: admin/class-book-review-admin.php:1025
+msgid "Germany"
+msgstr "Almanya"
+
+#: admin/class-book-review-admin.php:1026
+msgid "Greece"
+msgstr "Yunanistan"
+
+#: admin/class-book-review-admin.php:1027
+msgid "Ghana"
+msgstr "Gana"
+
+#: admin/class-book-review-admin.php:1028
+msgid "Gibraltar"
+msgstr "Cebelitarık"
+
+#: admin/class-book-review-admin.php:1029
+msgid "Greenland"
+msgstr "Grönland"
+
+#: admin/class-book-review-admin.php:1030
+msgid "Grenada"
+msgstr "Granada"
+
+#: admin/class-book-review-admin.php:1031
+msgid "Guadeloupe"
+msgstr "Guadalup"
+
+#: admin/class-book-review-admin.php:1032
+msgid "Guam"
+msgstr "Guam"
+
+#: admin/class-book-review-admin.php:1033
+msgid "Guatemala"
+msgstr "Guetemala"
+
+#: admin/class-book-review-admin.php:1034
+msgid "Guernsey"
+msgstr "Guernsey"
+
+#: admin/class-book-review-admin.php:1035
+msgid "Guinea"
+msgstr "Gine"
+
+#: admin/class-book-review-admin.php:1036
+msgid "Guinea-Bissau"
+msgstr "Gine-Bissau"
+
+#: admin/class-book-review-admin.php:1037
+msgid "Guyana"
+msgstr "Guyana"
+
+#: admin/class-book-review-admin.php:1038
+msgid "Haiti"
+msgstr "Haiti"
+
+#: admin/class-book-review-admin.php:1039
+msgid "Heard and McDonald Islands"
+msgstr "Heard Adası ve McDonald Adaları"
+
+#: admin/class-book-review-admin.php:1040
+msgid "Holy See (City Vatican State)"
+msgstr "Papalık (Vatikan Kent Devleti)"
+
+#: admin/class-book-review-admin.php:1041
+msgid "Honduras"
+msgstr "Honduras"
+
+#: admin/class-book-review-admin.php:1042
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+#: admin/class-book-review-admin.php:1043
+msgid "Hungary"
+msgstr "Macaristan"
+
+#: admin/class-book-review-admin.php:1044
+msgid "Iceland"
+msgstr "İzlanda"
+
+#: admin/class-book-review-admin.php:1045
+msgid "India"
+msgstr "Hindistan"
+
+#: admin/class-book-review-admin.php:1046
+msgid "Indonesia"
+msgstr "Endonezya"
+
+#: admin/class-book-review-admin.php:1047
+msgid "Iran"
+msgstr "İran"
+
+#: admin/class-book-review-admin.php:1048
+msgid "Iraq"
+msgstr "Irak"
+
+#: admin/class-book-review-admin.php:1049
+msgid "Ireland"
+msgstr "İrlanda"
+
+#: admin/class-book-review-admin.php:1050
+msgid "Isle of Man"
+msgstr "Man Adası"
+
+#: admin/class-book-review-admin.php:1051
+msgid "Israel"
+msgstr "İsrail"
+
+#: admin/class-book-review-admin.php:1052
+msgid "Italy"
+msgstr "İtalya"
+
+#: admin/class-book-review-admin.php:1053
+msgid "Jamaica"
+msgstr "Jamaika"
+
+#: admin/class-book-review-admin.php:1054
+msgid "Japan"
+msgstr "Japonya"
+
+#: admin/class-book-review-admin.php:1055
+msgid "Jersey"
+msgstr "Jersey"
+
+#: admin/class-book-review-admin.php:1056
+msgid "Jordan"
+msgstr "Ürdün"
+
+#: admin/class-book-review-admin.php:1057
+msgid "Kazakhstan"
+msgstr "Kazakistan"
+
+#: admin/class-book-review-admin.php:1058
+msgid "Kenya"
+msgstr "Kenya"
+
+#: admin/class-book-review-admin.php:1059
+msgid "Kiribati"
+msgstr "Kiribati"
+
+#: admin/class-book-review-admin.php:1060
+msgid "Kuwait"
+msgstr "Kuveyt"
+
+#: admin/class-book-review-admin.php:1061
+msgid "Kyrgyzstan"
+msgstr "Kırgızistan"
+
+#: admin/class-book-review-admin.php:1062
+msgid "Lao People's Democratic Republic"
+msgstr "Lao Demokratik Halk Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1063
+msgid "Latvia"
+msgstr "Letonya"
+
+#: admin/class-book-review-admin.php:1064
+msgid "Lebanon"
+msgstr "Lübnan"
+
+#: admin/class-book-review-admin.php:1065
+msgid "Lesotho"
+msgstr "Lesoto"
+
+#: admin/class-book-review-admin.php:1066
+msgid "Liberia"
+msgstr "Liberya"
+
+#: admin/class-book-review-admin.php:1067
+msgid "Libyan Arab Jamahiriya"
+msgstr "Libya Arap Cemahiriyesi"
+
+#: admin/class-book-review-admin.php:1068
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+#: admin/class-book-review-admin.php:1069
+msgid "Lithuania"
+msgstr "Litvanya"
+
+#: admin/class-book-review-admin.php:1070
+msgid "Luxembourg"
+msgstr "Lüksemburg"
+
+#: admin/class-book-review-admin.php:1071
+msgid "Macau"
+msgstr "Makao"
+
+#: admin/class-book-review-admin.php:1072
+msgid "Macedonia"
+msgstr "Makedonya"
+
+#: admin/class-book-review-admin.php:1073
+msgid "Madagascar"
+msgstr "Madagaskar"
+
+#: admin/class-book-review-admin.php:1074
+msgid "Malawi"
+msgstr "Malavi"
+
+#: admin/class-book-review-admin.php:1075
+msgid "Malaysia"
+msgstr "Malezya"
+
+#: admin/class-book-review-admin.php:1076
+msgid "Maldives"
+msgstr "Maldiv Adaları"
+
+#: admin/class-book-review-admin.php:1077
+msgid "Mali"
+msgstr "Mali"
+
+#: admin/class-book-review-admin.php:1078
+msgid "Malta"
+msgstr "Malta"
+
+#: admin/class-book-review-admin.php:1079
+msgid "Marshall Islands"
+msgstr "Marşal Adaları"
+
+#: admin/class-book-review-admin.php:1080
+msgid "Martinique"
+msgstr "Martinik"
+
+#: admin/class-book-review-admin.php:1081
+msgid "Mauritania"
+msgstr "Moritanya"
+
+#: admin/class-book-review-admin.php:1082
+msgid "Mauritius"
+msgstr "Mauritius"
+
+#: admin/class-book-review-admin.php:1083
+msgid "Mayotte"
+msgstr "Mayotte"
+
+#: admin/class-book-review-admin.php:1084
+msgid "Mexico"
+msgstr "Meksika"
+
+#: admin/class-book-review-admin.php:1085
+msgid "Micronesia"
+msgstr "Mikronezya"
+
+#: admin/class-book-review-admin.php:1086
+msgid "Moldova, Republic of"
+msgstr "Moldova Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1087
+msgid "Monaco"
+msgstr "Monako"
+
+#: admin/class-book-review-admin.php:1088
+msgid "Mongolia"
+msgstr "Moğolistan"
+
+#: admin/class-book-review-admin.php:1089
+msgid "Montenegro"
+msgstr "Karadağ"
+
+#: admin/class-book-review-admin.php:1090
+msgid "Montserrat"
+msgstr "Monserat"
+
+#: admin/class-book-review-admin.php:1091
+msgid "Morocco"
+msgstr "Fas"
+
+#: admin/class-book-review-admin.php:1092
+msgid "Mozambique"
+msgstr "Mozambik"
+
+#: admin/class-book-review-admin.php:1093
+msgid "Myanmar"
+msgstr "Miyanmar"
+
+#: admin/class-book-review-admin.php:1094
+msgid "Namibia"
+msgstr "Namibya"
+
+#: admin/class-book-review-admin.php:1095
+msgid "Nauru"
+msgstr "Nauru"
+
+#: admin/class-book-review-admin.php:1096
+msgid "Nepal"
+msgstr "Nepal"
+
+#: admin/class-book-review-admin.php:1097
+msgid "Netherlands"
+msgstr "Hollanda"
+
+#: admin/class-book-review-admin.php:1098
+msgid "Netherlands Antilles"
+msgstr "Hollanda Antilleri"
+
+#: admin/class-book-review-admin.php:1099
+msgid "New Caledonia"
+msgstr "Yeni Kaledonya"
+
+#: admin/class-book-review-admin.php:1100
+msgid "New Zealand"
+msgstr "Yeni Zelanda"
+
+#: admin/class-book-review-admin.php:1101
+msgid "Nicaragua"
+msgstr "Nikaragua"
+
+#: admin/class-book-review-admin.php:1102
+msgid "Niger"
+msgstr "Nijer"
+
+#: admin/class-book-review-admin.php:1103
+msgid "Nigeria"
+msgstr "Nijerya"
+
+#: admin/class-book-review-admin.php:1104
+msgid "Niue"
+msgstr "Nie"
+
+#: admin/class-book-review-admin.php:1105
+msgid "Norfolk Island"
+msgstr "Norfolk Adası"
+
+#: admin/class-book-review-admin.php:1106
+msgid "North Korea"
+msgstr "Kuzey Kore"
+
+#: admin/class-book-review-admin.php:1107
+msgid "Northern Mariana Islands"
+msgstr "Kuzey Meryem Adaları"
+
+#: admin/class-book-review-admin.php:1108
+msgid "Norway"
+msgstr "Norveç"
+
+#: admin/class-book-review-admin.php:1109
+msgid "Oman"
+msgstr "Umman"
+
+#: admin/class-book-review-admin.php:1110
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: admin/class-book-review-admin.php:1111
+msgid "Palau"
+msgstr "Palau"
+
+#: admin/class-book-review-admin.php:1112
+msgid "Palestinian Territories"
+msgstr "Filistin Toprakları"
+
+#: admin/class-book-review-admin.php:1113
+msgid "Panama"
+msgstr "Panama"
+
+#: admin/class-book-review-admin.php:1114
+msgid "Papua New Guinea"
+msgstr "Papua Yeni Gine"
+
+#: admin/class-book-review-admin.php:1115
+msgid "Paraguay"
+msgstr "Paraguay"
+
+#: admin/class-book-review-admin.php:1116
+msgid "Peru"
+msgstr "Peru"
+
+#: admin/class-book-review-admin.php:1117
+msgid "Phillipines"
+msgstr "Filipinler"
+
+#: admin/class-book-review-admin.php:1118
+msgid "Pitcairn Island"
+msgstr "Pitcairn Adaları"
+
+#: admin/class-book-review-admin.php:1119
+msgid "Poland"
+msgstr "Polonya"
+
+#: admin/class-book-review-admin.php:1120
+msgid "Portugal"
+msgstr "Portekiz"
+
+#: admin/class-book-review-admin.php:1121
+msgid "Puerto Rico"
+msgstr "Porto Riko"
+
+#: admin/class-book-review-admin.php:1122
+msgid "Qatar"
+msgstr "Katar"
+
+#: admin/class-book-review-admin.php:1123
+msgid "Republic of Kosovo"
+msgstr "Kosova Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1124
+msgid "Reunion Island"
+msgstr "Reunion Adası"
+
+#: admin/class-book-review-admin.php:1125
+msgid "Romania"
+msgstr "Romanya"
+
+#: admin/class-book-review-admin.php:1126
+msgid "Russian Federation"
+msgstr "Rusya Federasyonu"
+
+#: admin/class-book-review-admin.php:1127
+msgid "Rwanda"
+msgstr "Ruanda"
+
+#: admin/class-book-review-admin.php:1128
+msgid "Saint Barth&eacute;lemy"
+msgstr "Saint Barth&eacute;lemy"
+
+#: admin/class-book-review-admin.php:1129
+msgid "Saint Helena"
+msgstr "Saint Helena"
+
+#: admin/class-book-review-admin.php:1130
+msgid "Saint Kitts and Nevis"
+msgstr "Saint Kitts ve Nevis"
+
+#: admin/class-book-review-admin.php:1131
+msgid "Saint Lucia"
+msgstr "Saint Lucia"
+
+#: admin/class-book-review-admin.php:1132
+msgid "Saint Martin (French)"
+msgstr "Saint Martin (Fransız)"
+
+#: admin/class-book-review-admin.php:1133
+msgid "Saint Martin (Dutch)"
+msgstr "Saint Martin (Felemenk)"
+
+#: admin/class-book-review-admin.php:1134
+msgid "Saint Pierre and Miquelon"
+msgstr "Saint Pierre ve Miquelon"
+
+#: admin/class-book-review-admin.php:1135
+msgid "Saint Vincent and the Grenadines"
+msgstr "Saint Vincent ve the Grenadines"
+
+#: admin/class-book-review-admin.php:1136
+msgid "San Marino"
+msgstr "San Marino"
+
+#: admin/class-book-review-admin.php:1137
+msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
+msgstr "S&atilde;o Tom&eacute; ve Pr&iacute;ncipe"
+
+#: admin/class-book-review-admin.php:1138
+msgid "Saudi Arabia"
+msgstr "Suudi Arabistan"
+
+#: admin/class-book-review-admin.php:1139
+msgid "Senegal"
+msgstr "Senegal"
+
+#: admin/class-book-review-admin.php:1140
+msgid "Serbia"
+msgstr "Sırbistan"
+
+#: admin/class-book-review-admin.php:1141
+msgid "Seychelles"
+msgstr "Seyşel Adaları"
+
+#: admin/class-book-review-admin.php:1142
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+#: admin/class-book-review-admin.php:1143
+msgid "Singapore"
+msgstr "Singapur"
+
+#: admin/class-book-review-admin.php:1144
+msgid "Slovak Republic"
+msgstr "Slovakya"
+
+#: admin/class-book-review-admin.php:1145
+msgid "Slovenia"
+msgstr "Slovenya"
+
+#: admin/class-book-review-admin.php:1146
+msgid "Solomon Islands"
+msgstr "Solomon Adaları"
+
+#: admin/class-book-review-admin.php:1147
+msgid "Somalia"
+msgstr "Somali"
+
+#: admin/class-book-review-admin.php:1148
+msgid "South Africa"
+msgstr "Güney Afrika"
+
+#: admin/class-book-review-admin.php:1149
+msgid "South Georgia"
+msgstr "Güney Georgia ve Güney Sandwich Adaları"
+
+#: admin/class-book-review-admin.php:1150
+msgid "South Korea"
+msgstr "Güney Kore"
+
+#: admin/class-book-review-admin.php:1151
+msgid "South Sudan"
+msgstr "Güney Sudan"
+
+#: admin/class-book-review-admin.php:1152
+msgid "Spain"
+msgstr "İspanya"
+
+#: admin/class-book-review-admin.php:1153
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+#: admin/class-book-review-admin.php:1154
+msgid "Sudan"
+msgstr "Sudan"
+
+#: admin/class-book-review-admin.php:1155
+msgid "Suriname"
+msgstr "Surinam"
+
+#: admin/class-book-review-admin.php:1156
+msgid "Svalbard and Jan Mayen Islands"
+msgstr "Svalbard ve Jan Mayen Adaları"
+
+#: admin/class-book-review-admin.php:1157
+msgid "Swaziland"
+msgstr "Svaziland"
+
+#: admin/class-book-review-admin.php:1158
+msgid "Sweden"
+msgstr "İsveç"
+
+#: admin/class-book-review-admin.php:1159
+msgid "Switzerland"
+msgstr "İsviçre"
+
+#: admin/class-book-review-admin.php:1160
+msgid "Syrian Arab Republic"
+msgstr "Suriye Arap Cumhuriyeti"
+
+#: admin/class-book-review-admin.php:1161
+msgid "Taiwan"
+msgstr "Tayvan"
+
+#: admin/class-book-review-admin.php:1162
+msgid "Tajikistan"
+msgstr "Tacikistan"
+
+#: admin/class-book-review-admin.php:1163
+msgid "Tanzania"
+msgstr "Tanzanya"
+
+#: admin/class-book-review-admin.php:1164
+msgid "Thailand"
+msgstr "Tayland"
+
+#: admin/class-book-review-admin.php:1165
+msgid "Timor-Leste"
+msgstr "Timor-Leste"
+
+#: admin/class-book-review-admin.php:1166
+msgid "Togo"
+msgstr "Togo"
+
+#: admin/class-book-review-admin.php:1167
+msgid "Tokelau"
+msgstr "Tokelau"
+
+#: admin/class-book-review-admin.php:1168
+msgid "Tonga"
+msgstr "Tonga"
+
+#: admin/class-book-review-admin.php:1169
+msgid "Trinidad and Tobago"
+msgstr "Trinidad ve Tobago"
+
+#: admin/class-book-review-admin.php:1170
+msgid "Tunisia"
+msgstr "Tunus"
+
+#: admin/class-book-review-admin.php:1171
+msgid "Turkey"
+msgstr "Türkiye"
+
+#: admin/class-book-review-admin.php:1172
+msgid "Turkmenistan"
+msgstr "Türkmenistan"
+
+#: admin/class-book-review-admin.php:1173
+msgid "Turks and Caicos Islands"
+msgstr "Turks and Caicos Adaları"
+
+#: admin/class-book-review-admin.php:1174
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: admin/class-book-review-admin.php:1175
+msgid "Uganda"
+msgstr "Uganda"
+
+#: admin/class-book-review-admin.php:1176
+msgid "Ukraine"
+msgstr "Ukrayna"
+
+#: admin/class-book-review-admin.php:1177
+msgid "United Arab Emirates"
+msgstr "Birleşik Arap Emirlikleri"
+
+#: admin/class-book-review-admin.php:1178
+msgid "Uruguay"
+msgstr "Uruguay"
+
+#: admin/class-book-review-admin.php:1179
+msgid "US Minor Outlying Islands"
+msgstr "ABD Ufak Dış Adaları"
+
+#: admin/class-book-review-admin.php:1180
+msgid "Uzbekistan"
+msgstr "Özbekistan"
+
+#: admin/class-book-review-admin.php:1181
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: admin/class-book-review-admin.php:1182
+msgid "Venezuela"
+msgstr "Venezüela"
+
+#: admin/class-book-review-admin.php:1183
+msgid "Vietnam"
+msgstr "Vietnam"
+
+#: admin/class-book-review-admin.php:1184
+msgid "Virgin Islands (British)"
+msgstr "Virgin Adaları (İngiliz)"
+
+#: admin/class-book-review-admin.php:1185
+msgid "Virgin Islands (USA)"
+msgstr "Virgin Adaları (A.B.D.)"
+
+#: admin/class-book-review-admin.php:1186
+msgid "Wallis and Futuna Islands"
+msgstr "Wallis ve Futuna Adaları"
+
+#: admin/class-book-review-admin.php:1187
+msgid "Western Sahara"
+msgstr "Batı Sahra"
+
+#: admin/class-book-review-admin.php:1188
+msgid "Western Samoa"
+msgstr "Batı Samoa"
+
+#: admin/class-book-review-admin.php:1189
+msgid "Yemen"
+msgstr "Yemen"
+
+#: admin/class-book-review-admin.php:1190
+msgid "Zambia"
+msgstr "Zambiya"
+
+#: admin/class-book-review-admin.php:1191
+msgid "Zimbabwe"
+msgstr "Zimbabve"
+
+#: admin/class-book-review-meta-box.php:92
+msgid "Book Info"
+msgstr "Kitap Bilgileri"
+
+#: admin/class-book-review-meta-box.php:189
+msgid "Select..."
+msgstr "Seç..."
+
+#: admin/class-book-review-meta-box.php:470
+msgid "the"
+msgstr "the"
+
+#: admin/class-book-review-meta-box.php:471
+msgid "a"
+msgstr "bir"
+
+#: admin/class-book-review-meta-box.php:472
+msgid "an"
+msgstr "bir"
+
+#: admin/partials/book-review-admin-advanced.php:8
+msgid "Google API"
+msgstr "Google API"
+
+#: admin/partials/book-review-admin-advanced.php:10
+msgid "This plugin uses the Google Books API to automatically populate the details of a book. In order to take advantage of this feature, you must first sign up for and enter an API key as described <a href=\"%s\" target=\"_blank\">here</a>."
+msgstr ""
+"Bu eklenti, bir kitabın ayrıntılarını otomatik olarak edinmek için Google "
+"Books API kullanır. Bu özelliği kullanmak için önce giriş yapmalı ve <a "
+"href=\"%s\" target=\"_blank\">burada</a> açıklandığı gibi bir API anahtarı "
+"girmelisiniz."
+
+#: admin/partials/book-review-admin-advanced.php:20
+msgid "Google API Key"
+msgstr "Google API Anahtarı"
+
+#: admin/partials/book-review-admin-advanced.php:29
+msgid "Your Google API key obtained from the <a href=\"%s\" target=\"_blank\">Google Developers Console</a>."
+msgstr ""
+"Google API anahtarınız <a href=\"%s\" target=\"_blank\">Google Geliştiriciler "
+"Konsolu</a>ndan alınır."
+
+#: admin/partials/book-review-admin-advanced.php:39
+msgid "Country"
+msgstr "Ülke"
+
+#: admin/partials/book-review-admin-advanced.php:47
+msgid "The Google Books API requires your geographic location in order to return content."
+msgstr ""
+"Google Books API, içerik döndürebilmesi için konumunuza ihtiyaç duymaktadır."
+
+#: admin/partials/book-review-admin-appearance.php:1
+msgid "Review Box"
+msgstr "Eleştiri Kutusu"
+
+#: admin/partials/book-review-admin-appearance.php:14
+msgid "Position"
+msgstr "Yerleşim"
+
+#: admin/partials/book-review-admin-appearance.php:23
+msgid "Top"
+msgstr "Üst"
+
+#: admin/partials/book-review-admin-appearance.php:32
+msgid "Bottom"
+msgstr "Alt"
+
+#: admin/partials/book-review-admin-appearance.php:36
+msgid "Whether to show the review box at the top or bottom of a post."
+msgstr ""
+"Eleştiri kutusunun yazının altında mı yoksa üstünde mi gösterileceğini "
+"ayarlar."
+
+#: admin/partials/book-review-admin-appearance.php:45
+msgid "Background Color"
+msgstr "Arkaplan Rengi"
+
+#: admin/partials/book-review-admin-appearance.php:59
+msgid "Border Color"
+msgstr "Kenarlık Rengi"
+
+#: admin/partials/book-review-admin-appearance.php:73
+msgid "Border Width"
+msgstr "Kenarlık Genişliği"
+
+#: admin/partials/book-review-admin-appearance.php:80
+msgid "pixel(s)"
+msgstr "piksel(ler)"
+
+#: admin/partials/book-review-admin-appearance.php:88
+#: admin/partials/book-review-admin-appearance.php:99
+#: admin/partials/book-review-admin-appearance.php:104
+msgid "Post Types"
+msgstr "Yazı Türleri"
+
+#: admin/partials/book-review-admin-appearance.php:90
+msgid "Select the post types to show book information for."
+msgstr "Kitap bilgisinin gösterileceği yazı türlerini seçin."
+
+#: admin/partials/book-review-admin-custom-fields.php:10
+msgid "Custom fields provide the ability to show additional details about a book. Every custom field entered here will be shown in the <em>Book Info</em> section when editing a post. Click the <em>Add Field</em> button to add a new field, or drag and drop existing fields to reorder them. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
+msgstr ""
+"Kişisel alanlar, bir kitap hakkında ek detayları gösterme yeteneği sağlar. "
+"Burada girilen her kişisel alan, bir yazı düzenlenirken <em>Kitap "
+"Bilgileri</em> kısmında görüntülenir. Yeni bir alan eklemek için <em>Alan "
+"Ekle</em> düğmesine tıklayın veya mevcut alanları yeniden sıralamak için "
+"sürükleyip bırakın. Daha fazla bilgi için lütfen <a href=\"%s\" "
+"target=\"_blank\">belgelendirme</a>ye bakın."
+
+#: admin/partials/book-review-admin-custom-fields.php:13
+msgid "<em>Please note that custom fields are not automatically populated by the Google Books API.</em>"
+msgstr ""
+"<em>Lütfen, kişisel alanların Google Books API tarafından otomatik olarak "
+"doldurulmayacağını unutmayın.</em>"
+
+#: admin/partials/book-review-admin-custom-fields.php:28
+msgid "Add Field"
+msgstr "Alan Ekle"
+
+#: admin/partials/book-review-admin-images.php:2
+msgid "Configure the images to use to display ratings. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
+msgstr ""
+"Beğenileri görüntülemek için kullanılacak resimleri yapılandırın. Daha fazla "
+"bilgi için lütfen <a href=\"%s\" target=\"_blank\">belgelendirme</a>ye bakın."
+
+#: admin/partials/book-review-admin-images.php:17
+msgid "Excerpts"
+msgstr "Alıntılar"
+
+#: admin/partials/book-review-admin-images.php:24
+msgid "Show the rating in excerpts"
+msgstr "Alıntılarda beğenileri göster"
+
+#: admin/partials/book-review-admin-images.php:32
+msgid "Default Rating Images"
+msgstr "Öntanımlı Beğeni Resimleri"
+
+#: admin/partials/book-review-admin-images.php:39
+msgid "Use the default rating images"
+msgstr "Öntanımlı beğeni resimlerini kullan"
+
+#: admin/partials/book-review-admin-images.php:47
+msgid "Rating Image URLs"
+msgstr "Beğeni Resimleri Bağlantıları"
+
+#: admin/partials/book-review-admin-images.php:49
+msgid "To use your own rating images, enter the URL of an image for each rating below (1-5)."
+msgstr ""
+"Kendi beğeni resimlerinizi kullanmak istiyosanız aşağıdaki her beğeni için "
+"bir resim bağlantısı girin (1-5)."
+
+#: admin/partials/book-review-admin-images.php:60
+msgid "One-star Image URL"
+msgstr "Tek-yıldız Resim Bağlantısı"
+
+#: admin/partials/book-review-admin-images.php:74
+msgid "Two-star Image URL"
+msgstr "Çift-yıldız Resim Bağlantısı"
+
+#: admin/partials/book-review-admin-images.php:88
+msgid "Three-star Image URL"
+msgstr "Üç-yıldız Resim Bağlantısı"
+
+#: admin/partials/book-review-admin-images.php:102
+msgid "Four-star Image URL"
+msgstr "Dört-yıldız Resim Bağlantısı"
+
+#: admin/partials/book-review-admin-images.php:116
+msgid "Five-star Image URL"
+msgstr "Beş-yıldız Resim Bağlantısı"
+
+#: admin/partials/book-review-admin-links.php:8
+msgid "Site Links"
+msgstr "Site Bağlantıları"
+
+#: admin/partials/book-review-admin-links.php:10
+msgid "Which site(s) would you like to link to in your reviews?"
+msgstr "Eleştirilerinizde hangi site(lere) bağlantı vermek istiyorsunuz?"
+
+#: admin/partials/book-review-admin-links.php:18
+#: admin/partials/book-review-admin-links.php:34
+#: admin/partials/book-review-admin-links.php:58
+msgid "Goodreads"
+msgstr "Goodreads"
+
+#: admin/partials/book-review-admin-links.php:25
+#: admin/partials/book-review-admin-links.php:87
+#: admin/partials/book-review-admin-links.php:111
+msgid "Barnes & Noble"
+msgstr "Barnes & Noble"
+
+#: admin/partials/book-review-admin-links.php:40
+#: admin/partials/book-review-admin-links.php:93
+msgid "Which type of link would you like to use?"
+msgstr "Ne tür bir bağlantı kullanmak istersiniz?"
+
+#: admin/partials/book-review-admin-links.php:140
+msgid "Looking for Amazon? <a href=\"%s\" target=\"_blank\">Learn more</a> about how you can use Amazon to monetize your reviews."
+msgstr ""
+"Amazon' u mu arıyorsunuz? Eleştirilerinizi paraya çevirmek için Amazon'u "
+"nasıl kullanacağınız hakkında <a href=\"%s\" target=\"_blank\">daha fazla "
+"öğrenin</a>."
+
+#: admin/partials/book-review-admin-links.php:146
+msgid "Custom Links"
+msgstr "Kişisel Bağlantılar"
+
+#: admin/partials/book-review-admin-links.php:149
+msgid "Configure the links that you would like to display with every book review. For every link added here, a new field will be shown in the <em>Book Info</em> section when editing a post. If you leave the <em>Link Image URL</em> field blank, links will be shown as text by default. Please see the <a href=\"%s\" target=\"_blank\">documentation</a> for more information."
+msgstr ""
+"Her kitap eleştirisinde göstermek istediğiniz bağlantıları yapılandırın. "
+"Buraya eklenen her bağlantı için, bir yazı düzenlenirken <em>Kitap "
+"Bilgileri</em>nde yeni bir alan görüntülenir.<em>Bağlantı Resmi "
+"Bağlantısını</em> boş bırakırsanız bağlantılar öntanımlı olarak metin "
+"şeklinde gösterilecektir. Daha fazla bilgi için lütfen <a href=\"%s\" "
+"target=\"_blank\">belgelendirme</a>ye bakın."
+
+#: admin/partials/book-review-admin-links.php:159
+msgid "Link Text (required)"
+msgstr "Bağlantı Metni (zorunlu)"
+
+#: admin/partials/book-review-admin-links.php:164
+msgid "Link Image URL (optional)"
+msgstr "Bağlantı Resmi Bağlantısı (isteğee bağlı)"
+
+#: admin/partials/book-review-admin-links.php:168
+msgid "Active"
+msgstr "Etkin"
+
+#: admin/partials/book-review-admin-links.php:207
+msgid "Add Link"
+msgstr "Bağlantı Ekle"
+
+#: admin/partials/book-review-admin-links.php:213
+msgid "General"
+msgstr "Genel"
+
+#: admin/partials/book-review-admin-links.php:215
+msgid "Would you like the links to open in a new tab?"
+msgstr "Bağlantıların yeni bir sekmede açılmasını ister misiniz?"
+
+#: admin/partials/book-review-admin-links.php:225
+msgid "Link Target"
+msgstr "Bağlantı Hedefi"
+
+#: admin/partials/book-review-admin-links.php:232
+msgid "Open links in a new tab"
+msgstr "Bağlantıları yeni bir sekmede aç"
+
+#: admin/partials/book-review-admin-meta-box.php:18
+msgid "ISBN"
+msgstr "ISBN"
+
+#: admin/partials/book-review-admin-meta-box.php:23
+msgid "Get Book Info"
+msgstr "Kitap Bilgilerini Getir"
+
+#: admin/partials/book-review-admin-meta-box.php:32
+#: public/partials/book-review-public.php:42
+msgid "Title"
+msgstr "Kitap Adı"
+
+#: admin/partials/book-review-admin-meta-box.php:41
+#: public/partials/book-review-public.php:56
+msgid "Series"
+msgstr "Kitap Serisi"
+
+#: admin/partials/book-review-admin-meta-box.php:50
+#: public/partials/book-review-public.php:70
+msgid "Author"
+msgstr "Yazar"
+
+#: admin/partials/book-review-admin-meta-box.php:59
+#: public/partials/book-review-public.php:86
+msgid "Genre"
+msgstr "Tür"
+
+#: admin/partials/book-review-admin-meta-box.php:68
+#: public/partials/book-review-public.php:100
+msgid "Publisher"
+msgstr "Yayıncı"
+
+#: admin/partials/book-review-admin-meta-box.php:78
+#: public/partials/book-review-public.php:114
+msgid "Release Date"
+msgstr "Yayın Tarihi"
+
+#: admin/partials/book-review-admin-meta-box.php:87
+#: public/partials/book-review-public.php:128
+msgid "Format"
+msgstr "Biçim"
+
+#: admin/partials/book-review-admin-meta-box.php:96
+#: public/partials/book-review-public.php:142
+msgid "Pages"
+msgstr "Sayfa Sayısı"
+
+#: admin/partials/book-review-admin-meta-box.php:105
+#: public/partials/book-review-public.php:156
+msgid "Source"
+msgstr "Kaynak"
+
+#: admin/partials/book-review-admin-meta-box.php:169
+msgid "Cover URL"
+msgstr "Kapak Bağlantısı"
+
+#: admin/partials/book-review-admin-meta-box.php:174
+msgid "Upload Cover"
+msgstr "Kapak Yükle"
+
+#: admin/partials/book-review-admin-meta-box.php:185
+msgid "Synopsis"
+msgstr "Özet"
+
+#: admin/partials/book-review-admin-meta-box.php:211
+msgid "Include post in archives"
+msgstr "Yazı arşivlerde de yer alsın"
+
+#: admin/partials/book-review-admin-notice.php:5
+msgid "Thank you!"
+msgstr "Teşekkürler!"
+
+#: admin/partials/book-review-admin-notice.php:9
+msgid "Now that you're writing amazing reviews, why not monetize them?"
+msgstr ""
+"Harika eleştiriler yazıyorsunuz, neden bunlardan para kazanmayasınız ki?"
+
+#: admin/partials/book-review-admin-notice.php:14
+msgid "<a class=\"cta\" href=\"%s\" target=\"_blank\">Learn more</a> about Affiliate Linkalizer for Amazon and how it can help you to earn income from your book reviews."
+msgstr ""
+"Amazon için Affiliate Linkalizer ve kitap eleştirilerinizden nasıl gelir "
+"elde etmenize yardımcı olabileceği hakkında <a class=\"cta\" href=\"%s\" "
+"target=\"_blank\">daha fazlasını öğrenin</a>."
+
+#: admin/partials/book-review-admin-notice.php:18
+msgid "<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Dismiss this notice.</span></a>"
+msgstr ""
+"<a href=\"%1$s\" class=\"dismiss\"><span class=\"screen-reader-text\">Bu bilgi "
+"notunu kaldır.</span></a>"
+
+#: public/partials/book-review-public.php:33
+msgid "Book Cover"
+msgstr "Kitap Kapağı"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpreviewplugins.com/product/book-review/"
+msgstr "http://wpreviewplugins.com/product/book-review/"
+
+#. Description of the plugin/theme
+msgid "Add book information such as title, author, publisher and cover photo to enhance your review posts."
+msgstr ""
+"Kitap eleştirisi yazılarınızı geliştirmek için başlık, yazar, yayıncı gibi "
+"kitap bilgilerini ve kapak fotoğrafını ekleyin."
+
+#. Author of the plugin/theme
+msgid "Donna Peplinskie"
+msgstr "Donna Peplinskie"
+
+#. Author URI of the plugin/theme
+msgid "http://donnapeplinskie.com/"
+msgstr "http://donnapeplinskie.com/"
+
+#~ msgid "http://wpreviewplugins.com/downloads/book-review/"
+#~ msgstr "http://wpreviewplugins.com/downloads/book-review/"

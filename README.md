@@ -40,6 +40,7 @@ This plugin supports the following translations (with credit to the translators)
 * Serbian ([Ogi Djuraskovic](http://firstsiteguide.com/))
 * Spanish (Jose Luis Parra)
 * Swedish (Harald Indgul)
+* Turkish (Atilla Öntaş)
 
 If you would like to translate Book Review into another language, please see the instructions in the [documentation](http://wpreviewplugins.com/documentation/translate-book-review/).
 
