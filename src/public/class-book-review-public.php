@@ -134,21 +134,19 @@ class Book_Review_Public {
 
     // Don't apply inline CSS to an RSS feed.
     if ( !is_feed() ) {
-      $style = 'border-style: solid;';
+      if ( !empty( $border_width ) && $border_width > 0 ) {
+        $style = 'border-style: solid; border-width: ' . $border_width . 'px;';
 
-      if ( !empty( $border_color ) ) {
-        $style .= ' border-color: ' . $border_color . ';';
+        if ( !empty( $border_color ) ) {
+          $style .= ' border-color: ' . $border_color . ';';
+        }
+
+        if ( !empty( $bg_color ) ) {
+          $style .= ' background-color: ' . $bg_color . ';';
+        }
+
+        return 'style="' . esc_attr( $style ) . '"';
       }
-
-      if ( !empty( $border_width ) ) {
-        $style .= ' border-width: ' . $border_width . 'px;';
-      }
-
-      if ( !empty( $bg_color ) ) {
-        $style .= ' background-color: ' . $bg_color . ';';
-      }
-
-      return 'style="' . esc_attr( $style ) . '"';
     }
 
     return '';

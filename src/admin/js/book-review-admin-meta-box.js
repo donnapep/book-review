@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
     var data = {
       action: "get_book_info",
       nonce: $("#ajax_isbn_nonce").text(),
-      isbn: $("#book_review_isbn").val()
+      isbn: $("#book_review_isbn").val().replace(/-/g, "")
     };
 
     if (!$.trim($("#book_review_isbn").val())) {
