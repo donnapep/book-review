@@ -75,7 +75,7 @@ class Book_Review_Public {
    * @return   string   Revised content of the post.
    */
   public function display_book_info( $content ) {
-    if ( is_main_query() && in_the_loop() ) {
+    if ( in_the_loop() ) {
       $post_id = get_the_ID();
       $title = $this->book_info->get_book_review_title( $post_id );
 
@@ -134,7 +134,7 @@ class Book_Review_Public {
 
     // Don't apply inline CSS to an RSS feed.
     if ( !is_feed() ) {
-      if ( !empty( $border_width ) && $border_width > 0 ) {
+      if ( !empty( $border_width ) && ( $border_width > 0 ) ) {
         $style = 'border-style: solid; border-width: ' . $border_width . 'px;';
 
         if ( !empty( $border_color ) ) {

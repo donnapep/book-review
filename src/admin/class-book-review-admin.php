@@ -114,9 +114,6 @@ class Book_Review_Admin {
     else if ( $hook_suffix == 'post-new.php' || $hook_suffix == 'post.php' ) {
       wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-meta-box.min.css', array(), $this->version, 'all' );
     }
-    else if ( $hook_suffix == 'plugins.php' ) {
-      wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-admin-notice.min.css', array(), $this->version, 'all' );
-    }
     else if ( $hook_suffix == $this->plugin_screen_hook_suffix ) {
       wp_enqueue_style( 'wp-color-picker' );
       wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/book-review-admin.min.css', array(), $this->version, 'all' );

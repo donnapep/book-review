@@ -1252,7 +1252,7 @@ class Book_Review_Admin_Tests extends WP_UnitTestCase {
    */
   public function testColumnContentValidRating() {
     $post_id = $this->factory->post->create();
-    $content = '<img src="' . plugin_dir_url( dirname(__FILE__) ) . 'includes/images/three-star.png" class="book_review_column_rating">';
+    $content = '<img src="' . plugin_dir_url( dirname(__FILE__) ) . 'src/includes/images/three-star.png" class="book_review_column_rating">';
 
     update_post_meta( $post_id, 'book_review_rating', '3' );
 

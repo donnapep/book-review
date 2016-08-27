@@ -135,12 +135,6 @@
     </section><!-- End .barnes-noble -->
   </div>
 
-  <p class="ala">
-    <?php
-      printf( __( 'Looking for Amazon? <a href="%s" target="_blank">Learn more</a> about how you can use Amazon to monetize your reviews.', $this->plugin_name ), esc_url( 'http://wpreviewplugins.com/blog/introducing-affiliate-linkalizer-for-amazon/' ) );
-    ?>
-  </p>
-
   <hr>
 
   <h3><?php esc_html_e( 'Custom Links', $this->plugin_name ); ?></h3>

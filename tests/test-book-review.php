@@ -22,7 +22,7 @@ class Book_Review_Tests extends WP_UnitTestCase {
    */
   public function testBookReviewPluginDirConstant() {
     $path = plugin_dir_path( dirname( __FILE__ ) );
-    $this->assertSame( BOOK_REVIEW_PLUGIN_DIR, $path );
+    $this->assertSame( BOOK_REVIEW_PLUGIN_DIR, $path . 'src/' );
   }
 
   /**
@@ -30,7 +30,7 @@ class Book_Review_Tests extends WP_UnitTestCase {
    */
   public function testBookReviewPluginUrlConstant() {
     $url = plugin_dir_url( dirname( __FILE__ ) );
-    $this->assertSame( BOOK_REVIEW_PLUGIN_URL, $url );
+    $this->assertSame( BOOK_REVIEW_PLUGIN_URL, $url . 'src/' );
   }
 
   /**
@@ -66,13 +66,6 @@ class Book_Review_Tests extends WP_UnitTestCase {
    */
   public function testBookInfoFileLoads() {
     $this->assertFileExists( BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-book-info.php' );
-  }
-
-  /**
-   * @covers Book_Review::load_dependencies
-   */
-  public function testAdminNoticeFileLoads() {
-    $this->assertFileExists( BOOK_REVIEW_PLUGIN_DIR . 'admin/class-book-review-admin-notice.php' );
   }
 
   /**
@@ -324,8 +317,9 @@ class Book_Review_Tests extends WP_UnitTestCase {
   public function testPluginActionsLinkFilter() {
     global $wp_filter;
 
-    $this->assertArrayHasKey( 'plugin_action_links_' . plugin_basename( plugin_dir_path( dirname(__FILE__) ) .
-      'book-review.php' ), $wp_filter );
+    $this->assertArrayHasKey( 'plugin_action_links_' .
+      plugin_basename( plugin_dir_path( dirname(__FILE__) ) . 'src/' . 'book-review.php' ),
+      $wp_filter );
   }
 
   /**
