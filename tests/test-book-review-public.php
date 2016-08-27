@@ -48,6 +48,10 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::display_book_info
    */
   public function testNoBookInfoWhenNoTitle() {
+    global $wp_query;
+
+    $wp_query->in_the_loop = true;
+
     set_post_type( $this->post_id, 'post' );
 
     $content = $this->plugin_public->display_book_info( '' );
@@ -58,11 +62,11 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
   /**
    * @covers Book_Review_Public::display_book_info
    */
-  public function testBookInfoPostWhenPostTypesNotSet() {error_log('testBookInfoPostWhenPostTypesNotSet');
-    global $wp_the_query;
+  public function testBookInfoPostWhenPostTypesNotSet() {
+    global $wp_query;
 
-    $wp_the_query = $this;
-    print_r($this->plugin_public);
+    $wp_query->in_the_loop = true;
+
     set_post_type( $this->post_id, 'post' );
     update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
 
@@ -75,6 +79,10 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::display_book_info
    */
   public function testBookInfoCPTWhenPostTypesNotSet() {
+    global $wp_query;
+
+    $wp_query->in_the_loop = true;
+
     set_post_type( $this->post_id, 'documentation' );
     update_post_meta( $this->post_id, 'book_review_title', 'The Fault in Our Stars' );
 
@@ -87,6 +95,10 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::display_book_info
    */
   public function testBookInfoCPTWhenPostTypeSelected() {
+    global $wp_query;
+
+    $wp_query->in_the_loop = true;
+
     $general_option = array();
     $general_option['book_review_post_types'] = array(
       'documentation' => '1'
@@ -105,6 +117,10 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::display_book_info
    */
   public function testNoBookInfoCPTWhenPostTypeNotSelected() {
+    global $wp_query;
+
+    $wp_query->in_the_loop = true;
+
     $general_option = array();
     $general_option['book_review_post_types'] = array(
       'documentation' => '0'
@@ -151,7 +167,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::get_review_box_style
    */
   public function testBorderColor() {
-    $style = 'style="border-style: solid; border-color: #fff; border-width: 1px;"';
+    $style = 'style="border-style: solid; border-width: 1px; border-color: #fff;"';
     $general_option = array(
       'book_review_border_color' => '#fff'
     );
@@ -188,14 +204,13 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
    * @covers Book_Review_Public::get_review_box_style
    */
   public function testNoBorderWidth() {
-    $style = 'style="border-style: solid;"';
     $general_option = array(
       'book_review_border_width' => 0
     );
 
     add_option( 'book_review_general', $general_option );
 
-    $this->assertSame( $style, $this->plugin_public->get_review_box_style() );
+    $this->assertSame( '', $this->plugin_public->get_review_box_style() );
   }
 
   /**
@@ -233,7 +248,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/src/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -289,7 +304,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/src/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -310,7 +325,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/src/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 
@@ -331,7 +346,7 @@ class Book_Review_Public_Tests extends WP_UnitTestCase {
     update_post_meta( $this->post_id, 'book_review_rating', '1' );
 
     $this->assertSame( '<p class="book_review_rating_image"><img src="http://example.org' .
-      '/wp-content/plugins/vagrant/www/github/book-review/build/includes' .
+      '/wp-content/plugins/vagrant/www/github/book-review/src/includes' .
       '/images/one-star.png"></p>', $this->plugin_public->add_rating( '' ) );
   }
 

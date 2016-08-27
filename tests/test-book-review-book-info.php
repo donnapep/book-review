@@ -238,7 +238,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
    */
   public function testSiteLinkGoodreadsButton() {
     $html[] = '<a class="custom-link" href="' . $this->link_url . '">'.
-      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/goodreads.png" alt="Goodreads"></a>';
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/src/includes/images/goodreads.png" alt="Goodreads"></a>';
 
     // Add a site link.
     $links_option = array(
@@ -266,7 +266,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
    */
   public function testSiteLinkGoodreadsButtonWithTarget() {
     $html[] = '<a class="custom-link" href="' . $this->link_url . '" target="_blank">'.
-      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/goodreads.png" alt="Goodreads"></a>';
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/src/includes/images/goodreads.png" alt="Goodreads"></a>';
 
     // Add a site link.
     $links_option = array(
@@ -295,7 +295,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
    */
   public function testSiteLinkBarnesNobleButton() {
     $html[] = '<a class="custom-link" href="' . $this->link_url . '">'.
-      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/barnes-noble.png" alt="Barnes &amp; Noble"></a>';
+      '<img src="http://example.org/wp-content/plugins/vagrant/www/github/book-review/src/includes/images/barnes-noble.png" alt="Barnes &amp; Noble"></a>';
 
     // Add a site link.
     $links_option = array(
@@ -843,7 +843,7 @@ class Book_Review_Book_Info_Tests extends WP_UnitTestCase {
   public function testDefaultRatingImage() {
     update_post_meta( $this->post_id, 'book_review_rating', '4' );
 
-    $this->assertSame( 'http://example.org/wp-content/plugins/vagrant/www/github/book-review/build/includes/images/four-star.png', $this->book_info->get_book_review_rating_image( $this->post_id ) );
+    $this->assertSame( 'http://example.org/wp-content/plugins/vagrant/www/github/book-review/src/includes/images/four-star.png', $this->book_info->get_book_review_rating_image( $this->post_id ) );
   }
 
   /**

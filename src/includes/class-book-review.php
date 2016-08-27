@@ -91,7 +91,7 @@ class Book_Review {
    */
   private function __construct() {
     $this->plugin_name = 'book-review';
-    $this->version = '2.3.7';
+    $this->version = '2.3.8';
 
     if ( !defined( 'BOOK_REVIEW_PLUGIN_DIR' ) ) {
       define( 'BOOK_REVIEW_PLUGIN_DIR', plugin_dir_path( dirname( __FILE__ ) ) );
@@ -104,7 +104,6 @@ class Book_Review {
     $this->load_dependencies();
     $this->set_locale();
     $this->define_activator_hooks();
-    $this->define_admin_notice_hooks();
     $this->define_admin_hooks();
     $this->define_meta_box_hooks();
     $this->define_public_hooks();
@@ -159,11 +158,6 @@ class Book_Review {
     require_once BOOK_REVIEW_PLUGIN_DIR . 'includes/class-book-review-book-info.php';
 
     /**
-     * The class responsible for displaying admin notices when the plugin is activated.
-     */
-    require_once BOOK_REVIEW_PLUGIN_DIR . 'admin/class-book-review-admin-notice.php';
-
-    /**
      * The class responsible for defining all actions that occur in the Dashboard.
      */
     require_once BOOK_REVIEW_PLUGIN_DIR . 'admin/class-book-review-admin.php';
@@ -207,20 +201,6 @@ class Book_Review {
 
     // Trigger an action whenever a new blog is created within a multisite network.
     $this->loader->add_action( 'wpmu_new_blog', $plugin_activator, 'activate_new_site' );
-  }
-
-  /**
-   * Register all of the hooks related to the displaying of admin notices.
-   *
-   * @since    2.2.0
-   * @access   private
-   */
-  private function define_admin_notice_hooks() {
-    $plugin_admin_notice = new Book_Review_Admin_Notice( $this->get_plugin_name() );
-
-    // Actions
-    $this->loader->add_action( 'admin_notices', $plugin_admin_notice, 'show_activation_notice' );
-    $this->loader->add_action( 'admin_init', $plugin_admin_notice, 'dismiss_activation_notice' );
   }
 
   /**
