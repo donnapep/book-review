@@ -1,5 +1,12 @@
 # Change Log #
 
+## 2.3.8 ##
+* New: Remove admin notice that is shown when the plugin is activated.
+* New: Remove link to Affiliate Linkalizer for Amazon on *Links* settings tab.
+* Tweak: Remove call to `is_main_query` when displaying book details.
+* Fix: Strip dashes in ISBN numbers before sending request to Google Books API.
+* Fix: Don’t add CSS `border-style` property unless border width is > 1.
+
 ## 2.3.7 ##
 * Fix: Restore missing CSS files.
 
