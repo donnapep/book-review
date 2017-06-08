@@ -1,5 +1,8 @@
 # Change Log #
 
+## 2.3.9 ##
+* Fix: Fix settings not displaying for PHP 7.1.x or higher.
+
 ## 2.3.8 ##
 * New: Remove admin notice that is shown when the plugin is activated.
 * New: Remove link to Affiliate Linkalizer for Amazon on *Links* settings tab.

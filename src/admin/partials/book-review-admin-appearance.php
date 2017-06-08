@@ -1,8 +1,8 @@
 <h3><?php esc_html_e( 'Review Box', $this->plugin_name ); ?></h3>
 <form action="options.php" method="post">
   <?php
-    @settings_fields( 'general_options' );
-    @do_settings_fields( 'general_options' );
+    settings_fields( 'general_options' );
+    do_settings_fields( 'general_options', '' );
   ?>
 
   <table class="form-table">
@@ -124,5 +124,5 @@
     </tbody>
   </table>
 
-  <?php @submit_button(); ?>
+  <?php submit_button(); ?>
 </form>

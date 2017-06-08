@@ -1,7 +1,7 @@
 <form action="options.php" method="post">
   <?php
-    @settings_fields( 'advanced_options' );
-    @do_settings_fields( 'advanced_options' );
+    settings_fields( 'advanced_options' );
+    do_settings_fields( 'advanced_options', '' );
   ?>
 
   <div>
@@ -51,5 +51,5 @@
     </tbody>
   </table>
 
-  <?php @submit_button(); ?>
+  <?php submit_button(); ?>
 </form>

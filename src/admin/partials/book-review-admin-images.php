@@ -4,8 +4,8 @@
 
 <form action="options.php" method="post">
   <?php
-    @settings_fields( 'ratings_options' );
-    @do_settings_fields( 'ratings_options' );
+    settings_fields( 'ratings_options' );
+    do_settings_fields( 'ratings_options', '' );
   ?>
 
   <table class="form-table">
@@ -125,7 +125,7 @@
     </tbody>
   </table>
 
-  <?php @submit_button(); ?>
+  <?php submit_button(); ?>
 </form>
 
 <script type="text/javascript">

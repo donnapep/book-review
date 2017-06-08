@@ -1,8 +1,8 @@
 <form action="options.php" method="post">
   <?php
     // Trying to save more options here results in an error.
-    @settings_fields( 'fields_options' );
-    @do_settings_fields( 'fields_options' );
+    settings_fields( 'fields_options' );
+    do_settings_fields( 'fields_options', '' );
   ?>
 
   <div>
@@ -27,5 +27,5 @@
 
   <input class="add-field button" type="button" value="<?php esc_html_e( 'Add Field', $this->plugin_name ); ?>">
 
-  <?php @submit_button(); ?>
+  <?php submit_button(); ?>
 </form>
