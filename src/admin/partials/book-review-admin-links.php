@@ -1,7 +1,7 @@
 <form action="options.php" method="post">
   <?php
-    @settings_fields( 'links_options' );
-    @do_settings_fields( 'links_options' );
+    settings_fields( 'links_options' );
+    do_settings_fields( 'links_options', '' );
   ?>
 
   <!-- Standard Links -->
@@ -229,5 +229,5 @@
     </tbody>
   </table>
 
-  <?php @submit_button(); ?>
+  <?php submit_button(); ?>
 </form>
