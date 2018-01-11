@@ -1,5 +1,7 @@
 # Book Review #
 
+DEPRECATION NOTICE: Given the imminent release of the Gutenberg editor in WordPress 5.0, the Book Review plugin is no longer being maintained. It has been replaced by [Book Review Block](https://wordpress.org/plugins/book-review-block/), which is intended to be used together with the Gutenberg editor.
+
 ## Review More Than Just Books ##
 One of the most powerful features of Book Review is the ability to add custom fields to each of your reviews. Custom fields enable you to review movies, music, TV shows and so much more!
 
